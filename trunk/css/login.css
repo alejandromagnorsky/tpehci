@@ -1,0 +1,145 @@
+* { font-family: "Arial" }
+
+body {
+    background: #dbe9ed;
+}
+
+#divcontent {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#divlink {
+    text-align: left;
+    float: right;
+    font-size: 11px;
+    background: #fff;
+    padding: 5px 0 5px 8px;
+    color: #666;
+    /* mozilla firefox */
+    -moz-border-radius: 5px;
+    /* google chrome & safari*/
+    -webkit-border-radius: 5px;
+    /* opera */
+    border-radius: 5px;
+}
+
+#divlink a {
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0 18px 0 0;
+}
+
+.left {
+    float: left;
+}
+
+.unclicked {
+    padding: 5px 7px 5px 5px;
+    margin-left: 5px;
+    /* mozilla firefox */
+    -moz-border-radius: 5px;
+	/* google chrome & safari*/
+    -webkit-border-radius: 5px;
+    /* opera */
+    border-radius: 5px;
+}
+
+.clicked {
+    padding: 5px 7px 5px 5px;
+    background: #ccc;
+    margin-left: 5px;
+    /* mozilla firefox */
+    -moz-border-radius: 5px 5px 0 0;
+    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    /* google chrome & safari*/
+    -webkit-border-radius: 5px 5px 0 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.296875) 0px 3px 3px;
+    /* opera */
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px 3px 3px #666666;
+}
+
+.text_link {
+    padding-right: 15px;
+    color: #7fb3cc;
+    background: url(../images/toggle_down_dark.png) no-repeat scroll right center;
+}
+
+.text_link_clicked {
+    color: #000;
+    background: #ccc;
+    background: url(../images/toggle_up_dark.png) no-repeat scroll right center #ccc;
+}
+
+#divlogin {
+	clear:both;
+    float:right;
+	width: 245px;
+    display: none;
+    background: #fff;
+    border: 5px solid #ccc;
+    background-color: #ffffff;
+    /* mozilla firefox */
+    -moz-border-radius: 5px 0 5px 5px;
+    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    /* google chrome & safari*/
+    -webkit-border-radius: 5px 0 5px 5px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.296875) 0px 3px 3px;
+    /* opera */
+    box-shadow: 0px 3px 3px #666666;
+    border-radius: 5px 0 5px 5px;
+	
+}
+
+#divlogin form {
+    margin: 0;
+    padding: 5px 8px;
+}
+
+.field {
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 218px;
+}
+
+.formLabel {
+    font-size: 11px;
+    color: #666;
+    display: block;
+    padding: 10px 0 7px 0;
+}
+
+
+
+#signin_submit {
+    background: url(../images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+    /* mozilla firefox */
+    -moz-border-radius: 4px 4px 4px 4px;
+    /* google chrome & safari*/
+    -webkit-border-radius: 4px;
+    /* opera */
+    border: 1px solid #3399dd;
+    color: #FFF;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0 5px 0 0;
+    padding: 4px 10px 5px;
+    text-shadow: 0 -1px 0 #3399dd;
+}
+
+#signin_submit:focus, #signin_submit:hover {
+    cursor: pointer;
+    background-position: 0 -5px;
+}
+
+#signin_submit:active {
+    background-image: none;
+}
+
+.submit {
+    color: #666;
+    font-size: 11px;
+    margin: 12px 0 12px 0;
+}
