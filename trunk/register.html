@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="register.css" />
+        <title>Registrarse</title>
+    </head>
+    <body>
+    	<form action="">
+	        <h3>Registraci&oacute;n</h3>
+					
+			<div id = 'personal'>
+				<h4>Datos personales</h4>
+				<div class='input'>
+					<label class="descriptor"><strong>Nombre/s*:</strong></label>	<br />
+					<input name="name" type="text" size="40"/> <br />
+					<label class="warning">Introduzca uno o m&aacute;s nombres</label>
+				</div>
+				
+				<div class='input'>
+					<label class="descriptor"><strong>Apellido/s*:</strong></label> <br />
+					<input name="sirname" type="text" size="40" /> <br />
+					<label class="warning">Introduzca uno o m&aacute;s apellidos</label> 
+				</div>
+			
+				<div class='input'>
+					<label class="descriptor"><strong>Pa&iacute;s*:</strong></label> <br />
+					<select name="country">
+						<option value="0" selected="selected">Argentina</option>
+						<option value="1">Estados Unidos</option>
+						<option value="2">Espa&ntilde;a</option>
+						<option value="3">Inglaterra</option>
+					</select>
+				</div>
+			
+				<div class='input'>
+					<label class="descriptor"><strong>Provincia*:</strong></label> <br />
+					<select name="state">
+						<option value="0" selected="selected">Buenos Aires</option>
+						<option value="1">Misiones</option>
+						<option value="2">C&oacute;rdoba</option>
+						<option value="3">La Pampa</option>
+					</select>		
+				</div>
+					
+				<div class='input'>
+					<label class="descriptor"><strong>Ciudad*:</strong></label> <br />
+					<select name="city">
+						<option value="0" selected="selected">Capital Federal</option>
+						<option value="1">Pinamar</option>
+						<option value="2">Mar del Plata</option>
+						<option value="3">Miramar</option>
+					</select>
+				</div>
+		
+			
+				<div class='input'>
+					<label class="descriptor"><strong>Tel&eacute;fono*:</strong></label> <br />
+					<input name="telephone" type="text" size="3" maxlength="4"/> - <input type="text" size="3" maxlength="4"/><br />
+				</div>
+				
+				<div class='input'>
+					<label class="descriptor">Celular:</label> <br />
+					<input name="celular1" type="text" size="1" maxlength="2"/> - 
+					<input name="celular2" type="text" size="3" maxlength="4"/> - 
+					<input name="celular3" type="text" size="3" maxlength="4"/><br />
+				</div>
+			
+			</div>
+			
+			<div id = 'userData'>
+				<h4>Datos de usuario</h4>
+				<div class='input'>
+					<label class="descriptor"><strong>Nombre de usuario*:</strong></label> <br />
+					<input name="username" type="text" size="30" maxlength="20"/> <br />
+				</div>
+				<div class='input'>
+					<label class="descriptor"><strong>Contrase&ntilde;a*:</strong></label> <br />
+					<input name="password" type="password" size="20" maxlength="20"/> <br />
+				</div>
+				<div class='input'>
+					<label class="descriptor"><strong>Confirmar contrase&ntilde;a*:</strong></label> <br />
+					<input name="confirmPassword" type="password" size="20" maxlength="20"/> <br />
+				</div>
+				<div class='input'>
+					<label class="descriptor"><strong>Correo electr&oacute;nico*:</strong></label> <br />
+					<input name="email" type="text" size="30" maxlength="30"/> <br />
+				</div>
+			</div>
+			
+			<div>
+				<label class="reference"><strong>*Datos obligatorios</strong></label> <br />
+						
+				<button type="submit" name="buttonOK" value="OK">Aceptar</button>
+				<button type="button" name="buttonCancel" value="Cancel">Cancelar</button>
+			</div>
+		</form>		
+		
+    </body>
+</html>

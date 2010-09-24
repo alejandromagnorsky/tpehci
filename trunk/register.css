@@ -1,0 +1,41 @@
+body {
+	width:1024px;
+	margin-left : auto;
+	margin-right : auto;
+	padding : 0px;
+}
+
+
+label.descriptor {
+	font-size: 13px;
+}
+
+div.input {
+	margin-top: 20px;
+}
+
+#personal, #userData {
+	width:600px;
+	border:solid;
+	padding: 5px;
+	border-width: 1px;
+}
+
+[name='buttonOK'] {
+	margin-left: 440px;
+}
+
+[name='buttonCancel'] {
+	margin-left: 20px;
+}
+
+label.reference {
+	color:#FF0000;
+	font-size: 13px;
+}
+
+label.warning {
+	color:#FF0000;
+	visibility: hidden;
+	font-size: 13px;
+}
