@@ -4,6 +4,8 @@
 	<head>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="../css/register.css" />
+		<script type="text/javascript" src="../js/register.js">
+        </script>
         <title>Registrarse</title>
     </head>
     <body>
@@ -22,6 +24,12 @@
 					<label class="formLabel"><strong>Apellido/s*:</strong></label> <br />
 					<input name="sirname" type="text" size="40" /> <br />
 					<label class="warning">Introduzca uno o m&aacute;s apellidos</label> 
+				</div>
+							
+				<div class='input'>
+					<label class="formLabel"><strong>Fecha de nacimiento*:</strong></label> <br />
+					<input name="birthday" type="text" size="8" maxlength="10" />
+					<label class="dateformat">(dd/mm/yyyy)</label>	<br />					
 				</div>
 			
 				<div class='input'>
@@ -42,31 +50,7 @@
 						<option value="2">C&oacute;rdoba</option>
 						<option value="3">La Pampa</option>
 					</select>		
-				</div>
-					
-				<div class='input'>
-					<label class="formLabel"><strong>Ciudad*:</strong></label> <br />
-					<select name="city">
-						<option value="0" selected="selected">Capital Federal</option>
-						<option value="1">Pinamar</option>
-						<option value="2">Mar del Plata</option>
-						<option value="3">Miramar</option>
-					</select>
-				</div>
-		
-			
-				<div class='input'>
-					<label class="formLabel"><strong>Tel&eacute;fono*:</strong></label> <br />
-					<input name="telephone" type="text" size="3" maxlength="4"/> - <input type="text" size="3" maxlength="4"/><br />
-				</div>
-				
-				<div class='input'>
-					<label class="formLabel">Celular:</label> <br />
-					<input name="celular1" type="text" size="1" maxlength="2"/> - 
-					<input name="celular2" type="text" size="3" maxlength="4"/> - 
-					<input name="celular3" type="text" size="3" maxlength="4"/><br />
-				</div>
-			
+				</div>			
 			</div>
 			
 			<div id = 'userData'>
@@ -93,7 +77,7 @@
 				<label class="reference"><strong>*Datos obligatorios</strong></label> <br />
 						
 				<button type="submit" name="buttonOK">Aceptar</button>
-				<button type="button" name="buttonCancel">Cancelar</button>
+				<button id="buttonCancel" type="button" name="buttonCancel">Cancelar</button>
 			</div>
 		</form>		
 		
