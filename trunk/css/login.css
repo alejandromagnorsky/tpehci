@@ -65,13 +65,13 @@ body {
 .text_link {
     padding-right: 15px;
     color: #7fb3cc;
-    background: url(../images/toggle_down_dark.png) no-repeat scroll right center;
+    background: url(images/toggle_down_dark.png) no-repeat scroll right center;
 }
 
 .text_link_clicked {
     color: #000;
     background: #ccc;
-    background: url(../images/toggle_up_dark.png) no-repeat scroll right center #ccc;
+    background: url(images/toggle_up_dark.png) no-repeat scroll right center #ccc;
 }
 
 #divlogin {
@@ -113,7 +113,7 @@ body {
 }
 
 #signin_submit {
-    background: url(../images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+    background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
     /* google chrome & safari*/
