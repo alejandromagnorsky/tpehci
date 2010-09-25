@@ -13,72 +13,81 @@
 	        <h3>Registraci&oacute;n</h3>
 					
 			<div id = 'personal'>
-				<h4>Datos personales</h4>
-				<div class='input'>
-					<label class="formLabel"><strong>Nombre/s*:</strong></label>	<br />
-					<input name="name" type="text" size="40"/> <br />
-					<label class="warning">Introduzca uno o m&aacute;s nombres</label>
+				<div class="formHeader">
+					Datos personales
 				</div>
+				<div class="formContent">
+					<div class='input'>
+						<label class="formLabel"><strong>Nombre/s*:</strong></label>	<br />
+						<input name="name" type="text" size="40"/> <br />
+						<label class="warning">Introduzca uno o m&aacute;s nombres</label>
+					</div>
+					
+					<div class='input'>
+						<label class="formLabel"><strong>Apellido/s*:</strong></label> <br />
+						<input name="sirname" type="text" size="40" /> <br />
+						<label class="warning">Introduzca uno o m&aacute;s apellidos</label> 
+					</div>
+								
+					<div class='input'>
+						<label class="formLabel"><strong>Fecha de nacimiento*:</strong></label> <br />
+						<input name="birthday" type="text" size="8" maxlength="10" />
+						<label class="dateformat">(dd/mm/yyyy)</label>	<br />					
+					</div>
 				
-				<div class='input'>
-					<label class="formLabel"><strong>Apellido/s*:</strong></label> <br />
-					<input name="sirname" type="text" size="40" /> <br />
-					<label class="warning">Introduzca uno o m&aacute;s apellidos</label> 
-				</div>
-							
-				<div class='input'>
-					<label class="formLabel"><strong>Fecha de nacimiento*:</strong></label> <br />
-					<input name="birthday" type="text" size="8" maxlength="10" />
-					<label class="dateformat">(dd/mm/yyyy)</label>	<br />					
-				</div>
-			
-				<div class='input'>
-					<label class="formLabel"><strong>Pa&iacute;s*:</strong></label> <br />
-					<select name="country">
-						<option value="0" selected="selected">Argentina</option>
-						<option value="1">Estados Unidos</option>
-						<option value="2">Espa&ntilde;a</option>
-						<option value="3">Inglaterra</option>
-					</select>
-				</div>
-			
-				<div class='input'>
-					<label class="formLabel"><strong>Provincia*:</strong></label> <br />
-					<select name="state">
-						<option value="0" selected="selected">Buenos Aires</option>
-						<option value="1">Misiones</option>
-						<option value="2">C&oacute;rdoba</option>
-						<option value="3">La Pampa</option>
-					</select>		
-				</div>			
+					<div class='input'>
+						<label class="formLabel"><strong>Pa&iacute;s*:</strong></label> <br />
+						<select name="country">
+							<option value="0" selected="selected">Argentina</option>
+							<option value="1">Estados Unidos</option>
+							<option value="2">Espa&ntilde;a</option>
+							<option value="3">Inglaterra</option>
+						</select>
+					</div>
+				
+					<div class='input'>
+						<label class="formLabel"><strong>Provincia*:</strong></label> <br />
+						<select name="state">
+							<option value="0" selected="selected">Buenos Aires</option>
+							<option value="1">Misiones</option>
+							<option value="2">C&oacute;rdoba</option>
+							<option value="3">La Pampa</option>
+						</select>		
+					</div>	
+				</div>		
 			</div>
 			
 			<div id = 'userData'>
-				<h4>Datos de usuario</h4>
-				<div class='input'>
-					<label class="formLabel"><strong>Nombre de usuario*:</strong></label> <br />
-					<input name="username" type="text" size="30" maxlength="20"/> <br />
+				<div class="formHeader">
+					Datos de usuario
 				</div>
-				<div class='input'>
-					<label class="formLabel"><strong>Contrase&ntilde;a*:</strong></label> <br />
-					<input name="password" type="password" size="20" maxlength="20"/> <br />
-				</div>
-				<div class='input'>
-					<label class="formLabel"><strong>Confirmar contrase&ntilde;a*:</strong></label> <br />
-					<input name="confirmPassword" type="password" size="20" maxlength="20"/> <br />
-				</div>
-				<div class='input'>
-					<label class="formLabel"><strong>Correo electr&oacute;nico*:</strong></label> <br />
-					<input name="email" type="text" size="30" maxlength="30"/> <br />
+				<div class="formContent">
+					<div class='input'>
+						<label class="formLabel"><strong>Nombre de usuario*:</strong></label> <br />
+						<input name="username" type="text" size="30" maxlength="20"/> <br />
+					</div>
+					<div class='input'>
+						<label class="formLabel"><strong>Contrase&ntilde;a*:</strong></label> <br />
+						<input name="password" type="password" size="20" maxlength="20"/> <br />
+					</div>
+					<div class='input'>
+						<label class="formLabel"><strong>Confirmar contrase&ntilde;a*:</strong></label> <br />
+						<input name="confirmPassword" type="password" size="20" maxlength="20"/> <br />
+					</div>
+					<div class='input'>
+						<label class="formLabel"><strong>Correo electr&oacute;nico*:</strong></label> <br />
+						<input name="email" type="text" size="30" maxlength="30"/> <br />
+					</div>
 				</div>
 			</div>
 			
 			<div>
 				<label class="reference"><strong>*Datos obligatorios</strong></label> <br />
 						
-				<button type="submit" name="buttonOK">Aceptar</button>
-				<button id="buttonCancel" type="button" name="buttonCancel">Cancelar</button>
-			</div>
+				<input id="buttonOK" type="submit" value="Aceptar"/>
+				<input id="buttonCancel" type="button" value="Cancelar"/>
+			</div>				
+			
 		</form>		
 		
     </body>
