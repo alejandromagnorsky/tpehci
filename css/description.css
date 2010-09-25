@@ -1,0 +1,69 @@
+* {
+	font-family:Arial;
+}
+
+body{
+	background-color:#fcedb9;
+	width:1024px;
+	margin-left : auto;
+	margin-right : auto;
+	padding : 0px;
+}
+
+.image {
+	float:left;
+	border: solid;
+	border-width: 1px;
+	width: 240px;
+	height: 304px;
+	background: url(../css/images/smiths.png)  no-repeat left center;
+}
+
+#tabs{
+	float:right;
+	width: 750px;
+	position:static;
+}
+
+.name {
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 8px;
+}
+
+.autor {
+	font-size: 15px;
+	font-style: italic;
+	padding-bottom: 6px;
+}
+
+.description {
+	font-size: 14px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.divPrice {
+	float:right;
+	text-align:right;
+}
+
+.spanPrice {
+	font-weight: bold;
+	font-size: 18px;
+	color: #CD0A0A;
+}
+
+#addtocart {
+	margin-top: 60px;
+	margin-bottom: 10px;
+	width: 268px;
+	height: 46px;
+	background: url(../css/images/cart.png)  no-repeat right center;
+}
+
+
+.sinopsis {
+	font-size:15px;
+	font-family:Times;
+}

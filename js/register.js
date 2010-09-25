@@ -13,7 +13,7 @@ function load(){
 		maxDate: '+0d'
 	});
 	
-	var lang = 'en';
+	var lang = 'es';
 	
 	if (lang == 'es') {
 		jQuery(function($){

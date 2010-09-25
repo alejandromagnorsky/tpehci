@@ -37,7 +37,7 @@ div.formContent {
 
 #buttonOK {
 	margin-left: 425px;
-	background: url(../images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+	background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
     /* google chrome & safari*/
@@ -53,7 +53,7 @@ div.formContent {
 
 #buttonCancel {
 	margin-left: 20px;
-	background: url(../images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+	background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
     /* google chrome & safari*/
