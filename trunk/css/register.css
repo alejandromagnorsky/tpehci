@@ -19,19 +19,56 @@ div.input {
 	margin-top: 20px;
 }
 
+div.formHeader {
+	font-size: 18px;
+	font-weight: bold;
+	background-color:#99b4d1;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	padding: 0;
+}
+
+div.formContent {
+	padding: 5px;
+	background-color:#dbe9ed;
+}
+
 #personal, #userData {
 	width:600px;
-	border:solid;
-	padding: 5px;
+	border:solid;	
 	border-width: 1px;
 }
 
-[name='buttonOK'] {
-	margin-left: 440px;
+#buttonOK {
+	margin-left: 425px;
+	background: url(../images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+    /* mozilla firefox */
+    -moz-border-radius: 4px 4px 4px 4px;
+    /* google chrome & safari*/
+    -webkit-border-radius: 4px;
+    /* opera */
+    border: 1px solid #3399dd;
+    color: #FFF;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px 5px;
+    text-shadow: 0 -1px 0 #3399dd;
 }
 
-[name='buttonCancel'] {
+#buttonCancel {
 	margin-left: 20px;
+	background: url(../images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+    /* mozilla firefox */
+    -moz-border-radius: 4px 4px 4px 4px;
+    /* google chrome & safari*/
+    -webkit-border-radius: 4px;
+    /* opera */
+    border: 1px solid #3399dd;
+    color: #FFF;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px 5px;
+    text-shadow: 0 -1px 0 #3399dd;
 }
 
 label.reference {
