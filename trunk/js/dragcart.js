@@ -1,4 +1,4 @@
-$CART_ITEM_WEIGHT = "85px";
+$CART_ITEM_WIDTH = "85px";
 $CART_ITEM_HEIGHT = "115px";
 
 $(function(){
@@ -32,7 +32,7 @@ $(function(){
 	function buildCartItem(item){
 		var addedItem = item.clone();
 		
-		/* Reorder buttons, that's why I remove icon-zoom and then add it. */
+		/* Add some buttons. */
 		addedItem.find("a.icon-cart").remove();
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='-' class='icon icon-minus'>- Quantity</a>");
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='+' class='icon icon-plus'>+ Quantity</a>");
@@ -84,7 +84,7 @@ $(function(){
 		} else {
 			var itemToAdd = buildCartItem($item);
 			itemToAdd.appendTo($("ul", $cart)).fadeIn(function(){
-				itemToAdd.animate({ width: $CART_ITEM_WEIGHT }).find("img").animate({ height: $CART_ITEM_HEIGHT });
+				itemToAdd.animate({ width: $CART_ITEM_WIDTH }).find("img").animate({ height: $CART_ITEM_HEIGHT });
 			});
 		}
 	}
