@@ -19,7 +19,7 @@
 .products li a					{ float: right; }
 .products li a.icon-zoom		{ float: left; }
 .products li img				{ width: 100%; cursor: move; }
-* html #trash					{ height: 18em; } /* IE6 */
+* html #cart					{ height: 18em; } /* IE6 */
 #cart							{ float: right; width: 32%; min-height: 18em; padding: 1%;  list-style: none;}
 #cart h4						{ line-height: 16px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
@@ -27,11 +27,8 @@
 /* ************************************************** */
 
 /* QUANTITY */
-.quantity						{ font-size: 4em; font-weight: bold; }
-/*#cart .quantity					{
-	font-size: 15em;
-	background-image:  url(images/cart.png);
-    background-repeat: no-repeat; }*/
+.quantity {
+	font-size: 2em; font-weight: bold; position: relative; }
 /* ************************************************** */
 
 /* PRODUCT ****************************************** */
