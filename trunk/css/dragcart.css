@@ -91,6 +91,8 @@
 .icon-cart				{ background-position: -176px -96px; }
 .icon-zoom				{ background-position: -128px -112px; }
 .icon-remove			{ background-position: -64px -80px; }
+.icon-plus				{ background-position: -32px -128px; }
+.icon-minus				{ background-position: -64px -128px; }
 .icon { /* formerly '.ui-icon' */
 	display: block; text-indent: -99999px; overflow: hidden;
 	width: 16px; height: 16px;
