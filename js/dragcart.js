@@ -1,3 +1,6 @@
+$CART_ITEM_WEIGHT = "85px";
+$CART_ITEM_HEIGHT = "115px";
+
 $(function(){
     /* Two main object: products and cart. */
     var $products = $("#products"), $cart = $("#cart");
@@ -28,11 +31,12 @@ $(function(){
 	/* Builds cart item */
 	function buildCartItem(item){
 		var addedItem = item.clone();
+		
+		/* Reorder buttons, that's why I remove icon-zoom and then add it. */
 		addedItem.find("a.icon-cart").remove();
-		/* Adds 'Remove From Cart', '+' & '-' buttons */
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='-' class='icon icon-minus'>- Quantity</a>");
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='+' class='icon icon-plus'>+ Quantity</a>");
-		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='Remove From Cart' class='icon icon-remove'>Remove From Cart</a>");
+		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='Remove from cart' class='icon icon-remove'>Remove From Cart</a>");
 		addedItem.append("<span class='quantity'>1</span>");
 		
 		// Event delegation for cart items.
@@ -80,7 +84,7 @@ $(function(){
 		} else {
 			var itemToAdd = buildCartItem($item);
 			itemToAdd.appendTo($("ul", $cart)).fadeIn(function(){
-				itemToAdd.animate({ width: "68px" }).find("img").animate({ height: "56px" });
+				itemToAdd.animate({ width: $CART_ITEM_WEIGHT }).find("img").animate({ height: $CART_ITEM_HEIGHT });
 			});
 		}
 	}

@@ -17,7 +17,9 @@
 .products li					{ float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
 .products li h5					{ margin: 0 0 0.4em; cursor: move; }
 .products li a					{ float: right; }
-.products li a.icon-zoom		{ float: left; }
+.products li a.icon-zoom		{ float: right; }
+.products li a.icon-cart		{ float: left; }
+.products li a.icon-remove		{ float: left; }
 .products li img				{ width: 100%; cursor: move; }
 * html #cart					{ height: 18em; } /* IE6 */
 #cart							{ float: right; width: 32%; min-height: 18em; padding: 1%;  list-style: none;}
@@ -28,7 +30,7 @@
 
 /* QUANTITY */
 .quantity {
-	font-size: 2em; font-weight: bold; position: relative; }
+	font-weight: bold; position: relative; }
 /* ************************************************** */
 
 /* PRODUCT ****************************************** */
@@ -104,14 +106,3 @@
 	background-repeat: no-repeat;
 	background-image: url(images/ui-icons_222222_256x240.png); }
 /* ************************************************** */
-
-/* CORNER RADIUS */
-.corner-tl { -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; }
-.corner-tr { -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px; }
-.corner-bl { -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; border-bottom-left-radius: 5px; }
-.corner-br { -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px; border-bottom-right-radius: 5px; }
-.corner-top { -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px; }
-.corner-bottom { -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px; border-bottom-right-radius: 5px; }
-.corner-right {  -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px; border-bottom-right-radius: 5px; }
-.corner-left { -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; border-bottom-left-radius: 5px; }
-.corner-all { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
