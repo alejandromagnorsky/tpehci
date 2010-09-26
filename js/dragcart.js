@@ -20,47 +20,73 @@ $(function(){
 		activeClass: "state-highlight",
         drop: function(event, ui){ addToCart(ui.draggable); }
     });
-  
-/*	// let the products be droppable as well, accepting items from the cart
-    $products.droppable({
-        accept: "#cart li",
-        activeClass: "custom-state-active",
-        drop: function(event, ui){
-      //      recycleImage(ui.draggable);
-        }
-    }); */
-
-	/* Adds given element to the cart. */ 
-	var removeFromCartLink = "<a href='link/to/recycle/script/when/we/have/js/off' title='Remove From Cart' class='icon icon-remove'>Remove From Cart</a>";
-	var list;
-	function addToCart($item){
-		$list = $( "ul", $cart ).length ?
-					$( "ul", $cart ) : $( "<ul class='products helper-reset'/>" ).appendTo( $cart );
-		var addedItem = $item.clone();
+	
+	
+	/* NECESITO SABER QUE MIERDA HACE ESTA LINEA Y POR QUE LA NECESITO, porque la necesito si o si. */
+	$( "<ul class='products helper-reset'/>" ).appendTo( $cart );
+	
+	/* Builds cart item */
+	function buildCartItem(item){
+		var addedItem = item.clone();
 		addedItem.find("a.icon-cart").remove();
-		addedItem.append(removeFromCartLink);
+		/* Adds 'Remove From Cart', '+' & '-' buttons */
+		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='-' class='icon icon-minus'>- Quantity</a>");
+		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='+' class='icon icon-plus'>+ Quantity</a>");
+		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='Remove From Cart' class='icon icon-remove'>Remove From Cart</a>");
+		addedItem.quantity = 1;
 		
 		// Event delegation for cart items.
+		// NO ME GUSTA NO PODER USAR THIS o $(THIS) PERONO ANDA NO SE PORQUE PREGUNTAR ESTO PORQ EUES UNA CHANCHADA
 		addedItem.click(function( event ) {
 			$target = $(event.target);
 			if ( $target.is( "a.icon-zoom" ) ) {
 				productDetails($target);
 			} else if ( $target.is( "a.icon-remove" ) ) {
 				removeFromCart($(this));
+			} else if ( $target.is( "a.icon-plus" ) ) {
+				addedItem.quantity++;
+			} else if ( $target.is( "a.icon-minus" ) ) {
+				addedItem.quantity--;
+				if (addedItem.quantity <= 0){
+					removeFromCart($(this));
+				}
 			}
 			return false;
 		});
+		return addedItem;
+	}
+	
+	/* Checks if an item is already in the cart */
+	function inCart(item){
+		var cartItems = $("ul", $cart).children();
+		for (var i=0; i<cartItems.length; i++){
+			if (cartItems[i].id == item[0].id){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	function addToCart($item){
+		var i = inCart($item);
+		if (i >= 0){
+			var cartItems = $("ul", $cart).children();
+			cartItems[i].quantity++;
+			return;
+		} else {
+			var itemToAdd = buildCartItem($item);
 		
-		// Finally, adds new item to cart.
-		addedItem.appendTo($list).fadeIn(function(){
-			addedItem.animate({ width: "48px" }).find("img").animate({ height: "36px" });
-		});
-		
+			// Finally, adds new item to cart.
+			itemToAdd.appendTo($("ul", $cart)).fadeIn(function(){
+				itemToAdd.animate({ width: "68px" }).find("img").animate({ height: "56px" });
+			});
+			return;
+		}
 	}
 	
 	/* Removes an element from the cart. */
 	function removeFromCart($item){
-		$item.fadeOut( function(){ $list.children().remove("#" + $item[0].id); });
+		$item.fadeOut( function(){ $("ul", $cart).children().remove("#" + $item[0].id); });
 	}
     
     /* View full product details */
