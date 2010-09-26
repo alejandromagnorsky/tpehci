@@ -33,7 +33,7 @@ $(function(){
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='-' class='icon icon-minus'>- Quantity</a>");
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='+' class='icon icon-plus'>+ Quantity</a>");
 		addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='Remove From Cart' class='icon icon-remove'>Remove From Cart</a>");
-		addedItem.quantity = 1;
+		addedItem.append("<span class='quantity'>1</span>");
 		
 		// Event delegation for cart items.
 		// NO ME GUSTA NO PODER USAR THIS o $(THIS) PERONO ANDA NO SE PORQUE PREGUNTAR ESTO PORQ EUES UNA CHANCHADA
@@ -44,11 +44,14 @@ $(function(){
 			} else if ( $target.is( "a.icon-remove" ) ) {
 				removeFromCart($(this));
 			} else if ( $target.is( "a.icon-plus" ) ) {
-				addedItem.quantity++;
+				var qty = parseInt(addedItem.find("span.quantity").text()) + 1;
+				addedItem.find("span.quantity").text(qty);
 			} else if ( $target.is( "a.icon-minus" ) ) {
-				addedItem.quantity--;
-				if (addedItem.quantity <= 0){
+				var qty = parseInt(addedItem.find("span.quantity").text()) - 1;
+				if (qty <= 0){
 					removeFromCart($(this));
+				} else {
+					addedItem.find("span.quantity").text(qty);
 				}
 			}
 			return false;
@@ -71,16 +74,14 @@ $(function(){
 		var i = inCart($item);
 		if (i >= 0){
 			var cartItems = $("ul", $cart).children();
-			cartItems[i].quantity++;
-			return;
+			var item = $("span", cartItems[i]);
+			var qty = parseInt(item.text()) + 1;
+			item.text(qty);
 		} else {
 			var itemToAdd = buildCartItem($item);
-		
-			// Finally, adds new item to cart.
 			itemToAdd.appendTo($("ul", $cart)).fadeIn(function(){
 				itemToAdd.animate({ width: "68px" }).find("img").animate({ height: "56px" });
 			});
-			return;
 		}
 	}
 	

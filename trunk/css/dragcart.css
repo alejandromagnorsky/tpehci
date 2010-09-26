@@ -26,6 +26,14 @@
 #cart .products h5				{ display: none; }
 /* ************************************************** */
 
+/* QUANTITY */
+.quantity						{ font-size: 4em; font-weight: bold; }
+/*#cart .quantity					{
+	font-size: 15em;
+	background-image:  url(images/cart.png);
+    background-repeat: no-repeat; }*/
+/* ************************************************** */
+
 /* PRODUCT ****************************************** */
 .product .product	{ font-size: 1em; }
 .product-content a	{ color: #222222; }
@@ -33,7 +41,7 @@
 .product:active		{ outline: none; }
 .product { /* formerly 'ui-widget' */
 	font-family: Verdana,Arial,sans-serif;
-	font-size: 1.1em; }
+	font-size: 0.8em; }
 	
 .product-content { /* formerly 'ui-widget-content' */
 	border: 1px solid #aaaaaa;
