@@ -1,0 +1,61 @@
+
+body {
+    background-color: #a2a4ac;
+    background-attachment: fixed;
+    background-image: url(./images/inicio/bg.png);
+    background-repeat: repeat-x;
+    font-family: verdana;
+    overflow: visible;
+}
+
+#divhome {
+    height: 100%;
+    width: 1329px;
+    top: -10px;
+    left: -70px;
+    margin-right: 10%;
+    position: absolute;
+}
+
+#divheader {
+    height: 483px;
+    width: 100%;
+    position: relative;
+    background-image: url(./images/inicio/header.png);
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+}
+
+#divfisheye {
+    height: 483px;
+    top: 0px;
+    position: relative;
+    background-image: url(./images/inicio/fisheye.png);
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+}
+
+#divsearch {
+    height: 15%;
+    width: 100%;
+    top: -1px;
+    position: relative;
+    background-image: url(./images/inicio/search.png);
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+}
+
+#inputsearch {
+    position: relative;
+    left: 360px;
+    top: 10px;
+    height: 50px;
+    width: 565px;
+    text-align: left;
+    font-size: large;
+    background-color: transparent;
+    border: hidden;
+    font-family: verdana;
+    font-size: 20pt;
+    font-weight: 500;
+}
