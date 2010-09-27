@@ -1,5 +1,5 @@
-$CART_ITEM_WIDTH = "90px";
-$CART_ITEM_HEIGHT = "115px";
+$CART_ITEM_WIDTH = "83px";
+$CART_ITEM_HEIGHT = "112px";
 
 /* Description window code */
 window.onload = load;
