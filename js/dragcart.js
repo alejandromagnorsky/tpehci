@@ -99,13 +99,13 @@ $(function(){
 		var src = $link.attr("href"), title = $link.siblings("img").attr("alt");
 		var toOpen = $link.siblings("div.description").clone();
 		
-		setTimeout(function(){ 
-			toOpen.dialog({
-				title: title,
-				width: 400,
-				modal: true
-			});
-		}, 1);
+		toOpen.dialog({
+			title: title,
+			width: 1024,
+			resizable: false,
+			modal: true
+		});
+		
 	}
 	
 	/* Event delegation for products. */
