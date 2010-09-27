@@ -95,21 +95,17 @@ $(function(){
 	}
     
     /* View full product details */
-    function productDetails($link){
-		var src = $link.attr("href"), title = $link.siblings("img").attr("alt"), $modal = $("img[src$='" + src + "']");
+   function productDetails($link){
+		var src = $link.attr("href"), title = $link.siblings("img").attr("alt");
+		var toOpen = $link.siblings("div.description").clone();
 		
-		if ($modal.length) {
-			$modal.dialog("open");
-		} else {
-			var img = $("<img alt='" + title + "' width='384' height='288' style='display: none; padding: 8px;' />").attr("src", src).appendTo("body");
-			setTimeout(function(){
-				img.dialog({
-					title: title,
-					width: 400,
-					modal: true
-				});
-			}, 1);
-		}
+		setTimeout(function(){ 
+			toOpen.dialog({
+				title: title,
+				width: 400,
+				modal: true
+			});
+		}, 1);
 	}
 	
 	/* Event delegation for products. */
