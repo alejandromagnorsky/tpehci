@@ -1,23 +1,20 @@
-* { font-family: "Arial" }
-
-body {
-    background: #dbe9ed;
-}
-
 #divcontent {
     width: 1024px;
     margin: 0 auto;
 }
 
 #divlink {
+	z-index: 2;
     text-align: left;
     float: right;
+	top: 480px;
+	position: relative;
 	font-size: 11px;
 	text-decoration: none;    
     font-weight: bold;
-    background: #fff;
+    background: transparent;
     padding: 5px 0 5px 8px;
-    color: #666;
+    color: #ffffff;
     /* mozilla firefox */
     -moz-border-radius: 5px;
     /* google chrome & safari*/
@@ -49,7 +46,7 @@ body {
 
 .clicked {
     padding: 5px 7px 5px 5px;
-    background: #ccc;
+    background: #ffffff;
     margin-left: 5px;
     /* mozilla firefox */
     -moz-border-radius: 5px 5px 0 0;
@@ -64,7 +61,7 @@ body {
 
 .text_link {
     padding-right: 15px;
-    color: #7fb3cc;
+    color: #ffffff;
     background: url(images/toggle_down_dark.png) no-repeat scroll right center;
 }
 
@@ -75,9 +72,12 @@ body {
 }
 
 #divlogin {
+	z-index: 2;
 	clear:both;
     float:right;
-	width: 245px;
+	width: 240px;
+	position: relative;
+	top: 480px;
     display: none;
     background: #fff;
     border: 5px solid #ccc;
