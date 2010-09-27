@@ -14,15 +14,12 @@ body{
 	float:left;
 	border: solid;
 	border-width: 1px;
-	width: 250px;
-	height: 360px;
-	background: url(../css/images/products/br-evildead.png) no-repeat left center;
 }
 
-#tabs{
+.tabs{
 	float:right;
 	width: 700px;
-	position:static;
+	position: static;
 }
 
 .name {
@@ -37,7 +34,7 @@ body{
 	padding-bottom: 6px;
 }
 
-.description {
+.category {
 	font-size: 14px;
 	padding-top: 10px;
 	padding-bottom: 10px;

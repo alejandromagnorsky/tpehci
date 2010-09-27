@@ -1,14 +1,18 @@
 $CART_ITEM_WIDTH = "83px";
 $CART_ITEM_HEIGHT = "112px";
 
-/* Description window code */
-window.onload = load;
-
-function load(){
-	$("#tabs").tabs();	
-}
-
 $(function(){
+	
+	$(".tabs").tabs();
+	
+	/* Instantiates dialog windows for every product */
+	$(".description").dialog({
+			autoOpen: false, 
+			width: 1024,
+			resizable: false,
+			modal: true
+	});
+				
     /* Two main object: products and cart. */
     var $products = $("#products"), $cart = $("#cart");
 	
@@ -47,7 +51,6 @@ $(function(){
 		addedItem.append("<span class='quantity'>1</span>");
 		
 		// Event delegation for cart items.
-		// NO ME GUSTA NO PODER USAR THIS o $(THIS) PERONO ANDA NO SE PORQUE PREGUNTAR ESTO PORQ EUES UNA CHANCHADA
 		addedItem.click(function( event ) {
 			$target = $(event.target);
 			if ( $target.is( "a.icon-zoom" ) ) {
@@ -91,7 +94,8 @@ $(function(){
 		} else {
 			var itemToAdd = buildCartItem($item);
 			itemToAdd.appendTo($("ul", $cart)).fadeIn(function(){
-				itemToAdd.animate({ width: $CART_ITEM_WIDTH }).find("img").animate({ height: $CART_ITEM_HEIGHT });
+				itemToAdd.animate({ width: $CART_ITEM_WIDTH });
+				itemToAdd.children("img").animate({ height: $CART_ITEM_HEIGHT });;
 			});
 		}
 	}
@@ -102,17 +106,11 @@ $(function(){
 	}
     
     /* View full product details */
-   function productDetails($link){
-		var src = $link.attr("href"), title = $link.siblings("img").attr("alt");
-		var toOpen = $link.siblings("div.description").clone();
-		
-		toOpen.dialog({
-			title: title,
-			width: 1024,
-			resizable: false,
-			modal: true
-		});
-		
+	function productDetails($link){
+		var toOpen =  $("#description" + $link.parent().attr("id"));
+		toOpen.dialog("option", "title", $link.siblings("img").attr("alt"));
+		toOpen.dialog("open");		
+		return false;
 	}
 	
 	/* Event delegation for products. */
@@ -122,6 +120,7 @@ $(function(){
 		if ($target.is("a.icon-cart")) {
 			addToCart($item);
 		} else if ($target.is("a.icon-zoom")) {
+			$target.parent();
 			productDetails($target);
 		}
 		return false;
