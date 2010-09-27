@@ -14,9 +14,9 @@ body{
 	float:left;
 	border: solid;
 	border-width: 1px;
-	width: 240px;
-	height: 304px;
-	background: url(../css/images/smiths.png)  no-repeat left center;
+	width: 250px;
+	height: 360px;
+	background: url(../css/images/products/evildead.png) no-repeat left center;
 }
 
 #tabs{
