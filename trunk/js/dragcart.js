@@ -1,11 +1,11 @@
-$CART_ITEM_WIDTH = "85px";
+$CART_ITEM_WIDTH = "90px";
 $CART_ITEM_HEIGHT = "115px";
 
 /* Description window code */
 window.onload = load;
 
 function load(){
-	$("#tabs").tabs();
+	$("#tabs").tabs();	
 }
 
 $(function(){
