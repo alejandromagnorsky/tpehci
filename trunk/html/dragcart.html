@@ -5,69 +5,124 @@
         <!-- POR EL UNICO MOTIVO QUE SIGO MANTENIENDO ESTE CSS ES POR LA LIBRERIA DE DIALOG -->
         <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css"/>
         <link rel="stylesheet" type="text/css" href="../css/dragcart.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/description.css"/>
-        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js"></script>
-		<script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.position.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/description.css"/>
+        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.position.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js">
+        </script>
         <!-- Cart function -->
-        <script type="text/javascript" src="../js/dragcart.js"></script>
-		<!-- Tabs function
-		<script type="text/javascript" src="../js/description.js"></script> -->
-		
-        <title>DragCart</title>
+        <script type="text/javascript" src="../js/dragcart.js">
+        </script>
+        <!--<script type="text/javascript" src="../js/description.js"></script>-->
+		<title>DragCart</title>
     </head>
     <body>
         <div class="product">
             <ul id="products" class="products helper-reset helper-clearfix">
                 <li class="product-content corner-tr" id="1">
-                	<h5 class="product-header">Evil Dead</h5>
-					<div class="description hide"> Evil Dead description </div>
-                	<img src="../css/images/products/evildead-min.png" alt="Evil Dead" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
-               		<a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
+                    <h5 class="product-header">Evil Dead</h5>
+                    <div class="description hide">
+                        <div class="image">
+                        </div>
+                    	<div id="tabs">
+                    		<ul>
+                                <li>
+                                    <a href="#tabs-1">Detalles</a>
+                                </li>
+                                <li>
+                                    <a href="#tabs-2">Sinopsis</a>
+                                </li>
+                            </ul> 
+                            <div id="tabs-1">
+                                <div id="details">
+                                    <div class="divPrice">
+                                        <p class="spanPrice">Precio por unidad: $80</p>
+                                        <input id="addtocart" type="button" value=""/>
+                                    </div>
+                                    <div class="name">
+                                        Nombre: Mr. &amp; Mrs. Smith
+                                        <br/>
+                                    </div>
+                                    <div class="autor">
+                                        Actores: Angelina Jolie, Brad Pitt 
+                                        <br/>
+                                    </div>
+                                    <div class="description">
+                                        Categor&iacute;a: DVD 
+                                        <br/>
+                                        G&eacute;nero: Acci&oacute;n 
+                                        <br/>
+                                        Distribuye: New Regency Pictures 
+                                        <br/>
+                                        Fecha estreno DVD: 05/01/2006 
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tabs-2">
+                                <div class="sinopsis">
+                                    John y Jane Smith son una pareja normal, de urbanizaci&oacute;n, cuyo matrimonio es tan normal 
+                                    y tan mon&oacute;tono como el paisaje que les rodea. Pero cada uno oculta algo: el Sr. y  
+                                    la Sra. Smith son, en realidad, unos asesinos muy bien pagados e incre&iacute;blemente eficaces, 
+                                    que, adem&aacute;s, trabajan para organizaciones que compiten entre s&iacute;. El Sr. y la Sra. Smith  
+                                    descubren una nueva fuente de emociones en su matrimonio, al ser contratados para mandarse 
+                                    mutuamente al otro barrio... y entonces s&iacute; que empieza la juerga de verdad. El resultado  
+                                    es el espect&aacute;culo de acci&oacute;n definitivo, cuando el Sr. y la Sra. Smith ponen en pr&aacute;ctica 
+                                    su tremenda habilidad y someten a su matrimonio a la prueba final.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="../css/images/products/evildead-min.png" alt="Evil Dead" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
                 <li class="product-content corner-tr" id="2">
                     <h5 class="product-header">Commando</h5>
-					<div class="description hide"> Commando description </div>
-                    <img src="../css/images/products/commando-min.png" alt="Commando" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <div class="description hide">
+                        Commando description 
+                    </div>
+                    <img src="../css/images/products/commando-min.png" alt="Commando" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
                     <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
                 <li class="product-content corner-tr" id="3">
                     <h5 class="product-header">Inferno</h5>
-                    <img src="../css/images/products/inferno-min.png" alt="Inferno" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <img src="../css/images/products/inferno-min.png" alt="Inferno" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
                     <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
                 <li class="product-content corner-tr" id="4">
                     <h5 class="product-header">Return Of The Living Dead</h5>
-                    <img src="../css/images/products/rotld-min.png" alt="Return Of The Living Dead" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <img src="../css/images/products/rotld-min.png" alt="Return Of The Living Dead" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
                     <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
-				<li class="product-content corner-tr" id="5">
+                <li class="product-content corner-tr" id="5">
                     <h5 class="product-header">Tombs Of The Blind Dead</h5>
-                    <img src="../css/images/products/totbd-min.png" alt="Tombs Of The Blind Dead" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <img src="../css/images/products/totbd-min.png" alt="Tombs Of The Blind Dead" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
                     <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
-				<li class="product-content corner-tr" id="6">
+                <li class="product-content corner-tr" id="6">
                     <h5 class="product-header">Toxic Avenger</h5>
-                    <img src="../css/images/products/toxicavenger-min.png" alt="Toxic Avenger" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <img src="../css/images/products/toxicavenger-min.png" alt="Toxic Avenger" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
                     <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
-				<li class="product-content corner-tr" id="7">
+                <li class="product-content corner-tr" id="7">
                     <h5 class="product-header">The Exorcist</h5>
-                    <img src="../css/images/products/theexorcist-min.png" alt="The Exorcist" width="96" height="125" />
-					<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
+                    <img src="../css/images/products/theexorcist-min.png" alt="The Exorcist" width="96" height="125" /><a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>
                     <a href="link/to/trash/script/when/we/have/js/off" title="Add to cart" class="icon icon-cart">Add to cart</a>
                 </li>
             </ul>
