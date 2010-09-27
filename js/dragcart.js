@@ -1,6 +1,13 @@
 $CART_ITEM_WIDTH = "85px";
 $CART_ITEM_HEIGHT = "115px";
 
+/* Description window code */
+window.onload = load;
+
+function load(){
+	$("#tabs").tabs();
+}
+
 $(function(){
     /* Two main object: products and cart. */
     var $products = $("#products"), $cart = $("#cart");
