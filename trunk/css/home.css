@@ -6,13 +6,17 @@ body {
     background-repeat: repeat-x;
     font-family: verdana;
     overflow: visible;
+	width: 1335px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
 }
 
 #divhome {
     height: 100%;
-    width: 1329px;
-    top: -10px;
-    left: -70px;
+    width: 1310px;
+	left: -70px;
+    top: -5px;
     margin-right: 10%;
     position: absolute;
 }
@@ -48,7 +52,7 @@ body {
 #inputsearch {
     position: relative;
     left: 360px;
-    top: 10px;
+    top: 17px;
     height: 50px;
     width: 565px;
     text-align: left;
