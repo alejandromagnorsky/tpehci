@@ -4,13 +4,12 @@
 }
 
 #divlink {
-	z-index: 2;
-    text-align: left;
+    z-index: 10;
+    position: relative;
     float: right;
-	top: 480px;
-	position: relative;
-	font-size: 11px;
-	text-decoration: none;    
+	top: -3px;
+    font-size: 11px;
+    text-decoration: none;
     font-weight: bold;
     background: transparent;
     padding: 5px 0 5px 8px;
@@ -21,77 +20,86 @@
     -webkit-border-radius: 5px;
     /* opera */
     border-radius: 5px;
+    font-size: 11.5pt;
 }
 
-#spanlogin { 
+#spanlogin {
     padding-right: 18px;
+    text-decoration: inherit;
 }
 
 #spanregister {
-	margin-left: 5px;
-	margin-right: 15px;
-	color: #7fb3cc;
+    margin-left: 5px;
+    margin-right: 15px;
+    color: #fff;
+    text-decoration: inherit;
+}
+
+#spanlogin:hover {
+    color: #000;
+}
+
+#spanregister:hover {
+    color: #000;
 }
 
 .unclicked {
     padding: 5px 7px 5px 5px;
-    margin-left: 5px;
+    margin-left: 6px;
     /* mozilla firefox */
     -moz-border-radius: 5px;
-	/* google chrome & safari*/
+    /* google chrome & safari*/
     -webkit-border-radius: 5px;
     /* opera */
     border-radius: 5px;
 }
 
 .clicked {
-    padding: 5px 7px 5px 5px;
-    background: #ffffff;
-    margin-left: 5px;
+    padding: 5px 7px 7px 7px;
+    background: #fff;
     /* mozilla firefox */
-    -moz-border-radius: 5px 5px 0 0;
-    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    -moz-border-radius: 7px 7px 0 0;
     /* google chrome & safari*/
     -webkit-border-radius: 5px 5px 0 0;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.296875) 0px 3px 3px;
     /* opera */
-    border-radius: 5px 5px 0 0;
-    box-shadow: 0px 3px 3px #666666;
+	 border-left: 2px solid #555;
+	 border-top: 2px solid #555;
+	 background-image: url(./images/inicio/bg.png);
+	 border-right: 2px solid #555;
 }
 
 .text_link {
     padding-right: 15px;
-    color: #ffffff;
+    color: #fff;
     background: url(images/toggle_down_dark.png) no-repeat scroll right center;
 }
 
 .text_link_clicked {
     color: #000;
-    background: #ccc;
-    background: url(images/toggle_up_dark.png) no-repeat scroll right center #ccc;
+    background: #fff;
+    background: url(images/toggle_up_dark.png) no-repeat scroll right center #fff;
 }
 
 #divlogin {
-	z-index: 2;
-	clear:both;
-    float:right;
-	width: 240px;
-	position: relative;
-	top: 480px;
+    z-index: 5;
+    width: 245px;
+    top: -59px;
+    position: relative;
     display: none;
+    float: right;
     background: #fff;
-    border: 5px solid #ccc;
-    background-color: #ffffff;
+    background-color: #fff;
+	background-image: url(./images/inicio/bg.png);
     /* mozilla firefox */
-    -moz-border-radius: 5px 0 5px 5px;
-    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    -moz-border-radius: 7px 0 7px 10px;
+    -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
     /* google chrome & safari*/
     -webkit-border-radius: 5px 0 5px 5px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.296875) 0px 3px 3px;
     /* opera */
     box-shadow: 0px 3px 3px #666666;
     border-radius: 5px 0 5px 5px;
-	
+	border: 2px solid #555;
 }
 
 #divlogin form {
@@ -100,7 +108,7 @@
 }
 
 .field {
-    border: 1px solid #ddd;
+    border: 1px solid #bbb;
     padding: 5px;
     width: 218px;
 }

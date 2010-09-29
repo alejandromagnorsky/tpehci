@@ -1,43 +1,42 @@
-* { font-family: "Arial" }
-
-body {
-	width:1024px;
-	margin-left : auto;
-	margin-right : auto;
-	padding : 0px;
+#divRegister {
+    background-image: url(images/inicio/bg.png);
+    display: none;
+	background-color: transparent;
+    position: relative;
 }
 
-.formLabel {
-	font-size: 13px;
+.regFormLabel {
+    font-size: 11px;
+    background-color: transparent;
 }
 
-div.input {
-	margin-top: 20px;
+div.regInput {
 }
 
-div.formHeader {
-	font-size: 18px;
-	font-weight: bold;
-	background-color:#99b4d1;
-	border-bottom: solid;
-	border-bottom-width: 1px;
-	padding: 0;
+div.regFormHeader {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: solid;
+    border-bottom-width: 1px;
 }
 
-div.formContent {
-	padding: 5px;
-	background-color:#dbe9ed;
+div.regFormContent {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 #personal, #userData {
-	width:600px;
-	border:solid;	
-	border-width: 1px;
+    margin-top: 20px;
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.4);
+    -moz-border-radius: 4px 4px 4px 4px;
 }
 
 #buttonOK {
-	margin-left: 425px;
-	background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+    margin-left: 425px;
+    background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
     /* google chrome & safari*/
@@ -52,8 +51,8 @@ div.formContent {
 }
 
 #buttonCancel {
-	margin-left: 20px;
-	background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
+    margin-left: 20px;
+    background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
     /* google chrome & safari*/
@@ -67,13 +66,13 @@ div.formContent {
     text-shadow: 0 -1px 0 #3399dd;
 }
 
-label.reference {
-	color:#FF0000;
-	font-size: 13px;
+label.regReference {
+    color: #FF0000;
+    font-size: 11px;
 }
 
-label.warning {
-	color:#FF0000;
-	visibility: hidden;
-	font-size: 13px;
+label.regWarning {
+    color: #FF0000;
+    visibility: hidden;
+    font-size: 11px;
 }

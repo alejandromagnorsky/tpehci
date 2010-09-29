@@ -1,65 +1,138 @@
-
 body {
+    margin: 0px;
+    font-family: verdana;
     background-color: #a2a4ac;
-    background-attachment: fixed;
     background-image: url(./images/inicio/bg.png);
     background-repeat: repeat-x;
-    font-family: verdana;
-    overflow: visible;
-	width: 1335px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0px;
+    overflow: hidden;
 }
 
-#divhome {
-    height: 100%;
-    width: 1310px;
-	left: -70px;
-    top: -5px;
-    margin-right: 10%;
-    position: absolute;
-}
-
-#divheader {
-    height: 483px;
-    width: 100%;
+#header {
     position: relative;
-    background-image: url(./images/inicio/header.png);
-    background-repeat: no-repeat;
-    background-attachment: inherit;
+}
+
+#title {
+    position: relative;
+    background-color: #779310;
+    height: 400px;
+    background-image: url(images/inicio/header_overlay.png);
+    background-repeat: repeat-x;
+}
+
+#headerLines {
+    z-index: 1;
+    height: 400px;
+    width: 100%;
+    background-image: url(images/inicio/lines.png);
+    position: absolute;
+    top: 0%;
+    border-color: #ffffff;
+    border-bottom-style: groove;
+    /* firefox */
+    -moz-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    /* opera, chrome, etc! */
+    overflow: hidden;
 }
 
 #divfisheye {
-    height: 483px;
-    top: 0px;
+    height: 283px;
+    width: 800px;
+    left: 10px;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
     background-image: url(./images/inicio/fisheye.png);
     background-repeat: no-repeat;
     background-attachment: inherit;
 }
 
-#divsearch {
-    height: 15%;
-    width: 100%;
-    top: -1px;
+#headerTitle a:visited {
+    color: transparent;
+}
+
+#titleImg {
+    margin-left: 0;
+    margin-right: auto;
     position: relative;
-    background-image: url(./images/inicio/search.png);
+    float: none;
+}
+
+#headerTitle {
+    z-index: 2;
+    height: 94%;
+    width: 600px;
+    top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
     background-repeat: no-repeat;
-    background-attachment: inherit;
 }
 
 #inputsearch {
+    z-index: 5;
     position: relative;
-    left: 360px;
-    top: 17px;
-    height: 50px;
-    width: 565px;
+    height: 100%;
+    width: 50%;
     text-align: left;
-    font-size: large;
-    background-color: transparent;
-    border: hidden;
+    margin: 0 0;
+    padding: 0 0 0 0;
+    border: none;
     font-family: verdana;
-    font-size: 20pt;
+    background-color: transparent;
+    font-size: 16pt;
     font-weight: 500;
+}
+
+#categoryCBox {
+    z-index: 5;
+    width: 40%;
+    position: relative;
+    top: 25%;
+    height: 50%;
+    margin: 0 0;
+    float: right;
+    font-family: verdana;
+    background-color: transparent;
+    font-size: 12pt;
+    font-weight: 500;
+    vertical-align: top;
+    border: none;
+}
+
+option.searchOption {
+    background-color: rgba(200, 200, 200, 1);
+}
+
+#homeLink {
+    border-width: 0px;
+    border-style: hidden;
+}
+
+optgroup.searchOption {
+    background-color: rgba(200, 200, 200, 1);
+}
+
+#searchButton {
+    z-index: 6;
+    float: right;
+    position: relative;
+    height: 100%;
+    width: 10%;
+}
+
+#searchForm {
+    z-index: 5;
+    background-color: #779310;
+    background-image: url(images/inicio/searchbar.png);
+    background-repeat: no-repeat;
+    height: 45px;
+    top: 5px;
+    width: 550px;
+    padding: 5px 5px 10px 1.2%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 5px;
+    -moz-border-radius: 0 0 10px 10px;
+    -moz-box-shadow: 0 7px 7px rgba(0, 0, 0, 0.5);
 }
