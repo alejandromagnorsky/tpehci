@@ -61,10 +61,9 @@ function showRegisterDialog() {
 
 function slideHeaderUp(){
 	
-	
 	$("#header").animate({"height": "150px"}, 1000);
 	$("#headerContent").animate({"top": "-250px"}, 1000);
-	$("#headerTitle").animate({"top": "230px", "right": "760px"}, 1000);
+	$("#headerTitle").animate({"top": "230px", "left": "-360px"}, 1000);
 	$("#titleImg").animate({ "height": "175px"}, 1000);
 	
 	$("#divfisheye").fadeOut("slow");
@@ -74,7 +73,7 @@ function slideHeaderDown(){
 	
 	$("#header").animate({"height": "400px"}, 1000);
 	$("#headerContent").animate({"top": "0px"}, 1000);
-	$("#headerTitle").animate({"top": "50px", "right" : "0"	}, 1000);
+	$("#headerTitle").animate({"top": "50px", "left" : "0"	}, 1000);
 	$("#titleImg").animate({ "height": "300px"}, 1000);
 	
 	$("#divfisheye").fadeIn("slow");
