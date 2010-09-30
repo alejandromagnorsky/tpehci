@@ -15,6 +15,8 @@ function loadMain() {
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
 	loadRegisterForm();
+	
+	$( "#menuCategorias" ).accordion();
 }
 
 function clearSearchData(){
@@ -62,19 +64,28 @@ function showRegisterDialog() {
 function slideHeaderUp(){
 	
 	$("#header").animate({"height": "150px"}, 1000);
-	$("#headerContent").animate({"top": "-250px"}, 1000);
-	$("#headerTitle").animate({"top": "230px", "left": "-360px"}, 1000);
+	$("#headerContent").animate({"top": "-150px"}, 1000);
+	$("#headerTitle").animate({"top": "135px", "left": "-215px"}, 1000);
 	$("#titleImg").animate({ "height": "175px"}, 1000);
 	
-	$("#divfisheye").fadeOut("slow");
+	$("#divfisheye").fadeOut("slow", function() {
+			$("#pageWrapper").fadeIn("slow",function() {
+				
+				
+				
+			}); 
+		}); 
+
 }
 
 function slideHeaderDown(){
 	
-	$("#header").animate({"height": "400px"}, 1000);
+	$("#header").animate({"height": "300px"}, 1000);
 	$("#headerContent").animate({"top": "0px"}, 1000);
-	$("#headerTitle").animate({"top": "50px", "left" : "0"	}, 1000);
+	$("#headerTitle").animate({"top": "-20px", "left" : "0"	}, 1000);
 	$("#titleImg").animate({ "height": "300px"}, 1000);
 	
-	$("#divfisheye").fadeIn("slow");
+	$("#pageWrapper").fadeOut("slow", function() {
+		$("#divfisheye").fadeIn("slow");
+	}); 
 }

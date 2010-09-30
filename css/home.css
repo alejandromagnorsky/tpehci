@@ -1,7 +1,7 @@
 body {
-    font-family: verdana;
+    font-family: tahoma;
     text-align: center;
-    min-width: 1280px;
+    min-width: 1024px;
     margin: 0;
     background-color: #a2a4ac;
     background-image: url(./images/inicio/bg.png);
@@ -10,8 +10,9 @@ body {
 
 #header {
 	z-index: 3;
+	position: static;
     text-align: left;
-    height: 400px;
+    height: 300px;
     width: 100%;
     background-color: #779310;
     margin-left: auto;
@@ -28,29 +29,16 @@ body {
 #headerContent {
 	z-index: 3;
     position: absolute;
-    height: 400px;
-    width: 1280px;
+	top: 0;
+    height: 300px;
+    width: 1024px;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
+	margin: 0 auto 0 auto;
 }
 
 #headerTitle a:visited {
     color: transparent;
-}
-
-#content {
-    position: absolute;
-    height: 100%;
-    width: 1280px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-	background-color: rgba(0,0,0,0.1);
-	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 25px;
 }
 
 #divfisheye {
@@ -69,9 +57,9 @@ body {
 
 #headerTitle {
     position: relative;
-    height: 300px;
+    height: 275px;
     width: 650px;
-    top: 50px;
+    top: -20px;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -131,11 +119,11 @@ optgroup.searchOption {
     right: 0;
 	margin: 0 auto 0 auto;
     background-color: #779310;
-    background-image: url(images/inicio/searchbar.png);
+    /*background-image: url(images/inicio/searchbar.png);*/
     background-repeat: no-repeat;
     height: 45px;
-    top: 105px;
-    width: 550px;
+    top: 28px;
+    width: 450px;
     padding: 5px 5px 10px 1.2%;
     position: relative;
     padding-right: 5px;
