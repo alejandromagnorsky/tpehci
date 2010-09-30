@@ -4,28 +4,22 @@
 }
 
 #divlink {
-    z-index: 10;
-    position: relative;
-    float: right;
-	top: -3px;
-    font-size: 11px;
-    text-decoration: none;
+	z-index: 5;
+    position: absolute;
+	width: 330px;
+    height: 23px;
+    left: 950px;
+	top: 94.8%;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: bold;
-    background: transparent;
-    padding: 5px 0 5px 8px;
-    color: #ffffff;
-    /* mozilla firefox */
-    -moz-border-radius: 5px;
-    /* google chrome & safari*/
-    -webkit-border-radius: 5px;
-    /* opera */
-    border-radius: 5px;
     font-size: 11.5pt;
 }
 
 #spanlogin {
-    padding-right: 18px;
     text-decoration: inherit;
+	background-color: transparent;
 }
 
 #spanregister {
@@ -45,7 +39,7 @@
 
 .unclicked {
     padding: 5px 7px 5px 5px;
-    margin-left: 6px;
+    margin-left: 25px;
     /* mozilla firefox */
     -moz-border-radius: 5px;
     /* google chrome & safari*/
@@ -55,17 +49,17 @@
 }
 
 .clicked {
-    padding: 5px 7px 7px 7px;
-    background: #fff;
+    padding: 5px 7px 5px 5px;
+	margin-left: 25px;
     /* mozilla firefox */
-    -moz-border-radius: 7px 7px 0 0;
-    /* google chrome & safari*/
-    -webkit-border-radius: 5px 5px 0 0;
+     -moz-border-radius: 7px 7px 0 0;
+     /* google chrome & safari*/
+    -webkit-border-radius: 7px 7px 0 0;
     /* opera */
-	 border-left: 2px solid #555;
-	 border-top: 2px solid #555;
-	 background-image: url(./images/inicio/bg.png);
-	 border-right: 2px solid #555;
+     border-left: 2px solid #555;
+     border-top: 2px solid #555;
+     background-image: url(./images/inicio/bg.png);
+     border-right: 2px solid #555;
 }
 
 .text_link {
@@ -76,30 +70,29 @@
 
 .text_link_clicked {
     color: #000;
-    background: #fff;
+    padding-right: 15px;
     background: url(images/toggle_up_dark.png) no-repeat scroll right center #fff;
 }
 
 #divlogin {
-    z-index: 5;
     width: 245px;
-    top: -59px;
-    position: relative;
+    top: 400px;
+    left: 1002px;
+    right: 0;
+    position: absolute;
     display: none;
-    float: right;
-    background: #fff;
-    background-color: #fff;
-	background-image: url(./images/inicio/bg.png);
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(./images/inicio/bg.png);
     /* mozilla firefox */
-    -moz-border-radius: 7px 0 7px 10px;
-    -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    -moz-border-radius: 0 0 7px 10px;
+    -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
     /* google chrome & safari*/
     -webkit-border-radius: 5px 0 5px 5px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.296875) 0px 3px 3px;
     /* opera */
     box-shadow: 0px 3px 3px #666666;
     border-radius: 5px 0 5px 5px;
-	border: 2px solid #555;
+    border: 2px solid #555;
 }
 
 #divlogin form {

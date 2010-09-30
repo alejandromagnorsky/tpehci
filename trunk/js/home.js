@@ -34,9 +34,19 @@ function showRegisterDialog() {
 	
 	
 	 var widget= $("#divRegister").dialog("widget");
-	 widget.css("margin","auto auto");
-	 widget.css("top","-650px");
-	 widget.css("position","relative");
+	 widget.css("margin","auto");
+	 widget.css("margin-top","0");
+
+	 widget.css("left","0");
+	 widget.css("right","0");
+	 
+	 widget.css("top","50px");
+	 widget.css("bottom","0");
+	 widget.css("height","750px");
+	 widget.css("width","600px");
+	 widget.css("text-align","left");
+	 
+	 widget.css("position","absolute");
 	 widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
 	 widget.css("-moz-border-radius","10px 10px 10px 10px");
 	 widget.css("background-color","transparent");
@@ -51,17 +61,21 @@ function showRegisterDialog() {
 
 function slideHeaderUp(){
 	
-	$("#header").animate({"top": "-250px"}, 1000);
-	$("#headerTitle").animate({"float":"left","top": "235px"}, 1000);
-	$("#titleImg").animate({ "left": "-370px", "position":"relative","height": "175px"}, 1000);
+	
+	$("#header").animate({"height": "150px"}, 1000);
+	$("#headerContent").animate({"top": "-250px"}, 1000);
+	$("#headerTitle").animate({"top": "230px", "right": "760px"}, 1000);
+	$("#titleImg").animate({ "height": "175px"}, 1000);
 	
 	$("#divfisheye").fadeOut("slow");
 }
 
 function slideHeaderDown(){
 	
-	$("#header").animate({"top": "0px"}, 1000);
-	$("#headerTitle").animate({"float":"left","top": "20%"}, 1000);
-	$("#titleImg").animate({ "left": "0px","height": "300px"}, 1000);
+	$("#header").animate({"height": "400px"}, 1000);
+	$("#headerContent").animate({"top": "0px"}, 1000);
+	$("#headerTitle").animate({"top": "50px", "right" : "0"	}, 1000);
+	$("#titleImg").animate({ "height": "300px"}, 1000);
+	
 	$("#divfisheye").fadeIn("slow");
 }
