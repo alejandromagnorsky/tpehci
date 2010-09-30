@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <link rel="stylesheet" type="text/css" href="../css/home.css"/>
+        <title>Untitled Document</title>
+        <link rel="stylesheet" type="text/css" href="../css/test.css"/>
         <link rel="stylesheet" type="text/css" href="../css/login.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/register.css" />
+        <link rel="stylesheet" type="text/css" href="../css/register.css"/>
         <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css" />
         <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
         </script>
@@ -38,167 +39,166 @@
         </script>
         <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js">
         </script>
-        <title>Segunda Version!</title>
     </head>
     <body>
-        <div id="divRegister">
-            <!-- Registracion!! -->
-            <form action="">
-                <div id = 'personal'>
-                    <div class="regFormHeader">
-                        Datos personales
-                    </div>
-                    <div class="regFormContent">
-                        <div class='regInput'>
-                            <label class="regFormLabel">
-                                <strong>Nombre/s*:</strong>
-                            </label>
-                            <br/>
-                            <input name="name" type="text" size="40"/>
-                            <br/>
-                            <label class="regWarning">
-                                Introduzca uno o m&aacute;s nombres
-                            </label>
-                        </div>
-                        <div class='input'>
-                            <label class="regFormLabel">
-                                <strong>Apellido/s*:</strong>
-                            </label>
-                            <br/>
-                            <input name="sirname" type="text" size="40" />
-                            <br/>
-                            <label class="regWarning">
-                                Introduzca uno o m&aacute;s apellidos
-                            </label>
-                        </div>
-                        <div class='input'>
-                            <label class="regFormLabel">
-                                <strong>Fecha de nacimiento*:</strong>
-                            </label>
-                            <br/>
-                            <input id="datepicker" name="birthday" type="text" size="8" maxlength="10" />
-                        </div>
-                        <div class='input'>
-                            <label class="regFormLabel">
-                                <strong>Pa&iacute;s*:</strong>
-                            </label>
-                            <br/>
-                            <select name="country">
-                                <option value="0" selected="selected">Argentina</option>
-                                <option value="1">Estados Unidos</option>
-                                <option value="2">Espa&ntilde;a</option>
-                                <option value="3">Inglaterra</option>
-                            </select>
-                        </div>
-                        <div class='input'>
-                            <label class="regFormLabel">
-                                <strong>Provincia*:</strong>
-                            </label>
-                            <br/>
-                            <select name="state">
-                                <option value="0" selected="selected">Buenos Aires</option>
-                                <option value="1">Misiones</option>
-                                <option value="2">C&oacute;rdoba</option>
-                                <option value="3">La Pampa</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div id = 'userData'>
-                    <div class="regFormHeader">
-                        Datos de usuario
-                    </div>
-                    <div class="regFormContent">
-                        <div class='regInput'>
-                            <label class="regFormLabel">
-                                <strong>Nombre de usuario*:</strong>
-                            </label>
-                            <br/>
-                            <input name="username" type="text" size="30" maxlength="20"/>
-                            <br/>
-                        </div>
-                        <div class='input'>
-                            <label class="regFormLabel">
-                                <strong>Contrase&ntilde;a*:</strong>
-                            </label>
-                            <br/>
-                            <input name="password" type="password" size="20" maxlength="20"/>
-                            <br/>
-                        </div>
-                        <div class='input'>
-                            <label class="regFormLabel">
-                                <strong>Confirmar contrase&ntilde;a*:</strong>
-                            </label>
-                            <br/>
-                            <input name="confirmPassword" type="password" size="20" maxlength="20"/>
-                            <br/>
-                        </div>
-                        <div class='regInput'>
-                            <label class="regFormLabel">
-                                <strong>Correo electr&oacute;nico*:</strong>
-                            </label>
-                            <br/>
-                            <input name="email" type="text" size="30" maxlength="30"/>
-                            <br/>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label class="regReference">
-                        <strong>*Datos obligatorios</strong>
-                    </label>
-                    <br/>
-                    <input id="buttonOK" type="submit" value="Aceptar"/><input id="buttonCancel" type="button" value="Cancelar"/>
-                </div>
-            </form>
-        </div>
         <div id="header">
-            <div id="title">
+            <div id="headerContent">
                 <div id="headerTitle">
                     <a id="homeLink" href="#"><img id="titleImg" src="../css/images/inicio/title.png" alt="">
                         </img></a>
-                </div>
-                <div id="headerLines">
                 </div>
                 <div id="divlink">
                     <span><a href="#" id="spanregister">Registrarse</a></span>
                     <span class="unclicked" id="link"><a href="" id="spanlogin" class="text_link">Iniciar sesi&oacute;n</a></span>
                 </div>
-            </div>
-            <form id="searchForm" action="#">
-                <input value ="Buscar..." method="post" type="text" id="inputsearch"/><input value="Ir" id="searchButton" type="submit" value=""/>
-                <select id="categoryCBox" name="Categoria">
-                    <option class="searchOption" selected="selected" disabled="true" value="0">Seleccionar categoria...</option>
-                    <option class="searchOption" value="1">Todas</option>
-                    <optgroup class="searchOption" label="Libros">
-                        <option class="searchOption" value="2">Ficcion</option>
-                    </optgroup>
-                    <optgroup class="searchOption" label="DVD's">
-                        <option class="searchOption" value="2">Accion</option>
-                    </optgroup>
-                </select>
-            </form>
-            <div id="divlogin">
-                <form action="" method="post">
-                    <p>
-                        <label class="regFormLabel">
-                            Nombre de usuario
-                        </label>
-                        <input type="text" name="username" class="field"/>
-                    </p>
-                    <p>
-                        <label class="regFormLabel">
-                            Contrase&ntilde;a
-                        </label>
-                        <input type="password" name="password" class="field"/>
-                    </p>
-                    <div class="submit">
-                        <input type="submit" value="Iniciar sesi&oacute;n" id="signin_submit"/>
-                    </div>
+                <div id="divlogin">
+                    <form action="" method="post">
+                        <p>
+                            <label class="regFormLabel">
+                                Nombre de usuario
+                            </label>
+                            <input type="text" name="username" class="field"/>
+                        </p>
+                        <p>
+                            <label class="regFormLabel">
+                                Contrase&ntilde;a
+                            </label>
+                            <input type="password" name="password" class="field"/>
+                        </p>
+                        <div class="submit">
+                            <input type="submit" value="Iniciar sesi&oacute;n" id="signin_submit"/>
+                        </div>
+                    </form>
+                </div>
+                <form id="searchForm" action="#">
+                    <input value ="Buscar..." method="post" type="text" id="inputsearch"/><input value="Ir" id="searchButton" type="submit" value=""/>
+                    <select id="categoryCBox" name="Categoria">
+                        <option class="searchOption" selected="selected" disabled="true" value="0">Seleccionar categoria...</option>
+                        <option class="searchOption" value="1">Todas</option>
+                        <optgroup class="searchOption" label="Libros">
+                            <option class="searchOption" value="2">Ficcion</option>
+                        </optgroup>
+                        <optgroup class="searchOption" label="DVD's">
+                            <option class="searchOption" value="2">Accion</option>
+                        </optgroup>
+                    </select>
                 </form>
+                <div id="divRegister">
+                    <!-- Registracion!! -->
+                    <form action="">
+                        <div id = 'personal'>
+                            <div class="regFormHeader">
+                                Datos personales
+                            </div>
+                            <div class="regFormContent">
+                                <div class='regInput'>
+                                    <label class="regFormLabel">
+                                        <strong>Nombre/s*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input name="name" type="text" size="40"/>
+                                    <br/>
+                                    <label class="regWarning">
+                                        Introduzca uno o m&aacute;s nombres
+                                    </label>
+                                </div>
+                                <div class='input'>
+                                    <label class="regFormLabel">
+                                        <strong>Apellido/s*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input name="sirname" type="text" size="40" />
+                                    <br/>
+                                    <label class="regWarning">
+                                        Introduzca uno o m&aacute;s apellidos
+                                    </label>
+                                </div>
+                                <div class='input'>
+                                    <label class="regFormLabel">
+                                        <strong>Fecha de nacimiento*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input id="datepicker" name="birthday" type="text" size="8" maxlength="10" />
+                                </div>
+                                <div class='input'>
+                                    <label class="regFormLabel">
+                                        <strong>Pa&iacute;s*:</strong>
+                                    </label>
+                                    <br/>
+                                    <select name="country">
+                                        <option value="0" selected="selected">Argentina</option>
+                                        <option value="1">Estados Unidos</option>
+                                        <option value="2">Espa&ntilde;a</option>
+                                        <option value="3">Inglaterra</option>
+                                    </select>
+                                </div>
+                                <div class='input'>
+                                    <label class="regFormLabel">
+                                        <strong>Provincia*:</strong>
+                                    </label>
+                                    <br/>
+                                    <select name="state">
+                                        <option value="0" selected="selected">Buenos Aires</option>
+                                        <option value="1">Misiones</option>
+                                        <option value="2">C&oacute;rdoba</option>
+                                        <option value="3">La Pampa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id = 'userData'>
+                            <div class="regFormHeader">
+                                Datos de usuario
+                            </div>
+                            <div class="regFormContent">
+                                <div class='regInput'>
+                                    <label class="regFormLabel">
+                                        <strong>Nombre de usuario*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input name="username" type="text" size="30" maxlength="20"/>
+                                    <br/>
+                                </div>
+                                <div class='input'>
+                                    <label class="regFormLabel">
+                                        <strong>Contrase&ntilde;a*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input name="password" type="password" size="20" maxlength="20"/>
+                                    <br/>
+                                </div>
+                                <div class='input'>
+                                    <label class="regFormLabel">
+                                        <strong>Confirmar contrase&ntilde;a*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input name="confirmPassword" type="password" size="20" maxlength="20"/>
+                                    <br/>
+                                </div>
+                                <div class='regInput'>
+                                    <label class="regFormLabel">
+                                        <strong>Correo electr&oacute;nico*:</strong>
+                                    </label>
+                                    <br/>
+                                    <input name="email" type="text" size="30" maxlength="30"/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="regReference">
+                                <strong>*Datos obligatorios</strong>
+                            </label>
+                            <br/>
+                            <input id="buttonOK" type="submit" value="Aceptar"/><input id="buttonCancel" type="button" value="Cancelar"/>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div id="divfisheye">
+        <div id="content">
+            <div id="divfisheye">
+            </div>
         </div>
     </body>
 </html>

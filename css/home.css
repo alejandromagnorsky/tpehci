@@ -1,43 +1,64 @@
 body {
-    margin: 0px;
     font-family: verdana;
+    text-align: center;
+    min-width: 1280px;
+    margin: 0;
     background-color: #a2a4ac;
     background-image: url(./images/inicio/bg.png);
     background-repeat: repeat-x;
-    overflow: hidden;
 }
 
 #header {
-    position: relative;
-}
-
-#title {
-    position: relative;
-    background-color: #779310;
-    height: 400px;
-    background-image: url(images/inicio/header_overlay.png);
-    background-repeat: repeat-x;
-}
-
-#headerLines {
-    z-index: 1;
+	z-index: 3;
+    text-align: left;
     height: 400px;
     width: 100%;
-    background-image: url(images/inicio/lines.png);
-    position: absolute;
-    top: 0%;
+    background-color: #779310;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(images/inicio/header_overlay.png);
+    background-repeat: repeat-x;
     border-color: #ffffff;
     border-bottom-style: groove;
     /* firefox */
     -moz-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-    /* opera, chrome, etc! */
-    overflow: hidden;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px;
+}
+
+#headerContent {
+	z-index: 3;
+    position: absolute;
+    height: 400px;
+    width: 1280px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#headerTitle a:visited {
+    color: transparent;
+}
+
+#content {
+    position: absolute;
+    height: 100%;
+    width: 1280px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+	background-color: rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 25px;
 }
 
 #divfisheye {
     height: 283px;
     width: 800px;
     left: 10px;
+    right: 0;
+    top: 100px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -46,26 +67,15 @@ body {
     background-attachment: inherit;
 }
 
-#headerTitle a:visited {
-    color: transparent;
-}
-
-#titleImg {
-    margin-left: 0;
-    margin-right: auto;
-    position: relative;
-    float: none;
-}
-
 #headerTitle {
-    z-index: 2;
-    height: 94%;
+    position: absolute;
+    height: 300px;
     width: 600px;
-    top: 20%;
+    top: 50px;
+    left: 0;
+    right: 0;
     margin-left: auto;
     margin-right: auto;
-    position: relative;
-    background-repeat: no-repeat;
 }
 
 #inputsearch {
@@ -85,11 +95,11 @@ body {
 
 #categoryCBox {
     z-index: 5;
-    width: 40%;
+    width: 37%;
     position: relative;
     top: 25%;
     height: 50%;
-    margin: 0 0;
+    margin: 0;
     float: right;
     font-family: verdana;
     background-color: transparent;
@@ -101,11 +111,6 @@ body {
 
 option.searchOption {
     background-color: rgba(200, 200, 200, 1);
-}
-
-#homeLink {
-    border-width: 0px;
-    border-style: hidden;
 }
 
 optgroup.searchOption {
@@ -121,12 +126,16 @@ optgroup.searchOption {
 }
 
 #searchForm {
-    z-index: 5;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #779310;
     background-image: url(images/inicio/searchbar.png);
     background-repeat: no-repeat;
     height: 45px;
-    top: 5px;
+    top: 404px;
     width: 550px;
     padding: 5px 5px 10px 1.2%;
     position: relative;

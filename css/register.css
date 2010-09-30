@@ -1,8 +1,7 @@
 #divRegister {
     background-image: url(images/inicio/bg.png);
     display: none;
-	background-color: transparent;
-    position: relative;
+    background-color: transparent;
 }
 
 .regFormLabel {
@@ -35,7 +34,7 @@ div.regFormContent {
 }
 
 #buttonOK {
-    margin-left: 425px;
+    width: 100px;
     background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
@@ -52,6 +51,7 @@ div.regFormContent {
 
 #buttonCancel {
     margin-left: 20px;
+    width: 100px;
     background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */
     -moz-border-radius: 4px 4px 4px 4px;
