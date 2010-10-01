@@ -3,9 +3,24 @@ body {
     text-align: center;
     min-width: 1024px;
     margin: 0;
-    background-color: #a2a4ac;
-    background-image: url(./images/inicio/bg.png);
-    background-repeat: repeat-x;
+    background-color: #080603;
+    
+}
+
+#bgOverlay {
+	z-index: -1;
+    position: relative;
+    height: 837px;
+	width: 1024px;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0px;
+    background-color: #0c0b0a;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(./images/inicio/test_bg.png);
+	background-repeat: no-repeat;
 }
 
 #header {
@@ -13,16 +28,29 @@ body {
     text-align: left;
     height: 300px;
     width: 100%;
-    background-color: #444;
+    background-color: #0c0b0a;
     margin-left: auto;
     margin-right: auto;
-    background-image: url(images/inicio/header_overlay.png), url(./images/inicio/lines.png);
-    background-repeat: repeat-x, repeat;
-    border-color: #ffffff;
-    border-bottom-style: groove;
-    /* firefox */
-    -moz-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px;
+}
+
+#headerBorder {
+    z-index: 5;
+    position: relative;
+    height: 20px;
+    width: 100%;
+    top: 100%;
+    background-image: url(images/inicio/header_border.png);
+    background-repeat: repeat-x;
+}
+
+#headerLines {
+    z-index: 5;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: -15px;
+    background-image: url(images/inicio/lines.png);
+    background-repeat: repeat;
 }
 
 #headerContent {
@@ -33,6 +61,8 @@ body {
     left: 0;
     right: 0;
     margin: 0 auto 0 auto;
+    background-image: url(images/inicio/header_test.png);
+    background-repeat: no-repeat;
 }
 
 #headerTitle a:visited {
@@ -44,8 +74,9 @@ body {
     width: 800px;
     left: 10px;
     right: 0;
-    top: 100px;
-    position: relative;
+    top: 420px;
+	bottom: 0;
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
     background-image: url(./images/inicio/fisheye.png);
@@ -54,44 +85,47 @@ body {
 }
 
 #headerTitle {
+    z-index: 10;
     position: relative;
     height: 275px;
     width: 650px;
-    top: -20px;
-    left: 0;
+    top: 50px;
+    left: 20px;
     right: 0;
     margin-left: auto;
     margin-right: auto;
 }
 
 #inputsearch {
+    z-index: 500;
     color: #ddd;
-    position: relative;
-    height: 100%;
-    width: 50%;
+    position: absolute;
+    height: 30px;
+    width: 200px;
+    top: 13px;
     text-align: left;
-    margin: auto 0 0 2px;
-    padding: 0 0 0 0;
+    margin: 0 0 0 8px;
     border: none;
-    font-family: verdana;
     background-color: transparent;
+    font-family: verdana;
     font-size: 16pt;
     font-weight: 500;
 }
 
 #categoryCBox {
+    z-index: 500;
     color: #eee;
-    width: 37%;
-    position: relative;
-    top: 25%;
-    height: 50%;
+    width: 190px;
+    position: absolute;
+    height: 20px;
     margin: 0;
-    float: right;
+    top: 20px;
+    left: 265px;
     font-family: verdana;
     background-color: transparent;
-    font-size: 12pt;
+    font-size: 11pt;
     font-weight: 500;
-    vertical-align: top;
+    vertical-align: center;
     border: none;
 }
 
@@ -104,26 +138,45 @@ optgroup.searchOption {
 }
 
 #searchButton {
-    float: right;
-    position: relative;
-    height: 100%;
-    width: 10%;
+    z-index: 500;
+    position: absolute;
+    outline: 0;
+    top: 9px;
+    left: 455px;
+    height: 50px;
+    width: 65px;
+    background-color: transparent;
+    border: hidden;
+    outline: #fff;
+    background-image: url(images/inicio/searchButton.png);
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+#searchButton:focus {
+    outline: none;
+}
+
+#searchButton:hover {
+    background-image: url(images/inicio/searchButton_hover.png);
+}
+
+#searchButton:active {
+    border-style: none;
+    outline: 0;
+    background-image: url(images/inicio/searchButton_active.png);
 }
 
 #searchForm {
-    position: absolute;
-    left: 0;
+    left: 30px;
     right: 0;
     margin: 0 auto 0 auto;
-    background-color: #444;
-    /*background-image: url(images/inicio/searchbar.png);*/
+    background-image: url(images/inicio/searchbar.png);
+    background-position: top left;
     background-repeat: no-repeat;
-    height: 45px;
-    top: 28px;
-    width: 450px;
-    padding: 5px 5px 10px 1.2%;
+    height: 150px;
+    top: 25px;
+    width: 550px;
+    padding: 0 55px 10px 55px;
     position: relative;
-    padding-right: 5px;
-    -moz-border-radius: 0 0 10px 10px;
-    -moz-box-shadow: 0 7px 7px rgba(0, 0, 0, 0.5);
 }

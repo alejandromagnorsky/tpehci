@@ -1,8 +1,7 @@
-document.onclick = check;
 
 var showing = false;
 
-function check(e) {
+function checkLogin(e) {
 	if (!showing)
 		return;
 	var target = (e && e.target) || (event && event.srcElement);
