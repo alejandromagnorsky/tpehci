@@ -9,32 +9,30 @@ body {
 }
 
 #header {
-	z-index: 3;
-	position: static;
+    position: static;
     text-align: left;
     height: 300px;
     width: 100%;
-    background-color: #779310;
+    background-color: #444;
     margin-left: auto;
     margin-right: auto;
-    background-image: url(images/inicio/header_overlay.png);
-    background-repeat: repeat-x;
+    background-image: url(images/inicio/header_overlay.png), url(./images/inicio/lines.png);
+    background-repeat: repeat-x, repeat;
     border-color: #ffffff;
     border-bottom-style: groove;
     /* firefox */
     -moz-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px;
 }
 
 #headerContent {
-	z-index: 3;
     position: absolute;
-	top: 0;
+    top: 0;
     height: 300px;
     width: 1024px;
     left: 0;
     right: 0;
-	margin: 0 auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 
 #headerTitle a:visited {
@@ -67,12 +65,12 @@ body {
 }
 
 #inputsearch {
-    z-index: 5;
+    color: #ddd;
     position: relative;
     height: 100%;
     width: 50%;
     text-align: left;
-    margin: 10px 0 0 2px;
+    margin: auto 0 0 2px;
     padding: 0 0 0 0;
     border: none;
     font-family: verdana;
@@ -82,7 +80,7 @@ body {
 }
 
 #categoryCBox {
-    z-index: 5;
+    color: #eee;
     width: 37%;
     position: relative;
     top: 25%;
@@ -106,7 +104,6 @@ optgroup.searchOption {
 }
 
 #searchButton {
-    z-index: 6;
     float: right;
     position: relative;
     height: 100%;
@@ -117,8 +114,8 @@ optgroup.searchOption {
     position: absolute;
     left: 0;
     right: 0;
-	margin: 0 auto 0 auto;
-    background-color: #779310;
+    margin: 0 auto 0 auto;
+    background-color: #444;
     /*background-image: url(images/inicio/searchbar.png);*/
     background-repeat: no-repeat;
     height: 45px;
