@@ -32,6 +32,7 @@ function showRegisterDialog() {
 		"resizable" : "false",
 		"autoOpen" : "false",
 		"title" : "Registraci&oacute;n",
+		draggable : false
 	});
 	
 	
@@ -68,12 +69,11 @@ function slideHeaderUp(){
 	$("#headerTitle").animate({"top": "135px", "left": "-215px"}, 1000);
 	$("#titleImg").animate({ "height": "175px"}, 1000);
 	
-	$("#divfisheye").fadeOut("slow", function() {
-			$("#pageWrapper").fadeIn("slow",function() {
-				
-				
-				
-			}); 
+	$("#divfisheye").fadeOut(1000, function() {
+			$("#pageWrapper").css("display","block");
+			
+			
+			// ACA CARGA LA PAGINA
 		}); 
 
 }
@@ -85,7 +85,7 @@ function slideHeaderDown(){
 	$("#headerTitle").animate({"top": "-20px", "left" : "0"	}, 1000);
 	$("#titleImg").animate({ "height": "300px"}, 1000);
 	
-	$("#pageWrapper").fadeOut("slow", function() {
-		$("#divfisheye").fadeIn("slow");
-	}); 
+	$("#pageWrapper").css("display","none");
+	
+	$("#divfisheye").fadeIn("slow");
 }

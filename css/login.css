@@ -25,16 +25,12 @@
 
 #spanregister {
     margin-left: 5px;
-    color: #fff;
+    color: #ddd;
     text-decoration: inherit;
 }
 
-#spanlogin:hover {
-    color: #000;
-}
-
 #spanregister:hover {
-    color: #000;
+    color: #fff;
 }
 
 .unclicked {
@@ -64,8 +60,12 @@
 
 .text_link {
     padding-left: 17px;
-    color: #fff;
+    color: #ddd;
     background: url(images/toggle_down_dark.png) no-repeat scroll left center;
+}
+
+.text_link:hover {
+    color: #fff;
 }
 
 .text_link_clicked {
@@ -74,14 +74,18 @@
     background: url(images/toggle_up_dark.png) no-repeat scroll left center #fff;
 }
 
+.text_link_clicked:hover {
+    color: #444;
+}
+
 #divlogin {
+    z-index: 4;
     width: 245px;
     top: 297px;
     left: 765px;
     right: 0;
     position: absolute;
     display: none;
-    background-color: rgba(0, 0, 0, 0.5);
     background-image: url(./images/inicio/bg.png);
     /* mozilla firefox */
     -moz-border-radius: 7px 0 7px 10px;
