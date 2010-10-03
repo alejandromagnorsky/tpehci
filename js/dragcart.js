@@ -2,6 +2,9 @@ $CART_ITEM_WIDTH = "83px";
 $CART_ITEM_HEIGHT = "112px";
 
 $(function(){
+	/* ********* PARCHAZO!!! ***************** */
+	while($("li", $products).length == 0);
+	/*  *************************************** */
 	
 	$(".tabs").tabs();
 	
@@ -125,4 +128,4 @@ $(function(){
 		}
 		return false;
 	});
-});
+})
