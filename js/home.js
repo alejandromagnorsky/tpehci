@@ -106,7 +106,7 @@ function slideHeaderUp() {
 		}, 1000, function() {
 
 			$("#headerBorder").fadeIn(1000);
-			$("#pageWrapper").css("display", "block");
+			$("#pageWrapper").css("visibility", "visible");
 			
 			main = false;
 			// ACA CARGA LA PAGINA
@@ -136,7 +136,7 @@ function slideHeaderDown() {
 			"height" : "225px"
 		}, 1000);
 		
-		$("#pageWrapper").css("display", "none");
+		$("#pageWrapper").css("visibility", "hidden");
 
 		setTimeout(function() {
 
