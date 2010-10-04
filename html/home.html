@@ -8,42 +8,24 @@
         <link rel="stylesheet" type="text/css" href="../css/register.css"/>
         <link rel="stylesheet" type="text/css" href="../css/content.css"/>
         <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css" />
-        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.core.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.slide.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.clip.js">
-        </script>
-        <script type="text/javascript" src="../js/login.js">
-        </script>
-        <script type="text/javascript" src="../js/register.js">
-        </script>
-        <script type="text/javascript" src="../js/home.js">
-        </script>
-		<script type="text/javascript" src="../js/traslator.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.datepicker.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.accordion.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js">
-        </script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js">
-        </script>
+        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.core.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.slide.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.clip.js"></script>
+        <script type="text/javascript" src="../js/login.js"></script>
+        <script type="text/javascript" src="../js/register.js"></script>
+        <script type="text/javascript" src="../js/home.js"></script>
+		<script type="text/javascript" src="../js/translator.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.datepicker.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.accordion.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js"></script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js"></script>
     </head>
     <body>
         <div id="header">
@@ -103,7 +85,7 @@
                                 <div class='regInput'>
                                     <label class="lang_clientname regFormLabel">
                                        
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input name="name" type="text" size="40"/>
                                     <br/>
@@ -114,7 +96,7 @@
                                 <div class='input'>
                                     <label class="lang_clientlastname regFormLabel">
                                         
-                                    </label>
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input name="sirname" type="text" size="40" />
                                     <br/>
@@ -125,7 +107,7 @@
                                 <div class='input'>
                                     <label class="lang_birthday regFormLabel">
                                         
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input id="datepicker" name="birthday" type="text" size="8" maxlength="10" />
 									<label class="lang_datereference regFormLabel"></label>
@@ -133,25 +115,19 @@
                                 <div class='input'>
                                     <label class="lang_country regFormLabel">
                                         
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
-                                    <select name="country">
-                                        <option value="0" selected="selected">Argentina</option>
-                                        <option value="1">Estados Unidos</option>
-                                        <option value="2">Espa&ntilde;a</option>
-                                        <option value="3">Inglaterra</option>
+                                    <select id="countryCombo" name="country">
+                                        
                                     </select>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_state regFormLabel">
                                         
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
-                                    <select name="state">
-                                        <option value="0" selected="selected">Buenos Aires</option>
-                                        <option value="1">Misiones</option>
-                                        <option value="2">C&oacute;rdoba</option>
-                                        <option value="3">La Pampa</option>
+                                    <select id="stateCombo" name="state">
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -164,7 +140,7 @@
                                 <div class='regInput'>
                                     <label class="lang_username regFormLabel">
                                         
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input name="username" type="text" size="30" maxlength="20"/>
                                     <br/>
@@ -172,7 +148,7 @@
                                 <div class='input'>
                                     <label class="lang_password regFormLabel">
                                         
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input name="password" type="password" size="20" maxlength="20"/>
                                     <br/>
@@ -180,7 +156,7 @@
                                 <div class='input'>
                                     <label class="lang_confirmpassword regFormLabel">
                                      
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input name="confirmPassword" type="password" size="20" maxlength="20"/>
                                     <br/>
@@ -188,7 +164,7 @@
                                 <div class='regInput'>
                                     <label class="lang_email regFormLabel">
                                         
-                                    </label>*:
+                                    </label><label class="regFormLabel"> *:</label>
                                     <br/>
                                     <input name="email" type="text" size="30" maxlength="30"/>
                                     <br/>

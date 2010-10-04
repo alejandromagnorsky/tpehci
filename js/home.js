@@ -40,7 +40,7 @@ function showRegisterDialog() {
 		"modal" : "true",
 		"resizable" : "false",
 		"autoOpen" : "false",
-		"title" : "Registraci&oacute;n",
+		"title" : Language.register,
 		draggable : false
 	});
 	
