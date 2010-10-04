@@ -62,7 +62,7 @@ function getProductListByCategory(parameters){
 					out +=					'<div id="details">';
                     out +=						'<div class="divPrice">';            
 					out +=							'<p class="spanPrice">Precio por unidad: $' + price + '</p>';
-					out +=							'<input id="addtocart" type="button" value=""/>';
+					//out +=							'<input id="addtocart" type="button" value=""/>';
 					out +=						'</div>';
 					out +=						'<div class="name">' + name + '<br /></div>';
 					out +=						'<div class="autor">';
