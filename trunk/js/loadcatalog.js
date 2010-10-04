@@ -28,10 +28,10 @@ function requestFromServer(method, parameters){
 		getProductListByCategory(parameters);
 		
 		// QUÉ CARAJO ESTA PASANDO ACÁ!!!!!!!
-		alert($("ul#products").length);
+		//alert($("ul#products").length);
 		/////////////////////////
 		
-		initCart();
+		
 	}
 }
 
@@ -96,6 +96,7 @@ function getProductListByCategory(parameters){
 					out +=	'</li>'			
 				});
 				$('ul#products').html(out);
+				initCart();
 			} else {
 				alert('Error: ' + request.statusText);
 			}

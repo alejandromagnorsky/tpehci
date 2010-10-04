@@ -1,6 +1,7 @@
 
 #pageWrapper {
-    display: none;
+    /*display: none;*/
+	visibility: hidden;
     position: absolute;
     height: 700px;
     width: 1024px;
