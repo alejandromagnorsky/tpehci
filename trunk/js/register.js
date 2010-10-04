@@ -9,12 +9,11 @@ var countrySelected;
 
 function loadRegisterForm(){
       
-    var language = 1;
-   	
-    if (language == 1) {
+      	
+    if (currentLang == 1) {
 		$.datepicker.setDefaults($.datepicker.regional['en']);
     }
-    else if (language == 2) {
+    else if (currentLang == 2) {
 		jQuery(function($){
             $.datepicker.regional['es'] = {
                 closeText: 'Cerrar',
