@@ -6,7 +6,8 @@ Language.es = function(){
 	Language.login =  "Iniciar sesión";
 	Language.logout = "Cerrar sesión";
     Language.settings = "Configuración";
-    
+    Language.selectlanguage = "Idioma:";
+	
 	//Login
 	Language.username = "Nombre de usuario";
     Language.password = "Contraseña";
@@ -143,6 +144,7 @@ Language.en = function(){
 	Language.login =  "Login";
 	Language.logout = "Logout";
     Language.settings = "Settings";
+	Language.selectlanguage = "Language:";
     
 	//Login
 	Language.username = "Username";
@@ -290,7 +292,7 @@ function updateLanguage(){
 	updateText("login", Language.login);
 	updateText("logout", Language.logout);
 	updateText("settings", Language.settings);
-	
+	updateText("selectlanguage", Language.selectlanguage);
     
 	//Login
 	updateText("username", Language.username);

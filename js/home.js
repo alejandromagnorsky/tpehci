@@ -4,8 +4,9 @@
 
 window.onload = loadMain;
 document.onclick = mouseClicked;
-
-
+var currentLang = 1;
+$EN = 1;
+$ES = 2;
 var main;
 
 
@@ -18,7 +19,17 @@ function loadMain() {
 	document.getElementById("searchButton").onclick = slideHeaderUp;
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
-	loadRegisterForm();
+	document.getElementById("languageCombo").onchange = function(){
+		var tmp = currentLang;
+		currentLang = document.getElementById("languageCombo").selectedIndex+1;
+		if(tmp != currentLang){
+			if(currentLang == $EN)
+				Language.en();
+			else
+				Language.es();	
+		}
+	};
+	
 
 	$("#menuCategorias").accordion();
 }
@@ -33,7 +44,7 @@ function mouseClicked(e) {
 }
 
 function showRegisterDialog() {
-
+	loadRegisterForm();
 	$("#divRegister").dialog( {
 		close: function(){$("#divRegister").dialog("destroy");},
 		"width" : 650,

@@ -180,3 +180,14 @@ optgroup.searchOption {
     padding: 0 55px 10px 55px;
     position: relative;
 }
+
+#spanlanguage {
+	color: #ddd;
+    text-decoration: inherit;
+}
+
+#divlanguage {
+	z-index: 11;
+	position: absolute;
+	
+}
