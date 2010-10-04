@@ -35,6 +35,7 @@ function mouseClicked(e) {
 function showRegisterDialog() {
 
 	$("#divRegister").dialog( {
+		close: function(){$("#divRegister").dialog("destroy");},
 		"width" : 650,
 		"modal" : "true",
 		"resizable" : "false",
@@ -42,7 +43,8 @@ function showRegisterDialog() {
 		"title" : "Registraci&oacute;n",
 		draggable : false
 	});
-
+	
+	
 	var widget = $("#divRegister").dialog("widget");
 	widget.css("margin", "auto");
 	widget.css("margin-top", "0");
