@@ -1,13 +1,37 @@
 var Language = new Object();
 
 Language.es = function(){
-/*
-    //Login:
-    Language.login = "Iniciar sesi&ocute;n";
-    Language.logout = "Cerrar sesi&ocute;n";
-    Language.register = "Registrarse";
+	//User panel
+	Language.register = "Registrarse";
+	Language.login =  "Iniciar sesión";
+	Language.logout = "Cerrar sesión";
     Language.settings = "Configuración";
     
+	//Login
+	Language.username = "Nombre de usuario";
+    Language.password = "Contraseña";
+	
+	
+	//Register
+	Language.personaldata = "Datos personales";
+    Language.clientname = "Nombre/s";
+	Language.clientlastname = "Apellido/s";
+    Language.clientnamewarning = "Introduzca uno o mas nombres";
+	Language.clientlastnamewarning = "Introduzca uno o mas apellidos";
+    Language.birthday = "Fecha de nacimiento";
+	Language.datereference = "dd/mm/yyyy";
+	Language.country = "País";
+	Language.state = "Provincia";
+	Language.userdata = "Datos de usuario";
+	Language.confirmpassword = "Confirmar contraseña";
+	Language.email = "Correo electrónico";
+	Language.mandatorydata = "*Datos obligatorios";
+	
+	Language.search = "Buscar...";
+	//Footer
+	Language.copyright = "Todos los derechos reservados.";
+/*
+   
 	//Menu:
     Language.home = "Inicio";
     Language.catalog = "Catálogo";
@@ -87,7 +111,7 @@ Language.es = function(){
 	Language.ctyOfProduct = "Introduzca la cantidad que desea llevar";
 	Language.addToCartErrorCty = "Solo se permiten cantidades entre 0 y 100";*/
     //Footer:
-    Language.copyright = "Todos los derechos reservados.";
+    
     
 	/*
 	//Cart:
@@ -112,7 +136,36 @@ Language.es = function(){
     updateLanguage();
 }
 
-Language.en = function(){/*
+Language.en = function(){
+	//User panel
+	Language.register = "Register";
+	Language.login =  "Login";
+	Language.logout = "Logout";
+    Language.settings = "Settings";
+    
+	//Login
+	Language.username = "Username";
+    Language.password = "Password";
+	Language.search = "Search...";
+	
+	//Register
+	Language.personaldata = "Personal";
+    Language.clientname = "Name/s";
+	Language.clientlastname = "Lastname/s";
+    Language.clientnamewarning = "Enter at least one name";
+	Language.clientlastnamewarning = "Enter at least one lastname";
+    Language.birthday = "Birthday";
+	Language.datereference = "mm/dd/yyyy";
+	Language.country = "Country";
+	Language.state = "State";
+	Language.userdata = "User data";
+	Language.confirmpassword = "Confirm password";
+	Language.email = "E-mail";
+	Language.mandatorydata = "*Must be filled";
+	
+	//Footer:
+    Language.copyright = "All rights reserved.";
+	/*
     //Topper:
     Language.go = "Go!";
     Language.login = "Login";
@@ -204,8 +257,7 @@ Language.en = function(){/*
 	Language.ctyOfProduct = "Enter the amount you want to take";
 	Language.addToCartErrorCty = "Quantities are allowed only between 0 and 100";*/
 	
-    //Footer:
-    Language.copyright = "All rights reserved.";
+    
    /* 
 	//Cart:
 	Language.cart = "Cart";
@@ -231,14 +283,38 @@ Language.en = function(){/*
 }
 
 function updateLanguage(){
-   /*
-    //Topper:
-    updateText("go", Language.go);
-    updateText("login", Language.login);
-    updateText("logout", Language.logout);
-    updateText("register", Language.register);
-    updateText("settings", Language.settings);
+	//User panel
+	updateText("register", Language.register);
+	updateText("login", Language.login);
+	updateText("logout", Language.logout);
+	updateText("settings", Language.settings);
+	
     
+	//Login
+	updateText("username", Language.username);
+	updateText("password", Language.password);
+	updateButton("loginsubmit", Language.login);
+	
+	//Register
+	updateText("personaldata", Language.personaldata);
+	updateText("clientname", Language.clientname);
+	updateText("clientlastname", Language.clientlastname);
+	updateText("clientnamewarning", Language.clientnamewarning);
+	updateText("clientlastnamewarning", Language.clientlastnamewarning);
+	updateText("birthday", Language.birthday);
+	updateText("datereference", Language.datereference);
+	updateText("country", Language.country);
+	updateText("state", Language.state);
+	updateText("userdata", Language.userdata);
+	updateText("confirmpassword", Language.confirmpassword);
+	updateText("email", Language.email);
+    updateText("mandatorydata", Language.mandatorydata);
+	
+	updateButton("search", Language.search);
+	
+	//Footer
+	updateText("copyright", Language.copyright);
+  /*   
     //Menu:
     updateText("home", Language.home);
     updateText("catalog", Language.catalog);
@@ -297,11 +373,10 @@ function updateLanguage(){
     updateText("zip_code", Language.zipcode);
     updateText("phone_number", Language.phonenumber);
     updateButton("submit", Language.submit);
-    updateButton("reset", Language.reset);*/
+    updateButton("reset", Language.reset);
     
-    //Footer:
-    updateText("copyright", Language.copyright);
-/*
+    
+
 	//Cart:
 	updateText("quantity", Language.quantity);
 	updateText("description",Language.description);
@@ -322,7 +397,6 @@ function updateText(name, text){
 }
 
 function updateButton(name, text){
-    var currentTag = $("." + name);
-    currentTag.empty();
-    currentTag.append('<input type="' + name + '" id="' + name + '" value="' + text + '" />');
+    var currentTag = $(".lang_" + name);
+    currentTag.attr("value", text);
 }

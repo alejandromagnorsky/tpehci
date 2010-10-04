@@ -1,7 +1,7 @@
 
 function loadRegisterForm(){
       
-    var language = 1;
+    var language = 2;
    	
     if (language == 1) {      
         jQuery(function($){
