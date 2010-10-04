@@ -12,7 +12,7 @@ var main;
 function loadMain() {
 
 	main = true;
-
+	Language.es();
 	document.getElementById("spanlogin").onclick = showHideLogin;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("searchButton").onclick = slideHeaderUp;

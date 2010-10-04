@@ -41,7 +41,7 @@ function showHideLogin() {
 		$("#divlogin").show("slide", {
 			direction : "up"
 		}, 250);
-		loadLoginText(2);
+		
 		showing = true;
 	} else {
 
@@ -56,49 +56,4 @@ function showHideLogin() {
 		showing = false;
 	}
 	return false;
-}
-
-
-function loadLoginText(language){
-	$("#divlogin").html(""); // Clear the divlogin tag
-	var out = '';
-	if (language == 1) {
-		out += '<form action="" method="post">';
-		out += 	'<p>';
-		out += 		'<label class="regFormLabel">';
-		out += 			'Username';
-		out += 		'</label>';
-		out += 		'<input type="text" name="username" class="field"/>';
-		out += 	'</p>';
-		out += 	'<p>';
-		out += 		'<label class="regFormLabel">';
-		out += 			'Password';
-		out += 		'</label>';
-		out += 		'<input type="password" name="password" class="field"/>';
-		out += 	'</p>';
-		out += 	'<div class="submit">';
-		out += 		'<input type="submit" value="Log in" id="signin_submit"/>';
-		out += 	'</div>';
-		out += '</form>';
-	} else if(language == 2) {
-		out += '<form action="" method="post">';
-		out += 	'<p>';
-		out += 		'<label class="regFormLabel">';
-		out += 			'Nombre de usuario';
-		out += 		'</label>';
-		out += 		'<input type="text" name="username" class="field"/>';
-		out += 	'</p>';
-		out += 	'<p>';
-		out += 		'<label class="regFormLabel">';
-		out += 			'Contrase&ntilde;a';
-		out += 		'</label>';
-		out += 		'<input type="password" name="password" class="field"/>';
-		out += 	'</p>';
-		out += 	'<div class="submit">';
-		out += 		'<input type="submit" value="Iniciar sesi&oacute;n" id="signin_submit"/>';
-		out += 	'</div>';
-		out += '</form>';
-	}
-	
-	$("#divlogin").html(out);
 }
