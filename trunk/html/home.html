@@ -57,30 +57,30 @@
                         </img></a>
                 </div>
                 <div id="divlink">
-                    <span><a href="#" id="spanregister">Registrarse</a></span>
-                    <span class="unclicked" id="link"><a href="" id="spanlogin" class="text_link">Iniciar sesi&oacute;n</a></span>
+                    <span><a href="#" class="lang_register" id="spanregister"></a></span>
+                    <span class="unclicked" id="link"><a href="" id="spanlogin" class="lang_login text_link"> </a></span>
                 </div>
                 <div id="divlogin">
                 	 <form action="" method="post">
                         <p>
-                            <label class="regFormLabel">
-                                Nombre de usuario
+                            <label class="lang_username regFormLabel">
+                                
                             </label>
                             <input type="text" name="username" class="field"/>
                         </p>
                         <p>
-                            <label class="regFormLabel">
-                                Contrase&ntilde;a
+                            <label class="lang_password regFormLabel">
+                               
                             </label>
                             <input type="password" name="password" class="field"/>
                         </p>
                         <div class="submit">
-                            <input type="submit" value="Iniciar sesi&oacute;n" id="signin_submit"/>
+                            <input type="submit" class="lang_loginsubmit" value="" id="signin_submit"/>
                         </div>
                     </form>
                 </div>
                 <form id="searchForm" action="#">
-                    <input value ="Buscar..." method="post" type="text" id="inputsearch"/><a href="#" id="searchButton"></a>
+                    <input class="lang_search" value ="Buscar..." method="post" type="text" id="inputsearch"/><a href="#" id="searchButton"></a>
                     <select id="categoryCBox" name="Categoria">
                         <option class="searchOption" selected="selected" disabled="true" value="0">Seleccionar categoria...</option>
                         <option class="searchOption" value="1">Todas</option>
@@ -101,39 +101,39 @@
                             </div>
                             <div class="regFormContent">
                                 <div class='regInput'>
-                                    <label class="regFormLabel">
-                                        <strong>Nombre/s*:</strong>
-                                    </label>
+                                    <label class="lang_clientname regFormLabel">
+                                       
+                                    </label>*:
                                     <br/>
                                     <input name="name" type="text" size="40"/>
                                     <br/>
-                                    <label class="regWarning">
-                                        Introduzca uno o m&aacute;s nombres
+                                    <label class="lang_clientnamewarning regWarning">
+                                      
                                     </label>
                                 </div>
                                 <div class='input'>
-                                    <label class="regFormLabel">
-                                        <strong>Apellido/s*:</strong>
+                                    <label class="lang_clientlastname regFormLabel">
+                                        
                                     </label>
                                     <br/>
                                     <input name="sirname" type="text" size="40" />
                                     <br/>
-                                    <label class="regWarning">
-                                        Introduzca uno o m&aacute;s apellidos
+                                    <label class="lang_clientlastnamewarning regWarning">
+                                        
                                     </label>
                                 </div>
                                 <div class='input'>
-                                    <label class="regFormLabel">
-                                        <strong>Fecha de nacimiento*:</strong>
-                                    </label>
+                                    <label class="lang_birthday regFormLabel">
+                                        
+                                    </label>*:
                                     <br/>
                                     <input id="datepicker" name="birthday" type="text" size="8" maxlength="10" />
-									<label class="regReference"> dd/mm/yyyy</label>
+									<label class="lang_datereference regFormLabel"></label>
                                 </div>
                                 <div class='input'>
-                                    <label class="regFormLabel">
-                                        <strong>Pa&iacute;s*:</strong>
-                                    </label>
+                                    <label class="lang_country regFormLabel">
+                                        
+                                    </label>*:
                                     <br/>
                                     <select name="country">
                                         <option value="0" selected="selected">Argentina</option>
@@ -143,9 +143,9 @@
                                     </select>
                                 </div>
                                 <div class='input'>
-                                    <label class="regFormLabel">
-                                        <strong>Provincia*:</strong>
-                                    </label>
+                                    <label class="lang_state regFormLabel">
+                                        
+                                    </label>*:
                                     <br/>
                                     <select name="state">
                                         <option value="0" selected="selected">Buenos Aires</option>
@@ -157,38 +157,38 @@
                             </div>
                         </div>
                         <div id = 'userData'>
-                            <div class="regFormHeader">
-                                Datos de usuario
+                            <div class="lang_userdata regFormHeader">
+                                
                             </div>
                             <div class="regFormContent">
                                 <div class='regInput'>
-                                    <label class="regFormLabel">
-                                        <strong>Nombre de usuario*:</strong>
-                                    </label>
+                                    <label class="lang_username regFormLabel">
+                                        
+                                    </label>*:
                                     <br/>
                                     <input name="username" type="text" size="30" maxlength="20"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
-                                    <label class="regFormLabel">
-                                        <strong>Contrase&ntilde;a*:</strong>
-                                    </label>
+                                    <label class="lang_password regFormLabel">
+                                        
+                                    </label>*:
                                     <br/>
                                     <input name="password" type="password" size="20" maxlength="20"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
-                                    <label class="regFormLabel">
-                                        <strong>Confirmar contrase&ntilde;a*:</strong>
-                                    </label>
+                                    <label class="lang_confirmpassword regFormLabel">
+                                     
+                                    </label>*:
                                     <br/>
                                     <input name="confirmPassword" type="password" size="20" maxlength="20"/>
                                     <br/>
                                 </div>
                                 <div class='regInput'>
-                                    <label class="regFormLabel">
-                                        <strong>Correo electr&oacute;nico*:</strong>
-                                    </label>
+                                    <label class="lang_email regFormLabel">
+                                        
+                                    </label>*:
                                     <br/>
                                     <input name="email" type="text" size="30" maxlength="30"/>
                                     <br/>
@@ -196,8 +196,8 @@
                             </div>
                         </div>
                         <div>
-                            <label class="regReference">
-                                <strong>*Datos obligatorios</strong>
+                            <label class="lang_mandatorydata regReference">
+                                
                             </label>
                             <br/>
                             <input id="buttonOK" type="submit" value="Aceptar"/><input id="buttonCancel" type="button" value="Cancelar"/>
