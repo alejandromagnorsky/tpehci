@@ -57,3 +57,10 @@ function showHideLogin() {
 	}
 	return false;
 }
+
+function logIn(){
+	var username = $("#login_username").attr("value");
+	var password = $("#login_password").attr("value");
+	requestFromServer('SignIn', 'username='+username+'&password='+password);
+	return false;
+}

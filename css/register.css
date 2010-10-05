@@ -77,4 +77,5 @@ label.regWarning {
     color: #FF0000;
     visibility: hidden;
     font-size: 11px;
+	font-weight: bold;
 }
