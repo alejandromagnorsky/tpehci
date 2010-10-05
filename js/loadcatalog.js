@@ -15,16 +15,34 @@ $THUMB_HEIGHT = 125;
 /* Misc */
 $JS_OFF = 'link/al/cart/cuando/js/esta/off';
 
+/* Global */
 var request;
+var categories;	// Categories array.
+
+function Category(id, code, name){
+	this.id = id;
+	this.code = code;
+	this.name = name;
+	this.subcategories = new Array();
+};
 
 /* THIS IS OUR MAIN FUNCTION. THIS FUNCTION EXECUTES BEFORE THE DAWN OF TIME. */
 $(function(){
-	request = new XMLHttpRequest();
+	requestFromServer('GetCategories', 'language_id=1');
+	
 	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
+	
+	
 });
 
 function requestFromServer(method, parameters){
-	if ( method == 'GetProductListByCategory' ){
+	if ( method == 'GetCategoryList' ){
+		getCategoryList(parameters);
+	} else if ( method == 'GetSubcategoryList' ){
+		getSubcategoryList(parameters);
+	} else if ( method == 'GetCategories' ){
+		getCategories(parameters);
+	} else if ( method == 'GetProductListByCategory' ){
 		getProductListByCategory(parameters);
 		
 		// QUÉ CARAJO ESTA PASANDO ACÁ!!!!!!!
@@ -36,13 +54,13 @@ function requestFromServer(method, parameters){
 }
 
 function getProductListByCategory(parameters){
+	var request = new XMLHttpRequest();
 	var url = $CATALOG + 'GetProductListByCategory' + '&' + parameters;
 	request.open('GET', url, true);
 	request.onreadystatechange = function(){
 		if (request.readyState == 4) {
 			if (request.status == 200) {
 				var response = request.responseXML;
-				var paramList= response.getElementsByTagName('category');
 				
 				var i=1, j=1;	// Id counter(i) and tab counter(j).
 				var out = "";
@@ -62,7 +80,7 @@ function getProductListByCategory(parameters){
 					out +=					'<div id="details">';
                     out +=						'<div class="divPrice">';            
 					out +=							'<p class="spanPrice">Precio por unidad: $' + price + '</p>';
-					//out +=							'<input id="addtocart" type="button" value=""/>';
+					out +=							'<input id="addtocart" type="button" value=""/>';
 					out +=						'</div>';
 					out +=						'<div class="name">' + name + '<br /></div>';
 					out +=						'<div class="autor">';
@@ -100,8 +118,50 @@ function getProductListByCategory(parameters){
 			} else {
 				alert('Error: ' + request.statusText);
 			}
-			request = null;
 		}
 	};
 	request.send();
+}
+
+function getCategories(language){
+	requestFromServer('GetCategoryList', language);
+
+	for (var i=0; i<categories.length; i++){
+		requestFromServer('GetSubcategoryList', language + '&category_id=' + (i+1));
+	}
+}
+
+function getCategoryList(parameters){
+	var request = new XMLHttpRequest();
+	var url = $CATALOG + 'GetCategoryList' + '&' + parameters;
+	request.open('GET', url, false);
+	request.send();
+	if (request.status == 200) {
+		var response = request.responseXML;
+		categories = new Array();
+		$(response).find('category').each(function(){
+			var marker = $(this);
+			categories.push(new Category(marker.attr('id'), marker.find("code").text(), marker.find("name").text()));
+		});
+	} else {
+		alert('Error: ' + request.statusText);
+	}
+}
+
+function getSubcategoryList(parameters){
+	var request = new XMLHttpRequest();
+	var url = $CATALOG + 'GetSubcategoryList' + '&' + parameters;
+	request.open('GET', url, false);
+	request.send();
+	if (request.status == 200) {
+		var response = request.responseXML;
+		$(response).find('subcategory').each(function(){
+			var marker = $(this);
+			var category_id = parseInt(marker.find('category_id').text())-1;
+			categories[category_id].subcategories.push(new Category(marker.attr('subcategory_id'), marker.find("code").text(), marker.find("name").text()));
+		});
+	}
+	else {
+		alert('Error: ' + request.statusText);
+	}
 }
