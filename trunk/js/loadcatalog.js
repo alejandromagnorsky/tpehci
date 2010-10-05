@@ -26,11 +26,12 @@ function Category(id, code, name){
 	this.subcategories = new Array();
 };
 
-/* THIS IS OUR MAIN FUNCTION. THIS FUNCTION EXECUTES BEFORE THE DAWN OF TIME. */
+
 $(function(){
+	/* this function must be called at the very beginning of everything */
 	requestFromServer('GetCategories', 'language_id=1');
 	
-	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
+	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=5&page=1');
 	
 	
 });
@@ -44,11 +45,6 @@ function requestFromServer(method, parameters){
 		getCategories(parameters);
 	} else if ( method == 'GetProductListByCategory' ){
 		getProductListByCategory(parameters);
-		
-		// QUÉ CARAJO ESTA PASANDO ACÁ!!!!!!!
-		//alert($("ul#products").length);
-		/////////////////////////
-		
 		
 	}
 }
@@ -123,6 +119,7 @@ function getProductListByCategory(parameters){
 	request.send();
 }
 
+/* Note: calls to 'GetCategoryList' and 'GetSubcategoryList' are synchronous. */
 function getCategories(language){
 	requestFromServer('GetCategoryList', language);
 
