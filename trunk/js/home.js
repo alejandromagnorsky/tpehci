@@ -19,15 +19,13 @@ function loadMain() {
 	document.getElementById("searchButton").onclick = slideHeaderUp;
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
+	document.getElementById("loginForm").onsubmit = logIn; 
 	document.getElementById("languageCombo").onchange = function(){
-		var tmp = currentLang;
 		currentLang = document.getElementById("languageCombo").selectedIndex+1;
-		if(tmp != currentLang){
-			if(currentLang == $EN)
+		if(currentLang == $EN)
 				Language.en();
-			else
-				Language.es();	
-		}
+		else
+				Language.es();
 	};
 	
 

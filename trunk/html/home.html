@@ -50,19 +50,20 @@
                     <span class="unclicked" id="link"><a href="" id="spanlogin" class="lang_login text_link"> </a></span>
                 </div>
                 <div id="divlogin">
-                	 <form action="" method="post">
+                	 <form id="loginForm" action="" method="post">
                         <p>
                             <label class="lang_username regFormLabel">
                                 
                             </label>
-                            <input type="text" name="username" class="field"/>
+                            <input id="login_username" type="text" name="username" class="field"/>
                         </p>
                         <p>
                             <label class="lang_password regFormLabel">
                                
                             </label>
-                            <input type="password" name="password" class="field"/>
+                            <input id="login_password" type="password" name="password" class="field"/>
                         </p>
+						<label id="loginwarning" class="lang_loginwarning regWarning"></label>
                         <div class="submit">
                             <input type="submit" class="lang_loginsubmit" value="" id="signin_submit"/>
                         </div>
@@ -83,7 +84,7 @@
                 </form>
                 <div id="divRegister">
                     <!-- Registracion!! -->
-                    <form action="">
+                    <form id="registerForm" action="">
                         <div id = 'personal'>
                             <div class="lang_personaldata regFormHeader">
                                 Datos personales
@@ -105,7 +106,7 @@
                                         
                                     </label><label class="regFormLabel"> *:</label>
                                     <br/>
-                                    <input name="sirname" type="text" size="40" />
+                                    <input name="lastname" type="text" size="40" />
                                     <br/>
                                     <label class="lang_clientlastnamewarning regWarning">
                                         

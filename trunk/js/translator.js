@@ -7,10 +7,11 @@ Language.es = function(){
 	Language.logout = "Cerrar sesión";
     Language.settings = "Configuración";
     Language.selectlanguage = "Idioma:";
-	
+		
 	//Login
 	Language.username = "Nombre de usuario";
     Language.password = "Contraseña";
+	Language.loginwarning = "Usuario o contraseña incorrectos";
 	
 	
 	//Register
@@ -149,6 +150,8 @@ Language.en = function(){
 	//Login
 	Language.username = "Username";
     Language.password = "Password";
+	Language.loginwarning = "Invalid username or password";
+	
 	Language.search = "Search...";
 	
 	//Register
@@ -298,6 +301,8 @@ function updateLanguage(){
 	updateText("username", Language.username);
 	updateText("password", Language.password);
 	updateButton("loginsubmit", Language.login);
+	updateText("loginwarning", Language.loginwarning);
+	
 	
 	//Register
 	updateText("personaldata", Language.personaldata);

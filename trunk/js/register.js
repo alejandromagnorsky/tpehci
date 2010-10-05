@@ -4,9 +4,6 @@ $SECURITY = '/service/Security.groovy?method=';
 $CATALOG = '/service/Catalog.groovy?method=';
 $ORDER = '/service/Order.groovy?method=';
 
-var request = new XMLHttpRequest();
-var countrySelected;
-
 function loadRegisterForm(){
       
       	
@@ -45,11 +42,11 @@ function loadRegisterForm(){
     });
 	
 	
-	requestFromServer('GetCountryList', 'language_id=1');
+	requestFromServer('GetCountryList', 'language_id='+currentLang);
 	
 	document.getElementById("countryCombo").onchange = function(e){
 		var index = document.getElementById("countryCombo").selectedIndex;
-		requestFromServer('GetStateList', 'language_id=1&country_id='+index);
+		requestFromServer('GetStateList', 'language_id='+currentLang+'&country_id='+index);
 	};
 	
 	document.getElementById("buttonCancel").onclick = function(){
@@ -62,10 +59,13 @@ function requestFromServer(method, parameters){
 		getCountryList(parameters);
 	else if (method == 'GetStateList')
 		getStateList(parameters);
+	else if(method == 'SignIn')
+		signIn(parameters);
 }
 
 function getCountryList(parameters){
 	var url = $COMMON + 'GetCountryList' + '&' + parameters;
+	var request = new XMLHttpRequest();
 	request.open('GET', url, true);
 	request.onreadystatechange = function(){
 		if (request.readyState == 4) {
@@ -96,6 +96,7 @@ function getCountryList(parameters){
 
 function getStateList(parameters){
 	var url = $COMMON + 'GetStateList' + '&' + parameters;
+	var request = new XMLHttpRequest();
 	request.open('GET', url, true);
 	request.onreadystatechange = function(){
 		if (request.readyState == 4) {
@@ -121,3 +122,18 @@ function getStateList(parameters){
 	request.send();
 }
 
+function signIn(parameters){
+	var url = $SECURITY + 'SignIn' + '&' + parameters;
+	var request = new XMLHttpRequest();
+	request.open('GET', url, false);
+	request.send();
+	var response = request.responseXML;
+	if ($(response).find("response").attr('status') == 'fail') {
+		var errorCode = $(response).find("error").attr("code");
+		if(	errorCode == 4 || errorCode == 5 || errorCode == 104 )
+			$("#loginwarning").css("visibility", "visible")
+	
+	} else {
+		$(".regWarning").css("visibility", "hidden");
+	}
+}
