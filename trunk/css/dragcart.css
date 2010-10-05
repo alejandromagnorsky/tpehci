@@ -23,9 +23,9 @@
 .products li img				{ width: 100%; cursor: move; }
 * html #cart					{ height: 18em; } /* IE6 */
 #cart							{ float: right; width: 22%; min-height: 60em; padding: 1%;  list-style: none;}
-#cart h4						{ line-height: 16px; margin: 0 0 0.4em; }
+#cart h4						{ line-height: 50px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
-#cart .products h5				{ display: none; }
+#cart .products li h5			{ display: none; }
 /* ************************************************** */
 
 /* QUANTITY */
