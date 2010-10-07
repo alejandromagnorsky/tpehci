@@ -7,10 +7,10 @@ $ORDER = '/service/Order.groovy?method=';
 function loadRegisterForm(){
       
       	
-    if (currentLang == 1) {
+    if (currentLang == $EN) {
 		$.datepicker.setDefaults($.datepicker.regional['en']);
     }
-    else if (currentLang == 2) {
+    else if (currentLang == $ES) {
 		jQuery(function($){
             $.datepicker.regional['es'] = {
                 closeText: 'Cerrar',
@@ -32,6 +32,31 @@ function loadRegisterForm(){
             $.datepicker.setDefaults($.datepicker.regional['es']);
         });
     }
+	
+	$("#registerForm").validate({
+   		
+		rules: {
+    		name: "required",
+			lastname: "required",
+     		email: {
+       			required: true,
+       			email: true
+     		}
+		},
+		errorElement: "div"
+		/*
+		submitHandler: function(form) {
+		   	$(form).ajaxSubmit();
+   		}		
+		
+		invalidHandler: function(form, validator){
+			$(".regWarning").css("visibility", "visible");
+		}*/
+	});
+	
+	
+	
+
 	
 	$("#datepicker").datepicker({
         changeMonth: true,
@@ -131,9 +156,10 @@ function signIn(parameters){
 	if ($(response).find("response").attr('status') == 'fail') {
 		var errorCode = $(response).find("error").attr("code");
 		if(	errorCode == 4 || errorCode == 5 || errorCode == 104 )
-			$("#loginwarning").css("visibility", "visible")
+			$("#loginwarning").css("visibility", "visible");
 	
 	} else {
+		alert("Sesión iniciada");
 		$(".regWarning").css("visibility", "hidden");
 	}
 }
