@@ -5,12 +5,26 @@ $CART_ITEM_HEIGHT = "112px";
 var products;
 var cart;
 
-function initCart(){
-	//alert($('#products > li').length);
-	products = $("#products");
+function enableTabs(){	
+	$(".tabs").tabs();	
+}
+
+function buildCart(){
 	cart = $("#cart");
 	
-	$(".tabs").tabs();		
+    // Cart is the dropzone. Products can be dropped into the cart.
+    cart.droppable({
+        accept: "#products > li",
+		activeClass: "state-highlight",
+        drop: function(event, ui){ addToCart(ui.draggable); }
+    });
+	
+	/* DESPUES FIJARME BIEN SI SACÁNDOLA NO PASA NADA */
+	$( "<ul class='products helper-reset'/>" ).appendTo( cart );
+}
+
+function buildDraggables(){
+	products = $("#products");
 		
 	// Instantiates dialog windows for every product 
 	$(".description").dialog({
@@ -31,16 +45,6 @@ function initCart(){
         cursor: "move",
 		opacity: 0.8
     });
-
-    // Cart is the dropzone. Products can be dropped into the cart.
-    cart.droppable({
-        accept: "#products > li",
-		activeClass: "state-highlight",
-        drop: function(event, ui){ addToCart(ui.draggable); }
-    });
-	
-	/* DESPUES FIJARME BIEN SI SACÁNDOLA NO PASA NADA */
-	$( "<ul class='products helper-reset'/>" ).appendTo( cart );
 	
 	// Event delegation for products.
 	$( "#products > li" ).click(function( event ) {
