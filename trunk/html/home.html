@@ -27,6 +27,7 @@
         <script type="text/javascript" src="../js/register.js"></script>
         <script type="text/javascript" src="../js/home.js"></script>
 		<script type="text/javascript" src="../js/translator.js"></script>
+		<script type="text/javascript" src="../js/loadcatalog.js"></script>
     </head>
     <body>
         <div id="header">
@@ -72,16 +73,7 @@
                 </div>
                 <form id="searchForm" action="#">
                     <input class="lang_search" value ="Buscar..." method="post" type="text" id="inputsearch"/><a href="#" id="searchButton"></a>
-                    <select id="categoryCBox" name="Categoria">
-                        <option class="searchOption" selected="selected" disabled="true" value="0">Seleccionar categoria...</option>
-                        <option class="searchOption" value="1">Todas</option>
-                        <optgroup class="searchOption" label="Libros">
-                            <option class="searchOption" value="2">Ficcion</option>
-                        </optgroup>
-                        <optgroup class="searchOption" label="DVD's">
-                            <option class="searchOption" value="2">Accion</option>
-                        </optgroup>
-                    </select>
+                    <select id="categoryCBox" name="Categoria"></select>
                 </form>
                 <div id="divRegister">
                     <!-- Registracion!! -->

@@ -19,6 +19,10 @@ $JS_OFF = 'link/al/cart/cuando/js/esta/off';
 var request;
 var categories;	// Categories array.
 
+/* Category constructor
+ * 	Each category has and id, code, name and an array of subcategories.
+ * 	Each subcategory is a Category, but has no subcategories.
+ */
 function Category(id, code, name){
 	this.id = id;
 	this.code = code;
@@ -26,14 +30,9 @@ function Category(id, code, name){
 	this.subcategories = new Array();
 };
 
-
 $(function(){
-	/* this function must be called at the very beginning of everything */
-	requestFromServer('GetCategories', 'language_id=1');
-	
-	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=5&page=1');
-	
-	
+	buildCart();	// Enables cart drop zone.	
+	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
 });
 
 function requestFromServer(method, parameters){
@@ -44,11 +43,12 @@ function requestFromServer(method, parameters){
 	} else if ( method == 'GetCategories' ){
 		getCategories(parameters);
 	} else if ( method == 'GetProductListByCategory' ){
-		getProductListByCategory(parameters);
+		getProductListByCategory(parameters);	
 		
 	}
 }
 
+/* Get product list by category and initializates car */
 function getProductListByCategory(parameters){
 	var request = new XMLHttpRequest();
 	var url = $CATALOG + 'GetProductListByCategory' + '&' + parameters;
@@ -107,10 +107,11 @@ function getProductListByCategory(parameters){
 					out +=		'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
 					out +=		'<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>';
 					out +=		'<a href="' + $JS_OFF + '" title="Add to cart" class="icon icon-cart">Add to cart</a>';
-					out +=	'</li>'			
+					out +=	'</li>'		
 				});
 				$('ul#products').html(out);
-				initCart();
+				buildDraggables();
+				enableTabs();
 			} else {
 				alert('Error: ' + request.statusText);
 			}
@@ -119,7 +120,6 @@ function getProductListByCategory(parameters){
 	request.send();
 }
 
-/* Note: calls to 'GetCategoryList' and 'GetSubcategoryList' are synchronous. */
 function getCategories(language){
 	requestFromServer('GetCategoryList', language);
 
@@ -161,4 +161,20 @@ function getSubcategoryList(parameters){
 	else {
 		alert('Error: ' + request.statusText);
 	}
+}
+
+/* Injects categories and subcategories from global variable 'categories' into html */
+// VALUE = 2!!!!!
+function injectCategories(){
+	var i, j, out = "";
+	out +=	'<option class="searchOption" selected="selected" disabled="true" value="0">' + Language.selectCategory + '</option>';
+	out +=	'<option class="searchOption" value="1">' + Language.allCategories + '</option>';
+	for(i=0; i < categories.length; i++){
+		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '">';
+		for(j=0; j < categories[i].subcategories.length; j++){
+			out +=	'<option class="searchOption" value="2">' + categories[i].subcategories[j].name + '</option>';
+		}
+		out +=	'</optgroup>';
+	}
+	$("select#categoryCBox").html(out);
 }

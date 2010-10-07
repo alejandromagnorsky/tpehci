@@ -4,9 +4,9 @@
 
 window.onload = loadMain;
 document.onclick = mouseClicked;
-var currentLang = 1;
 $EN = 1;
 $ES = 2;
+var currentLang = $EN;
 var main;
 
 
