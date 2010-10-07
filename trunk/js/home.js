@@ -19,7 +19,7 @@ function loadMain() {
 	document.getElementById("searchButton").onclick = slideHeaderUp;
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
-	document.getElementById("loginForm").onsubmit = logIn; 
+	document.getElementById("loginForm").onsubmit = logIn;
 	document.getElementById("languageCombo").onchange = function(){
 		currentLang = document.getElementById("languageCombo").selectedIndex+1;
 		if(currentLang == $EN)
@@ -61,9 +61,9 @@ function showRegisterDialog() {
 	widget.css("left", "0");
 	widget.css("right", "0");
 
-	widget.css("top", "50px");
+	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "750px");
+	widget.css("height", "775px");
 	widget.css("width", "600px");
 	widget.css("text-align", "left");
 
