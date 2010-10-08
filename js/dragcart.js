@@ -1,33 +1,39 @@
-$CART_ITEM_WIDTH = "83px";
-$CART_ITEM_HEIGHT = "112px";
-
 /* Two main objects: products and cart. */
 var products;
-var cart;
 
 function enableTabs(){	
-	$(".tabs").tabs();	
+	$('.tabs').tabs();	
 }
 
+/* Injects cart tag and makes it droppable */
 function buildCart(){
-	cart = $("#cart");
+	var cartTag = "";
+	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '">';
+	cartTag +=		'<h4 class="' + $CART_HEADER + '">';
+	cartTag +=			'<span class="' + $ICON + ' ' + $ICON_CART + '">';
+	cartTag +=				'Shopping cart';
+	cartTag +=			'</span>';
+	cartTag +=			'Shopping cart';
+	cartTag +=		'</h4>';
+	cartTag +=		'<' + $ITEM_CONTAINER_TAG + ' class="products helper-reset"/>';
+	cartTag +=	'</div>';
+	$('div.product').append(cartTag);
+	
+	cart = $('#' + $CART);
 	
     // Cart is the dropzone. Products can be dropped into the cart.
     cart.droppable({
-        accept: "#products > li",
-		activeClass: "state-highlight",
+        accept: '#' + $CATALOG_CONTAINER_ID + ' > ' + $CATALOG_ITEM,
+		activeClass: $CART_HIGHLIGHT,
         drop: function(event, ui){ addToCart(ui.draggable); }
     });
-	
-	/* DESPUES FIJARME BIEN SI SACÁNDOLA NO PASA NADA */
-	$( "<ul class='products helper-reset'/>" ).appendTo( cart );
 }
 
 function buildDraggables(){
-	products = $("#products");
+	products = $('#' + $CATALOG_CONTAINER_ID);
 		
 	// Instantiates dialog windows for every product 
-	$(".description").dialog({
+	$('.' + $CATALOG_ITEM_DESCRIPTION, $CATALOG_ITEM).dialog({
 			autoOpen: false, 
 			width: 1024,
 			resizable: false,
@@ -35,24 +41,21 @@ function buildDraggables(){
 	});
 	
     // Products are draggable. 
-    $("li", products).draggable({
-        cancel: "a.icon",	// Clicking an icon won't start dragging.
-        revert: "invalid",	// When dragged but not dropped, item reverts to initial position
-        
-		/* DESPUES FIJARME BIEN SI SACÁNDOLA NO PASA NADA */
-        containment: $("#demo-frame").length ? "#demo-frame" : "document", // stick to demo-frame if present
-        helper: "clone",
-        cursor: "move",
+    $( $CATALOG_ITEM, products ).draggable({
+        cancel: 'a.' + $ICON,	// Clicking an icon won't start dragging.
+        revert: 'invalid',	// When dragged but not dropped, item reverts to initial position
+        helper: 'clone',
+        cursor: 'move',
 		opacity: 0.8
     });
 	
 	// Event delegation for products.
-	$( "#products > li" ).click(function( event ) {
+	$( '#' + $CATALOG_CONTAINER_ID + ' > ' + $CATALOG_ITEM ).click(function( event ) {
 		var $item = $(this);
 		$target = $( event.target );
-		if ($target.is("a.icon-cart")) {
+		if ($target.is( 'a.' + $ICON_CART )) {
 			addToCart($item);
-		} else if ($target.is("a.icon-zoom")) {
+		} else if ($target.is( 'a.' + $ICON_INFO )) {
 			$target.parent();
 			productDetails($target);
 		}
@@ -65,28 +68,28 @@ function buildCartItem(item){
 	var addedItem = item.clone();
 	
 	// Add some buttons.
-	addedItem.find("a.icon-cart").remove();
-	addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='-' class='icon icon-minus'>- Quantity</a>");
-	addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='+' class='icon icon-plus'>+ Quantity</a>");
-	addedItem.append("<a href='link/to/recycle/script/when/we/have/js/off' title='Remove from cart' class='icon icon-remove'>Remove From Cart</a>");
-	addedItem.append("<span class='quantity'>1</span>");
+	addedItem.find('a.' + $ICON_CART).remove();
+	addedItem.append("<a href='" + $JS_OFF + "' title='-' class='" + $ICON + " " + $ICON_MINUS + "'>- Quantity</a>");
+	addedItem.append("<a href='" + $JS_OFF + "' title='+' class='" + $ICON + " " + $ICON_PLUS + "'>+ Quantity</a>");
+	addedItem.append("<a href='" + $JS_OFF + "' title='Remove from cart' class='" + $ICON + " " + $ICON_REMOVE + "'>Remove From Cart</a>");
+	addedItem.append("<span class='" + $CATALOG_ITEM_QUANTITY + "'>1</span>");
 	
 	// Event delegation for cart items.
 	addedItem.click(function( event ) {
 		$target = $(event.target);
-		if ( $target.is( "a.icon-zoom" ) ) {
+		if ( $target.is( 'a.' + $ICON_INFO ) ) { 
 			productDetails($target);
-		} else if ( $target.is( "a.icon-remove" ) ) {
+		} else if ( $target.is( 'a.' + $ICON_REMOVE ) ) {
 			removeFromCart($(this));
-		} else if ( $target.is( "a.icon-plus" ) ) {
-			var qty = parseInt(addedItem.find("span.quantity").text()) + 1;
-			addedItem.find("span.quantity").text(qty);
-		} else if ( $target.is( "a.icon-minus" ) ) {
-			var qty = parseInt(addedItem.find("span.quantity").text()) - 1;
+		} else if ( $target.is( 'a.' + $ICON_PLUS ) ) {
+			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) + 1;
+			addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
+		} else if ( $target.is( 'a.' + $ICON_MINUS ) ) {
+			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) - 1;
 			if (qty <= 0){
 				removeFromCart($(this));
 			} else {
-				addedItem.find("span.quantity").text(qty);
+				addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
 			}
 		}
 		return false;
@@ -96,12 +99,10 @@ function buildCartItem(item){
 
 /* Checks if an item is already in the cart */
 function inCart(item){
-	var cartItems = $("ul", cart).children();
-	for (var i=0; i<cartItems.length; i++){
-		if (cartItems[i].id == item[0].id){
+	var cartItems = $($ITEM_CONTAINER_TAG, cart).children();
+	for (var i=0; i<cartItems.length; i++)
+		if (cartItems[i].id == item[0].id)
 			return i;
-		}
-	}
 	return -1;
 }
 
@@ -109,13 +110,13 @@ function inCart(item){
 function addToCart($item){
 	var i = inCart($item);
 	if (i >= 0){
-		var cartItems = $("ul", cart).children();
+		var cartItems = $($ITEM_CONTAINER_TAG, cart).children();
 		var item = $("span", cartItems[i]);
 		var qty = parseInt(item.text()) + 1;
 		item.text(qty);
 	} else {
 		var itemToAdd = buildCartItem($item);
-		itemToAdd.appendTo($("ul", cart)).fadeIn(function(){
+		itemToAdd.appendTo($($ITEM_CONTAINER_TAG, cart)).fadeIn(function(){
 			itemToAdd.animate({ width: $CART_ITEM_WIDTH });
 			itemToAdd.children("img").animate({ height: $CART_ITEM_HEIGHT });;
 		});
@@ -124,12 +125,12 @@ function addToCart($item){
 
 /* Removes an element from the cart. */
 function removeFromCart($item){
-	$item.fadeOut( function(){ $("ul", cart).children().remove("#" + $item[0].id); });
+	$item.fadeOut( function(){ $($ITEM_CONTAINER_TAG, cart).children().remove("#" + $item[0].id); });
 }
    
 /* View full product details */
 function productDetails($link){
-	var toOpen =  $("#description" + $link.parent().attr("id"));
+	var toOpen =  $('#' + $CATALOG_ITEM_DESCRIPTION + $link.parent().attr("id"));
 	toOpen.dialog("option", "title", $link.siblings("img").attr("alt"));
 	toOpen.dialog("open");		
 	return false;

@@ -1,22 +1,4 @@
-/* API Services */
-$COMMON = '/service/Common.groovy?method=';
-$SECURITY = '/service/Security.groovy?method=';
-$CATALOG = '/service/Catalog.groovy?method=';
-$ORDER = '/service/Order.groovy?method=';
-
-/* Images */
-$IMG_WIDTH = 250;
-$IMG_HEIGHT = 360;
-
-/* Thumbs */
-$THUMB_WIDTH = 96;
-$THUMB_HEIGHT = 125;
-
-/* Misc */
-$JS_OFF = 'link/al/cart/cuando/js/esta/off';
-
 /* Global */
-var request;
 var categories;	// Categories array.
 
 /* Category constructor
@@ -59,15 +41,15 @@ function getProductListByCategory(parameters){
 				var response = request.responseXML;
 				
 				var i=1, j=1;	// Id counter(i) and tab counter(j).
-				var out = "";
+				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix">';
 				$(response).find('product').each(function() {
 					var marker = $(this);
 					var name = marker.find("name").text();
 					var image_url = marker.find("image_url").text();
 					var price = marker.find("price").text();
-					out +=	'<li class="product-content corner-tr" id="' + i + '">'
-					out +=		'<h5 class="product-header">' + name + '</h5>';
-					out +=		'<div id="description' + i++ + '" class="description hide">';
+					out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + '">'
+					out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
+					out +=		'<div id="description' + i++ + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
 					out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
 					out +=			'<div class="tabs">';
                    	out +=			    '<ol><li><a href="#tabs-' + j + '">Detalles</a></li>';
@@ -105,11 +87,13 @@ function getProductListByCategory(parameters){
 					out +=			'</div>';
 					out +=		'</div>';
 					out +=		'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
-					out +=		'<a href="description.html" title="Full product details" class="icon icon-zoom">Full product details</a>';
-					out +=		'<a href="' + $JS_OFF + '" title="Add to cart" class="icon icon-cart">Add to cart</a>';
-					out +=	'</li>'		
+					out +=		'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
+					out +=		'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
+					out +=	'</' + $CATALOG_ITEM + '>';
 				});
-				$('ul#products').html(out);
+				out += '</' + $ITEM_CONTAINER_TAG + '>';
+				$($ITEM_CONTAINER_TAG + '#products').remove();
+				$('div.product').append(out);
 				buildDraggables();
 				enableTabs();
 			} else {
