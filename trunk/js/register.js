@@ -33,30 +33,46 @@ function loadRegisterForm(){
         });
     }
 	
-	$("#registerForm").validate({
+	var validator = $("#registerForm").validate({
    		
 		rules: {
     		name: "required",
 			lastname: "required",
+			birthday: {
+					required: true,
+					date: true
+			},
+			countryCombo: "required",
      		email: {
        			required: true,
        			email: true
      		}
 		},
-		errorElement: "div"
-		/*
-		submitHandler: function(form) {
-		   	$(form).ajaxSubmit();
-   		}		
+		errorElement: "div",
 		
+		messages: {
+		    name: Language.clientnamewarning,
+			lastname: Language.clientlastnamewarning,
+			birthday: Language.birthdaywarning,
+    	 	email: {
+       			required: "We need your email address to contact you",
+       			email: "Your email address must be in the format of name@domain.com"
+     		}
+   		},
+
+		
+		submitHandler: function(form) {
+			var sel = $('#countryCombo option:selected').text();
+			if(sel == Language.countryselection)
+				alert(sel); 
+			
+		   	//$(form).ajaxSubmit();
+   		}
+		/*
 		invalidHandler: function(form, validator){
 			$(".regWarning").css("visibility", "visible");
 		}*/
 	});
-	
-	
-	
-
 	
 	$("#datepicker").datepicker({
         changeMonth: true,
