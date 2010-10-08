@@ -9,7 +9,6 @@ $ES = 2;
 var currentLang = $EN;
 var main;
 
-
 function loadMain() {
 
 	main = true;
@@ -20,14 +19,13 @@ function loadMain() {
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
 	document.getElementById("loginForm").onsubmit = logIn;
-	document.getElementById("languageCombo").onchange = function(){
-		currentLang = document.getElementById("languageCombo").selectedIndex+1;
-		if(currentLang == $EN)
-				Language.en();
+	document.getElementById("languageCombo").onchange = function() {
+		currentLang = document.getElementById("languageCombo").selectedIndex + 1;
+		if (currentLang == $EN)
+			Language.en();
 		else
-				Language.es();
+			Language.es();
 	};
-	
 
 	$("#menuCategorias").accordion();
 }
@@ -42,9 +40,14 @@ function mouseClicked(e) {
 }
 
 function showRegisterDialog() {
+	
 	loadRegisterForm();
+	
+	alert("lala");
 	$("#divRegister").dialog( {
-		close: function(){$("#divRegister").dialog("destroy");},
+		close : function() {
+			$("#divRegister").dialog("destroy");
+		},
 		"width" : 650,
 		"modal" : "true",
 		"resizable" : "false",
@@ -52,8 +55,7 @@ function showRegisterDialog() {
 		"title" : Language.register,
 		draggable : false
 	});
-	
-	
+
 	var widget = $("#divRegister").dialog("widget");
 	widget.css("margin", "auto");
 	widget.css("margin-top", "0");
@@ -80,13 +82,17 @@ function showRegisterDialog() {
 }
 
 function slideHeaderUp() {
-	
-	if(main != true )
+
+	if (main != true)
 		return;
-	
+
 	$("#divfisheye").fadeOut(500);
 
-	$("#headerBorder").fadeOut(500, function() {
+	setTimeout(function() {
+
+		$("#headerBorder").animate( {
+			"top" : "112px"
+		}, 1000);
 
 		$("#header").animate( {
 			"height" : "150px"
@@ -95,7 +101,7 @@ function slideHeaderUp() {
 			"top" : "-150px"
 		}, 1000);
 		$("#headerTitle").animate( {
-			"top" : "145px",
+			"top" : "125px",
 			"left" : "-215px"
 		}, 1000);
 
@@ -103,46 +109,49 @@ function slideHeaderUp() {
 			"height" : "150px"
 		}, 1000, function() {
 
-			$("#headerBorder").fadeIn(1000);
 			$("#pageWrapper").css("visibility", "visible");
-			
+
 			main = false;
 			// ACA CARGA LA PAGINA
 		});
-	});
+	}, 500);
 
 }
 
 function slideHeaderDown() {
-	
-	if(main == true)
+
+	if (main == true)
 		return;
 
-	$("#headerBorder").fadeOut(500, function() {
+	$("#pageWrapper").css("visibility", "hidden");
 
-		$("#header").animate( {
-			"height" : "300px"
-		}, 1000);
-		$("#headerContent").animate( {
-			"top" : "0px"
-		}, 1000);
-		$("#headerTitle").animate( {
-			"top" : "50px",
-			"left" : "20px"
-		}, 1000);
-		$("#titleImg").animate( {
-			"height" : "225px"
-		}, 1000);
+	$("#headerBorder").animate( {
+		"top" : "262px"
+	}, 1000);
+
+	$("#header").animate( {
+		"height" : "300px"
+	}, 1000);
+	$("#headerContent").animate( {
+		"top" : "0px"
+	}, 1000);
+	$("#headerTitle").animate( {
+		"top" : "25px",
+		"left" : "20px"
+	}, 1000);
+	$("#titleImg").animate( {
+		"height" : "225px"
+	}, 1000);
+
+	setTimeout(function() {
+
+		$("#divfisheye").fadeIn(1000);
+		$("#headerBorder").fadeIn(1000);
+
+		setTimeout(function(){
 		
-		$("#pageWrapper").css("visibility", "hidden");
-
-		setTimeout(function() {
-
-			$("#divfisheye").fadeIn("slow");
-			$("#headerBorder").fadeIn(1000);
-			
 			main = true;
 		}, 1000);
+	}, 1000);
 
-	});
 }

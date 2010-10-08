@@ -2,34 +2,54 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <title>Turlik - Home</title>
+        <title>Home</title>
         <link rel="stylesheet" type="text/css" href="../css/home.css"/>
         <link rel="stylesheet" type="text/css" href="../css/login.css"/>
         <link rel="stylesheet" type="text/css" href="../css/register.css"/>
         <link rel="stylesheet" type="text/css" href="../css/content.css"/>
         <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css" />
-        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.core.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.slide.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.clip.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.datepicker.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.accordion.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js"></script>
-        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js"></script>
-		<script type="text/javascript" src="../lib/jquery/validation/jquery.validate.js"></script>
-		<script type="text/javascript" src="../js/include.js"></script>
-		<script type="text/javascript" src="../js/login.js"></script>
-        <script type="text/javascript" src="../js/register.js"></script>
-        <script type="text/javascript" src="../js/home.js"></script>
-		<script type="text/javascript" src="../js/translator.js"></script>
-		<!--MERGEAR LAS FUNCIONES DE AJAX DE REGISTER.JS Y LOADCATALOG.JS Y LUEGO AGREGAR LOADCATALOG.JS
-		<script type="text/javascript" src="../js/loadcatalog.js"></script>-->
+        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.core.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.slide.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.clip.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.datepicker.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.accordion.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/validation/jquery.validate.js">
+        </script>
+        <script type="text/javascript" src="../js/include.js">
+        </script>
+        <script type="text/javascript" src="../js/login.js">
+        </script>
+        <script type="text/javascript" src="../js/register.js">
+        </script>
+        <script type="text/javascript" src="../js/home.js">
+        </script>
+        <script type="text/javascript" src="../js/translator.js">
+        </script>
+        <!--MERGEAR LAS FUNCIONES DE AJAX DE REGISTER.JS Y LOADCATALOG.JS Y LUEGO AGREGAR LOADCATALOG.JS
+        <script type="text/javascript" src="../js/loadcatalog.js"></script>-->
     </head>
     <body>
         <div id="header">
@@ -42,32 +62,31 @@
                     <a id="homeLink" href="#"><img id="titleImg" src="../css/images/inicio/title.png" alt="">
                         </img></a>
                 </div>
-				<div id="divlanguage">
-                	<span class="lang_selectlanguage" id="spanlanguage"><a></a></span>
-					<select id="languageCombo" name="LanguageCombo">
+                <div id="divlanguage">
+                    <span class="lang_selectlanguage" id="spanlanguage"><a></a></span>
+                    <select id="languageCombo" name="LanguageCombo">
                         <option class="searchOption" selected="selected" value="0">English</option>
                         <option class="searchOption" value="1">Español</option>
                     </select>
-				</div>
+                </div>
                 <div id="divlink">
-                	<span><a href="#" class="lang_register" id="spanregister"></a></span>
-                    <span class="unclicked" id="link"><a href="" id="spanlogin" class="lang_login text_link"> </a></span>
+                    <span><a href="#" class="lang_register" id="spanregister"></a></span>
+                    <span class="unclicked" id="link"><a href="" id="spanlogin" class="lang_login text_link"></a></span>
                 </div>
                 <div id="divlogin">
-                	 <form id="loginForm" action="" method="post">
+                    <form id="loginForm" action="" method="post">
                         <p>
                             <label class="lang_username regFormLabel">
-                                
                             </label>
                             <input id="login_username" type="text" name="username" class="field"/>
                         </p>
                         <p>
                             <label class="lang_password regFormLabel">
-                               
                             </label>
                             <input id="login_password" type="password" name="password" class="field"/>
                         </p>
-						<label id="loginwarning" class="lang_loginwarning regWarning"></label>
+                        <label id="loginwarning" class="lang_loginwarning regWarning">
+                        </label>
                         <div class="submit">
                             <input type="submit" class="lang_loginsubmit" value="" id="signin_submit"/>
                         </div>
@@ -75,7 +94,12 @@
                 </div>
                 <form id="searchForm" action="#">
                     <input class="lang_search" value ="Buscar..." method="post" type="text" id="inputsearch"/><a href="#" id="searchButton"></a>
-                    <select id="categoryCBox" name="Categoria"></select>
+                    <img id="comboArrow" src="../css/images/inicio/combo_arrow.png">
+                    </img>
+                    <select id="categoryCBox" name="Categoria">
+                        <option class="searchOption" selected="selected" value="0">Peliculas</option>
+                        <option class="searchOption" value="1">Libros</option>
+                    </select>
                 </form>
                 <div id="divRegister">
                     <!-- Registracion!! -->
@@ -87,81 +111,97 @@
                             <div class="regFormContent">
                                 <div class='regInput'>
                                     <label class="lang_clientname regFormLabel">
-                                       
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input name="name" type="text" size="40"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_clientlastname regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input name="lastname" type="text" size="40" />
                                     <br/>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_birthday regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input id="datepicker" name="birthday" type="text" size="8" maxlength="10" />
-									<label class="lang_datereference regFormLabel"></label>
+                                    <label class="lang_datereference regFormLabel">
+                                    </label>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_country regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <select id="countryCombo" name="country">
-                                        
                                     </select>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_state regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <select id="stateCombo" name="state">
-                                        
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div id = 'userData'>
                             <div class="lang_userdata regFormHeader">
-                                
                             </div>
                             <div class="regFormContent">
                                 <div class='regInput'>
                                     <label class="lang_username regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input name="username" type="text" size="30" maxlength="20"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_password regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input name="password" type="password" size="20" maxlength="20"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_confirmpassword regFormLabel">
-                                     
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input name="confirmPassword" type="password" size="20" maxlength="20"/>
                                     <br/>
                                 </div>
                                 <div class='regInput'>
                                     <label class="lang_email regFormLabel">
-                                        
-                                    </label><label class="regFormLabel"> *:</label>
+                                    </label>
+                                    <label class="regFormLabel">
+                                        *:
+                                    </label>
                                     <br/>
                                     <input name="email" type="text" size="30" maxlength="30"/>
                                     <br/>
@@ -170,7 +210,6 @@
                         </div>
                         <div>
                             <label class="lang_mandatorydata regReference">
-                                
                             </label>
                             <br/>
                             <input id="buttonOK" type="submit" value="Aceptar"/><input id="buttonCancel" type="button" value="Cancelar"/>
@@ -214,23 +253,23 @@
                     <h2>Aca va el acordeon </h2>
                     <div id="menuCategorias">
                         <h3><a href="#">Books</a></h3>
-                       	<div>
-						<p>
-                            asdasds
-						</p>
-						</div>
+                        <div>
+                            <p>
+                                asdasds
+                            </p>
+                        </div>
                         <h3><a href="#">Movies</a></h3>
-						<div>
-                        <p>
-                            qweqweqw
-						</p>
+                        <div>
+                            <p>
+                                qweqweqw
+                            </p>
                         </div>
                         <h3><a href="#">Otros</a></h3>
-						<div>
-                        <p>
-                            zxczcxz
-                        </p> 
-						</div>                     
+                        <div>
+                            <p>
+                                zxczcxz
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -239,7 +278,6 @@
             </div>
             <div id="footer">
                 <div class='lang_copyright' id="footerInfo">
-                
                 </div>
             </div>
         </div>

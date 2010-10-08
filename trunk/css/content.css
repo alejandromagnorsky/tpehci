@@ -11,14 +11,6 @@
     bottom: 0px;
     margin: 0 auto 0 auto;
     
-    -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 25px;
-    /* mozilla firefox */
-    -moz-border-radius: 0 0 15px 15px;
-    /* google chrome & safari*/
-    -webkit-border-radius: 0 0 15px 15px;
-    /* opera */
-    border-radius: 0 0 15px 15px;
 }
 
 #contentWrapper {
@@ -90,7 +82,6 @@
     left: 824px;
     top: 0px;
     background-color: rgba(255, 255, 255, 0.3);
-    -moz-box-shadow: -5px 0 10px rgba(0, 0, 0, 0.25);
 }
 
 #footer {
@@ -104,12 +95,6 @@
     background-color: rgba(255, 255, 255, 0.3);
     border-top-color: #ccc;
     border-top-style: groove;
-    /* mozilla firefox */
-    -moz-border-radius: 0 0 15px 15px;
-    /* google chrome & safari*/
-    -webkit-border-radius: 0 0 15px 15px;
-    /* opera */
-    border-radius: 0 0 15px 15px;
 }
 
 #footerInfo {

@@ -4,7 +4,7 @@
 }
 
 #divlink {
-    z-index: 11;
+    z-index: 21;
     position: absolute;
     width: 330px;
     height: 23px;
@@ -79,7 +79,7 @@
 }
 
 #divlogin {
-    z-index: 10;
+    z-index: 20;
     width: 245px;
     top: 296px;
     left: 764px;
