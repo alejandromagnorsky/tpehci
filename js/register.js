@@ -6,12 +6,12 @@ $ORDER = '/service/Order.groovy?method=';
 
 function loadRegisterForm(){
       
-      	
     if (currentLang == $EN) {
 		$.datepicker.setDefaults($.datepicker.regional['en']);
     }
     else if (currentLang == $ES) {
 		jQuery(function($){
+			
             $.datepicker.regional['es'] = {
                 closeText: 'Cerrar',
                 prevText: '&#x3c;Ant',
@@ -32,6 +32,7 @@ function loadRegisterForm(){
             $.datepicker.setDefaults($.datepicker.regional['es']);
         });
     }
+    
 	
 	var validator = $("#registerForm").validate({
    		
@@ -84,6 +85,8 @@ function loadRegisterForm(){
 	
 	
 	requestFromServer('GetCountryList', 'language_id='+currentLang);
+	
+	alert("lala");
 	
 	document.getElementById("countryCombo").onchange = function(e){
 		var index = document.getElementById("countryCombo").selectedIndex;
