@@ -13,20 +13,28 @@ function Category(id, code, name){
 };
 
 $(function(){
-	buildCart();	// Enables cart drop zone.	
+	//buildCart();	// Enables cart drop zone.	
 	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
 });
 
 function requestFromServer(method, parameters){
-	if ( method == 'GetCategoryList' ){
-		getCategoryList(parameters);
-	} else if ( method == 'GetSubcategoryList' ){
-		getSubcategoryList(parameters);
-	} else if ( method == 'GetCategories' ){
-		getCategories(parameters);
-	} else if ( method == 'GetProductListByCategory' ){
-		getProductListByCategory(parameters);	
-		
+	switch (method){
+		case 'GetCategoryList':
+			getCategoryList(parameters); break;
+		case 'GetSubcategoryList':
+			getSubcategoryList(parameters); break;
+		case 'GetCategories':
+			getCategories(parameters); break;
+		case 'GetProductListByCategory':
+			getProductListByCategory(parameters); break;
+		case 'GetCountryList':
+			getCountryList(parameters); break;
+		case 'GetStateList':
+			getStateList(parameters); break;
+		case 'SignIn':
+			signIn(parameters); break;
+		default:
+			alert("Invalid method");
 	}
 }
 

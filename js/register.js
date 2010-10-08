@@ -1,9 +1,3 @@
-/* API Services */
-$COMMON = '/service/Common.groovy?method=';
-$SECURITY = '/service/Security.groovy?method=';
-$CATALOG = '/service/Catalog.groovy?method=';
-$ORDER = '/service/Order.groovy?method=';
-
 function loadRegisterForm(){
       
     if (currentLang == $EN) {
@@ -86,8 +80,6 @@ function loadRegisterForm(){
 	
 	requestFromServer('GetCountryList', 'language_id='+currentLang);
 	
-	alert("lala");
-	
 	document.getElementById("countryCombo").onchange = function(e){
 		var index = document.getElementById("countryCombo").selectedIndex;
 		requestFromServer('GetStateList', 'language_id='+currentLang+'&country_id='+index);
@@ -98,14 +90,6 @@ function loadRegisterForm(){
     };
 }
 
-function requestFromServer(method, parameters){
-	if ( method == 'GetCountryList' )
-		getCountryList(parameters);
-	else if (method == 'GetStateList')
-		getStateList(parameters);
-	else if(method == 'SignIn')
-		signIn(parameters);
-}
 
 function getCountryList(parameters){
 	var url = $COMMON + 'GetCountryList' + '&' + parameters;

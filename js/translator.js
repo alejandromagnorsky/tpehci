@@ -30,6 +30,8 @@ Language.es = function(){
 	Language.confirmpassword = "Confirmar contraseña";
 	Language.email = "Correo electrónico";
 	Language.mandatorydata = "*Datos obligatorios";
+	Language.accept = "Aceptar";
+	Language.cancel = "Cancelar";
 	
 	Language.allCategories = "Todas";
 	Language.selectCategory = "Seleccione categoría";
@@ -175,6 +177,8 @@ Language.en = function(){
 	Language.confirmpassword = "Confirm password";
 	Language.email = "E-mail";
 	Language.mandatorydata = "*Must be filled";
+	Language.accept = "Accept";
+	Language.cancel = "Cancel";
 	
 	//Footer:
     Language.copyright = "All rights reserved.";
@@ -322,6 +326,8 @@ function updateLanguage(){
 	updateText("confirmpassword", Language.confirmpassword);
 	updateText("email", Language.email);
     updateText("mandatorydata", Language.mandatorydata);
+	updateButton("accept", Language.accept);
+	updateButton("cancel", Language.cancel);
 	
 	// Search
 	updateButton("search", Language.search);
@@ -402,10 +408,10 @@ function updateLanguage(){
 	updateText("confirmed", Language.confirmed);
 	updateText("transported", Language.transported);
 	updateText("delivered", Language.delivered);*/
-	/*	
+	
 	requestFromServer('GetCategories', 'language_id=' + currentLang);
 	injectCategories();
-	*/
+	
 }
 
 function updateText(name, text){
