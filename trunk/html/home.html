@@ -48,8 +48,8 @@
         </script>
         <script type="text/javascript" src="../js/translator.js">
         </script>
-        <!--MERGEAR LAS FUNCIONES DE AJAX DE REGISTER.JS Y LOADCATALOG.JS Y LUEGO AGREGAR LOADCATALOG.JS
-        <script type="text/javascript" src="../js/loadcatalog.js"></script>-->
+        <script type="text/javascript" src="../js/loadcatalog.js">
+        </script>
     </head>
     <body>
         <div id="header">
@@ -97,8 +97,7 @@
                     <img id="comboArrow" src="../css/images/inicio/combo_arrow.png">
                     </img>
                     <select id="categoryCBox" name="Categoria">
-                        <option class="searchOption" selected="selected" value="0">Peliculas</option>
-                        <option class="searchOption" value="1">Libros</option>
+                       
                     </select>
                 </form>
                 <div id="divRegister">
@@ -212,7 +211,7 @@
                             <label class="lang_mandatorydata regReference">
                             </label>
                             <br/>
-                            <input id="buttonOK" type="submit" value="Aceptar"/><input id="buttonCancel" type="button" value="Cancelar"/>
+                            <input id="buttonOK" class="lang_accept" type="submit" value=""/><input id="buttonCancel" class="lang_cancel" type="button" value=""/>
                         </div>
                     </form>
                 </div>

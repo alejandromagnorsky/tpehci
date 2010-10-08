@@ -43,7 +43,6 @@ function showRegisterDialog() {
 	
 	loadRegisterForm();
 	
-	alert("lala");
 	$("#divRegister").dialog( {
 		close : function() {
 			$("#divRegister").dialog("destroy");
