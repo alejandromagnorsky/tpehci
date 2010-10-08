@@ -35,7 +35,7 @@ function showHideLogin() {
 	var display = document.getElementById("divlogin").style.display;
 	if (display == 'none' || display == '') {
 
-		document.getElementById("spanlogin").className = 'text_link_clicked';
+		document.getElementById("spanlogin").className = 'lang_login text_link_clicked';
 		document.getElementById("link").className = 'clicked';
 
 		$("#divlogin").show("slide", {
@@ -46,7 +46,7 @@ function showHideLogin() {
 	} else {
 
 		document.getElementById("divlogin").style.display = 'none';
-		document.getElementById("spanlogin").className = 'text_link';
+		document.getElementById("spanlogin").className = 'lang_login text_link';
 		document.getElementById("link").className = 'unclicked';
 
 		$("#divlogin").hide("slide", {

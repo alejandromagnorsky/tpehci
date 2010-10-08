@@ -21,6 +21,7 @@ Language.es = function(){
     Language.clientnamewarning = "Introduzca uno o mas nombres";
 	Language.clientlastnamewarning = "Introduzca uno o mas apellidos";
     Language.birthday = "Fecha de nacimiento";
+	Language.birthdaywarning = "Fecha inválida";
 	Language.datereference = "dd/mm/yyyy";
 	Language.country = "País";
 	Language.countryselection = "Seleccione país";
@@ -165,6 +166,7 @@ Language.en = function(){
     Language.clientnamewarning = "Enter at least one name";
 	Language.clientlastnamewarning = "Enter at least one lastname";
     Language.birthday = "Birthday";
+	Language.birthdaywarning = "Invalid date";
 	Language.datereference = "mm/dd/yyyy";
 	Language.country = "Country";
 	Language.countryselection = "Select country";
@@ -312,8 +314,6 @@ function updateLanguage(){
 	updateText("personaldata", Language.personaldata);
 	updateText("clientname", Language.clientname);
 	updateText("clientlastname", Language.clientlastname);
-	updateText("clientnamewarning", Language.clientnamewarning);
-	updateText("clientlastnamewarning", Language.clientlastnamewarning);
 	updateText("birthday", Language.birthday);
 	updateText("datereference", Language.datereference);
 	updateText("country", Language.country);
@@ -402,9 +402,10 @@ function updateLanguage(){
 	updateText("confirmed", Language.confirmed);
 	updateText("transported", Language.transported);
 	updateText("delivered", Language.delivered);*/
-	
+	/*	
 	requestFromServer('GetCategories', 'language_id=' + currentLang);
 	injectCategories();
+	*/
 }
 
 function updateText(name, text){
