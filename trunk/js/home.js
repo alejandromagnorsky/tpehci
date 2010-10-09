@@ -12,7 +12,8 @@ var main;
 function loadMain() {
 
 	main = true;
-	Language.en();
+	$("#menuCategorias").accordion();
+	Language.en();	
 	document.getElementById("spanlogin").onclick = showHideLogin;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("searchButton").onclick = slideHeaderUp;
@@ -25,9 +26,7 @@ function loadMain() {
 			Language.en();
 		else
 			Language.es();
-	};
-
-	$("#menuCategorias").accordion();
+	};	
 }
 
 function clearSearchData() {
@@ -45,7 +44,8 @@ function showRegisterDialog() {
 	
 	$("#divRegister").dialog( {
 		close : function() {
-			$("#divRegister").dialog("destroy");
+			$("#registerForm").validate().resetForm();
+			$("#divRegister").dialog("destroy");			
 		},
 		"width" : 650,
 		"modal" : "true",
@@ -64,7 +64,7 @@ function showRegisterDialog() {
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "775px");
+	widget.css("height", "780px");
 	widget.css("width", "600px");
 	widget.css("text-align", "left");
 

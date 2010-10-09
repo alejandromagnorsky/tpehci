@@ -169,4 +169,14 @@ function injectCategories(){
 		out +=	'</optgroup>';
 	}
 	$("select#categoryCBox").html(out);
+	
+	out = "";
+	for(i=0; i < categories.length; i++){
+		out +=	'<h3><a href="#">' + categories[i].name + '</a></h3><div><li>';
+		for(j=0; j < categories[i].subcategories.length; j++){
+			out +=	'<ol>'+categories[i].subcategories[j].name+'</ol>';
+		}
+		out += '</li></div>';
+	}
+	$("#menuCategorias").html(out);
 }
