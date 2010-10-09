@@ -412,6 +412,8 @@ function updateLanguage(){
 	requestFromServer('GetCategories', 'language_id=' + currentLang);
 	injectCategories();
 	
+	$("#menuCategorias").accordion("destroy");
+	$("#menuCategorias").accordion();	
 }
 
 function updateText(name, text){
