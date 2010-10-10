@@ -24,7 +24,7 @@ $IMG_WIDTH	= 250;	$THUMB_WIDTH  = 96;
 $IMG_HEIGHT	= 360;	$THUMB_HEIGHT = 125;
 
 // Product in cart
-$CART_ITEM_WIDTH = '83px';
+$CART_ITEM_WIDTH = '100px';
 $CART_ITEM_HEIGHT = '112px';
 /* ***************************************************************** */
 

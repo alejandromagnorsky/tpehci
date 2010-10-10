@@ -13,7 +13,7 @@ function Category(id, code, name){
 };
 
 $(function(){
-	//buildCart();	// Enables cart drop zone.	
+	buildCart();	// Enables cart drop zone.	
 	requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
 });
 
@@ -97,6 +97,7 @@ function getProductListByCategory(parameters){
 					out +=			'</div>';
 					out +=		'</div>';
 					out +=		'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
+					out +=		'<p class="spanPrice">$' + price + '</p>';
 					out +=		'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
 					out +=		'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
 					out +=	'</' + $CATALOG_ITEM + '>';
