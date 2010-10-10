@@ -29,7 +29,7 @@ Language.es = function(){
     Language.state = "Provincia";
     Language.userdata = "Datos de usuario";
     Language.usernamewarning = "Introduzca un nombre de usuario";
-    Language.passwordwarning = "Introduzca una contraseña";
+    Language.passwordwarning = "Introduzca una contraseña de al menos 8 caracteres";
     Language.confirmpassword = "Confirmar contraseña";
     Language.email = "Correo electrónico";
     Language.emailreqwarning = "Introduzca una dirección de correo electrónico";
@@ -179,7 +179,7 @@ Language.en = function(){
     Language.state = "State";
     Language.userdata = "User data";
     Language.usernamewarning = "Enter a username";
-    Language.passwordwarning = "Enter a password";
+    Language.passwordwarning = "Enter a password with at least 8 characters";
     Language.confirmpassword = "Confirm password";
     Language.email = "E-mail";
     Language.emailreqwarning = "Enter an e-mail";
@@ -429,7 +429,10 @@ function updateLanguage(){
             },
             country: "required",
             username: "required",
-            password: "required",
+            password: {
+				required : true,
+				minlength: 8
+			},
             password_again: {
                 equalTo: "#passwordInput"
             },
@@ -448,7 +451,10 @@ function updateLanguage(){
                 },
                 country: "required",
                 username: "required",
-                password: "required",
+                password: {
+					required : true,
+					minlength: 8
+				},
                 password_again: {
                     equalTo: "#passwordInput"
                 },
