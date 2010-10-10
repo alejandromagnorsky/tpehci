@@ -46,11 +46,69 @@ function loadRegisterForm(){
     };
     
     document.getElementById("buttonCancel").onclick = function(){
-        $("#registerForm")[0].reset();
+		$("#registerForm")[0].reset();
         validator.resetForm();
-        
+       
         $("#divRegister").dialog("destroy");
     };
+}
+
+
+
+function initializeValidator(){
+    jQuery.validator.addMethod("dateARG", function(value, element){
+        var check = false;
+        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        if (re.test(value)) {
+            var adata = value.split('/');
+            var gg = parseInt(adata[0], 10);
+            var mm = parseInt(adata[1], 10);
+            var aaaa = parseInt(adata[2], 10);
+            var xdata = new Date(aaaa, mm - 1, gg);
+            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
+                check = true;
+            else 
+                check = false;
+        }
+        else 
+            check = false;
+        return this.optional(element) || check;
+    }, "");
+    
+    jQuery.validator.addMethod("dateUSA", function(value, element){
+        var check = false;
+        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        if (re.test(value)) {
+            var adata = value.split('/');
+            var mm = parseInt(adata[0], 10);
+            var gg = parseInt(adata[1], 10);
+            var aaaa = parseInt(adata[2], 10);
+            var xdata = new Date(aaaa, mm - 1, gg);
+            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
+                check = true;
+            else 
+                check = false;
+        }
+        else 
+            check = false;
+        return this.optional(element) || check;
+    }, "");
+    
+    
+    
+    validator = $("#registerForm").validate({
+    
+        errorElement: "div",
+        
+        
+        submitHandler: register
+        	
+        /*
+         invalidHandler: function(form, validator){
+         $(".regWarning").css("visibility", "visible");
+         }
+         */
+    });
 }
 
 
@@ -122,74 +180,65 @@ function signIn(parameters){
     request.open('GET', url, false);
     request.send();
     var response = request.responseXML;
-    if ($(response).find("response").attr('status') == 'fail') {
-        var errorCode = $(response).find("error").attr("code");
-        if (errorCode == 4 || errorCode == 5 || errorCode == 104) 
-            $("#loginwarning").css("visibility", "visible");
-        
+	if ($(response).find("response").attr('status') == 'ok') {
+        alert("Sesión iniciada");
+        $(".regWarning").css("visibility", "hidden");        
     }
     else {
-        alert("Sesión iniciada");
-        $(".regWarning").css("visibility", "hidden");
+       var errorCode = $(response).find("error").attr("code");
+       if (errorCode == 4 || errorCode == 5 || errorCode == 104) 
+            $("#loginwarning").css("visibility", "visible");
     }
 }
 
+function register(){
+	var parameters = "method=CreateAccount"+"&";
+	
+	parameters += "username=" + $("#register_username").val() +"&";
+	parameters += "name=" + $("#register_clientname").val() + "" + $("#register_clientlastname").val() + "&";
+	parameters += "password=" + $("#passwordInput").val() + "&";
+	parameters += "email=" + "a" + "&";
+	parameters += "birth_date=" + "12";
+	
+	alert(parameters);
+	requestFromServer('CreateAccount', parameters);
+}
 
-function initializeValidator(){
-    jQuery.validator.addMethod("dateARG", function(value, element){
-        var check = false;
-        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-        if (re.test(value)) {
-            var adata = value.split('/');
-            var gg = parseInt(adata[0], 10);
-            var mm = parseInt(adata[1], 10);
-            var aaaa = parseInt(adata[2], 10);
-            var xdata = new Date(aaaa, mm - 1, gg);
-            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
-                check = true;
-            else 
-                check = false;
+function createAccount(parameters){	
+	var url = '/service/Security.groovy?';
+	var request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.onreadystatechange = function(){
+        if (request.readyState == 4) {
+			var response = request.responseXML;
+            if ($(response).find("response").attr('status') == 'ok') {
+				alert("Registrado correctamente");
+			
+				alert($(response).find("account").attr('id'));
+            }
+            else {
+				var errorCode = $(response).find("error").attr("code");
+                alert("Error " + errorCode);
+            }
         }
-        else 
-            check = false;
-        return this.optional(element) || check;
-    }, "");
-    
-    jQuery.validator.addMethod("dateUSA", function(value, element){
-        var check = false;
-        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-        if (re.test(value)) {
-            var adata = value.split('/');
-            var mm = parseInt(adata[0], 10);
-            var gg = parseInt(adata[1], 10);
-            var aaaa = parseInt(adata[2], 10);
-            var xdata = new Date(aaaa, mm - 1, gg);
-            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
-                check = true;
-            else 
-                check = false;
-        }
-        else 
-            check = false;
-        return this.optional(element) || check;
-    }, "");
-    
-    
-    
-    validator = $("#registerForm").validate({
-    
-        errorElement: "div",
-        
-        submitHandler: function(form){
-            var sel = $('#countryCombo option:selected').text();
-            if (sel == Language.countryselection) 
-                alert(sel);
-            
-            //$(form).ajaxSubmit();
-        }
-        /*
-         invalidHandler: function(form, validator){
-         $(".regWarning").css("visibility", "visible");
-         }*/
-    });
+    };
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //  request.setRequestHeader("Content-length", parameters.length);
+  //  request.setRequestHeader("Connection", "close");
+    request.send(parameters);
+}
+
+
+function toISODate(date){
+	var adata = date.split('/');
+	var dd, mm, aaaa;
+	if (currentLang == $EN) {
+		mm = parseInt(adata[0], 10);
+		dd = parseInt(adata[1], 10);
+	} else if (currentLang == $ES){
+		dd = parseInt(adata[0], 10);
+		mm = parseInt(adata[1], 10);
+	}
+    var aaaa = parseInt(adata[2], 10);
+    return aaaa +"-"+ mm +"-" +dd;
 }

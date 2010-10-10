@@ -33,6 +33,8 @@ function requestFromServer(method, parameters){
 			getStateList(parameters); break;
 		case 'SignIn':
 			signIn(parameters); break;
+		case 'CreateAccount':
+			createAccount(parameters); break;
 		default:
 			alert("Invalid method");
 	}

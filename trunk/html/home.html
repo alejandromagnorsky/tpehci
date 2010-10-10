@@ -1,13 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="../css/home.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/login.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/register.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/content.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/fisheye.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/home.css" />
+        <link rel="stylesheet" type="text/css" href="../css/login.css" />
+        <link rel="stylesheet" type="text/css" href="../css/register.css" />
+        <link rel="stylesheet" type="text/css" href="../css/content.css" />
+        <link rel="stylesheet" type="text/css" href="../css/fisheye.css" />
         <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css" />
         <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
         </script>
@@ -62,8 +62,7 @@
             </div>
             <div id="headerContent">
                 <div id="headerTitle">
-                    <a id="homeLink" href="#"><img id="titleImg" src="../css/images/inicio/title.png" alt="">
-                        </img></a>
+                    <a id="homeLink" href="#"><img id="titleImg" src="../css/images/inicio/title.png" alt="" /></a>
                 </div>
                 <div id="divlanguage">
                     <span class="lang_selectlanguage" id="spanlanguage"><a></a></span>
@@ -81,26 +80,30 @@
                         <p>
                             <label class="lang_username regFormLabel">
                             </label>
-                            <input id="login_username" type="text" name="username" class="field"/>
+                            <input id="login_username" type="text" name="username" class="field" />
                         </p>
                         <p>
                             <label class="lang_password regFormLabel">
                             </label>
-                            <input id="login_password" type="password" name="password" class="field"/>
+                            <input id="login_password" type="password" name="password" class="field" />
                         </p>
-                        <label id="loginwarning" class="lang_loginwarning regWarning">
-                        </label>
+                        <p>
+                            <label id="loginwarning" class="lang_loginwarning regWarning">
+                            </label>
+                        </p>
                         <div class="submit">
-                            <input type="submit" class="lang_loginsubmit" value="" id="signin_submit"/>
+                            <input type="submit" class="lang_loginsubmit" value="" id="signin_submit" />
                         </div>
                     </form>
                 </div>
                 <form id="searchForm" action="#">
-                    <input class="lang_search" value ="Buscar..." method="post" type="text" id="inputsearch"/><a href="#" id="searchButton"></a>
-                    <img id="comboArrow" src="../css/images/inicio/combo_arrow.png">
-                    </img>
-                    <select id="categoryCBox" name="Categoria">
-                    </select>
+                    <ins>
+                        <input class="lang_search" value ="Buscar..." type="text" id="inputsearch" /><a href="#" id="searchButton"></a>
+                        <img id="comboArrow" alt="" src="../css/images/inicio/combo_arrow.png" />
+                        <select id="categoryCBox" name="Categoria">
+                        	<option></option>
+                        </select>
+                    </ins>
                 </form>
                 <div id="divRegister">
                     <!-- Registracion!! -->
@@ -116,9 +119,9 @@
                                     <label class="regFormLabel">
                                         *:
                                     </label>
-                                    <br/>
-                                    <input name="name" type="text" size="40" maxlength="50"/>
-                                    <br/>
+                                    <br />
+                                    <input id="register_clientname" name="name" type="text" size="40" maxlength="40" />
+                                    <br />
                                 </div>
                                 <div class='input'>
                                     <label class="lang_clientlastname regFormLabel">
@@ -127,7 +130,7 @@
                                         *:
                                     </label>
                                     <br/>
-                                    <input name="lastname" type="text" size="40" maxlength="50"/>
+                                    <input id="register_clientlastname" name="lastname" type="text" size="40" maxlength="40"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
@@ -149,6 +152,7 @@
                                     </label>
                                     <br/>
                                     <select id="countryCombo" name="country">
+                                    	<option></option>
                                     </select>
                                 </div>
                                 <div class='input'>
@@ -159,6 +163,7 @@
                                     </label>
                                     <br/>
                                     <select id="stateCombo" name="state">
+                                    	<option></option>
                                     </select>
                                 </div>
                             </div>
@@ -174,7 +179,7 @@
                                         *:
                                     </label>
                                     <br/>
-                                    <input name="username" type="text" size="30" maxlength="20"/>
+                                    <input id="register_username" name="username" type="text" size="30" maxlength="15"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
@@ -184,7 +189,7 @@
                                         *:
                                     </label>
                                     <br/>
-                                    <input id="passwordInput" name="password" type="password" size="20" maxlength="20"/>
+                                    <input id="passwordInput" name="password" type="password" size="20" maxlength="15"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
@@ -194,7 +199,7 @@
                                         *:
                                     </label>
                                     <br/>
-                                    <input name="password_again" type="password" size="20" maxlength="20"/>
+                                    <input name="password_again" type="password" size="20" maxlength="15"/>
                                     <br/>
                                 </div>
                                 <div class='input'>
@@ -204,7 +209,7 @@
                                         *:
                                     </label>
                                     <br/>
-                                    <input name="email" type="text" size="30" maxlength="50"/>
+                                    <input id="register_email" name="email" type="text" size="30" maxlength="128"/>
                                     <br/>
                                 </div>
                             </div>
