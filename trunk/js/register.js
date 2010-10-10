@@ -181,8 +181,8 @@ function signIn(parameters){
     request.send();
     var response = request.responseXML;
 	if ($(response).find("response").attr('status') == 'ok') {
-        alert("Sesión iniciada");
-        $(".regWarning").css("visibility", "hidden");        
+        alert("Sesión iniciada. Token: "+$(response).find("token").txt());
+        $(".regWarning").css("visibility", "hidden"); 
     }
     else {
        var errorCode = $(response).find("error").attr("code");
@@ -192,20 +192,27 @@ function signIn(parameters){
 }
 
 function register(){
-	var parameters = "method=CreateAccount"+"&";
-	
+	var parameters = "";
+	/*
 	parameters += "username=" + $("#register_username").val() +"&";
 	parameters += "name=" + $("#register_clientname").val() + "" + $("#register_clientlastname").val() + "&";
 	parameters += "password=" + $("#passwordInput").val() + "&";
-	parameters += "email=" + "a" + "&";
-	parameters += "birth_date=" + "12";
+	parameters += "email=" + $("#register_email").val() + "&";
+	parameters += "birth_date=" + toISODate($("#datepicker").val());*/
 	
+	parameters += "<account>";
+	parameters += "<username>" + encodeURI($("#register_username").val()) +"</username>";
+	parameters += "<name>" + encodeURI($("#register_clientname").val()) + " " + $("#register_clientlastname").val() + "</username>";
+	parameters += "<password>" + encodeURI($("#passwordInput").val()) + "</password>";
+	parameters += "<email>" + encodeURI($("#register_email").val()) + "</email>";
+	parameters += "<birth_date>" + encodeURI(toISODate($("#datepicker").val())) + "</birth_date>";
+	parameters += "</account>";
 	alert(parameters);
 	requestFromServer('CreateAccount', parameters);
 }
 
 function createAccount(parameters){	
-	var url = '/service/Security.groovy?';
+	var url = $SECURITY + 'CreateAccount&';
 	var request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.onreadystatechange = function(){
@@ -213,7 +220,7 @@ function createAccount(parameters){
 			var response = request.responseXML;
             if ($(response).find("response").attr('status') == 'ok') {
 				alert("Registrado correctamente");
-			
+				
 				alert($(response).find("account").attr('id'));
             }
             else {
@@ -222,10 +229,10 @@ function createAccount(parameters){
             }
         }
     };
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  //  request.setRequestHeader("Content-length", parameters.length);
-  //  request.setRequestHeader("Connection", "close");
-    request.send(parameters);
+	request.setRequestHeader("Content-type", "text/xml");
+    //request.setRequestHeader("Content-length", parameters.length);
+    //request.setRequestHeader("Connection", "close");
+    request.send("<?xml version='1.0' encoding='UTF-8'?>" + parameters);
 }
 
 

@@ -17,7 +17,7 @@ function buildCart(){
 	cartTag +=		'</h4>';
 	cartTag +=		'<' + $ITEM_CONTAINER_TAG + ' class="products helper-reset"/>';
 	cartTag +=	'</div>';
-	$('div.product').append(cartTag);
+	$('#sidebar-right').html(cartTag);
 	
 	cart = $('#' + $CART);
 	
@@ -116,10 +116,15 @@ function addToCart($item){
 		item.text(qty);
 	} else {
 		var itemToAdd = buildCartItem($item);
-		itemToAdd.appendTo($($ITEM_CONTAINER_TAG, cart)).fadeIn(function(){
+		
+		itemToAdd.css("width", $CART_ITEM_WIDTH);
+		itemToAdd.children("img").css("height", $CART_ITEM_HEIGHT );
+		itemToAdd.appendTo($($ITEM_CONTAINER_TAG, cart));
+		
+		/*itemToAdd.appendTo($($ITEM_CONTAINER_TAG, cart)).fadeIn(function(){
 			itemToAdd.animate({ width: $CART_ITEM_WIDTH });
 			itemToAdd.children("img").animate({ height: $CART_ITEM_HEIGHT });;
-		});
+		});*/
 	}
 }
 
