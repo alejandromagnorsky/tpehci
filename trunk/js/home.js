@@ -87,7 +87,7 @@ function slideHeaderUp() {
 	if (main != true)
 		return;
 
-	$("#divfisheye").fadeOut(500);
+	$("#fisheye").fadeOut(500);
 
 	setTimeout(function() {
 
@@ -146,7 +146,7 @@ function slideHeaderDown() {
 
 	setTimeout(function() {
 
-		$("#divfisheye").fadeIn(1000);
+		$("#fisheye").fadeIn(1000);
 		$("#headerBorder").fadeIn(1000);
 
 		setTimeout(function(){
