@@ -6,8 +6,6 @@ function loadFisheye() {
 
 	getFisheyeData();
 
-	$(".fisheyeElement").mouseenter(fisheyeExpand);
-	$("#fisheye").mouseleave(fisheyeContract);
 	$("#fisheye").mousemove(fisheyeLogic);
 }
 
@@ -61,17 +59,6 @@ function fisheyeLogic(event) {
 
 }
 
-function fisheyeExpand(event) {
-
-}
-
-function fisheyeContract(event) {
-	var x = 100;
-	$('.fisheyeElement').each(function(index) {
-		$(this).animate({"left": x + "px", "height": "150px", "width": "75px", "top": "-50px"},1000);
-		x += 150;
-	});
-}
 
 /* Get product list by category and initializates car */
 function getFisheyeData() {
