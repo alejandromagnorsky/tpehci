@@ -14,6 +14,7 @@ function loadMain() {
 	main = true;
 	$("#menuCategorias").accordion();
 	Language.en();	
+	loadFisheye();
 	document.getElementById("spanlogin").onclick = showHideLogin;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("searchButton").onclick = slideHeaderUp;

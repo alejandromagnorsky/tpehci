@@ -67,21 +67,6 @@ body {
     color: transparent;
 }
 
-#divfisheye {
-    height: 283px;
-    width: 800px;
-    left: 10px;
-    right: 0;
-    top: 420px;
-    bottom: 0;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(./images/inicio/fisheye.png);
-    background-repeat: no-repeat;
-    background-attachment: inherit;
-}
-
 #headerTitle {
     z-index: 10;
     position: relative;
