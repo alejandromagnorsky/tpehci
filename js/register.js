@@ -1,5 +1,5 @@
 function loadRegisterForm(){
-
+	/*
     if (currentLang == $EN) {
         $.datepicker.setDefaults($.datepicker.regional['en']);
     }
@@ -29,52 +29,6 @@ function loadRegisterForm(){
         }
     
     
-    $("#registerForm").validate({
-    
-        rules: {
-            name: "required",
-            lastname: "required",
-            birthday: {
-                required: true,
-                date: true
-            },
-                        
-            password: "required",
-            password_again: {
-                equalTo: "#passwordInput"
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        
-        },
-        errorElement: "div",
-        
-        messages: {
-            name: Language.clientnamewarning,
-            lastname: Language.clientlastnamewarning,
-            birthday: Language.birthdaywarning,
-            email: {
-                required: "We need your email address to contact you",
-                email: "Your email address must be in the format of name@domain.com"
-            }
-        },
-        
-        
-        submitHandler: function(form){
-            var sel = $('#countryCombo option:selected').text();
-            if (sel == Language.countryselection) 
-                alert(sel);
-            
-            //$(form).ajaxSubmit();
-        }
-        /*
-         invalidHandler: function(form, validator){
-         $(".regWarning").css("visibility", "visible");
-         }*/
-    });
-    
     $("#datepicker").datepicker({
         changeMonth: true,
         changeYear: true,
@@ -82,7 +36,7 @@ function loadRegisterForm(){
         minDate: '-100y',
         maxDate: '+0d'
     });
-    
+    */
     
     requestFromServer('GetCountryList', 'language_id=' + currentLang);
     
@@ -92,7 +46,9 @@ function loadRegisterForm(){
     };
     
     document.getElementById("buttonCancel").onclick = function(){
-        $("#registerForm").validate().resetForm();
+        $("#registerForm")[0].reset();
+        validator.resetForm();
+        
         $("#divRegister").dialog("destroy");
     };
 }
@@ -106,12 +62,11 @@ function getCountryList(parameters){
         if (request.readyState == 4) {
             if (request.status == 200) {
             	
-            	alert(url);
-                var response = request.responseXML;
+            	var response = request.responseXML;
                 
                 var i = 1;
                 var out = "";
-                out += '<option value="i++" disabled="true" selected ="selected">';
+                out += '<option value="" disabled="true" selected ="selected">';
                 out += Language.countryselection;
                 out += '</option>';
                 $(response).find('country').each(function(){
@@ -177,4 +132,64 @@ function signIn(parameters){
         alert("Sesión iniciada");
         $(".regWarning").css("visibility", "hidden");
     }
+}
+
+
+function initializeValidator(){
+    jQuery.validator.addMethod("dateARG", function(value, element){
+        var check = false;
+        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        if (re.test(value)) {
+            var adata = value.split('/');
+            var gg = parseInt(adata[0], 10);
+            var mm = parseInt(adata[1], 10);
+            var aaaa = parseInt(adata[2], 10);
+            var xdata = new Date(aaaa, mm - 1, gg);
+            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
+                check = true;
+            else 
+                check = false;
+        }
+        else 
+            check = false;
+        return this.optional(element) || check;
+    }, "");
+    
+    jQuery.validator.addMethod("dateUSA", function(value, element){
+        var check = false;
+        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        if (re.test(value)) {
+            var adata = value.split('/');
+            var mm = parseInt(adata[0], 10);
+            var gg = parseInt(adata[1], 10);
+            var aaaa = parseInt(adata[2], 10);
+            var xdata = new Date(aaaa, mm - 1, gg);
+            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
+                check = true;
+            else 
+                check = false;
+        }
+        else 
+            check = false;
+        return this.optional(element) || check;
+    }, "");
+    
+    
+    
+    validator = $("#registerForm").validate({
+    
+        errorElement: "div",
+        
+        submitHandler: function(form){
+            var sel = $('#countryCombo option:selected').text();
+            if (sel == Language.countryselection) 
+                alert(sel);
+            
+            //$(form).ajaxSubmit();
+        }
+        /*
+         invalidHandler: function(form, validator){
+         $(".regWarning").css("visibility", "visible");
+         }*/
+    });
 }

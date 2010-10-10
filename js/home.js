@@ -45,6 +45,7 @@ function showRegisterDialog() {
 	
 	$("#divRegister").dialog( {
 		close : function() {
+			$("#registerForm")[0].reset();
 			$("#registerForm").validate().resetForm();
 			$("#divRegister").dialog("destroy");			
 		},
