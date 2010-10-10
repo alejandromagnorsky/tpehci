@@ -7,7 +7,7 @@ function loadFisheye() {
 	getFisheyeData();
 
 	$(".fisheyeElement").mouseenter(fisheyeExpand);
-	$(".fisheyeElement").mouseleave(fisheyeContract);
+	$("#fisheye").mouseleave(fisheyeContract);
 	$("#fisheye").mousemove(fisheyeLogic);
 }
 
@@ -23,24 +23,18 @@ function abs(x) {
 }
 
 function initFisheyeState() {
-
 	var x = 100;
-
 	$('.fisheyeElement').each(function(index) {
 		$(this).css("left", x + "px");
 		x += 150;
 	});
-	
-	
 	$('.fisheyeElement').fadeIn(500);
-
 }
 
 function fisheyeLogic(event) {
 
 	var mouseX;
 	var halfWidth = $(document).width() / 2;
-
 	mouseX = event.pageX;
 
 	initFisheyeState();
@@ -68,13 +62,15 @@ function fisheyeLogic(event) {
 }
 
 function fisheyeExpand(event) {
-	var element = $(event.target);
 
 }
 
 function fisheyeContract(event) {
-	var element = $(event.target);
-
+	var x = 100;
+	$('.fisheyeElement').each(function(index) {
+		$(this).animate({"left": x + "px", "height": "150px", "width": "75px", "top": "-50px"},1000);
+		x += 150;
+	});
 }
 
 /* Get product list by category and initializates car */
@@ -89,21 +85,22 @@ function getFisheyeData() {
 			if (request.status == 200) {
 				var response = request.responseXML;
 
-				$(response).find('product').each(function() {
-					var marker = $(this);
-					var name = marker.find("name").text();
-					var image_url = marker.find("image_url").text();
+				$(response).find('product').each(
+						function() {
+							var marker = $(this);
+							var name = marker.find("name").text();
+							var image_url = marker.find("image_url").text();
 
-					var out = "";
-					out += '<img class="fisheyeElement" src="' + image_url + '"/>';
-					$('#fisheyeContainer').append(out);
-				});
+							var out = "";
+							out += '<img class="fisheyeElement" src="'
+									+ image_url + '"/>';
+							$('#fisheyeContainer').append(out);
+						});
 			}
 		}
-		
+
 		initFisheyeState();
 	};
 	request.send();
-	
-	
+
 }
