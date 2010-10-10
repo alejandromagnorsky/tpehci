@@ -11,7 +11,7 @@ function checkLogin(e) {
 	var parent = checkParent(target);
 	if (!parent && target != objLink) {
 		objDiv.style.display = 'none';
-		objLink.className = 'text_link';
+		objLink.className = 'lang_login text_link';
 		objSpan.className = 'unclicked';
 
 		$("#divlogin").hide("slide", {
@@ -33,8 +33,9 @@ function checkParent(t) {
 
 function showHideLogin() {
 	var display = document.getElementById("divlogin").style.display;
-	if (display == 'none' || display == '') {
 
+	if (display == 'none' || display == '') {
+		
 		document.getElementById("spanlogin").className = 'lang_login text_link_clicked';
 		document.getElementById("link").className = 'clicked';
 
