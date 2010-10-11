@@ -13,7 +13,7 @@ function loadMain() {
 
 	main = true;
 	$("#menuCategorias").accordion();
-	Language.en();	
+	Language.en();
 	loadFisheye();
 	document.getElementById("spanlogin").onclick = showHideLogin;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
@@ -27,8 +27,9 @@ function loadMain() {
 			Language.en();
 		else
 			Language.es();
-	};	
+	};
 }
+
 
 function clearSearchData() {
 	document.getElementById("inputsearch").value = "";
@@ -40,14 +41,14 @@ function mouseClicked(e) {
 }
 
 function showRegisterDialog() {
-	
+
 	loadRegisterForm();
-	
+
 	$("#divRegister").dialog( {
 		close : function() {
 			$("#registerForm")[0].reset();
 			$("#registerForm").validate().resetForm();
-			$("#divRegister").dialog("destroy");			
+			$("#divRegister").dialog("destroy");
 		},
 		"width" : 650,
 		"modal" : "true",
@@ -89,10 +90,17 @@ function slideHeaderUp() {
 
 	$("#fisheye").fadeOut(500);
 
+	$("#divcategory").fadeOut(500);
+
 	setTimeout(function() {
 
 		$("#headerBorder").animate( {
 			"top" : "112px"
+		}, 1000);
+
+		$("#semiHeader").animate( {
+			"top" : "160px",
+			"height" : "65px"
 		}, 1000);
 
 		$("#header").animate( {
@@ -149,8 +157,8 @@ function slideHeaderDown() {
 		$("#fisheye").fadeIn(1000);
 		$("#headerBorder").fadeIn(1000);
 
-		setTimeout(function(){
-		
+		setTimeout(function() {
+
 			main = true;
 		}, 1000);
 	}, 1000);

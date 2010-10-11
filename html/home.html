@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="../css/register.css" />
         <link rel="stylesheet" type="text/css" href="../css/content.css" />
         <link rel="stylesheet" type="text/css" href="../css/fisheye.css" />
-		<link rel="stylesheet" type="text/css" href="../css/dragcart.css" />
+        <link rel="stylesheet" type="text/css" href="../css/dragcart.css" />
         <link rel="stylesheet" type="text/css" href="../css/description.css" />
         <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css" />
         <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
@@ -53,7 +53,7 @@
         </script>
         <script type="text/javascript" src="../js/loadcatalog.js">
         </script>
-		<script type="text/javascript" src="../js/dragcart.js">
+        <script type="text/javascript" src="../js/dragcart.js">
         </script>
         <script type="text/javascript" src="../js/fisheye.js">
         </script>
@@ -63,6 +63,14 @@
             <div id="headerBorder">
             </div>
             <div id="headerLines">
+            </div>
+            <div id="semiHeader">
+                <div id="semiHeaderBorder">
+                </div>
+            </div>
+            <div id="divcategory">
+                <div id="categorySelector">
+                </div>
             </div>
             <div id="headerContent">
                 <div id="headerTitle">
@@ -105,7 +113,7 @@
                         <input class="lang_search" value ="Buscar..." type="text" id="inputsearch" /><a href="#" id="searchButton"></a>
                         <img id="comboArrow" alt="" src="../css/images/inicio/combo_arrow.png" />
                         <select id="categoryCBox" name="Categoria">
-                        	<option></option>
+                            <option></option>
                         </select>
                     </ins>
                 </form>
@@ -123,9 +131,9 @@
                                     <label class="regFormLabel">
                                         *:
                                     </label>
-                                    <br />
+                                    <br/>
                                     <input id="register_clientname" name="name" type="text" size="40" maxlength="40" />
-                                    <br />
+                                    <br/>
                                 </div>
                                 <div class='input'>
                                     <label class="lang_clientlastname regFormLabel">
@@ -156,7 +164,7 @@
                                     </label>
                                     <br/>
                                     <select id="countryCombo" name="country">
-                                    	<option></option>
+                                        <option></option>
                                     </select>
                                 </div>
                                 <div class='input'>
@@ -167,7 +175,7 @@
                                     </label>
                                     <br/>
                                     <select id="stateCombo" name="state">
-                                    	<option></option>
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -229,32 +237,36 @@
             </div>
         </div>
         <div id="fisheye">
-            Estas imagenes de mierda tienen fondo blanco, que lo pario...
             <div id="fisheyeContainer">
             </div>
+        </div>
+        <div id="fisheyeBottom">
         </div>
         <div id="pageWrapper">
             <div id="contentWrapper">
                 <div id="content">
- 					<div class="product"></div>
+                    <div class="product">
+                    </div>
                 </div>
             </div>
             <div id="sidebar-left">
-                <div class ="sidebar">
-                    <div id="menuCategorias">
+                <div class="sidebarBg">
+                    <div class ="sidebar">
+                        <div id="menuCategorias">
+                        </div>
                     </div>
                 </div>
             </div>
             <div id="sidebar-right">
-                <h2>Y aca va el cart</h2>
-				
+                <div class="sidebarBg">
+                    <div class ="sidebar">
+                    </div>
+                </div>
             </div>
             <div id="footer">
                 <div class='lang_copyright' id="footerInfo">
                 </div>
             </div>
-        </div>
-        <div id="bgOverlay">
         </div>
     </body>
 </html>

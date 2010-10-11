@@ -27,6 +27,13 @@ function initFisheyeState() {
 		x += 150;
 	});
 	$('.fisheyeElement').fadeIn(500);
+
+	var x = 100;
+	$('.fisheyeShadow').each(function(index) {
+		$(this).css("left", x + "px");
+		x += 150;
+	});
+	$('.fisheyeShadow').fadeIn(500);
 }
 
 function fisheyeLogic(event) {
@@ -46,7 +53,26 @@ function fisheyeLogic(event) {
 		proportion *= proportion;
 
 		$(this).css("height", 150 + proportion * 150);
-		$(this).css("top", -50 - proportion * 75);
+		$(this).css("top", -50 - proportion * 140);
+		$(this).css("width", 75 + proportion * 75);
+
+		var direction = sign(distance);
+
+		$(this).offset( {
+			left : elementX - 50 * (1 - proportion) * direction
+		});
+
+	});
+
+	$('.fisheyeShadow').each(function(index) {
+
+		var elementX = $(this).offset().left;
+		var distance = mouseX - elementX - $(this).width() / 2;
+		var proportion = 1 - (abs(distance) / halfWidth);
+		proportion *= proportion;
+		proportion *= proportion;
+
+		$(this).css("height", 150 + proportion * 150);
 		$(this).css("width", 75 + proportion * 75);
 
 		var direction = sign(distance);
@@ -58,7 +84,6 @@ function fisheyeLogic(event) {
 	});
 
 }
-
 
 /* Get product list by category and initializates car */
 function getFisheyeData() {
@@ -73,14 +98,17 @@ function getFisheyeData() {
 				var response = request.responseXML;
 
 				$(response).find('product').each(
+
 						function() {
+
 							var marker = $(this);
 							var name = marker.find("name").text();
 							var image_url = marker.find("image_url").text();
 
 							var out = "";
 							out += '<img class="fisheyeElement" src="'
-									+ image_url + '"/>';
+									+ image_url
+									+ '"/><img class="fisheyeShadow" src="' + image_url + '"/>';
 							$('#fisheyeContainer').append(out);
 						});
 			}

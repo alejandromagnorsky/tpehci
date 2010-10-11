@@ -1,17 +1,17 @@
 
 #pageWrapper {
     /*display: none;*/
-	visibility: hidden;
+    visibility: hidden;
     position: absolute;
     height: 700px;
     width: 1024px;
     left: 0;
     right: 0;
-    top: 153px;
+    top: 158px;
     bottom: 0px;
     margin: 0 auto 0 auto;
-    
 }
+
 
 #contentWrapper {
     position: absolute;
@@ -54,34 +54,47 @@
 }
 
 #sidebar-left {
-	background-color: rgba(255, 255, 255, 0.3);
     position: absolute;
-    width: 200px;
+    width: 281px;
     height: 90%;
+    left: -41px;
     top: 0px;
-    -moz-box-shadow: 5px 0 10px rgba(0, 0, 0, 0.25);
+    background-image: url(./images/inicio/sidebar_border.png);
+    background-repeat: repeat-y;
+}
+
+.sidebarBg {
+    z-index: 2;
+    position: absolute;
+    margin: 0 auto 0 auto;
+    width: 200px;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-image: url(./images/inicio/lines_2.png);
 }
 
 .sidebar {
     z-index: 2;
     position: absolute;
-    padding: 0 10px 0 10px;
-    width: 100%;
+    margin: 0 auto 0 auto;
+    width: 180px;
     height: 100%;
     top: 0px;
-    background-color: rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 5px 0 10px rgba(0, 0, 0, 0.25);
+    left: 20px;
+    right: 0px;
 }
 
 #sidebar-right {
     z-index: 2;
     position: absolute;
-    padding: 0 10px 0 10px;
-    width: 180px;
+    width: 281px;
     height: 90%;
-    left: 824px;
+    left: 783px;
     top: 0px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-image: url(./images/inicio/sidebar_border.png);
+    background-repeat: repeat-y;
 }
 
 #footer {
@@ -110,6 +123,6 @@
 }
 
 #menuCategorias {
-	padding-top: 80px;
+    padding-top: 80px;
 }
 
