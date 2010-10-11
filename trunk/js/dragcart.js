@@ -19,7 +19,7 @@ function buildCart(){
 	cartTag +=	'</div>';
 	$('#sidebar-right').html(cartTag);
 	
-	cart = $('#' + $CART);
+	var cart = $('#' + $CART);
 	
     // Cart is the dropzone. Products can be dropped into the cart.
     cart.droppable({
