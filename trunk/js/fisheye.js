@@ -106,9 +106,9 @@ function getFisheyeData() {
 							var image_url = marker.find("image_url").text();
 
 							var out = "";
-							out += '<img class="fisheyeElement" src="'
+							out += '<a href="#"><img class="fisheyeElement" src="'
 									+ image_url
-									+ '"/><img class="fisheyeShadow" src="' + image_url + '"/>';
+									+ '"/></a><img class="fisheyeShadow" src="' + image_url + '"/>';
 							$('#fisheyeContainer').append(out);
 						});
 			}
