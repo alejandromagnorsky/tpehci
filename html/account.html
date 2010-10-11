@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <link rel="stylesheet" type="text/css" href="../css/home.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/login.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/register.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/content.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/account.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/jquery.ui.all.css" />
+        <script type="text/javascript" src="../lib/jquery/jquery-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.core.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.core.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.slide.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.effects.clip.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.datepicker.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.widget.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.mouse.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.draggable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.droppable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.resizable.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.accordion.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.dialog.js">
+        </script>
+        <script type="text/javascript" src="../lib/jquery/ui/jquery.ui.tabs.js">
+        </script>
+		<script type="text/javascript" src="../lib/jquery/validation/jquery.validate.js">
+        </script>
+		<script type="text/javascript" src="../js/include.js">
+        </script>
+        <script type="text/javascript" src="../js/translator.js">
+        </script>
+        <script type="text/javascript" src="../js/account.js">
+        </script>
+		<script type="text/javascript" src="../js/register.js">
+        </script>
+        <title>Account</title>
+    </head>
+    <body>
+        <div id="preferences">
+            <div class="tabs">
+                <ol>
+                    <li>
+                        <a class="lang_modifyData" href="#tabsData"></a>
+                    </li>
+                    <li>
+                        <a class="lang_personalize" href="#tabsPref"></a>
+                    </li>
+                </ol>
+                <div id="tabsData">
+                    <form id="modifyForm" action="">
+                        <div id = 'clientData'>
+                            <div class="lang_headermodify regFormHeader">
+                            </div>
+                            <div class="regFormContent">
+                                <div class='regInput'>
+                                    <label class="lang_clientname regFormLabel">
+                                    </label>
+                                    <br/>
+                                    <input id="modify_clientname" name="name" type="text" size="40" maxlength="40" />
+                                    <br/>
+                                </div>
+                                <div class='input'>
+                                    <label class="lang_birthday regFormLabel">
+                                    </label>
+                                    <br/>
+                                    <input id="modify_datepicker" name="birthday" type="text" size="8" maxlength="10" />
+                                    <label class="lang_datereference regFormLabel">
+                                    </label>
+                                </div>
+                                <div class='input'>
+                                    <label class="lang_email regFormLabel">
+                                    </label>
+                                    <br/>
+                                    <input id="modify_email" name="email" type="text" size="30" maxlength="128"/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <br/>
+                            <input id="buttonOK" class="lang_accept" type="submit" value=""/>
+                        </div>
+                    </form>
+                    <form id="changePassForm" action="">
+                        <div id = 'changePass'>
+                            <div class="lang_headerchangepass regFormHeader">
+                            </div>
+                            <div class="regFormContent">
+                                <div class='input'>
+                                    <label class="lang_newpassword regFormLabel">
+                                    </label>
+                                    <br/>
+                                    <input id="passwordInput" name="password" type="password" size="20" maxlength="15"/>
+                                    <br/>
+                                </div>
+                                <div class='input'>
+                                    <label class="lang_confirmnewpassword regFormLabel">
+                                    </label>
+                                    <br/>
+                                    <input name="password_again" type="password" size="20" maxlength="15"/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <br/>
+                            <input id="buttonOK" class="lang_accept" type="submit" value=""/>
+                        </div>
+                    </form>
+                </div>
+                <div id="tabsPref">
+                    <form id="themeForm" action="">
+                        <p>
+                            <label class="lang_selectTheme">
+                            </label>
+                            <input type="radio" name="theme" checked="checked" value="Orange" />Orange<input type="radio" name="theme" value="Twitter" />Twitter
+                            <br/>
+                            <input id="account_buttonOK" class="lang_accept" type="submit" value=""/>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

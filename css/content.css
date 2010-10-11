@@ -50,7 +50,7 @@
     bottom: 0;
     top: 0;
     margin: 100px auto 0 auto;
-    overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 #sidebar-left {
@@ -64,7 +64,7 @@
 }
 
 .sidebarBg {
-    z-index: 2;
+    z-index: 20;
     position: absolute;
     margin: 0 auto 0 auto;
     width: 200px;
@@ -89,16 +89,19 @@
 #sidebar-right {
     z-index: 2;
     position: absolute;
-    width: 281px;
+    width: 240px;
     height: 90%;
     left: 783px;
-    top: 0px;
+	overflow-y: auto;
+	margin-left: 2px;
+	top: 0px;
     background-image: url(./images/inicio/sidebar_border.png);
     background-repeat: repeat-y;
 }
 
 #footer {
     position: absolute;
+	z-index: 20;
     height: 10%;
     width: 100%;
     left: 0;

@@ -11,15 +11,14 @@
     background-color: transparent;
 }
 
-div.regInput {
-}
-
 div.regFormHeader {
     font-size: 14px;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.2);
     border-bottom: solid;
     border-bottom-width: 1px;
+	-moz-border-radius: 10px 10px 0 0;
+	text-align: center;
 }
 
 div.regFormContent {
@@ -30,13 +29,13 @@ div.regFormContent {
 
 #personal, #userData {
     margin-top: 20px;
-    border: solid;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.4);
-    -moz-border-radius: 4px 4px 4px 4px;
+    -moz-box-shadow : 0 0px 4px rgba(0, 0, 0, 1);
+	-moz-border-radius: 10px 10px 10px 10px;
+	background-color:  transparent;
+	border: 1px solid #000000;
 }
 
-#buttonOK {
+#buttonOK, #account_buttonOK {
     width: 100px;
     background: url(images/bg-btn-blue.png) repeat-x scroll 0 0 #3399dd;
     /* mozilla firefox */

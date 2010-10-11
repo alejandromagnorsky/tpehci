@@ -1,0 +1,35 @@
+#preferences {
+	width: 624px;
+	min-height: 500px;
+}
+
+#themeForm {
+	text-align: left;
+	padding: 20px;
+}
+
+#account_buttonOK{
+	margin: 5px;
+	margin-top: 80px;
+	margin-left: 200px;
+}
+
+input[name=theme] {
+	margin-left: 30px;
+}
+
+form#modifyForm, form#changePassForm{
+	text-align: left;
+}
+
+#tabsData input[type=submit] {
+	margin-left: 460px;
+	margin-bottom: 80px;
+}
+
+#clientData, #changePass{
+	-moz-box-shadow : 0 0px 8px rgba(0, 0, 0, 1);
+	-moz-border-radius: 10px 10px 10px 10px;
+	background-color:  transparent;
+	border: 1px solid #000000;
+}

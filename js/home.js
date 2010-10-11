@@ -4,9 +4,7 @@
 
 window.onload = loadMain;
 document.onclick = mouseClicked;
-$EN = 1;
-$ES = 2;
-var currentLang = $EN;
+
 var main;
 
 function loadMain() {
@@ -46,7 +44,7 @@ function showRegisterDialog() {
 	$("#divRegister").dialog( {
 		close : function() {
 			$("#registerForm")[0].reset();
-			$("#registerForm").validate().resetForm();
+			registerValidator.resetForm();
 			$("#divRegister").dialog("destroy");
 		},
 		"width" : 650,
@@ -66,7 +64,7 @@ function showRegisterDialog() {
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "780px");
+	widget.css("height", "670px");
 	widget.css("width", "600px");
 	widget.css("text-align", "left");
 

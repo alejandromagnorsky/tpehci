@@ -47,7 +47,7 @@ function loadRegisterForm(){
     
     document.getElementById("buttonCancel").onclick = function(){
 		$("#registerForm")[0].reset();
-        validator.resetForm();
+        registerValidator.resetForm();
        
         $("#divRegister").dialog("destroy");
     };
@@ -55,7 +55,7 @@ function loadRegisterForm(){
 
 
 
-function initializeValidator(){
+function initializeRegValidator(){
     jQuery.validator.addMethod("dateARG", function(value, element){
         var check = false;
         var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
@@ -96,7 +96,7 @@ function initializeValidator(){
     
     
     
-    validator = $("#registerForm").validate({
+    registerValidator = $("#registerForm").validate({
     
         errorElement: "div",
         
