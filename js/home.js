@@ -30,7 +30,6 @@ function loadMain() {
 	};
 }
 
-
 function clearSearchData() {
 	document.getElementById("inputsearch").value = "";
 
@@ -89,6 +88,7 @@ function slideHeaderUp() {
 		return;
 
 	$("#fisheye").fadeOut(500);
+	$("#fisheyeBottom").fadeOut(500);
 
 	$("#divcategory").fadeOut(500);
 
@@ -138,9 +138,15 @@ function slideHeaderDown() {
 		"top" : "262px"
 	}, 1000);
 
+	$("#semiHeader").animate( {
+		"top" : "300px",
+		"height" : "140px"
+	}, 1000);
+
 	$("#header").animate( {
 		"height" : "300px"
 	}, 1000);
+
 	$("#headerContent").animate( {
 		"top" : "0px"
 	}, 1000);
@@ -155,7 +161,9 @@ function slideHeaderDown() {
 	setTimeout(function() {
 
 		$("#fisheye").fadeIn(1000);
+		$("#fisheyeBottom").fadeIn(1000);
 		$("#headerBorder").fadeIn(1000);
+		$("#divcategory").fadeIn(1000);
 
 		setTimeout(function() {
 
