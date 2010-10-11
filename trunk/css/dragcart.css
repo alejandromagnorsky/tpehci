@@ -15,18 +15,18 @@
 #products 						{ float: left; min-height: 12em; }
 #content .products li			{ margin: 8px;}
 .products.custom-state-active	{ background: #eee; }
-.products li					{ float: left; width: 170px; padding: 0.4em;  text-align: center; cursor: move;}
+.products li					{ float: left; width: 170px; padding: 0.4em;  text-align: center; cursor: move; }
 .products li h5					{ margin: 0 0 0.4em; cursor: move; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
-#cart .products li 				{ margin-left: 30px ; margin-right: 30px; margin-bottom: 10px;}
+#cart .products li 				{ margin-left: 20px ; margin-right: 20px; margin-bottom: 10px;}
 #cart .spanPrice 				{ font-size:75%}
 #content .products li a.icon-zoom		{ float: right;  margin-left:20px; margin-top:20px;}
 #content .products li a.icon-cart		{ float: left;  margin-top:20px;}
 .products li a.icon-remove		{ float: left; }
 .products li img				{ float: left;  width: 96px;  }
 * html #cart					{ height: 18em; } /* IE6 */
-#cart							{ float: right; min-height: 480px; min-width: 174px; margin-top: 40px; padding: 1%;  list-style: none;}
-#cart h4						{ line-height: 50px; margin: 0 0 0.4em; }
+#cart							{ float: right; min-height: 480px; width: 150px; margin-top: 40px; margin-right: 10px; padding: 1%;  list-style: none;}
+#cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
 #cart .products li h5			{ display: none; }
 /* ************************************************** */
