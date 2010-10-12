@@ -25,7 +25,7 @@
 .products li a.icon-remove		{ float: left; }
 .products li img				{ float: left;  width: 96px;  }
 * html #cart					{ height: 18em; } /* IE6 */
-#cart							{ float: right; min-height: 480px; width: 150px; margin-top: 40px; margin-right: 10px; padding: 1%;  list-style: none;}
+#cart							{ float: right; min-height: 480px; width: 150px; margin-top: 40px; margin-right: 60px; padding: 1%;  list-style: none;}
 #cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
 #cart .products li h5			{ display: none; }
