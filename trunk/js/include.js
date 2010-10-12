@@ -10,6 +10,7 @@ $ITEM_CONTAINER_TAG = 'ul';
 
 // Cart
 $CART = 'cart';
+var cart;
 $CART_HEADER = 'product-header';
 $CART_DEFAULT = 'state-default';
 $CART_HIGHLIGHT = 'state-highlight';

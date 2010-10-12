@@ -8,7 +8,7 @@
     right: 0;
     top: 229px;
     bottom: 0px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 0 auto;´
 }
 
 #contentWrapper {
@@ -43,19 +43,18 @@
     z-index: 90;
     position: absolute;
     width: 100%;
-    left: 0;
+    left: 10px;
     right: 0;
     bottom: 0;
-    top: 0;
+    top: 25px;
     margin: 5px auto 0 auto;
-    overflow-y: scroll;
 }
 
 #sidebar-left {
     z-index: 91;
     position: absolute;
     width: 281px;
-    height: 90%;
+    height: 100%;
     left: -41px;
     top: 0px;
     background-image: url(./images/inicio/sidebar_border.png);
@@ -88,9 +87,9 @@
 #sidebar-right {
     z-index: 2;
     position: absolute;
-    width: 240px;
-    height: 90%;
-    left: 783px;
+    width: 281px;
+    height: 100%;
+    left: 779px;
     overflow-y: auto;
     margin-left: 2px;
     top: 0px;
