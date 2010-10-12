@@ -1,17 +1,15 @@
 
 #pageWrapper {
-    /*display: none;*/
     visibility: hidden;
     position: absolute;
     height: 700px;
     width: 1024px;
     left: 0;
     right: 0;
-    top: 158px;
+    top: 229px;
     bottom: 0px;
     margin: 0 auto 0 auto;
 }
-
 
 #contentWrapper {
     position: absolute;
@@ -42,18 +40,19 @@
 }
 
 #content {
-    z-index: 9;
+    z-index: 90;
     position: absolute;
     width: 100%;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
-    margin: 100px auto 0 auto;
-	overflow-y: scroll;
+    margin: 5px auto 0 auto;
+    overflow-y: scroll;
 }
 
 #sidebar-left {
+    z-index: 91;
     position: absolute;
     width: 281px;
     height: 90%;
@@ -92,37 +91,80 @@
     width: 240px;
     height: 90%;
     left: 783px;
-	overflow-y: auto;
-	margin-left: 2px;
-	top: 0px;
+    overflow-y: auto;
+    margin-left: 2px;
+    top: 0px;
     background-image: url(./images/inicio/sidebar_border.png);
     background-repeat: repeat-y;
 }
 
 #footer {
     position: absolute;
+    z-index: 20;
+    height: 75px;
+    width: 1182px;
+    top: 630px;
+    left: -81px;
+    right: 0;
+    bottom: 0px;
+    margin: 0 auto 0 auto;
+    background-image: url(./images/inicio/footer_side.png);
+    background-repeat: repeat-y;
+}
+
+#footerBottom {
+    position: absolute;
+    z-index: 20;
+    height: 100px;
+    width: 1182px;
+    top: 75px;
+    left: 1px;
+    right: 0;
+    bottom: 0px;
+    margin: 0 auto 0 auto;
+    background-image: url(./images/inicio/footer_bottom.png);
+    font-size: 8pt;
+}
+
+#footerBottomText{
+	position: absolute;
 	z-index: 20;
-    height: 10%;
+    height: 50px;
     width: 100%;
-    left: 0;
+    top: 40px;
+    left: 1px;
     right: 0;
     bottom: 0px;
     margin: auto auto auto auto;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-top-color: #ccc;
-    border-top-style: groove;
+    font-size: 9pt;
 }
 
 #footerInfo {
     font-size: 8pt;
+	color: #ddd;
     position: absolute;
-    height: 30%;
-    width: 30%;
-    left: 0;
+    height: 105px;
+    width: 1020px;
+    left: 2px;
     top: 0;
     right: 0;
     bottom: 0;
-    margin: auto auto auto auto;
+    margin: 0 auto 0 auto;
+    background-color: #272727;
+    background-image: url(./images/inicio/lines.png);
+	border-top: 2px groove #444;
+}
+
+.footerBlock{
+	position: relative;
+	height: 75px;
+	width: 140px;
+	float: left;
+	top: 10px;
+	left: 10px;
+	margin: 0 0 0 30px;
+	bottom: 0;
+	border: 2px solid #fff;
 }
 
 #menuCategorias {
