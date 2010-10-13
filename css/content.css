@@ -76,12 +76,13 @@
 .sidebar {
     z-index: 2;
     position: absolute;
-    margin: 0 auto 0 auto;
+    margin: 35px auto 0 auto;
     width: 180px;
-    height: 100%;
+    height: 95%;
     top: 0px;
     left: 20px;
     right: 0px;
+	overflow-y: auto;
 }
 
 #sidebar-right {
@@ -90,7 +91,6 @@
     width: 281px;
     height: 100%;
     left: 779px;
-    overflow-y: auto;
     margin-left: 2px;
     top: 0px;
     background-image: url(./images/inicio/sidebar_border.png);
@@ -154,7 +154,7 @@
 	border-top: 2px groove #444;
 }
 
-.footerBlock{
+.footerBlock {
 	position: relative;
 	height: 75px;
 	width: 140px;
@@ -166,7 +166,45 @@
 	border: 2px solid #fff;
 }
 
-#menuCategorias {
-    padding-top: 80px;
+.categoryButton a {
+	background-image: url(./images/inicio/button_orange.png);
+	height: 60px;
+	width: 100px;
+	background-color: #000;
+	position: absolute;
+	top: 200px;
+	left: 200px;
 }
 
+#cartWrapper{
+	
+}
+
+#cartFooter {
+	background-image: url(./images/inicio/cart_footer.png);
+	background-repeat: no-repeat;
+	height: 23px;
+	width: 163px;
+	left: -3px;
+	position: absolute;
+	top: 100%;
+	bottom: 0;
+}
+
+
+#cartHeader {
+	background-image: url(./images/inicio/cart_header.png);
+	background-repeat: no-repeat;
+	height: 42px;
+	width: 163px;
+	left: -3px;
+	position: absolute;
+	top: -42px;
+	bottom: 0;
+	padding-top: 15px;
+	color: #fff;
+	font-size: 12pt;
+	font-weight: bold;
+	font-family: verdana;
+	
+}

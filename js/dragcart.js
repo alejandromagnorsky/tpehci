@@ -8,15 +8,12 @@ function enableTabs(){
 /* Injects cart tag and makes it droppable */
 function buildCart(){
 	var cartTag = "";
-	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '">';
-	cartTag +=		'<h4 class="' + $CART_HEADER + '">';
-	cartTag +=			'<span class="' + $ICON + ' ' + $ICON_CART + '">';
-	cartTag +=				'Shopping cart';
-	cartTag +=			'</span>';
-	cartTag +=			'Shopping cart';
-	cartTag +=		'</h4>';
+	
+
+	cartTag += '<div class="sidebarBg">  <div class ="sidebar">';
+	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '"><div id="cartHeader"> Shopping cart</div>';
 	cartTag +=		'<' + $ITEM_CONTAINER_TAG + ' class="products helper-reset"/>';
-	cartTag +=	'</div>';
+	cartTag +=	'<div id="cartFooter"/></div></div></div>';
 	$('#sidebar-right').html(cartTag);
 	
 	cart = $('#' + $CART);
