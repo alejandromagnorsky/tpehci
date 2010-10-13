@@ -74,6 +74,7 @@
 }
 
 .sidebar {
+	overflow-x: hidden;
     z-index: 2;
     position: absolute;
     margin: 35px auto 0 auto;

@@ -25,7 +25,7 @@
 .products li a.icon-remove		{ float: left; }
 .products li img				{ float: left;  width: 96px;  }
 * html #cart					{ height: 18em; } /* IE6 */
-#cart							{ top: 42px; border: 1px groove #ddd; padding-top: 1%; padding-bottom: 1%; background-image: url(./images/inicio/cart_inner.png); background-repeat: repeat-y; background-color: transparent; position: absolute; left: 0; right: 0; min-height: 480px; width: 155px; margin-top: 0px; margin-left: 0px; list-style: none;}
+#cart							{ top: 42px; border: 1px groove #ddd; padding-top: 1%; padding-bottom: 60%; background-image: url(./images/inicio/cart_inner.png); background-repeat: repeat-y; background-color: transparent; position: absolute; left: 0; right: 0; min-height: 480px; width: 155px; margin-top: 0px; margin-left: 0px; list-style: none;}
 #cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
 #cart .products li h5			{ display: none; }

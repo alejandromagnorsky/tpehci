@@ -8,7 +8,6 @@ function enableTabs(){
 /* Injects cart tag and makes it droppable */
 function buildCart(){
 	var cartTag = "";
-	
 
 	cartTag += '<div class="sidebarBg">  <div class ="sidebar">';
 	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '"><div id="cartHeader"> Shopping cart</div>';

@@ -26,6 +26,8 @@ function loadMain() {
 		else
 			Language.es();
 	};
+	
+	buildCart(); // Enables cart drop zone.
 }
 
 function clearSearchData() {
