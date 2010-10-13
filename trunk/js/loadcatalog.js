@@ -49,11 +49,10 @@ function requestFromServer(method, parameters) {
 	}
 }
 
-
-function initializeContent(qty){
-	var height = 300 * ( qty / 3 );
-	$("#pageWrapper").css("height",height);
-	$("#footer").css("top",height);
+function initializeContent(qty) {
+	var height = 300 * (qty / 3);
+	$("#pageWrapper").css("height", height);
+	$("#footer").css("top", height);
 }
 
 /* Get product list by category and initializates car */
@@ -65,23 +64,21 @@ function getProductListByCategory(parameters) {
 		if (request.readyState == 4) {
 			if (request.status == 200) {
 				var response = request.responseXML;
-				
 
 				var i = 1, j = 1; // Id counter(i) and tab counter(j).
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="'
 						+ $CATALOG_CONTAINER_ID
 						+ '" class="products helper-reset helper-clearfix">';
-				
+
 				var qty = 0;
-				
-				$(response).find('product').each(function(){
+
+				$(response).find('product').each(function() {
 					qty++;
 				});
-				
+
 				/* Resize content */
 				initializeContent(qty);
-				
-				
+
 				$(response)
 						.find('product')
 						.each(
@@ -250,7 +247,8 @@ function injectCategories() {
 	for (i = 0; i < categories.length; i++) {
 		out += '<h3><a href="#">' + categories[i].name + '</a></h3><div><li>';
 		for (j = 0; j < categories[i].subcategories.length; j++) {
-			out += '<ol>' + categories[i].subcategories[j].name + '</ol>';
+			out += ' <a href="#">' + categories[i].subcategories[j].name
+					+ '</a><br/>';
 		}
 		out += '</li></div>';
 	}
