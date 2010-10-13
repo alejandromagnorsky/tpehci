@@ -49,7 +49,8 @@ function requestFromServer(method, parameters) {
 }
 
 function initializeContent(qty) {
-	var height = 300 * (qty / 3);
+	var rows = ((qty / 3)-4) > 0 ? ((qty / 3)-4) : 0;
+	var height = 900 + 300 * rows;
 	$("#pageWrapper").css("height", height);
 	$("#footer").css("top", height);
 }
@@ -72,6 +73,11 @@ function getProductList(parameters) {
 
 				/* Resize content */
 				initializeContent(qty);
+				
+				
+				if(qty == 0 )
+					$('div.product').html("<h3>No se encontró ningun producto. Me gusta el jamon.</h3>");
+				else $('div.product').html("");	// Clear content
 				
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').append(out);
@@ -205,10 +211,10 @@ function injectCategories() {
 	// Inject categories into accordion.
 	out = "";
 	for (i = 0; i < categories.length; i++) {
-		out +=	'<h3><a href="#">' + categories[i].name + '</a></h3>';
+		out +=	'<h3><a class="categoryLink" href="#">' + categories[i].name + '</a></h3>';
 		out +=	'<div><li>';
 		for (j = 0; j < categories[i].subcategories.length; j++)
-			out +=	'<a href="#">' + categories[i].subcategories[j].name + '</a><br/>';
+			out +=	'<a class="subCategoryLink" href="#">' + categories[i].subcategories[j].name + '</a><br/>';
 		out +=	'</li></div>';
 	}
 	$("#menuCategorias").html(out);
@@ -236,10 +242,30 @@ function injectCategories() {
 		if ($target.is( 'a.categoryLink' )){
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
+			slideHeaderUp();
 		} else if ($target.is( 'a.subCategoryLink' )){
 			var ids = getSubCategoryIndex($target.html());
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + (ids[0]+1) + '&subcategory_id=' + (ids[1]+1) + '&order=ASC&items_per_page=10&page=1');
+			slideHeaderUp();
+		}
+		return false;
+	});
+	
+
+	// Event delegation for categories in '#categorySelector'.
+	$( '#menuCategorias' ).click(function( event ) {
+		var $item = $(this);
+		$target = $( event.target );
+		if ($target.is( 'a.categoryLink' )){
+			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
+			slideHeaderUp();
+		} else if ($target.is( 'a.subCategoryLink' )){
+			var ids = getSubCategoryIndex($target.html());
+			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + (ids[0]+1) + '&subcategory_id=' + (ids[1]+1) + '&order=ASC&items_per_page=10&page=1');
+			slideHeaderUp();
 		}
 		return false;
 	});
