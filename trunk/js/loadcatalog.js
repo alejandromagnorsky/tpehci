@@ -223,12 +223,12 @@ function injectCategories() {
 	var i, j, out = "";
 	
 	// Inject categories into search bar.
-	out +=	'<option class="searchOption" selected="selected" disabled="true" value="0">' + Language.selectCategory + '</option>';
-	out +=	'<option class="searchOption" value="1">' + Language.allCategories + '</option>';
+	out +=	'<option class="searchOption" selected="selected">' + Language.allCategories + '</option>';
 	for (i = 0; i < categories.length; i++) {
-		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '">';
+		var cIndex = getCategoryIndex(categories[i].name)
+		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '" value="' + cIndex + '">';
 		for (j = 0; j < categories[i].subcategories.length; j++)
-			out +=	'<option class="searchOption" value="2">' + categories[i].subcategories[j].name + '</option>';
+			out +=	'<option class="searchOption" value="' + getSubCategoryIndex(cIndex, categories[i].subcategories[j].name) + '">' + categories[i].subcategories[j].name + '</option>';
 		out +=	'</optgroup>';
 	}
 	$("select#categoryCBox").html(out);
