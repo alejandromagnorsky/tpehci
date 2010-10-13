@@ -12,8 +12,9 @@
 }
 
 #contentWrapper {
+	background-color: #ccc;
     position: absolute;
-    height: 90%;
+    height: 100%;
     width: 624px;
     left: 0;
     right: 0;
@@ -32,11 +33,7 @@
     margin: 20px auto 20px auto;
     left: 0;
     right: 0;
-    /* mozilla firefox */
-    -moz-border-radius: 10px;
     background-image: url(./images/inicio/lines.png);
-    background-color: rgba(255, 255, 255, 0.5);
-    -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 #content {
@@ -55,7 +52,7 @@
     position: absolute;
     width: 281px;
     height: 100%;
-    left: -41px;
+    left: -31px;
     top: 0px;
     background-image: url(./images/inicio/sidebar_border.png);
     background-repeat: repeat-y;
@@ -68,7 +65,7 @@
     width: 200px;
     height: 100%;
     top: 0px;
-    left: 0px;
+    left: -15px;
     right: 0px;
     background-image: url(./images/inicio/lines_2.png);
 }
@@ -91,7 +88,7 @@
     position: absolute;
     width: 281px;
     height: 100%;
-    left: 779px;
+    left: 789px;
     margin-left: 2px;
     top: 0px;
     background-image: url(./images/inicio/sidebar_border.png);

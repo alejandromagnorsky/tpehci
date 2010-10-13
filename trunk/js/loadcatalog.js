@@ -49,8 +49,7 @@ function requestFromServer(method, parameters) {
 }
 
 function initializeContent(qty) {
-	var rows = ((qty / 3)-4) > 0 ? ((qty / 3)-4) : 0;
-	var height = 900 + 300 * rows;
+	var height = 400 + 100 * qty;
 	$("#pageWrapper").css("height", height);
 	$("#footer").css("top", height);
 }
@@ -88,7 +87,8 @@ function getProductList(parameters) {
 					var image_url = marker.find("image_url").text();
 					var price = marker.find("price").text();
 					out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + '">'
-					out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
+					out +=  '<div class="productBg"/>'
+					//out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
 					out +=		'<div id="description' + i++ + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
 					out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
 					out +=			'<div class="tabs">';
@@ -128,6 +128,8 @@ function getProductList(parameters) {
 					out +=	'</div>';
 					out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
 					out +=	'<p class="spanPrice">$' + price + '</p>';
+					out +=  '<p class="productDetails"> Lalalalalalala </p>'
+					out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
 					out +=	'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
 					out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
 					out +=	'</' + $CATALOG_ITEM + '>';
