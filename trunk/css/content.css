@@ -101,7 +101,7 @@
 #footer {
     position: absolute;
     z-index: 20;
-    height: 75px;
+    height: 95px;
     width: 1182px;
     top: 630px;
     left: -81px;
@@ -117,7 +117,7 @@
     z-index: 20;
     height: 100px;
     width: 1182px;
-    top: 75px;
+    top: 95px;
     left: 1px;
     right: 0;
     bottom: 0px;
@@ -143,7 +143,7 @@
     font-size: 8pt;
 	color: #ddd;
     position: absolute;
-    height: 105px;
+    height: 125px;
     width: 1020px;
     left: 2px;
     top: 0;
@@ -164,7 +164,6 @@
 	left: 10px;
 	margin: 0 0 0 30px;
 	bottom: 0;
-	border: 2px solid #fff;
 }
 
 .categoryButton a {
