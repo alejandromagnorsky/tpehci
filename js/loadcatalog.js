@@ -49,7 +49,7 @@ function requestFromServer(method, parameters) {
 }
 
 function initializeContent(qty) {
-	var height = 400 + 100 * qty;
+	var height = 400 + 100 * (qty+1);
 	$("#pageWrapper").css("height", height);
 	$("#footer").css("top", height);
 }

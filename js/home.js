@@ -14,6 +14,10 @@ function loadMain() {
 	Language.en();
 	loadFisheye();
 	document.getElementById("spanlogin").onclick = showHideLogin;
+
+	$("#inputsearch").keydown(resolveSearchKeys);
+	$("#searchForm").keydown(ignoreFormEnter);
+
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("searchButton").onclick = slideHeaderUp;
 	document.getElementById("inputsearch").onclick = clearSearchData;
@@ -26,8 +30,193 @@ function loadMain() {
 		else
 			Language.es();
 	};
-	
+
 	buildCart(); // Enables cart drop zone.
+}
+
+function ignoreFormEnter(event) {
+	if (event.which == 13)
+		return false;
+	else
+		return true;
+}
+
+function resolveSearchKeys(event) {
+	
+	if(event.which == 38 || event.which == 40)
+		return true;
+
+	if (event.which != 13) {
+
+		if ($("#inputsearch").val() == "")
+			return;
+
+		var products = new Array();
+		var parameters = 'criteria=' + $("#inputsearch").val();
+		var request = new XMLHttpRequest();
+		var url = $CATALOG + 'GetProductListByName' + '&' + parameters;
+
+		var index = 0;
+
+		request.open('GET', url, true);
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				if (request.status == 200) {
+					var response = request.responseXML;
+
+					$(response).find('product').each(
+
+					function() {
+
+						var marker = $(this);
+						var name = marker.find("name").text();
+
+						products[index] = name;
+						index++;
+
+					});
+					$("#inputsearch").autocomplete(products);
+				}
+			}
+		};
+		request.send();
+
+	} else {
+		var parameters = 'criteria=' + $("#inputsearch").val();
+
+		var request = new XMLHttpRequest();
+		var url = $CATALOG + 'GetProductListByName' + '&' + parameters;
+
+		request.open('GET', url, true);
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				if (request.status == 200) {
+					var response = request.responseXML;
+
+					var i = 1, j = 1; // Id counter(i) and tab counter(j).
+					var qty = 0;
+					$(response).find('product').each(function() {
+						qty++;
+					});
+
+					/* Resize content */
+					initializeContent(qty);
+
+					if (qty == 0)
+						$('div.product')
+								.html(
+										"<h3>No se encontró ningun producto. Me gusta el jamon.</h3>");
+					else
+						$('div.product').html(""); // Clear content
+
+					var out = '<'
+							+ $ITEM_CONTAINER_TAG
+							+ ' id="'
+							+ $CATALOG_CONTAINER_ID
+							+ '" class="products helper-reset helper-clearfix"/>';
+					$('div.product').append(out);
+					$(response)
+							.find('product')
+							.each(
+									function() {
+										out = '';
+										var marker = $(this);
+										var name = marker.find("name").text();
+										var image_url = marker
+												.find("image_url").text();
+										var price = marker.find("price").text();
+										out += '<'
+												+ $CATALOG_ITEM
+												+ ' class="product-content corner-tr" id="'
+												+ i + '">'
+										out += '<div class="productBg"/>'
+										// out += '<h5 class="' +
+										// $CATALOG_ITEM_HEADER + '">' + name +
+										// '</h5>';
+										out += '<div id="description' + i++
+												+ '" class="'
+												+ $CATALOG_ITEM_DESCRIPTION
+												+ ' hide">';
+										out += '<img src="' + image_url
+												+ '" alt="' + name
+												+ '" width="' + $IMG_WIDTH
+												+ '" height="' + $IMG_HEIGHT
+												+ '" class="image"></img>';
+										out += '<div class="tabs">';
+										out += '<ol><li><a href="#tabs-' + j
+												+ '">Detalles</a></li>';
+										out += '<li><a href="#tabs-' + (j + 1)
+												+ '">Sinopsis</a></li></ol>';
+										out += '<div id="tabs-' + j++ + '">';
+										out += '<div id="details">';
+										out += '<div class="divPrice">';
+										out += '<p class="spanPrice">Precio por unidad: $'
+												+ price + '</p>';
+										out += '<input id="addtocart" type="button" value=""/>';
+										out += '</div>';
+										out += '<div class="name">' + name
+												+ '<br /></div>';
+										out += '<div class="autor">';
+										out += 'Director: Dario Argento<br/>';
+										out += 'Cast: Jessica Harper, Stefania Casini, Flavio Bucci, Miguel Bose, Barbara Magnolfi<br/>';
+										out += 'Wild Side Films<br/>';
+										out += '</div>';
+										out += '<div class="category">';
+										out += 'Genre: CATEGORY' + '<br/>';
+										out += 'Format: FORMAT' + '<br/>';
+										out += 'Original release date: DATE'
+												+ '<br/>';
+										out += 'Rating: RATING' + '<br/>';
+										out += '</div>';
+										out += '</div>';
+										out += '</div>';
+										out += '<div id="tabs-' + j++ + '">';
+										out += '<div class="sinopsis">';
+										out += 'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
+										out += 'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
+										out += 'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
+										out += 'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
+										out += 'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
+										out += 'sinister organization.';
+										out += '</div>';
+										out += '</div>';
+										out += '</div>';
+										out += '</div>';
+										out += '<img src="' + image_url
+												+ '" alt="' + name
+												+ '" width="' + $THUMB_WIDTH
+												+ '" height="' + $THUMB_HEIGHT
+												+ '"/>';
+										out += '<p class="spanPrice">$' + price
+												+ '</p>';
+										out += '<p class="productDetails"> Lalalalalalala </p>'
+										out += '<h5 class="'
+												+ $CATALOG_ITEM_HEADER + '">'
+												+ name + '</h5>';
+										out += '<a href="description.html" title="Full product details" class="'
+												+ $ICON
+												+ ' '
+												+ $ICON_INFO
+												+ '">Full product details</a>';
+										out += '<a href="'
+												+ $JS_OFF
+												+ '" title="Add to cart" class="'
+												+ $ICON + ' ' + $ICON_CART
+												+ '">Add to cart</a>';
+										out += '</' + $CATALOG_ITEM + '>';
+										$(
+												$ITEM_CONTAINER_TAG + '#'
+														+ $CATALOG_CONTAINER_ID)
+												.append(out);
+									});
+					buildDraggables();
+					enableTabs();
+					slideHeaderUp();
+				}
+			}
+		};
+		request.send();
+	}
 }
 
 function clearSearchData() {
