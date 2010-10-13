@@ -235,6 +235,19 @@ function injectCategories() {
 	}
 	$("#categorySelector").html(out);
 	
+	// Inject categories into categories menu (below search bar).
+	out = "";
+	for (i = 0; i < categories.length; i++) {
+		out +=	'<div class="footerBlock">';
+		out +=			'<a class="categoryLink" href="#">' + categories[i].name + '</a><br/>';
+		for (j = 0; j < categories[i].subcategories.length; j++)
+			out +=		'<a class="subCategoryLink" href="#">' + categories[i].subcategories[j].name + '</a>';
+		out +=	'</div>';
+		//out +=	'</div>';	// ESTE DIV SE PUEDE ELIMINAR???? CREO QUE SI, PROBE Y NO CAMBIA NADA.
+	}
+	$("#footerInfo").html(out);
+	
+	
 	// Event delegation for categories in '#categorySelector'.
 	$( '.categoryBlock' ).click(function( event ) {
 		var $item = $(this);
@@ -255,6 +268,23 @@ function injectCategories() {
 
 	// Event delegation for categories in '#categorySelector'.
 	$( '#menuCategorias' ).click(function( event ) {
+		var $item = $(this);
+		$target = $( event.target );
+		if ($target.is( 'a.categoryLink' )){
+			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
+			slideHeaderUp();
+		} else if ($target.is( 'a.subCategoryLink' )){
+			var ids = getSubCategoryIndex($target.html());
+			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + (ids[0]+1) + '&subcategory_id=' + (ids[1]+1) + '&order=ASC&items_per_page=10&page=1');
+			slideHeaderUp();
+		}
+		return false;
+	});
+
+	// Event delegation for categories in '#categorySelector'.
+	$( '.footerBlock' ).click(function( event ) {
 		var $item = $(this);
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
