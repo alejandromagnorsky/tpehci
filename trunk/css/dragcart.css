@@ -25,10 +25,11 @@
 .products li a.icon-remove		{ float: left; }
 .products li img				{ float: left;  width: 96px;  }
 * html #cart					{ height: 18em; } /* IE6 */
-#cart							{ top: 42px; border: 1px groove #ddd; padding-top: 1%; padding-bottom: 60%; background-image: url(./images/inicio/cart_inner.png); background-repeat: repeat-y; background-color: transparent; position: absolute; left: 0; right: 0; min-height: 480px; width: 155px; margin-top: 0px; margin-left: 0px; list-style: none;}
+#cart							{ top: 0px; border: 1px groove #ddd; padding-top: 15px; padding-bottom: 15px; background-repeat: repeat-y; background-color: transparent; position: absolute; left: 0; right: 0; min-height: 95%; width: 155px; margin-top: 0px; margin-left: 0px; list-style: none;}
 #cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
 #cart .products li h5			{ display: none; }
+
 /* ************************************************** */
 
 /* QUANTITY */
@@ -72,7 +73,7 @@
 .state-active, .product-content .state-active, .product-header .state-active { border: 1px solid #aaaaaa; background: #ffffff url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #212121; }
 .state-active a, .state-active a:link, .state-active a:visited { color: #212121; text-decoration: none; }
 
-.state-highlight, .product-content .state-highlight, .product-header .state-highlight  { border: 1px solid #fcefa1; background: #fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x; color: #363636; }
+.state-highlight, .product-content .state-highlight, .product-header .state-highlight  { }
 .state-highlight a, .product-content .state-highlight a, .product-header .state-highlight a { color: #363636; }
 .state-error, .product-content .state-error, .product-header .state-error {border: 1px solid #cd0a0a; background: #fef1ec url(images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; color: #cd0a0a; }
 .state-error a, .product-content .state-error a, .product-header .state-error a { color: #cd0a0a; }
