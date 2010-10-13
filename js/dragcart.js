@@ -9,10 +9,10 @@ function enableTabs(){
 function buildCart(){
 	var cartTag = "";
 
-	cartTag += '<div class="sidebarBg">  <div class ="sidebar">';
-	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '"><div id="cartHeader"> Shopping cart</div>';
+	cartTag += '<div class="sidebarBg"><div id="cartHeader"> Shopping cart</div> <div class ="sidebar"><div id="cartWrapper">';
+	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '">';
 	cartTag +=		'<' + $ITEM_CONTAINER_TAG + ' class="products helper-reset"/>';
-	cartTag +=	'<div id="cartFooter"/></div></div></div>';
+	cartTag +=	'</div></div></div><div id="cartFooter">Checkout!</div></div>';
 	$('#sidebar-right').html(cartTag);
 	
 	cart = $('#' + $CART);
