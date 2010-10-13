@@ -41,9 +41,10 @@ function ignoreFormEnter(event) {
 		return true;
 }
 
-
-function search(event){
+function search(event) {
 	var parameters = 'criteria=' + $("#inputsearch").val();
+
+	var subCategoryIndex = $("#categoryCBox").val();
 
 	var request = new XMLHttpRequest();
 	var url = $CATALOG + 'GetProductListByName' + '&' + parameters;
@@ -63,16 +64,11 @@ function search(event){
 				/* Resize content */
 				initializeContent(qty);
 
-				if (qty == 0)
-					$('div.product')
-							.html(
-									"<h3>No se encontró ningun producto. Me gusta el jamon.</h3>");
-				else
-					$('div.product').html(""); // Clear content
+				$('div.product').html("");
 
-				var out = '<'
-						+ $ITEM_CONTAINER_TAG
-						+ ' id="'
+				var noMatch = true;
+
+				var out = '<' + $ITEM_CONTAINER_TAG + ' id="'
 						+ $CATALOG_CONTAINER_ID
 						+ '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').append(out);
@@ -83,8 +79,16 @@ function search(event){
 									out = '';
 									var marker = $(this);
 									var name = marker.find("name").text();
-									var image_url = marker
-											.find("image_url").text();
+									var subcategoryID = marker.find(
+											"subcategory_id").text() - 1;
+
+									if (subcategoryID != subCategoryIndex && subCategoryIndex != 'All')
+										return;
+
+									noMatch = false;
+
+									var image_url = marker.find("image_url")
+											.text();
 									var price = marker.find("price").text();
 									out += '<'
 											+ $CATALOG_ITEM
@@ -98,9 +102,8 @@ function search(event){
 											+ '" class="'
 											+ $CATALOG_ITEM_DESCRIPTION
 											+ ' hide">';
-									out += '<img src="' + image_url
-											+ '" alt="' + name
-											+ '" width="' + $IMG_WIDTH
+									out += '<img src="' + image_url + '" alt="'
+											+ name + '" width="' + $IMG_WIDTH
 											+ '" height="' + $IMG_HEIGHT
 											+ '" class="image"></img>';
 									out += '<div class="tabs">';
@@ -143,24 +146,21 @@ function search(event){
 									out += '</div>';
 									out += '</div>';
 									out += '</div>';
-									out += '<img src="' + image_url
-											+ '" alt="' + name
-											+ '" width="' + $THUMB_WIDTH
+									out += '<img src="' + image_url + '" alt="'
+											+ name + '" width="' + $THUMB_WIDTH
 											+ '" height="' + $THUMB_HEIGHT
 											+ '"/>';
 									out += '<p class="spanPrice">$' + price
 											+ '</p>';
 									out += '<p class="productDetails"> Lalalalalalala </p>'
-									out += '<h5 class="'
-											+ $CATALOG_ITEM_HEADER + '">'
-											+ name + '</h5>';
+									out += '<h5 class="' + $CATALOG_ITEM_HEADER
+											+ '">' + name + '</h5>';
 									out += '<a href="description.html" title="Full product details" class="'
 											+ $ICON
 											+ ' '
 											+ $ICON_INFO
 											+ '">Full product details</a>';
-									out += '<a href="'
-											+ $JS_OFF
+									out += '<a href="' + $JS_OFF
 											+ '" title="Add to cart" class="'
 											+ $ICON + ' ' + $ICON_CART
 											+ '">Add to cart</a>';
@@ -170,6 +170,12 @@ function search(event){
 													+ $CATALOG_CONTAINER_ID)
 											.append(out);
 								});
+
+				if (noMatch)
+					$('div.product')
+							.html(
+									"<h3>No se encontró ningun producto. Por favor, vuelva a buscar.</h3>");
+
 				buildDraggables();
 				enableTabs();
 				slideHeaderUp();
@@ -180,8 +186,8 @@ function search(event){
 }
 
 function resolveSearchKeys(event) {
-	
-	if(event.which == 38 || event.which == 40)
+
+	if (event.which == 38 || event.which == 40)
 		return true;
 
 	if (event.which != 13) {
@@ -221,6 +227,7 @@ function resolveSearchKeys(event) {
 
 	} else {
 		search(event);
+		return false;
 	}
 }
 
