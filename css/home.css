@@ -18,6 +18,11 @@ body {
     margin-right: auto;
 }
 
+.parentCategory {
+	position: absolute;
+	visibility: hidden;
+}
+
 .categoryBlock {
     float: left;
     position: relative;
