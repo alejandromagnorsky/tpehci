@@ -13,9 +13,8 @@ function Category(id, code, name) {
 };
 
 $(function() {
-	buildCart(); // Enables cart drop zone.
-	requestFromServer('GetProductListByCategory',
-			'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
+	//buildCart(); // Enables cart drop zone.
+	//requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
 });
 
 function requestFromServer(method, parameters) {
@@ -29,8 +28,8 @@ function requestFromServer(method, parameters) {
 	case 'GetCategories':
 		getCategories(parameters);
 		break;
-	case 'GetProductListByCategory':
-		getProductListByCategory(parameters);
+	case 'GetProductList':
+		getProductList(parameters);
 		break;
 	case 'GetCountryList':
 		getCountryList(parameters);
@@ -55,10 +54,12 @@ function initializeContent(qty) {
 	$("#footer").css("top", height);
 }
 
+
+
 /* Get product list by category and initializates car */
-function getProductListByCategory(parameters) {
+function getProductList(parameters) {
 	var request = new XMLHttpRequest();
-	var url = $CATALOG + 'GetProductListByCategory' + '&' + parameters;
+	var url = $CATALOG + 'GetProductListBy' + parameters;
 	request.open('GET', url, true);
 	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
@@ -66,102 +67,66 @@ function getProductListByCategory(parameters) {
 				var response = request.responseXML;
 
 				var i = 1, j = 1; // Id counter(i) and tab counter(j).
-				var out = '<' + $ITEM_CONTAINER_TAG + ' id="'
-						+ $CATALOG_CONTAINER_ID
-						+ '" class="products helper-reset helper-clearfix">';
-
 				var qty = 0;
-
-				$(response).find('product').each(function() {
-					qty++;
-				});
+				$(response).find('product').each(function() { qty++; });
 
 				/* Resize content */
 				initializeContent(qty);
-
-				$(response)
-						.find('product')
-						.each(
-								function() {
-									var marker = $(this);
-									var name = marker.find("name").text();
-									var image_url = marker.find("image_url")
-											.text();
-									var price = marker.find("price").text();
-									out += '<'
-											+ $CATALOG_ITEM
-											+ ' class="product-content corner-tr" id="'
-											+ i + '">'
-									out += '<h5 class="' + $CATALOG_ITEM_HEADER
-											+ '">' + name + '</h5>';
-									out += '<div id="description' + i++
-											+ '" class="'
-											+ $CATALOG_ITEM_DESCRIPTION
-											+ ' hide">';
-									out += '<img src="' + image_url + '" alt="'
-											+ name + '" width="' + $IMG_WIDTH
-											+ '" height="' + $IMG_HEIGHT
-											+ '" class="image"></img>';
-									out += '<div class="tabs">';
-									out += '<ol><li><a href="#tabs-' + j
-											+ '">Detalles</a></li>';
-									out += '<li><a href="#tabs-' + (j + 1)
-											+ '">Sinopsis</a></li></ol>';
-									out += '<div id="tabs-' + j++ + '">';
-									out += '<div id="details">';
-									out += '<div class="divPrice">';
-									out += '<p class="spanPrice">Precio por unidad: $'
-											+ price + '</p>';
-									out += '<input id="addtocart" type="button" value=""/>';
-									out += '</div>';
-									out += '<div class="name">' + name
-											+ '<br /></div>';
-									out += '<div class="autor">';
-									out += 'Director: Dario Argento<br/>';
-									out += 'Cast: Jessica Harper, Stefania Casini, Flavio Bucci, Miguel Bose, Barbara Magnolfi<br/>';
-									out += 'Wild Side Films<br/>';
-									out += '</div>';
-									out += '<div class="category">';
-									out += 'Genre: CATEGORY' + '<br/>';
-									out += 'Format: FORMAT' + '<br/>';
-									out += 'Original release date: DATE'
-											+ '<br/>';
-									out += 'Rating: RATING' + '<br/>';
-									out += '</div>';
-									out += '</div>';
-									out += '</div>';
-									out += '<div id="tabs-' + j++ + '">';
-									out += '<div class="sinopsis">';
-									out += 'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
-									out += 'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
-									out += 'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
-									out += 'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
-									out += 'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
-									out += 'sinister organization.';
-									out += '</div>';
-									out += '</div>';
-									out += '</div>';
-									out += '</div>';
-									out += '<img src="' + image_url + '" alt="'
-											+ name + '" width="' + $THUMB_WIDTH
-											+ '" height="' + $THUMB_HEIGHT
-											+ '"/>';
-									out += '<p class="spanPrice">$' + price
-											+ '</p>';
-									out += '<a href="description.html" title="Full product details" class="'
-											+ $ICON
-											+ ' '
-											+ $ICON_INFO
-											+ '">Full product details</a>';
-									out += '<a href="' + $JS_OFF
-											+ '" title="Add to cart" class="'
-											+ $ICON + ' ' + $ICON_CART
-											+ '">Add to cart</a>';
-									out += '</' + $CATALOG_ITEM + '>';
-								});
-				out += '</' + $ITEM_CONTAINER_TAG + '>';
-				$($ITEM_CONTAINER_TAG + '#products').remove();
+				
+				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').append(out);
+				$(response).find('product').each( function() {
+					out = '';
+					var marker = $(this);
+					var name = marker.find("name").text();
+					var image_url = marker.find("image_url").text();
+					var price = marker.find("price").text();
+					out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + '">'
+					out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
+					out +=		'<div id="description' + i++ + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
+					out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
+					out +=			'<div class="tabs">';
+					out +=				'<ol><li><a href="#tabs-' + j + '">Detalles</a></li>';
+					out +=				'<li><a href="#tabs-' + (j + 1) + '">Sinopsis</a></li></ol>';
+					out +=				'<div id="tabs-' + j++ + '">';
+					out +=					'<div id="details">';
+					out +=						'<div class="divPrice">';
+					out +=							'<p class="spanPrice">Precio por unidad: $' + price + '</p>';
+					out +=							'<input id="addtocart" type="button" value=""/>';
+					out +=						'</div>';
+					out +=					'<div class="name">' + name + '<br /></div>';
+					out +=					'<div class="autor">';
+					out +=						'Director: Dario Argento<br/>';
+					out +=						'Cast: Jessica Harper, Stefania Casini, Flavio Bucci, Miguel Bose, Barbara Magnolfi<br/>';
+					out +=						'Wild Side Films<br/>';
+					out +=					'</div>';
+					out +=					'<div class="category">';
+					out +=						'Genre: CATEGORY' + '<br/>';
+					out +=						'Format: FORMAT' + '<br/>';
+					out +=						'Original release date: DATE' + '<br/>';
+					out +=						'Rating: RATING' + '<br/>';
+					out +=					'</div>';
+					out +=				'</div>';
+					out +=			'</div>';
+					out +=			'<div id="tabs-' + j++ + '">';
+					out +=				'<div class="sinopsis">';
+					out +=					'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
+					out +=					'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
+					out +=					'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
+					out +=					'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
+					out +=					'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
+					out +=					'sinister organization.';
+					out +=				'</div>';
+					out +=			'</div>';
+					out +=		'</div>';
+					out +=	'</div>';
+					out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
+					out +=	'<p class="spanPrice">$' + price + '</p>';
+					out +=	'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
+					out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
+					out +=	'</' + $CATALOG_ITEM + '>';
+					$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
+				});
 				buildDraggables();
 				enableTabs();
 			} else {
@@ -221,50 +186,80 @@ function getSubcategoryList(parameters) {
 	}
 }
 
-/*
- * Injects categories and subcategories from global variable 'categories' into
- * html
- */
+/* Injects categories and subcategories from global variable 'categories' into html */
 // VALUE = 2!!!!!
 function injectCategories() {
 	var i, j, out = "";
-	out += '<option class="searchOption" selected="selected" disabled="true" value="0">'
-			+ Language.selectCategory + '</option>';
-	out += '<option class="searchOption" value="1">' + Language.allCategories
-			+ '</option>';
+	
+	// Inject categories into search bar.
+	out +=	'<option class="searchOption" selected="selected" disabled="true" value="0">' + Language.selectCategory + '</option>';
+	out +=	'<option class="searchOption" value="1">' + Language.allCategories + '</option>';
 	for (i = 0; i < categories.length; i++) {
-		out += '<optgroup class="searchOption" label="' + categories[i].name
-				+ '">';
-		for (j = 0; j < categories[i].subcategories.length; j++) {
-			out += '<option class="searchOption" value="2">'
-					+ categories[i].subcategories[j].name + '</option>';
-		}
-		out += '</optgroup>';
+		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '">';
+		for (j = 0; j < categories[i].subcategories.length; j++)
+			out +=	'<option class="searchOption" value="2">' + categories[i].subcategories[j].name + '</option>';
+		out +=	'</optgroup>';
 	}
 	$("select#categoryCBox").html(out);
 
+	// Inject categories into accordion.
 	out = "";
 	for (i = 0; i < categories.length; i++) {
-		out += '<h3><a href="#">' + categories[i].name + '</a></h3><div><li>';
-		for (j = 0; j < categories[i].subcategories.length; j++) {
-			out += ' <a href="#">' + categories[i].subcategories[j].name
-					+ '</a><br/>';
-		}
-		out += '</li></div>';
+		out +=	'<h3><a href="#">' + categories[i].name + '</a></h3>';
+		out +=	'<div><li>';
+		for (j = 0; j < categories[i].subcategories.length; j++)
+			out +=	'<a href="#">' + categories[i].subcategories[j].name + '</a><br/>';
+		out +=	'</li></div>';
 	}
 	$("#menuCategorias").html(out);
 
+	// Inject categories into categories menu (below search bar).
 	out = "";
 	for (i = 0; i < categories.length; i++) {
-		out += '<div class="categoryBlock"><div class="categoryBlockTitle"><a class="categoryLink" href="#">'
-				+ categories[i].name
-				+ '</a></div><div class="categoryBlockSub">';
-		for (j = 0; j < categories[i].subcategories.length; j++) {
-			out += '<a class="subCategoryLink" href="#">'
-					+ categories[i].subcategories[j].name + '</a>';
-		}
-		out += '</div></div></div>';
+		out +=	'<div class="categoryBlock">';
+		out +=		'<div class="categoryBlockTitle">';
+		out +=			'<a class="categoryLink" href="#">' + categories[i].name + '</a>';
+		out +=		'</div>';
+		out +=		'<div class="categoryBlockSub">';
+		for (j = 0; j < categories[i].subcategories.length; j++)
+			out +=		'<a class="subCategoryLink" href="#">' + categories[i].subcategories[j].name + '</a>';
+		out +=		'</div>';
+		out +=	'</div>';
+		//out +=	'</div>';	// ESTE DIV SE PUEDE ELIMINAR???? CREO QUE SI, PROBE Y NO CAMBIA NADA.
 	}
-
 	$("#categorySelector").html(out);
+	
+	// Event delegation for categories in '#categorySelector'.
+	$( '.categoryBlock' ).click(function( event ) {
+		var $item = $(this);
+		$target = $( event.target );
+		if ($target.is( 'a.categoryLink' )){
+			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
+		} else if ($target.is( 'a.subCategoryLink' )){
+			var ids = getSubCategoryIndex($target.html());
+			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + (ids[0]+1) + '&subcategory_id=' + (ids[1]+1) + '&order=ASC&items_per_page=10&page=1');
+		}
+		return false;
+	});
+}
+
+function getCategoryIndex(categoryName){
+	var i;
+	for(i = 0; i < categories.length; i++)
+		if (categories[i].name == categoryName)
+			return i;
+	return -1;
+}
+
+function getSubCategoryIndex(subcategoryName){
+	var i, j, ans = new Array(0);
+	for(i = 0; i < categories.length; i++)
+		for(j = 0; j < categories[i].subcategories.length; j++)
+			if (categories[i].subcategories[j].name == subcategoryName){
+				ans.push(i); ans.push(j);
+				return ans;
+			}
+	return null;
 }
