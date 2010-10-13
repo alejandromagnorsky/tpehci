@@ -79,7 +79,6 @@ function getProductList(parameters) {
 				
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').append(out);
-				alert($(response).find('response').attr('status'));
 				$(response).find('product').each( function() {
 					out = '';
 					var marker = $(this);
@@ -278,9 +277,7 @@ function injectCategories() {
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
-			alert("hola");
 			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
-			alert("CHAU");
 			slideHeaderUp();
 		} else if ($target.is( 'a.subCategoryLink' )){
 			var c_id, sc_id;
