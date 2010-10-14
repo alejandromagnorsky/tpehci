@@ -21,9 +21,11 @@
 #spanlogin {
     text-decoration: inherit;
     background-color: transparent;
+	padding: 14px;
 }
 
 #spanregister {
+	padding: 14px;
     margin-left: 5px;
     color: #ddd;
     text-decoration: inherit;
