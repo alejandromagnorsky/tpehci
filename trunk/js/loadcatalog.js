@@ -40,9 +40,6 @@ function requestFromServer(method, parameters) {
 	case 'SignIn':
 		signIn(parameters);
 		break;
-	case 'CreateAccount':
-		createAccount(parameters);
-		break;
 	default:
 		alert("Invalid method");
 	}

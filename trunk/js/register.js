@@ -1,43 +1,42 @@
 function loadRegisterForm(){
-	/*
-    if (currentLang == $EN) {
-        $.datepicker.setDefaults($.datepicker.regional['en']);
-    }
-    else 
-        if (currentLang == $ES) {
-            jQuery(function($){
-            
-                $.datepicker.regional['es'] = {
-                    closeText: 'Cerrar',
-                    prevText: '&#x3c;Ant',
-                    nextText: 'Sig&#x3e;',
-                    currentText: 'Hoy',
-                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
-                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute;', 'Juv', 'Vie', 'S&aacute;b'],
-                    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'],
-                    weekHeader: 'Sm',
-                    dateFormat: 'dd/mm/yy',
-                    firstDay: 1,
-                    isRTL: false,
-                    showMonthAfterYear: false,
-                    yearSuffix: ''
-                };
-                $.datepicker.setDefaults($.datepicker.regional['es']);
-            });
-        }
-    
-    
-    $("#datepicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: 'c-100',
-        minDate: '-100y',
-        maxDate: '+0d'
-    });
-    */
-    
+    /*
+     if (currentLang == $EN) {
+     $.datepicker.setDefaults($.datepicker.regional['en']);
+     }
+     else
+     if (currentLang == $ES) {
+     jQuery(function($){
+     
+     $.datepicker.regional['es'] = {
+     closeText: 'Cerrar',
+     prevText: '&#x3c;Ant',
+     nextText: 'Sig&#x3e;',
+     currentText: 'Hoy',
+     monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+     monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+     dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
+     dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute;', 'Juv', 'Vie', 'S&aacute;b'],
+     dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'],
+     weekHeader: 'Sm',
+     dateFormat: 'dd/mm/yy',
+     firstDay: 1,
+     isRTL: false,
+     showMonthAfterYear: false,
+     yearSuffix: ''
+     };
+     $.datepicker.setDefaults($.datepicker.regional['es']);
+     });
+     }
+     
+     
+     $("#datepicker").datepicker({
+     changeMonth: true,
+     changeYear: true,
+     yearRange: 'c-100',
+     minDate: '-100y',
+     maxDate: '+0d'
+     });
+     */
     requestFromServer('GetCountryList', 'language_id=' + currentLang);
     
     document.getElementById("countryCombo").onchange = function(e){
@@ -46,9 +45,9 @@ function loadRegisterForm(){
     };
     
     document.getElementById("buttonCancel").onclick = function(){
-		$("#registerForm")[0].reset();
+        $("#registerForm")[0].reset();
         registerValidator.resetForm();
-       
+        
         $("#divRegister").dialog("destroy");
     };
 }
@@ -102,7 +101,7 @@ function initializeRegValidator(){
         
         
         submitHandler: register
-        	
+    
         /*
          invalidHandler: function(form, validator){
          $(".regWarning").css("visibility", "visible");
@@ -119,8 +118,8 @@ function getCountryList(parameters){
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
-            	
-            	var response = request.responseXML;
+            
+                var response = request.responseXML;
                 
                 var i = 1;
                 var out = "";
@@ -180,72 +179,74 @@ function signIn(parameters){
     request.open('GET', url, false);
     request.send();
     var response = request.responseXML;
-	if ($(response).find("response").attr('status') == 'ok') {
-        alert("Sesión iniciada. Token: "+$(response).find("token").txt());
-        $(".regWarning").css("visibility", "hidden"); 
+    if ($(response).find("response").attr('status') == 'ok') {
+        alert("Sesión iniciada. Token: " + $(response).find("token").txt());
     }
     else {
-       var errorCode = $(response).find("error").attr("code");
-       if (errorCode == 4 || errorCode == 5 || errorCode == 104) 
+        var errorCode = $(response).find("error").attr("code");
+        if (errorCode == 4 || errorCode == 5 || errorCode == 104) 
             $("#loginwarning").css("visibility", "visible");
     }
 }
 
 function register(){
-	var parameters = "";
-	/*
-	parameters += "username=" + $("#register_username").val() +"&";
-	parameters += "name=" + $("#register_clientname").val() + "" + $("#register_clientlastname").val() + "&";
-	parameters += "password=" + $("#passwordInput").val() + "&";
-	parameters += "email=" + $("#register_email").val() + "&";
-	parameters += "birth_date=" + toISODate($("#datepicker").val());*/
-	
-	parameters += "<account>";
-	parameters += "<username>" + encodeURI($("#register_username").val()) +"</username>";
-	parameters += "<name>" + encodeURI($("#register_clientname").val()) + " " + $("#register_clientlastname").val() + "</username>";
-	parameters += "<password>" + encodeURI($("#passwordInput").val()) + "</password>";
-	parameters += "<email>" + encodeURI($("#register_email").val()) + "</email>";
-	parameters += "<birth_date>" + encodeURI(toISODate($("#datepicker").val())) + "</birth_date>";
-	parameters += "</account>";
-	alert(parameters);
-	requestFromServer('CreateAccount', parameters);
-}
-
-function createAccount(parameters){	
-	var url = $SECURITY + 'CreateAccount&';
-	var request = new XMLHttpRequest();
-    request.open('POST', url, true);
-    request.onreadystatechange = function(){
-        if (request.readyState == 4) {
-			var response = request.responseXML;
-            if ($(response).find("response").attr('status') == 'ok') {
-				alert("Registrado correctamente");
-				
-				alert($(response).find("account").attr('id'));
+    var msg = XMLGenerator("account", ["username", "name", "password", "email", "birth_date"], [$("#register_username").val(), $("#register_clientname").val(), $("#passwordInput").val(), $("#register_email").val(), toISODate($("#datepicker").val())]);
+    
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/service/Security.groovy",
+        dataType: "xml",
+        data: {
+            method: "CreateAccount",
+            account: msg
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+                alert("Registrado correctamente");
+                
+                alert("ID : "+$(xml).find("account").attr('id'));
             }
             else {
-				var errorCode = $(response).find("error").attr("code");
-                alert("Error " + errorCode);
+                alert("Error: " + $(xml).find("error").attr("code"));
             }
         }
-    };
-	request.setRequestHeader("Content-type", "text/xml");
-    //request.setRequestHeader("Content-length", parameters.length);
-    //request.setRequestHeader("Connection", "close");
-    request.send("<?xml version='1.0' encoding='UTF-8'?>" + parameters);
+    }).responseXML;
+}
+
+function toISODate(date){
+    var adata = date.split('/');
+    var dd, mm, aaaa;
+    if (currentLang == $EN) {
+        mm = parseInt(adata[0], 10);
+        dd = parseInt(adata[1], 10);
+    }
+    else 
+        if (currentLang == $ES) {
+            dd = parseInt(adata[0], 10);
+            mm = parseInt(adata[1], 10);
+        }
+    var aaaa = parseInt(adata[2], 10);
+    return aaaa + "-" + mm + "-" + dd;
 }
 
 
-function toISODate(date){
-	var adata = date.split('/');
-	var dd, mm, aaaa;
-	if (currentLang == $EN) {
-		mm = parseInt(adata[0], 10);
-		dd = parseInt(adata[1], 10);
-	} else if (currentLang == $ES){
-		dd = parseInt(adata[0], 10);
-		mm = parseInt(adata[1], 10);
-	}
-    var aaaa = parseInt(adata[2], 10);
-    return aaaa +"-"+ mm +"-" +dd;
+function XMLGenerator(rootElem, tags, data){
+    var xmldoc = "<" + rootElem + ">";
+    var white_space;
+    
+    $(tags).each(function(itag, tag){
+        if (data[itag] == null || data[itag] == undefined || data[itag] == "") {
+            xmldoc += "<" + tag + "/>"
+        }
+        else {
+            xmldoc += "<" + tag + ">" + data[itag] + "</" + tag + ">";
+        }
+    });
+    
+    whiteSpace = rootElem.lastIndexOf(" ", 0);
+    if (whiteSpace != -1) {
+        rootElem = rootElem.substring(0, rootElem.lastIndexOf(" ", 0));
+    }
+    xmldoc += "</" + rootElem + ">";
+    return xmldoc;
 }
