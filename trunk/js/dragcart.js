@@ -63,8 +63,13 @@ function buildDraggables(){
 function buildCartItem(item){
 	var addedItem = item.clone();
 	
+	//alert(item.find('h5.' +$CATALOG_ITEM_HEADER).text());
+	
+	var newItem; // This will be the cart product view item, similar but different to the product view item
+	
 	// Add some buttons.
 	addedItem.find('a.' + $ICON_CART).remove();
+	addedItem.find('div.productBg').remove();
 	addedItem.append("<a href='" + $JS_OFF + "' title='-' class='" + $ICON + " " + $ICON_MINUS + "'>- Quantity</a>");
 	addedItem.append("<a href='" + $JS_OFF + "' title='+' class='" + $ICON + " " + $ICON_PLUS + "'>+ Quantity</a>");
 	addedItem.append("<a href='" + $JS_OFF + "' title='Remove from cart' class='" + $ICON + " " + $ICON_REMOVE + "'>Remove From Cart</a>");
