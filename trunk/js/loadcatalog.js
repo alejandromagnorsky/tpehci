@@ -10,7 +10,7 @@ function Category(id, code, name) {
 	this.code = code;
 	this.name = name;
 	this.subcategories = new Array();
-};
+}
 
 $(function() {
 	//buildCart(); // Enables cart drop zone.
@@ -70,9 +70,10 @@ function getProductList(parameters) {
 				/* Resize content */
 				initializeContent(qty);
 				
-				if(qty == 0 )
+				if( qty == 0 )
 					$('div.product').html("<h3>No se encontró ningun producto. Me gusta el jamon.</h3>");
-				else $('div.product').html("");	// Clear content
+				else
+					$('div.product').html("");	// Clear content
 				
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').append(out);
@@ -215,17 +216,18 @@ function getSubcategoryList(parameters) {
 }
 
 /* Injects categories and subcategories from global variable 'categories' into html */
-// VALUE = 2!!!!!
 function injectCategories() {
 	var i, j, out = "";
 	
 	// Inject categories into search bar.
 	out +=	'<option class="searchOption" selected="selected">' + Language.allCategories + '</option>';
 	for (i = 0; i < categories.length; i++) {
-		var cIndex = getCategoryIndex(categories[i].name)
-		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '" value="' + cIndex + '">';
-		for (j = 0; j < categories[i].subcategories.length; j++)
-			out +=	'<option class="searchOption" value="' + getSubCategoryIndex(cIndex, categories[i].subcategories[j].name) + '">' + categories[i].subcategories[j].name + '</option>';
+		//var cIndex = getCategoryIndex(categories[i].name);
+		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '" value="' + (i+1)/*cIndex*/ + '">';
+		for (j = 0; j < categories[i].subcategories.length; j++) {
+			alert("name: " + categories[i].subcategories[j].name + " - scIndex: " + getSubCategoryIndex(i, categories[i].subcategories[j].name));
+			out += '<option class="searchOption" value="' + getSubCategoryIndex(i/*cIndex*/, categories[i].subcategories[j].name) + '">' + categories[i].subcategories[j].name + '</option>';
+		}
 		out +=	'</optgroup>';
 	}
 	$("select#categoryCBox").html(out);
@@ -281,7 +283,7 @@ function injectCategories() {
 			for(c_id=0; c_id < categories.length; c_id++)
 				if($target.is( 'a.parentCategory' + (c_id+1) ))
 					break;
-			sc_id = getSubCategoryIndex(c_id, $target.html()) + 1;
+			sc_id = getSubCategoryIndex(c_id, $target.html());
 			c_id++;
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
@@ -304,7 +306,7 @@ function injectCategories() {
 			for(c_id=0; c_id < categories.length; c_id++)
 				if($target.is( 'a.parentCategory' + (c_id+1) ))
 					break;
-			sc_id = getSubCategoryIndex(c_id, $target.html()) + 1;
+			sc_id = getSubCategoryIndex(c_id, $target.html());
 			c_id++;
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
@@ -326,7 +328,7 @@ function injectCategories() {
 			for(c_id=0; c_id < categories.length; c_id++)
 				if($target.is( 'a.parentCategory' + (c_id+1) ))
 					break;
-			sc_id = getSubCategoryIndex(c_id, $target.html()) + 1;
+			sc_id = getSubCategoryIndex(c_id, $target.html());
 			c_id++;
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
@@ -351,7 +353,7 @@ function getSubCategoryIndex(categoryId, subcategoryName){
 		subcategoriesCount += categories[j].subcategories.length;
 	for(j = 0; j < categories[categoryId].subcategories.length; j++)
 		if (categories[categoryId].subcategories[j].name == subcategoryName)
-			return subcategoriesCount + j;
+			return subcategoriesCount + j + 1;
 	return -1;
 }
 
