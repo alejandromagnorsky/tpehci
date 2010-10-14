@@ -18,8 +18,9 @@
 .products li					{  position: relative; float: left; height: 100px; width: 570px; padding: 0.5em;  text-align: left; cursor: move; }
 .products li h5					{ margin: 0 0 0.4em; cursor: move; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
-#cart .products li 				{ position: relative; height: 130px; left: 20px; width: 170px margin: 0 0 10 30px;}
+#cart .products li 				{ position: relative; height: 180px; left: 20px; width: 170px; margin: 0 0 10 30px;}
 .spanPrice 						{ height: 50px; width: 50px; position: absolute; top: -10px; left: 510px; font-size:75%}
+#cart .spanPrice 				{ height: 50px; width: 50px; position: absolute; top: -25px; left: 30px; font-size:75%}
 #content .products li a.icon-zoom		{ float: right;  margin-left:20px; margin-top:20px;}
 #content .products li a.icon-cart		{ float: left;  margin-top:20px;}
 .products li a.icon-remove		{ float: left; }
@@ -29,6 +30,15 @@
 #cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
 #cart h4 .icon					{ float: left; }
 #cart .products li h5			{ position: absolute; top: 0px; left: 0px;  display: none; }
+
+.cartDivisor {
+	position: absolute;
+	left: -30px;
+	top: 160px;
+	width: 160px;
+	height: 5px;
+	background-image: url(images/inicio/lines.png); 
+}
 
 /* ************************************************** */
 

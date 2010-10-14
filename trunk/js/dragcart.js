@@ -70,10 +70,12 @@ function buildCartItem(item){
 	// Add some buttons.
 	addedItem.find('a.' + $ICON_CART).remove();
 	addedItem.find('div.productBg').remove();
+	addedItem.find('p.productDetails').remove();
 	addedItem.append("<a href='" + $JS_OFF + "' title='-' class='" + $ICON + " " + $ICON_MINUS + "'>- Quantity</a>");
 	addedItem.append("<a href='" + $JS_OFF + "' title='+' class='" + $ICON + " " + $ICON_PLUS + "'>+ Quantity</a>");
 	addedItem.append("<a href='" + $JS_OFF + "' title='Remove from cart' class='" + $ICON + " " + $ICON_REMOVE + "'>Remove From Cart</a>");
 	addedItem.append("<span class='" + $CATALOG_ITEM_QUANTITY + "'>1</span>");
+	addedItem.append('<div class="cartDivisor"/>');
 	
 	// Event delegation for cart items.
 	addedItem.click(function( event ) {
