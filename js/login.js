@@ -60,6 +60,7 @@ function showHideLogin() {
 }
 
 function logIn(){
+	$(".regWarning").css("visibility", "hidden");
 	var username = $("#login_username").attr("value");
 	var password = $("#login_password").attr("value");
 	requestFromServer('SignIn', 'username='+username+'&password='+password);
