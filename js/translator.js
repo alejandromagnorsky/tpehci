@@ -26,12 +26,14 @@ Language.es = function(){
     Language.countryselection = "Seleccione país";
     Language.state = "Provincia";
     Language.usernamewarning = "Introduzca un nombre de usuario";
+	Language.usernametaken = "El nombre de usuario elegido no se encuentra disponible. Introduzca otro";
     Language.passwordwarning = "Introduzca una contraseña de al menos 8 caracteres";
     Language.confirmpassword = "Confirmar contraseña";
     Language.email = "Correo electrónico";
     Language.emailreqwarning = "Introduzca una dirección de correo electrónico";
     Language.emailwarning = "Su dirección de correo electrónico debe ser de la forma nombre@dominio.com";
     Language.mandatorydata = "*Datos obligatorios";
+	Language.welcome = "Se ha completado de forma exitosa la registración.";
     Language.accept = "Aceptar";
     Language.cancel = "Cancelar";
     
@@ -183,12 +185,14 @@ Language.en = function(){
     Language.countryselection = "Select country";
     Language.state = "State";
     Language.usernamewarning = "Enter a username";
+	Language.usernametaken = "The username choosed is already taken. Enter another username";
     Language.passwordwarning = "Enter a password with at least 8 characters";
     Language.confirmpassword = "Confirm password";
     Language.email = "E-mail";
     Language.emailreqwarning = "Enter an e-mail";
     Language.emailwarning = "Your email address must be in the format of name@domain.com";
     Language.mandatorydata = "*Must be filled";
+	Language.welcome = "The registration has completed succesfully."
     Language.accept = "Accept";
     Language.cancel = "Cancel";
     
@@ -342,6 +346,8 @@ function updateLanguage(){
     updateText("confirmpassword", Language.confirmpassword);
     updateText("email", Language.email);
     updateText("mandatorydata", Language.mandatorydata);
+	updateText("welcome", Language.welcome);
+	updateText("usernametaken", Language.usernametaken);
     updateButton("accept", Language.accept);
     updateButton("cancel", Language.cancel);
     
@@ -360,24 +366,24 @@ function updateLanguage(){
     
     //Footer
     updateText("copyright", Language.copyright);
-        
     
-    requestFromServer('GetCategories', 'language_id=' + currentLang);    
+    
+    requestFromServer('GetCategories', 'language_id=' + currentLang);
     injectCategories();
     
-     
-     $("#menuCategorias").accordion("destroy");    
-     $("#menuCategorias").accordion();
     
-         
-	if (registerValidator == undefined)
-    	initializeRegValidator();
-	//if (modifyValidator == undefined)
-	//	initializeModValidator();
+    $("#menuCategorias").accordion("destroy");
+    $("#menuCategorias").accordion();
+    
+    
+    if (registerValidator == undefined) 
+        initializeRegValidator();
+    //if (modifyValidator == undefined)
+    //	initializeModValidator();
     configureRegValidator();
-	//configureModValidator();
-     
-    
+    //configureModValidator();
+
+
 }
 
 function updateText(name, text){
@@ -413,7 +419,8 @@ function configureRegValidator(){
                 email: true
             }
         };
-    else if (currentLang == $ES) 
+    else 
+        if (currentLang == $ES) 
             registerValidator.settings.rules = {
                 name: "required",
                 birthday: {
@@ -461,18 +468,19 @@ function configureModValidator(){
                 email: true
             }
         };
-    else if (currentLang == $ES) 
-    	modifyValidator.settings.rules = {
-        	name: "required",
-            birthday: {
-                required: true,
-                dateARG: true
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        };
+    else 
+        if (currentLang == $ES) 
+            modifyValidator.settings.rules = {
+                name: "required",
+                birthday: {
+                    required: true,
+                    dateARG: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            };
     
     modifyValidator.settings.messages = {
         name: Language.clientnamewarning,

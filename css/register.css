@@ -1,4 +1,4 @@
-#divRegister {
+#divRegister, #divWelcome, #usernametaken{
     background-image: url(images/inicio/bg.png);
     display: none;
     background-color: #a2a4ac;
