@@ -80,7 +80,7 @@ function search(event) {
 									var marker = $(this);
 									var name = marker.find("name").text();
 									var subcategoryID = marker.find(
-											"subcategory_id").text() - 1;
+											"subcategory_id").text();
 
 									if (subcategoryID != subCategoryIndex
 											&& subCategoryIndex != 'All')
