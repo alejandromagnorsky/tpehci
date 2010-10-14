@@ -247,14 +247,11 @@ function showRegisterDialog() {
 
 	$("#divRegister").dialog( {
 		close : function() {
-			$("#registerForm")[0].reset();
-			registerValidator.resetForm();
-			$("#divRegister").dialog("destroy");
+			resetRegisterForm();
 		},
 		"width" : 650,
 		"modal" : "true",
 		"resizable" : "false",
-		"autoOpen" : "false",
 		"title" : Language.register,
 		draggable : false
 	});

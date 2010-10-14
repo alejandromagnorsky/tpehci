@@ -44,12 +44,7 @@ function loadRegisterForm(){
         requestFromServer('GetStateList', 'language_id=' + currentLang + '&country_id=' + index);
     };
     
-    document.getElementById("buttonCancel").onclick = function(){
-        $("#registerForm")[0].reset();
-        registerValidator.resetForm();
-        
-        $("#divRegister").dialog("destroy");
-    };
+    document.getElementById("buttonCancel").onclick = resetRegisterForm;
 }
 
 
@@ -99,14 +94,8 @@ function initializeRegValidator(){
     
         errorElement: "div",
         
-        
         submitHandler: register
     
-        /*
-         invalidHandler: function(form, validator){
-         $(".regWarning").css("visibility", "visible");
-         }
-         */
     });
 }
 
@@ -202,12 +191,37 @@ function register(){
         },
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
-                alert("Registrado correctamente");
-                
-                alert("ID : "+$(xml).find("account").attr('id'));
+                resetRegisterForm();
+                $("#divWelcome").dialog({
+                    close: function(){
+                         $("#divWelcome").dialog("destroy");
+                    },
+					"modal": "true",
+                    "resizable": "false",
+					"title": Language.register,
+                    draggable: false
+                });
+				var widget = $("#divWelcome").dialog("widget");
+				widget.css("top", "300px");
+				widget.css("left", "670px");
+				widget.css("width", "550px");
+				widget.css("height", "100px");
             }
             else {
-                alert("Error: " + $(xml).find("error").attr("code"));
+                $("#usernametaken").dialog({
+                    close: function(){
+                         $("#usernametaken").dialog("destroy");
+                    },
+					"modal": "true",
+                    "resizable": "false",
+					"title": Language.register,
+                    draggable: false
+                });
+				var widget = $("#usernametaken").dialog("widget");
+				widget.css("top", "300px");
+				widget.css("left", "670px");
+				widget.css("width", "550px");
+				widget.css("height", "100px");
             }
         }
     }).responseXML;
@@ -227,6 +241,12 @@ function toISODate(date){
         }
     var aaaa = parseInt(adata[2], 10);
     return aaaa + "-" + mm + "-" + dd;
+}
+
+function resetRegisterForm(){
+    $("#registerForm")[0].reset();
+    registerValidator.resetForm();
+    $("#divRegister").dialog("destroy");
 }
 
 
