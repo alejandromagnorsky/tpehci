@@ -225,7 +225,7 @@ function injectCategories() {
 		//var cIndex = getCategoryIndex(categories[i].name);
 		out +=	'<optgroup class="searchOption" label="' + categories[i].name + '" value="' + (i+1)/*cIndex*/ + '">';
 		for (j = 0; j < categories[i].subcategories.length; j++) {
-			alert("name: " + categories[i].subcategories[j].name + " - scIndex: " + getSubCategoryIndex(i, categories[i].subcategories[j].name));
+		//	alert("name: " + categories[i].subcategories[j].name + " - scIndex: " + getSubCategoryIndex(i, categories[i].subcategories[j].name));
 			out += '<option class="searchOption" value="' + getSubCategoryIndex(i/*cIndex*/, categories[i].subcategories[j].name) + '">' + categories[i].subcategories[j].name + '</option>';
 		}
 		out +=	'</optgroup>';
