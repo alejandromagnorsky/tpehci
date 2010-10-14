@@ -82,7 +82,8 @@ function search(event) {
 									var subcategoryID = marker.find(
 											"subcategory_id").text() - 1;
 
-									if (subcategoryID != subCategoryIndex && subCategoryIndex != 'All')
+									if (subcategoryID != subCategoryIndex
+											&& subCategoryIndex != 'All')
 										return;
 
 									noMatch = false;
@@ -232,7 +233,8 @@ function resolveSearchKeys(event) {
 }
 
 function clearSearchData() {
-	document.getElementById("inputsearch").value = "";
+	if ($("#inputsearch").val() == Language.search)
+		document.getElementById("inputsearch").value = "";
 }
 
 function mouseClicked(e) {
