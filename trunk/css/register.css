@@ -1,4 +1,4 @@
-#divRegister, #divWelcome, #usernametaken{
+#divRegister, #divRegisterOK, #usernametaken{
     display: none;
     background-color: #e2e2e2;
 	background-repeat: repeat-x;

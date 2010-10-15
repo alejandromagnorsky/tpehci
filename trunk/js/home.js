@@ -20,6 +20,7 @@ function loadMain(){
     $("#searchForm").keydown(ignoreFormEnter);
     
     document.getElementById("spanregister").onclick = showRegisterDialog;
+	document.getElementById("linkmyaccount").onclick = showHideAccount;
     document.getElementById("searchButton").onclick = search;
     document.getElementById("inputsearch").onclick = clearSearchData;
     document.getElementById("homeLink").onclick = slideHeaderDown;

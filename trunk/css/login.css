@@ -21,7 +21,7 @@
 #spanlogin {
     text-decoration: inherit;
     background-color: transparent;
-	padding: 14px;
+	padding: 12px 5px 4px 4px;
 }
 
 #spanregister {
@@ -73,14 +73,18 @@
 .text_link_clicked {
     color: #000;
     padding-left: 17px;
-    background: url(images/toggle_up_dark.png) no-repeat scroll left center #fff;
+	background: url(images/toggle_up_dark.png) no-repeat scroll left center;
+}
+
+#linklogin, #linkmyaccount {
+	text-decoration: none;
 }
 
 .text_link_clicked:hover {
     color: #444;
 }
 
-#divlogin {
+#divlogin, #divmyaccount {
     z-index: 800;
     width: 245px;
     top: 300px;
