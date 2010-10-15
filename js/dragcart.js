@@ -42,6 +42,13 @@ function buildDraggables(){
         revert: 'invalid',	// When dragged but not dropped, item reverts to initial position
         helper: 'clone',
         cursor: 'move',
+        cursorAt: { left: 10 } ,
+        helper: function(event){
+    	
+    		var helper = "<img width='66' height='90' src='" + $(this).find("img").attr("src") + "'/> ";
+    		
+    		return $( helper );
+    	},
 		opacity: 0.8
     });
 	
@@ -70,7 +77,8 @@ function buildCartItem(item){
 	// Add some buttons.
 	addedItem.find('a.' + $ICON_CART).remove();
 	addedItem.find('div.productBg').remove();
-	addedItem.find('p.productDetails').remove();
+	addedItem.find('.productDetails').remove();
+	addedItem.find('.imgDragger').remove();
 	addedItem.append("<a href='" + $JS_OFF + "' title='-' class='" + $ICON + " " + $ICON_MINUS + "'>- Quantity</a>");
 	addedItem.append("<a href='" + $JS_OFF + "' title='+' class='" + $ICON + " " + $ICON_PLUS + "'>+ Quantity</a>");
 	addedItem.append("<a href='" + $JS_OFF + "' title='Remove from cart' class='" + $ICON + " " + $ICON_REMOVE + "'>Remove From Cart</a>");

@@ -15,8 +15,8 @@
 #products 						{ float: left; min-height: 12em; }
 #content .products li			{ margin: 8px;}
 .products.custom-state-active	{ background: #eee; }
-.products li					{  position: relative; float: left; height: 100px; width: 570px; padding: 0.5em;  text-align: left; cursor: move; }
-.products li h5					{ margin: 0 0 0.4em; cursor: move; font-size:110%; height: 45px;}
+.products li					{  position: relative; float: left; height: 100px; width: 570px; padding: 0.5em;  text-align: left; }
+.products li h5					{ margin: 0 0 0.4em; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
 #cart .products li 				{ position: relative; height: 180px; left: 20px; width: 170px; margin: 0 0 10 30px;}
 .spanPrice 						{ height: 50px; width: 50px; position: absolute; top: 30px; left: 510px; font-size:75%}
@@ -24,7 +24,7 @@
 #content .products li a.icon-zoom		{ float: right;  margin-left:20px; margin-top:20px;}
 #content .products li a.icon-cart		{ float: left;  margin-top:20px;}
 .products li a.icon-remove		{ float: left; }
-.products li img				{ float: left;  width: 66px; left: 20px; position: absolute;}
+.products li img				{ float: left;  width: 66px; left: 30px; position: absolute; cursor: move;}
 * html #cart					{ height: 18em; } /* IE6 */
 #cart							{ top: 0px; border: 1px groove #ddd; padding-top: 15px; padding-bottom: 15px; background-repeat: repeat-y; background-color: transparent; position: absolute; left: 0; right: 0; min-height: 95%; width: 155px; margin-top: 0px; margin-left: 0px; list-style: none;}
 #cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
@@ -54,6 +54,27 @@
 	top: -20px;
 	background-image: url(./images/inicio/product_bg.png);
 	background-repeat: no-repeat;
+}
+
+.imgDragger{
+	cursor: move;
+	position: absolute;
+	top: 0px;
+	left: 25px;
+	height: 105px;
+	width: 123px;
+	background-image: url(./images/inicio/imgDragger.png);
+}
+
+
+.imgDraggerHelper{
+	cursor: move;
+	position: relative;
+	top: 0px;
+	left: 40px;
+	height: 105px;
+	width: 123px;
+	background-image: url(./images/inicio/imgDragger.png);
 }
 
 .productDetails{

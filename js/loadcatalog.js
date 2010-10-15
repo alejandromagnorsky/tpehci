@@ -121,6 +121,7 @@ function printProduct(marker, subCategoryID){
 	out +=			'</div>';
 	out +=		'</div>';
 	out +=	'</div>';
+	out +=  '<div class="imgDragger"/>';
 	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
 	out +=	'<p class="spanPrice">$' + price + '</p>';
 	out +=  '<div class="productDetails">';
