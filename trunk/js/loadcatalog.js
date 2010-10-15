@@ -1,6 +1,8 @@
 /* Global */
 var categories; // Categories array.
 
+var idIndex; // For generating products' id
+
 /*
  * Category constructor Each category has and id, code, name and an array of
  * subcategories. Each subcategory is a Category, but has no subcategories.
@@ -53,7 +55,7 @@ function initializeContent(qty) {
 
 function printProduct(marker, subCategoryID){
 	out = '';
-	var i = 1, j = 1; // Id counter(i) and tab counter(j).
+	var j = 1; // Id counter(i) and tab counter(j).
 	var name = marker.find("name").text();
 	var image_url = marker.find("image_url").text();
 	var price = marker.find("price").text();					
@@ -62,10 +64,10 @@ function printProduct(marker, subCategoryID){
 	var genre = categories[c_id-1].name + ' | ' + (getSubCategoryName(sc_id-1));
 	
 	var productResponse = getProduct(marker.attr('id'));
-	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + c_id + sc_id + '">'
-	out +=  '<div class="productBg"/>'
+	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + idIndex + c_id + sc_id + '">';
+	out +=  	'<div class="productBg"/>';
 	out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-	out +=		'<div id="description' + i++ + c_id + sc_id + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
+	out +=		'<div id="description' + idIndex++ + c_id + sc_id + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
 	out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
 	out +=			'<div class="tabs">';
 	out +=				'<ol><li><a href="#tabs-' + j + c_id + sc_id + '">Detalles</a></li>';
@@ -143,8 +145,8 @@ function printProduct(marker, subCategoryID){
 		
 	out += ' </div>';
 	out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-	out +=	'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
-	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
+	out +=	'<a href="description.html" title="Full product details" class="' + $ICON_INFO + '"></a>';
+	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON_CART + '"></a>';
 	out +=	'</' + $CATALOG_ITEM + '>';
 	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
 }
@@ -169,6 +171,8 @@ function getProductList(parameters) {
 				$("#content").html('<div class="product"/>');
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').html(out);
+
+				idIndex = 1;
 				
 				$(response).find('product').each( function(){
 					printProduct($(this), getSubCategoryName($(this).find("subcategory_id").text()-1));
