@@ -19,7 +19,7 @@
 .products li h5					{ margin: 0 0 0.4em; cursor: move; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
 #cart .products li 				{ position: relative; height: 180px; left: 20px; width: 170px; margin: 0 0 10 30px;}
-.spanPrice 						{ height: 50px; width: 50px; position: absolute; top: -15px; left: 510px; font-size:75%}
+.spanPrice 						{ height: 50px; width: 50px; position: absolute; top: 30px; left: 510px; font-size:75%}
 #cart .spanPrice 				{ height: 50px; width: 50px; position: absolute; top: -25px; left: 30px; font-size:75%}
 #content .products li a.icon-zoom		{ float: right;  margin-left:20px; margin-top:20px;}
 #content .products li a.icon-cart		{ float: left;  margin-top:20px;}
@@ -61,6 +61,7 @@
 	top: 30px;
 	left: 250px;
 	font-family: verdana;
+	font-size: 9pt;
 	font-weight: bold;
 	color: #666;
 }
@@ -134,11 +135,15 @@
 /* ************************************************** */
 
 /* ICONS ******************************************** */
-.icon-cart				{ position: relative; left: 110px; top: 50px; background-position: -48px -112px; }
-.icon-zoom				{  position: absolute; left: 130px; top: 50px; background-position: -128px -112px; }
+.icon-cart				{ position: absolute; left: 160px; top: 35px; background-image: url(./images/inicio/cartButton.png);
+	height: 42px;
+	width: 42px; }
+.icon-zoom				{  position: absolute; left: 185px; top: 35px; background-image: url(./images/inicio/detailsButton.png);
+	height: 42px;
+	width: 42px;
+	}
 
-
-#cart .icon-zoom		{  position: absolute; left: 20px; top: 130px; background-position: -128px -112px; }
+#cart .icon-zoom		{ width: 16px; height: 16px; background-repeat: no-repeat; background-image: url(images/ui-icons_222222_256x240.png); position: absolute; left: 20px; top: 130px; background-position: -128px -112px; }
 #cart .icon-plus		{ position: absolute; top: 130px; left: 40px; background-position: -32px -128px; }
 #cart .icon-minus		{ position: absolute; top: 130px; left: 60px; background-position: -64px -128px; }
 #cart .icon-remove		{ position: absolute; top: 130px; left: 110px; background-position: -96px -128px; }

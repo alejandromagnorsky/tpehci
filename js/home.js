@@ -73,6 +73,8 @@ function search(event) {
 						+ $CATALOG_CONTAINER_ID
 						+ '" class="products helper-reset helper-clearfix"/>';
 				$('div.product').html(out);
+				
+				idIndex = 1;
 
 				$(response).find('product').each(function() {
 					printProduct($(this), subCategoryIndex);
