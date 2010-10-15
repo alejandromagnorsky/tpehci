@@ -84,6 +84,9 @@ function buildCartItem(item){
 	addedItem.append("<a href='" + $JS_OFF + "' title='Remove from cart' class='" + $ICON + " " + $ICON_REMOVE + "'>Remove From Cart</a>");
 	addedItem.append("<span class='" + $CATALOG_ITEM_QUANTITY + "'>1</span>");
 	addedItem.append('<div class="cartDivisor"/>');
+	addedItem.append('<div class="imgWrapper"/>');
+	item.find(".cartFeedback").fadeIn(500);
+	setTimeout(function(){ item.find(".cartFeedback").fadeOut(1000);}, 3000);
 	
 	// Event delegation for cart items.
 	addedItem.click(function( event ) {
@@ -151,3 +154,4 @@ function productDetails($link){
 	toOpen.dialog("open");		
 	return false;
 }
+

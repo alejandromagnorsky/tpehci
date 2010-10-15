@@ -15,7 +15,7 @@
 #products 						{ float: left; min-height: 12em; }
 #content .products li			{ margin: 8px;}
 .products.custom-state-active	{ background: #eee; }
-.products li					{  position: relative; float: left; height: 100px; width: 570px; padding: 0.5em;  text-align: left; }
+.products li					{  position: relative; float: left; height: 100px; width: 570px; padding: 0.5em; padding-bottom: 25px; text-align: left; }
 .products li h5					{ margin: 0 0 0.4em; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
 #cart .products li 				{ position: relative; height: 180px; left: 20px; width: 170px; margin: 0 0 10 30px;}
@@ -24,7 +24,8 @@
 #content .products li a.icon-zoom		{ float: right;  margin-left:20px; margin-top:20px;}
 #content .products li a.icon-cart		{ float: left;  margin-top:20px;}
 .products li a.icon-remove		{ float: left; }
-.products li img				{ float: left;  width: 66px; left: 30px; position: absolute; cursor: move;}
+.products li img				{ float: left;  width: 66px; left: 20px; position: absolute; cursor: move;}
+#cart .products li img			{ z-index: 10; float: left;  width: 66px; left: 24px; top: 22px; position: absolute; cursor: move;}
 * html #cart					{ height: 18em; } /* IE6 */
 #cart							{ top: 0px; border: 1px groove #ddd; padding-top: 15px; padding-bottom: 15px; background-repeat: repeat-y; background-color: transparent; position: absolute; left: 0; right: 0; min-height: 95%; width: 155px; margin-top: 0px; margin-left: 0px; list-style: none;}
 #cart h4						{ line-height: 25px; margin: 0 0 0.4em; }
@@ -56,14 +57,34 @@
 	background-repeat: no-repeat;
 }
 
+.cartFeedback {
+	position: absolute;
+	top: 108px;
+	left: 25px;
+	font-weight: bold;
+	font-size: 10pt;
+	color: #f00;	
+	display: none;
+}
+
 .imgDragger{
 	cursor: move;
 	position: absolute;
 	top: 0px;
-	left: 25px;
+	left: 15px;
 	height: 105px;
 	width: 123px;
 	background-image: url(./images/inicio/imgDragger.png);
+}
+
+.imgWrapper {
+    position: absolute;
+    top: 15px;
+    left: 17px;
+    height: 105px;
+    width: 80px;
+    background-image: url(./images/inicio/imgWrapper.png);
+	background-repeat: no-repeat;
 }
 
 
@@ -79,8 +100,8 @@
 
 .productDetails{
 	position: absolute;
-	top: 30px;
-	left: 250px;
+	top: 40px;
+	left: 255px;
 	font-family: verdana;
 	font-size: 9pt;
 	font-weight: bold;
@@ -106,7 +127,7 @@
 	height: 50px;
 	position: absolute;
 	top: 5px;
-	left: 160px;
+	left: 150px;
 	background: transparent;
 	color: #222222; font-weight: bold; }
 /* ************************************************** */
@@ -128,7 +149,11 @@
 .state-active, .product-content .state-active, .product-header .state-active { border: 1px solid #aaaaaa; background: #ffffff url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #212121; }
 .state-active a, .state-active a:link, .state-active a:visited { color: #212121; text-decoration: none; }
 
-.state-highlight, .product-content .state-highlight, .product-header .state-highlight  { }
+#cart .state-highlight{
+	background-color: #000;
+}
+
+.state-highlight, .product-content .state-highlight, .product-header .state-highlight  { background-color: #fff; }
 .state-highlight a, .product-content .state-highlight a, .product-header .state-highlight a { color: #363636; }
 .state-error, .product-content .state-error, .product-header .state-error {border: 1px solid #cd0a0a; background: #fef1ec url(images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; color: #cd0a0a; }
 .state-error a, .product-content .state-error a, .product-header .state-error a { color: #cd0a0a; }
@@ -156,10 +181,10 @@
 /* ************************************************** */
 
 /* ICONS ******************************************** */
-.icon-cart				{ position: absolute; left: 160px; top: 35px; background-image: url(./images/inicio/cartButton.png);
+.icon-cart				{ position: absolute; left: 150px; top: 43px; background-image: url(./images/inicio/cartButton.png);
 	height: 42px;
 	width: 42px; }
-.icon-zoom				{  position: absolute; left: 185px; top: 35px; background-image: url(./images/inicio/detailsButton.png);
+.icon-zoom				{  position: absolute; left: 180px; top: 43px; background-image: url(./images/inicio/detailsButton.png);
 	height: 42px;
 	width: 42px;
 	}

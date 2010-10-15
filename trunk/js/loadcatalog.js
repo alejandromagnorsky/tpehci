@@ -122,9 +122,11 @@ function printProduct(marker, subCategoryID){
 	out +=		'</div>';
 	out +=	'</div>';
 	out +=  '<div class="imgDragger"/>';
+	out += '<div class="cartFeedback"> Added to cart! </div>';
 	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
 	out +=	'<p class="spanPrice">$' + price + '</p>';
 	out +=  '<div class="productDetails">';
+	out +=  'Rank: ' + ($(productResponse).find("sales_rank").text()) + '<br/>'; 
 	
 	if( c_id == 2 ){
 		out +=  'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
@@ -132,16 +134,17 @@ function printProduct(marker, subCategoryID){
 		out +=  'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
 		//out +=  'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
 		//out +=  'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
-		out +=  'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
+		//out +=  'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
 	} else if( c_id == 1) {
-		out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
-		out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
+		//out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
+		//out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
 		out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
 		out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
 		//out +=					'Format: ' + ($(productResponse).find("format").text()) + '<br/>';
 		//out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
 		//out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
 		//out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+		out +=					'Region: ' + ($(productResponse).find("region").text()) + '<br/>';
 	}
 		
 	out += ' </div>';

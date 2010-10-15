@@ -26,7 +26,7 @@ $IMG_HEIGHT	= 360;	$THUMB_HEIGHT = 90;
 
 // Product in cart
 $CART_ITEM_WIDTH = '100px';
-$CART_ITEM_HEIGHT = '112px';
+$CART_ITEM_HEIGHT = '90px';
 /* ***************************************************************** */
 
 /* ICON CLASSES **************************************************** */
