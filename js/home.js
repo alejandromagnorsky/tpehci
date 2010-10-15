@@ -68,110 +68,16 @@ function search(event) {
 
 				var noMatch = true;
 
+				$("#content").html('<div class="product"/>');
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="'
 						+ $CATALOG_CONTAINER_ID
 						+ '" class="products helper-reset helper-clearfix"/>';
-				$('div.product').append(out);
-				$(response)
-						.find('product')
-						.each(
-								function() {
-									out = '';
-									var marker = $(this);
-									var name = marker.find("name").text();
-									var subcategoryID = marker.find(
-											"subcategory_id").text();
+				$('div.product').html(out);
 
-									if (subcategoryID != subCategoryIndex
-											&& subCategoryIndex != 'All')
-										return;
-
-									noMatch = false;
-
-									var image_url = marker.find("image_url")
-											.text();
-									var price = marker.find("price").text();
-									out += '<'
-											+ $CATALOG_ITEM
-											+ ' class="product-content corner-tr" id="'
-											+ i + '">'
-									out += '<div class="productBg"/>'
-									// out += '<h5 class="' +
-									// $CATALOG_ITEM_HEADER + '">' + name +
-									// '</h5>';
-									out += '<div id="description' + i++
-											+ '" class="'
-											+ $CATALOG_ITEM_DESCRIPTION
-											+ ' hide">';
-									out += '<img src="' + image_url + '" alt="'
-											+ name + '" width="' + $IMG_WIDTH
-											+ '" height="' + $IMG_HEIGHT
-											+ '" class="image"></img>';
-									out += '<div class="tabs">';
-									out += '<ol><li><a href="#tabs-' + j
-											+ '">Detalles</a></li>';
-									out += '<li><a href="#tabs-' + (j + 1)
-											+ '">Sinopsis</a></li></ol>';
-									out += '<div id="tabs-' + j++ + '">';
-									out += '<div id="details">';
-									out += '<div class="divPrice">';
-									out += '<p class="spanPrice">Precio por unidad: $'
-											+ price + '</p>';
-									out += '<input id="addtocart" type="button" value=""/>';
-									out += '</div>';
-									out += '<div class="name">' + name
-											+ '<br /></div>';
-									out += '<div class="autor">';
-									out += 'Director: Dario Argento<br/>';
-									out += 'Cast: Jessica Harper, Stefania Casini, Flavio Bucci, Miguel Bose, Barbara Magnolfi<br/>';
-									out += 'Wild Side Films<br/>';
-									out += '</div>';
-									out += '<div class="category">';
-									out += 'Genre: CATEGORY' + '<br/>';
-									out += 'Format: FORMAT' + '<br/>';
-									out += 'Original release date: DATE'
-											+ '<br/>';
-									out += 'Rating: RATING' + '<br/>';
-									out += '</div>';
-									out += '</div>';
-									out += '</div>';
-									out += '<div id="tabs-' + j++ + '">';
-									out += '<div class="sinopsis">';
-									out += 'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
-									out += 'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
-									out += 'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
-									out += 'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
-									out += 'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
-									out += 'sinister organization.';
-									out += '</div>';
-									out += '</div>';
-									out += '</div>';
-									out += '</div>';
-									out += '<img src="' + image_url + '" alt="'
-											+ name + '" width="' + $THUMB_WIDTH
-											+ '" height="' + $THUMB_HEIGHT
-											+ '"/>';
-									out += '<p class="spanPrice">$' + price
-											+ '</p>';
-									out += '<p class="productDetails"> Lalalalalalala </p>'
-									out += '<h5 class="' + $CATALOG_ITEM_HEADER
-											+ '">' + name + '</h5>';
-									out += '<a href="description.html" title="Full product details" class="'
-											+ $ICON
-											+ ' '
-											+ $ICON_INFO
-											+ '">Full product details</a>';
-									out += '<a href="' + $JS_OFF
-											+ '" title="Add to cart" class="'
-											+ $ICON + ' ' + $ICON_CART
-											+ '">Add to cart</a>';
-									out += '</' + $CATALOG_ITEM + '>';
-									$(
-											$ITEM_CONTAINER_TAG + '#'
-													+ $CATALOG_CONTAINER_ID)
-											.append(out);
-								});
-
+				$(response).find('product').each(function() {
+					printProduct($(this), subCategoryIndex);
+					noMatch = false;
+				});
 				if (noMatch)
 					$('div.product')
 							.html(

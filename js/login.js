@@ -42,7 +42,7 @@ function showHideLogin() {
 		$("#divlogin").show("slide", {
 			direction : "up"
 		}, 250);
-		displayPreferences();
+		setTimeout( function(){displayPreferences();}, 500);
 		showing = true;
 	} else {
 

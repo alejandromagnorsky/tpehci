@@ -51,6 +51,78 @@ function initializeContent(qty) {
 	$("#footer").css("top", height);
 }
 
+function printProduct(marker, subCategoryID){
+	out = '';
+	var i = 1, j = 1; // Id counter(i) and tab counter(j).
+	var name = marker.find("name").text();
+	var image_url = marker.find("image_url").text();
+	var price = marker.find("price").text();					
+	var c_id = marker.find("category_id").text();
+	var sc_id = marker.find("subcategory_id").text();
+	var genre = categories[c_id-1].name + ' | ' + (getSubCategoryName(sc_id-1));
+	
+	if (c_id == 1)
+		var productResponse = getProduct($(this).attr('id'));
+	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + c_id + sc_id + '">'
+	out +=  '<div class="productBg"/>'
+	out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
+	out +=		'<div id="description' + i++ + c_id + sc_id + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
+	out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
+	out +=			'<div class="tabs">';
+	out +=				'<ol><li><a href="#tabs-' + j + c_id + sc_id + '">Detalles</a></li>';
+	out +=				'<li><a href="#tabs-' + (j + 1) + c_id + sc_id + '">Sinopsis</a></li></ol>';
+	out +=				'<div id="tabs-' + j++ + c_id + sc_id + '">';
+	out +=					'<div id="details">';
+	out +=						'<div class="divPrice">';
+	out +=							'<p class="spanPrice">Precio por unidad: $' + price + '</p>';
+	out +=							'<input id="addtocart" type="button" value=""/>';
+	out +=						'</div>';
+	out +=					'<div class="name">' + name + '<br /></div>';
+	if (c_id == 1)
+		out +=				'<div class="salesRank">' + ($(productResponse).find("sales_rank").text()) + '<br /></div>';
+	out +=					'<div class="autor">';
+	out +=						'Genre: ' + genre + '<br/>';
+	out +=						'MPAA Rating: RATING' + '<br/>';
+	out +=						'Director: Dario Argento<br/>';
+	if (c_id == 1)
+		out +=					'Cast: ' + ($(productResponse).find("actors").text()) + '<br/>';
+	out +=					'</div>';
+	out +=					'<div class="category">';
+	if (c_id == 1){
+		out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
+		out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
+		out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
+		out +=					'Format: ' + ($(productResponse).find("format").text()) + '<br/>';
+		out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
+		out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
+		out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+	}
+	out +=					'</div>';
+	out +=				'</div>';
+	out +=			'</div>';
+	out +=			'<div id="tabs-' + j++ + c_id + sc_id + '">';
+	out +=				'<div class="sinopsis">';
+	out +=					'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
+	out +=					'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
+	out +=					'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
+	out +=					'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
+	out +=					'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
+	out +=					'sinister organization.';
+	out +=				'</div>';
+	out +=			'</div>';
+	out +=		'</div>';
+	out +=	'</div>';
+	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
+	out +=	'<p class="spanPrice">$' + price + '</p>';
+	out +=  '<p class="productDetails"> Lalalalalalala </p>'
+	out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
+	out +=	'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
+	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
+	out +=	'</' + $CATALOG_ITEM + '>';
+	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
+}
+
 
 
 /* Get product list by category and initializates car */
@@ -63,89 +135,17 @@ function getProductList(parameters) {
 			if (request.status == 200) {
 				var response = request.responseXML;
 
-				var i = 1, j = 1; // Id counter(i) and tab counter(j).
-				var qty = 0;
-				$(response).find('product').each(function() { qty++; });
-
 				/* Resize content */
+				var qty = 0;
+				$(response).find('product').each(function(){ qty++; });
 				initializeContent(qty);
 				
-				if( qty == 0 )
-					$('div.product').html("<h3>No se encontró ningun producto. Me gusta el jamon.</h3>");
-				else
-					$('div.product').html("");	// Clear content
-				
+				$("#content").html('<div class="product"/>');
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
-				$('div.product').append(out);
-				$(response).find('product').each( function() {
-					out = '';
-					var marker = $(this);
-					var name = marker.find("name").text();
-					var image_url = marker.find("image_url").text();
-					var price = marker.find("price").text();					
-					var c_id = marker.find("category_id").text();
-					var sc_id = marker.find("subcategory_id").text();
-					var genre = categories[c_id-1].name + ' | ' + (getSubCategoryName(sc_id-1));
-					if (c_id == 1)
-						var productResponse = getProduct($(this).attr('id'));
-					out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + c_id + sc_id + '">'
-					out +=  '<div class="productBg"/>'
-					out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-					out +=		'<div id="description' + i++ + c_id + sc_id + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
-					out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
-					out +=			'<div class="tabs">';
-					out +=				'<ol><li><a href="#tabs-' + j + c_id + sc_id + '">Detalles</a></li>';
-					out +=				'<li><a href="#tabs-' + (j + 1) + c_id + sc_id + '">Sinopsis</a></li></ol>';
-					out +=				'<div id="tabs-' + j++ + c_id + sc_id + '">';
-					out +=					'<div id="details">';
-					out +=						'<div class="divPrice">';
-					out +=							'<p class="spanPrice">Precio por unidad: $' + price + '</p>';
-					out +=							'<input id="addtocart" type="button" value=""/>';
-					out +=						'</div>';
-					out +=					'<div class="name">' + name + '<br /></div>';
-					if (c_id == 1)
-						out +=				'<div class="salesRank">' + ($(productResponse).find("sales_rank").text()) + '<br /></div>';
-					out +=					'<div class="autor">';
-					out +=						'Genre: ' + genre + '<br/>';
-					out +=						'MPAA Rating: RATING' + '<br/>';
-					out +=						'Director: Dario Argento<br/>';
-					if (c_id == 1)
-						out +=					'Cast: ' + ($(productResponse).find("actors").text()) + '<br/>';
-					out +=					'</div>';
-					out +=					'<div class="category">';
-					if (c_id == 1){
-						out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
-						out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
-						out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
-						out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
-						out +=					'Format: ' + ($(productResponse).find("format").text()) + '<br/>';
-						out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
-						out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
-						out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
-					}
-					out +=					'</div>';
-					out +=				'</div>';
-					out +=			'</div>';
-					out +=			'<div id="tabs-' + j++ + c_id + sc_id + '">';
-					out +=				'<div class="sinopsis">';
-					out +=					'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
-					out +=					'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
-					out +=					'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
-					out +=					'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
-					out +=					'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
-					out +=					'sinister organization.';
-					out +=				'</div>';
-					out +=			'</div>';
-					out +=		'</div>';
-					out +=	'</div>';
-					out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
-					out +=	'<p class="spanPrice">$' + price + '</p>';
-					out +=  '<p class="productDetails"> Lalalalalalala </p>'
-					out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-					out +=	'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
-					out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
-					out +=	'</' + $CATALOG_ITEM + '>';
-					$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
+				$('div.product').html(out);
+				
+				$(response).find('product').each( function(){
+					printProduct($(this), getSubCategoryName($(this).find("subcategory_id").text()-1));
 				});
 				buildDraggables();
 				enableTabs();
@@ -298,9 +298,7 @@ function injectCategories() {
 		var $item = $(this);
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
-			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
-			slideHeaderUp();
 		} else if ($target.is( 'a.subCategoryLink' )){
 			var c_id, sc_id;
 			for(c_id=0; c_id < categories.length; c_id++)
@@ -308,9 +306,7 @@ function injectCategories() {
 					break;
 			sc_id = getSubCategoryIndex(c_id, $target.html());
 			c_id++;
-			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
-			slideHeaderUp();
 		}
 		return false;
 	});
