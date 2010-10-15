@@ -221,5 +221,5 @@ function displayPreferences(){
 	$("#content").html(out);
 	
 	$(".prefTabs").tabs();
-	updateLanguage();
+	//updateLanguage();
 }
