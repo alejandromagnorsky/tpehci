@@ -175,6 +175,7 @@ function clearSearchData() {
 
 function mouseClicked(e) {
 	checkLogin(e);
+	checkMyAccount(e);
 }
 
 function showRegisterDialog() {
