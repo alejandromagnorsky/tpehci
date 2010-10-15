@@ -42,6 +42,9 @@ function requestFromServer(method, parameters) {
 	case 'SignIn':
 		signIn(parameters);
 		break;
+	case 'SignOut':
+		signOut(parameters);
+		break;
 	default:
 		alert("Invalid method");
 	}

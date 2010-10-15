@@ -11,21 +11,23 @@ function loadMain() {
 	main = true;
 	$("#menuCategorias").accordion();
 
-	loadLanguage();
+	loadSession();
 	loadFisheye();
+	loadLanguage();
 
-	document.getElementById("spanlogin").onclick = showHideLogin;
+	
 
 	$("#inputsearch").keydown(resolveSearchKeys);
 	$("#searchForm").keydown(ignoreFormEnter);
-
-	document.getElementById("spanregister").onclick = showRegisterDialog;
-	document.getElementById("linkmyaccount").onclick = showHideAccount;
 	$("#searchButton").click(function(){
 		slideHeaderUp(function() {
 			search();
 		});
 	});
+	document.getElementById("spanlogin").onclick = showHideLogin;
+	document.getElementById("spanlogout").onclick = logout;
+	document.getElementById("spanregister").onclick = showRegisterDialog;
+	document.getElementById("linkmyaccount").onclick = showHideAccount;
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
 	document.getElementById("loginForm").onsubmit = logIn;
@@ -337,4 +339,34 @@ function loadLanguage() {
 		Language.en();
 	else
 		Language.es();
+}
+
+
+function loadSession(){
+    var cookie = getCookie("session");
+    if (cookie) {
+        changeDivLink();
+        session = $.secureEvalJSON(getCookie("session"));
+    }
+}
+
+function changeDivLink(){
+	if (getCookie("session")) {
+		document.getElementById("divlogin").style.display = 'none';
+		document.getElementById("linklogin").className = 'lang_login text_link';
+		document.getElementById("spanlogin").className = 'unclicked';
+		
+		$("#spanmyaccount").css("display", "inline");
+		$("#spanregister").css("display", "none");
+		$("#spanlogin").css("display", "none");
+		$("#welcomeuser").fadeIn(600);
+		$("#welcomeuser").fadeOut(2000);
+	} else {
+		document.getElementById("divmyaccount").style.display = 'none';
+		document.getElementById("linkmyaccount").className = 'lang_login text_link';
+		document.getElementById("spanmyaccount").className = 'unclicked';
+		$("#spanmyaccount").css("display", "none");
+		$("#spanregister").css("display", "inline");
+		$("#spanlogin").css("display", "inline");
+	}
 }

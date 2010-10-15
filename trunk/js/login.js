@@ -79,8 +79,7 @@ function signIn(parameters){
     request.send();
     var response = request.responseXML;
     if ($(response).find("response").attr('status') == 'ok') {
-        alert("Sesión iniciada. Token: " + $(response).find("token").text());
-		document.getElementById("divlogin").style.display = 'none';
+        document.getElementById("divlogin").style.display = 'none';
         document.getElementById("linklogin").className = 'lang_login text_link';
         document.getElementById("spanlogin").className = 'unclicked';
         
@@ -97,11 +96,17 @@ function signIn(parameters){
 			$("#welcomeuser").fadeIn(600);
 			$("#welcomeuser").fadeOut(4000);
         }, 500);
-		
+		session = new Session($("#login_username").attr("value"), $(response).find("token").text());
+		setCookie("session", $.toJSON(session), undefined, '/', '', false);		
     }
     else {
         var errorCode = $(response).find("error").attr("code");
         if (errorCode == 4 || errorCode == 5 || errorCode == 104) 
             $("#loginwarning").css("visibility", "visible");
     }
+}
+
+function Session(username, token){
+	this.username = username;
+	this.token = token;
 }
