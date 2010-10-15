@@ -6,6 +6,11 @@
     //document.getElementById("themeForm").onsubmit = savePreferences;	
 });*/
 
+function showHideAccount(){
+	alert("hola");
+	return false;
+}
+
 function initializeModValidator(){
     modifyValidator = $("#modifyForm").validate({
     

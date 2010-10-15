@@ -43,7 +43,8 @@ function loadRegisterForm(){
         var index = document.getElementById("countryCombo").selectedIndex;
         requestFromServer('GetStateList', 'language_id=' + currentLang + '&country_id=' + index);
     };
-    
+    $("#stateCombo").html("");
+	
     document.getElementById("buttonCancel").onclick = resetRegisterForm;
 }
 
@@ -162,21 +163,6 @@ function getStateList(parameters){
     request.send();
 }
 
-function signIn(parameters){
-    var url = $SECURITY + 'SignIn' + '&' + parameters;
-    var request = new XMLHttpRequest();
-    request.open('GET', url, false);
-    request.send();
-    var response = request.responseXML;
-    if ($(response).find("response").attr('status') == 'ok') {
-        alert("Sesión iniciada. Token: " + $(response).find("token").txt());
-    }
-    else {
-        var errorCode = $(response).find("error").attr("code");
-        if (errorCode == 4 || errorCode == 5 || errorCode == 104) 
-            $("#loginwarning").css("visibility", "visible");
-    }
-}
 
 function register(){
     var msg = XMLGenerator("account", ["username", "name", "password", "email", "birth_date"], [$("#register_username").val(), $("#register_clientname").val(), $("#passwordInput").val(), $("#register_email").val(), toISODate($("#datepicker").val())]);
@@ -192,16 +178,16 @@ function register(){
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
                 resetRegisterForm();
-                $("#divWelcome").dialog({
+                $("#divRegisterOK").dialog({
                     close: function(){
-                         $("#divWelcome").dialog("destroy");
+                         $("#divRegisterOK").dialog("destroy");
                     },
 					"modal": "true",
                     "resizable": "false",
 					"title": Language.register,
                     draggable: false
                 });
-				var widget = $("#divWelcome").dialog("widget");
+				var widget = $("#divRegisterOK").dialog("widget");
 				widget.css("top", "300px");
 				widget.css("left", "670px");
 				widget.css("width", "550px");

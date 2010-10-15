@@ -4,6 +4,7 @@ Language.es = function(){
     //User panel
     Language.register = "Registrarse";
     Language.login = "Iniciar sesión";
+	Language.vieworders = "Ver órdenes";
     Language.logout = "Cerrar sesión";
     Language.settings = "Configuración";
     Language.selectlanguage = "Idioma:";
@@ -12,7 +13,7 @@ Language.es = function(){
     Language.username = "Nombre de usuario";
     Language.password = "Contraseña";
     Language.loginwarning = "Usuario o contraseña inválidos";
-    
+    Language.welcomeuser = "Bievenido usuario";
     
     //Register
     Language.personaldata = "Datos personales";
@@ -33,7 +34,7 @@ Language.es = function(){
     Language.emailreqwarning = "Introduzca una dirección de correo electrónico";
     Language.emailwarning = "Su dirección de correo electrónico debe ser de la forma nombre@dominio.com";
     Language.mandatorydata = "*Datos obligatorios";
-	Language.welcome = "Se ha completado de forma exitosa la registración.";
+	Language.registerOK = "Se ha completado de forma exitosa la registración.";
     Language.accept = "Aceptar";
     Language.cancel = "Cancelar";
     
@@ -42,6 +43,7 @@ Language.es = function(){
     Language.search = "Buscar...";
     
     //Account
+	Language.myaccount = "Mi cuenta";
     Language.modifyData = "Modificar información";
     Language.headermodify = "Cambiar información personal";
     Language.headerchangepass = "Cambiar la contraseña";
@@ -160,6 +162,7 @@ Language.en = function(){
     //User panel
     Language.register = "Register";
     Language.login = "Login";
+	Language.vieworders = "View orders";
     Language.logout = "Logout";
     Language.settings = "Settings";
     Language.selectlanguage = "Language:";
@@ -168,6 +171,7 @@ Language.en = function(){
     Language.username = "Username";
     Language.password = "Password";
     Language.loginwarning = "Invalid username or password";
+	Language.welcomeuser = "Welcome user";
     
     Language.allCategories = "All";
     Language.selectCategory = "Select category";
@@ -192,11 +196,12 @@ Language.en = function(){
     Language.emailreqwarning = "Enter an e-mail";
     Language.emailwarning = "Your email address must be in the format of name@domain.com";
     Language.mandatorydata = "*Must be filled";
-	Language.welcome = "The registration has completed succesfully."
+	Language.registerOK = "The registration has completed succesfully."
     Language.accept = "Accept";
     Language.cancel = "Cancel";
     
     //Account
+	Language.myaccount = "My account";
     Language.modifyData = "Modify data";
     Language.headermodify = "Change personal data";
     Language.headerchangepass = "Change password";
@@ -325,8 +330,10 @@ function updateLanguage(){
     //User panel
     updateText("register", Language.register);
     updateText("login", Language.login);
+	updateText("myaccount", Language.myaccount);
     updateText("logout", Language.logout);
     updateText("settings", Language.settings);
+	updateText("vieworders", Language.vieworders);
     updateText("selectlanguage", Language.selectlanguage);
     
     //Login
@@ -334,6 +341,7 @@ function updateLanguage(){
     updateText("password", Language.password);
     updateButton("loginsubmit", Language.login);
     updateText("loginwarning", Language.loginwarning);
+	updateText("welcomeuser", Language.welcomeuser);
     
     
     //Register
@@ -346,7 +354,7 @@ function updateLanguage(){
     updateText("confirmpassword", Language.confirmpassword);
     updateText("email", Language.email);
     updateText("mandatorydata", Language.mandatorydata);
-	updateText("welcome", Language.welcome);
+	updateText("registerOK", Language.registerOK);
 	updateText("usernametaken", Language.usernametaken);
     updateButton("accept", Language.accept);
     updateButton("cancel", Language.cancel);
