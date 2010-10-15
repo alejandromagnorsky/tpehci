@@ -19,7 +19,7 @@
 .products li h5					{ margin: 0 0 0.4em; cursor: move; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
 #cart .products li 				{ position: relative; height: 180px; left: 20px; width: 170px; margin: 0 0 10 30px;}
-.spanPrice 						{ height: 50px; width: 50px; position: absolute; top: -10px; left: 510px; font-size:75%}
+.spanPrice 						{ height: 50px; width: 50px; position: absolute; top: -15px; left: 510px; font-size:75%}
 #cart .spanPrice 				{ height: 50px; width: 50px; position: absolute; top: -25px; left: 30px; font-size:75%}
 #content .products li a.icon-zoom		{ float: right;  margin-left:20px; margin-top:20px;}
 #content .products li a.icon-cart		{ float: left;  margin-top:20px;}
@@ -58,8 +58,11 @@
 
 .productDetails{
 	position: absolute;
-	top: 50px;
-	left: 200px;
+	top: 30px;
+	left: 250px;
+	font-family: verdana;
+	font-weight: bold;
+	color: #666;
 }
 
 .product .product	{ font-size: 1em; }
@@ -80,8 +83,8 @@
 	width: 440px;
 	height: 50px;
 	position: absolute;
-	top: 10px;
-	left: 110px;
+	top: 5px;
+	left: 160px;
 	background: transparent;
 	color: #222222; font-weight: bold; }
 /* ************************************************** */
