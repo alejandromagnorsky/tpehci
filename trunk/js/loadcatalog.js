@@ -61,8 +61,7 @@ function printProduct(marker, subCategoryID){
 	var sc_id = marker.find("subcategory_id").text();
 	var genre = categories[c_id-1].name + ' | ' + (getSubCategoryName(sc_id-1));
 	
-	if (c_id == 1)
-		var productResponse = getProduct($(this).attr('id'));
+	var productResponse = getProduct(marker.attr('id'));
 	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + i + c_id + sc_id + '">'
 	out +=  '<div class="productBg"/>'
 	out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
@@ -97,6 +96,13 @@ function printProduct(marker, subCategoryID){
 		out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
 		out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
 		out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+	} else if( c_id == 2 ){
+		out +=  'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
+		out +=  'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
+		out +=  'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
+		out +=  'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
+		out +=  'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
+		out +=  'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
 	}
 	out +=					'</div>';
 	out +=				'</div>';
@@ -115,7 +121,27 @@ function printProduct(marker, subCategoryID){
 	out +=	'</div>';
 	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
 	out +=	'<p class="spanPrice">$' + price + '</p>';
-	out +=  '<p class="productDetails"> Lalalalalalala </p>'
+	out +=  '<div class="productDetails">';
+	
+	if( c_id == 2 ){
+		out +=  'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
+		out +=  'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
+		out +=  'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
+		//out +=  'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
+		//out +=  'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
+		out +=  'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
+	} else if( c_id == 1) {
+		out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
+		out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
+		out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
+		//out +=					'Format: ' + ($(productResponse).find("format").text()) + '<br/>';
+		//out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
+		//out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
+		//out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+	}
+		
+	out += ' </div>';
 	out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
 	out +=	'<a href="description.html" title="Full product details" class="' + $ICON + ' ' + $ICON_INFO + '">Full product details</a>';
 	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON + ' ' + $ICON_CART + '">Add to cart</a>';
@@ -162,8 +188,9 @@ function getProduct(product_id) {
 	var url = $CATALOG + 'GetProduct' + '&product_id=' + product_id;
 	request.open('GET', url, false);
 	request.send();
-	if (request.status == 200)
+	if (request.status == 200){
 		return request.responseXML;
+	}
 	else
 		alert('Error: ' + request.statusText);
 }
