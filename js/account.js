@@ -1,10 +1,9 @@
 /*$(function(){
-    $(".tabs").tabs();
-    Language.es();
-    //document.getElementById("tabPref").onclick = loadPreferences;
-    //document.getElementById("themeForm").onsubmit = savePreferences;	
-});*/
-
+ $(".tabs").tabs();
+ Language.es();
+ //document.getElementById("tabPref").onclick = loadPreferences;
+ //document.getElementById("themeForm").onsubmit = savePreferences;
+ });*/
 var myaccountShowing = false;
 
 function checkMyAccount(e){
@@ -29,7 +28,7 @@ function checkMyAccount(e){
 }
 
 function showHideAccount(){
-	var display = document.getElementById("divmyaccount").style.display;
+    var display = document.getElementById("divmyaccount").style.display;
     
     if (display == 'none' || display == '') {
     
@@ -40,7 +39,7 @@ function showHideAccount(){
             direction: "up"
         }, 250);
         
-       	myaccountShowing = true;
+        myaccountShowing = true;
     }
     else {
     
@@ -157,20 +156,22 @@ function setAccountPreferences(parameters){
 }
 
 function logout(){
-    requestFromServer('SignOut', 'username=' + username + '&authentication_token=' + authenticationToken);
+    requestFromServer('SignOut', 'username=' + session.username + '&authentication_token=' + session.token);
 }
 
 
-function signout(parameters){
-    var url = $SECURITY + 'Signout' + '&' + parameters;
+function signOut(parameters){
+    var url = $SECURITY + 'SignOut' + '&' + parameters;
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
                 var response = request.responseXML;
-                if ($(response).find("response").attr('status') == 'ok') 
-                    alert("La sesión ha sido cerrada correctamente");
+                if ($(response).find("response").attr('status') == 'ok') {
+                    delCookie("session", '/', '');
+                    changeDivLink();
+                }
             }
             else {
                 alert('Error: ' + request.statusText);
@@ -182,7 +183,7 @@ function signout(parameters){
 
 
 function displayPreferences(){
-	
+
     var out = "";
     out += "<div id='preferences'>";
     out += "   <div class='prefTabs'>";
@@ -269,8 +270,8 @@ function displayPreferences(){
     out += "      </div>";
     out += "   </div>";
     out += " </div>";
-	$("#content").html(out);
-	
-	$(".prefTabs").tabs();
-	//updateLanguage();
+    $("#content").html(out);
+    
+    $(".prefTabs").tabs();
+    //updateLanguage();
 }
