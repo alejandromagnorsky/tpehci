@@ -21,7 +21,11 @@ function loadMain() {
 
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("linkmyaccount").onclick = showHideAccount;
-	document.getElementById("searchButton").onclick = search;
+	$("#searchButton").click(function(){
+		slideHeaderUp(function() {
+			search();
+		});
+	});
 	document.getElementById("inputsearch").onclick = clearSearchData;
 	document.getElementById("homeLink").onclick = slideHeaderDown;
 	document.getElementById("loginForm").onsubmit = logIn;
