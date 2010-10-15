@@ -26,6 +26,7 @@ function loadMain() {
 	});
 	document.getElementById("spanlogin").onclick = showHideLogin;
 	document.getElementById("spanlogout").onclick = logout;
+	document.getElementById("spanpreferences").onclick = showPreferences;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("linkmyaccount").onclick = showHideAccount;
 	document.getElementById("inputsearch").onclick = clearSearchData;
@@ -363,8 +364,15 @@ function changeDivLink(){
 		$("#welcomeuser").fadeOut(2000);
 	} else {
 		document.getElementById("divmyaccount").style.display = 'none';
-		document.getElementById("linkmyaccount").className = 'lang_login text_link';
+		document.getElementById("linkmyaccount").className = 'lang_myaccount text_link';
 		document.getElementById("spanmyaccount").className = 'unclicked';
+		
+		$("#divmyaccount").hide("slide", {
+            direction: "up"
+        }, 250);
+        
+        myaccountShowing = false;
+		
 		$("#spanmyaccount").css("display", "none");
 		$("#spanregister").css("display", "inline");
 		$("#spanlogin").css("display", "inline");

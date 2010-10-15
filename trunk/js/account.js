@@ -32,7 +32,7 @@ function showHideAccount(){
     
     if (display == 'none' || display == '') {
     
-        document.getElementById("linkmyaccount").className = 'lang_login text_link_clicked';
+        document.getElementById("linkmyaccount").className = 'lang_myaccount text_link_clicked';
         document.getElementById("spanmyaccount").className = 'clicked';
         
         $("#divmyaccount").show("slide", {
@@ -41,10 +41,9 @@ function showHideAccount(){
         
         myaccountShowing = true;
     }
-    else {
-    
+    else {    
         document.getElementById("divmyaccount").style.display = 'none';
-        document.getElementById("linkmyaccount").className = 'lang_login text_link';
+        document.getElementById("linkmyaccount").className = 'lang_myaccount text_link';
         document.getElementById("spanmyaccount").className = 'unclicked';
         
         $("#divmyaccount").hide("slide", {
@@ -61,14 +60,7 @@ function initializeModValidator(){
     
         errorElement: "div",
         
-        
         submitHandler: register
-    
-        /*
-         invalidHandler: function(form, validator){
-         $(".regWarning").css("visibility", "visible");
-         }
-         */
     });
 }
 
@@ -182,8 +174,7 @@ function signOut(parameters){
 }
 
 
-function displayPreferences(){
-
+function showPreferences(){
     var out = "";
     out += "<div id='preferences'>";
     out += "   <div class='prefTabs'>";
@@ -273,5 +264,7 @@ function displayPreferences(){
     $("#content").html(out);
     
     $(".prefTabs").tabs();
-    //updateLanguage();
+	showHideAccount();
+	slideHeaderUp();
+    translateSettings();
 }
