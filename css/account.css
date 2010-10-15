@@ -45,6 +45,14 @@
 	font-weight: bold;
 }
 
+#spanorders:hover, #spanpreferences:hover {
+	color: #E17009;	
+}
+
+#spanlogout:hover {
+	color: #CD0A0A;
+}
+
 #divmyaccount {
     z-index: 800;
     width: 150px;

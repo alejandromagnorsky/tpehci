@@ -79,25 +79,14 @@ function signIn(parameters){
     request.send();
     var response = request.responseXML;
     if ($(response).find("response").attr('status') == 'ok') {
-        document.getElementById("divlogin").style.display = 'none';
-        document.getElementById("linklogin").className = 'lang_login text_link';
-        document.getElementById("spanlogin").className = 'unclicked';
-        
-        $("#divlogin").hide("slide", {
+		session = new Session($("#login_username").attr("value"), $(response).find("token").text());
+		setCookie("session", $.toJSON(session), undefined, '/', '', false);
+		changeDivLink();
+		$("#divlogin").hide("slide", {
             direction: "up"
         }, 250);
         
         loginShowing = false;
-		
-		setTimeout(function(){
-            $("#spanmyaccount").css("display", "inline");
-			$("#spanregister").css("display", "none");
-			$("#spanlogin").css("display", "none");
-			$("#welcomeuser").fadeIn(600);
-			$("#welcomeuser").fadeOut(4000);
-        }, 500);
-		session = new Session($("#login_username").attr("value"), $(response).find("token").text());
-		setCookie("session", $.toJSON(session), undefined, '/', '', false);		
     }
     else {
         var errorCode = $(response).find("error").attr("code");

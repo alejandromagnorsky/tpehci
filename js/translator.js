@@ -361,13 +361,7 @@ function updateLanguage(){
     
     
     //Account
-    updateText("modifyData", Language.modifyData);
-    updateText("headermodify", Language.headermodify);
-    updateText("headerchangepass", Language.headerchangepass);
-    updateText("newpassword", Language.newpassword);
-    updateText("confirmnewpassword", Language.confirmnewpassword);
-    updateText("personalize", Language.personalize);
-    updateText("selectTheme", Language.selectTheme);
+    translateSettings();
     
     // Search
     updateButton("search", Language.search);
@@ -498,4 +492,19 @@ function configureModValidator(){
             email: Language.emailwarning
         }
     };
+}
+
+function translateSettings(){
+	updateText("modifyData", Language.modifyData);
+    updateText("headermodify", Language.headermodify);
+	updateText("clientname", Language.clientname);
+	updateText("birthday", Language.birthday);
+	updateText("datereference", Language.datereference);
+	updateText("email", Language.email);
+	updateButton("accept", Language.accept);
+    updateText("headerchangepass", Language.headerchangepass);
+    updateText("newpassword", Language.newpassword);
+    updateText("confirmnewpassword", Language.confirmnewpassword);
+    updateText("personalize", Language.personalize);
+    updateText("selectTheme", Language.selectTheme);
 }
