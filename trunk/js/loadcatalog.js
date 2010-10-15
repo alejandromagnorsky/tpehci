@@ -311,8 +311,10 @@ function injectCategories() {
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
-			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
-			slideHeaderUp();
+			
+			slideHeaderUp( function(){
+					requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
+			});
 		} else if ($target.is( 'a.subCategoryLink' )){
 			var c_id, sc_id;
 			for(c_id=0; c_id < categories.length; c_id++)
@@ -321,8 +323,14 @@ function injectCategories() {
 			sc_id = getSubCategoryIndex(c_id, $target.html());
 			c_id++;
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
-			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
-			slideHeaderUp();
+			
+			slideHeaderUp(function(){
+				requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');	
+				
+			}
+					
+			
+			);
 		}
 		return false;
 	});
@@ -352,8 +360,9 @@ function injectCategories() {
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
-			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
-			slideHeaderUp();
+			slideHeaderUp(function(){
+				requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');	
+			});
 		} else if ($target.is( 'a.subCategoryLink' )){
 			var c_id, sc_id;
 			for(c_id=0; c_id < categories.length; c_id++)
@@ -362,8 +371,10 @@ function injectCategories() {
 			sc_id = getSubCategoryIndex(c_id, $target.html());
 			c_id++;
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
-			requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
-			slideHeaderUp();
+			
+			slideHeaderUp(function(){
+					requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');	
+			});
 		}
 		return false;
 	});
