@@ -1,4 +1,3 @@
-
 /*$(function(){
     $(".tabs").tabs();
     Language.es();
@@ -6,9 +5,56 @@
     //document.getElementById("themeForm").onsubmit = savePreferences;	
 });*/
 
+var myaccountShowing = false;
+
+function checkMyAccount(e){
+    if (!myaccountShowing) 
+        return;
+    var target = (e && e.target) || (event && event.srcElement);
+    var objDiv = document.getElementById("divmyaccount");
+    var objLink = document.getElementById("linkmyaccount");
+    var objSpan = document.getElementById("spanmyaccount");
+    var parent = checkParent(target, "divmyaccount");
+    if (!parent && target != objLink) {
+        objDiv.style.display = 'none';
+        objLink.className = 'lang_myaccount text_link';
+        objSpan.className = 'unclicked';
+        
+        $("#divmyaccount").hide("slide", {
+            direction: "up"
+        }, 250);
+        
+        myaccountShowing = false;
+    }
+}
+
 function showHideAccount(){
-	alert("hola");
-	return false;
+	var display = document.getElementById("divmyaccount").style.display;
+    
+    if (display == 'none' || display == '') {
+    
+        document.getElementById("linkmyaccount").className = 'lang_login text_link_clicked';
+        document.getElementById("spanmyaccount").className = 'clicked';
+        
+        $("#divmyaccount").show("slide", {
+            direction: "up"
+        }, 250);
+        
+       	myaccountShowing = true;
+    }
+    else {
+    
+        document.getElementById("divmyaccount").style.display = 'none';
+        document.getElementById("linkmyaccount").className = 'lang_login text_link';
+        document.getElementById("spanmyaccount").className = 'unclicked';
+        
+        $("#divmyaccount").hide("slide", {
+            direction: "up"
+        }, 250);
+        
+        myaccountShowing = false;
+    }
+    return false;
 }
 
 function initializeModValidator(){

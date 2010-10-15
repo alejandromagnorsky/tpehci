@@ -8,7 +8,7 @@ function checkLogin(e){
     var objDiv = document.getElementById("divlogin");
     var objLink = document.getElementById("linklogin");
     var objSpan = document.getElementById("spanlogin");
-    var parent = checkParent(target);
+    var parent = checkParent(target, "divlogin");
     if (!parent && target != objLink) {
         objDiv.style.display = 'none';
         objLink.className = 'lang_login text_link';
@@ -22,9 +22,9 @@ function checkLogin(e){
     }
 }
 
-function checkParent(t){
+function checkParent(t, parent) {
     while (t.parentNode) {
-        if (t == document.getElementById('divlogin')) 
+        if (t == document.getElementById(parent)) 
             return true;
         t = t.parentNode;
     }
@@ -91,7 +91,7 @@ function signIn(parameters){
         loginShowing = false;
 		
 		setTimeout(function(){
-            $("#spanmyaccount").css("display", "block");
+            $("#spanmyaccount").css("display", "inline");
 			$("#spanregister").css("display", "none");
 			$("#spanlogin").css("display", "none");
 			$("#welcomeuser").fadeIn(600);
