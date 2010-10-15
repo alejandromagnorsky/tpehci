@@ -160,10 +160,10 @@ function resolveSearchKeys(event) {
 		return true;
 
 	if (event.which == 13) {
-		slideHeaderUp(function(){
-			search(event);	
+		slideHeaderUp(function() {
+			search(event);
 		});
-		
+
 		return false;
 	}
 }
@@ -220,8 +220,12 @@ function showRegisterDialog() {
 
 function slideHeaderUp(callback) {
 
-	if (main != true)
+	if (main != true){
+		if (callback != undefined)
+			callback();
 		return;
+	}
+	
 
 	$("#fisheye").fadeOut(500);
 	$("#fisheyeBottom").fadeOut(500);
