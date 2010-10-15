@@ -151,7 +151,33 @@ function removeFromCart($item){
 function productDetails($link){
 	var toOpen =  $('#' + $CATALOG_ITEM_DESCRIPTION + $link.parent().attr("id"));
 	toOpen.dialog("option", "title", $link.siblings("img").attr("alt"));
+	
+	toOpen.dialog("option", "draggable", false);
 	toOpen.dialog("open");		
+	
+	var widget = toOpen.dialog("widget");
+	widget.css("margin", "auto");
+	widget.css("margin-top", "0");
+
+	widget.css("left", "0");
+	widget.css("right", "0");
+
+	widget.css("top", "30px");
+	widget.css("bottom", "0");
+	//widget.css("height", "670px");
+	//widget.css("width", "600px");
+	widget.css("text-align", "left");
+
+	widget.css("position", "absolute");
+	widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
+	widget.css("-moz-border-radius", "10px 10px 10px 10px");
+	widget.css("background-color", "transparent");
+	widget.css("background-image", "none");
+	widget.css("border", "2px solid rgba(255,255,255,0.3)");
+	
+	
+	
+	
 	return false;
 }
 

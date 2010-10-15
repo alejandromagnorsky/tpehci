@@ -148,7 +148,10 @@ function resolveAutoComplete() {
 								index++;
 							});
 
-							$("#inputsearch").autocomplete(products);
+							$("#inputsearch").autocomplete(products, {
+								matchContains : true,
+								selectFirst : false
+							});
 						}
 					}
 				};
