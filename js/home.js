@@ -92,7 +92,6 @@ function search(event) {
 
 				buildDraggables();
 				enableTabs();
-				slideHeaderUp();
 			}
 		}
 	};
@@ -161,7 +160,10 @@ function resolveSearchKeys(event) {
 		return true;
 
 	if (event.which == 13) {
-		search(event);
+		slideHeaderUp(function(){
+			search(event);	
+		});
+		
 		return false;
 	}
 }
@@ -216,7 +218,7 @@ function showRegisterDialog() {
 
 }
 
-function slideHeaderUp() {
+function slideHeaderUp(callback) {
 
 	if (main != true)
 		return;
@@ -256,6 +258,9 @@ function slideHeaderUp() {
 
 			main = false;
 			// ACA CARGA LA PAGINA
+
+			if (callback != undefined)
+				callback();
 		});
 	}, 500);
 
