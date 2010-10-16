@@ -49,58 +49,6 @@ function loadRegisterForm(){
 }
 
 
-
-function initializeRegValidator(){
-    jQuery.validator.addMethod("dateARG", function(value, element){
-        var check = false;
-        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-        if (re.test(value)) {
-            var adata = value.split('/');
-            var gg = parseInt(adata[0], 10);
-            var mm = parseInt(adata[1], 10);
-            var aaaa = parseInt(adata[2], 10);
-            var xdata = new Date(aaaa, mm - 1, gg);
-            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
-                check = true;
-            else 
-                check = false;
-        }
-        else 
-            check = false;
-        return this.optional(element) || check;
-    }, "");
-    
-    jQuery.validator.addMethod("dateUSA", function(value, element){
-        var check = false;
-        var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-        if (re.test(value)) {
-            var adata = value.split('/');
-            var mm = parseInt(adata[0], 10);
-            var gg = parseInt(adata[1], 10);
-            var aaaa = parseInt(adata[2], 10);
-            var xdata = new Date(aaaa, mm - 1, gg);
-            if ((xdata.getFullYear() == aaaa && xdata.getFullYear() < 2010) && (xdata.getMonth() == mm - 1) && (xdata.getDate() == gg)) 
-                check = true;
-            else 
-                check = false;
-        }
-        else 
-            check = false;
-        return this.optional(element) || check;
-    }, "");
-    
-    
-    
-    registerValidator = $("#registerForm").validate({
-    
-        errorElement: "div",
-        
-        submitHandler: register
-    
-    });
-}
-
-
 function getCountryList(parameters){
     var url = $COMMON + 'GetCountryList' + '&' + parameters;
     var request = new XMLHttpRequest();
@@ -213,21 +161,7 @@ function register(){
     }).responseXML;
 }
 
-function toISODate(date){
-    var adata = date.split('/');
-    var dd, mm, aaaa;
-    if (currentLang == $EN) {
-        mm = parseInt(adata[0], 10);
-        dd = parseInt(adata[1], 10);
-    }
-    else 
-        if (currentLang == $ES) {
-            dd = parseInt(adata[0], 10);
-            mm = parseInt(adata[1], 10);
-        }
-    var aaaa = parseInt(adata[2], 10);
-    return aaaa + "-" + mm + "-" + dd;
-}
+
 
 function resetRegisterForm(){
     $("#registerForm")[0].reset();
