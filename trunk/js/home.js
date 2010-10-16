@@ -22,7 +22,7 @@ function loadMain() {
 			search();
 		});
 	});
-	document.getElementById("spanlogin").onclick = showHideLogin;
+	document.getElementById("linklogin").onclick = showHideLogin;
 	document.getElementById("spanlogout").onclick = logout;
 	document.getElementById("spanpreferences").onclick = showPreferences;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
