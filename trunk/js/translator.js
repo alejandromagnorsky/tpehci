@@ -414,19 +414,19 @@ function translateSettings(){
     if (!document.getElementById("preferences")) 
         return;
 		
-    if (modifyValidator == undefined) 
-        initializeModValidator();
+    initializeModValidator();
     configureModValidator();
-    if (passwordValidator == undefined) 
-        initializePassValidator();
-    configurePassValidator();
-	$("#modifyForm")[0].reset();
-    modifyValidator.resetForm();
+    initializePassValidator();
+    configurePassValidator();	
+	$("#modifyForm")[0].reset();	
 	
     loadAccount();
+	loadPreferences();
+	
     updateText("profile", Language.profile);
     updateText("modifyData", Language.modifyData);
     updateText("headermodify", Language.headermodify);
+	updateText("username", Language.username);
     updateText("clientname", Language.clientname);
     updateText("birthday", Language.birthday);
     updateText("datereference", Language.datereference);

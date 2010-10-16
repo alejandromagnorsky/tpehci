@@ -9,6 +9,7 @@ var main;
 function loadMain() {
 
 	main = true;
+	configureValidators();
 	$("#menuCategorias").accordion();
 	
 	getCategories($LANG_QTY);

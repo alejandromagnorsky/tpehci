@@ -95,7 +95,7 @@ function updateAccount(){
 }
 
 function changePassword(){
-	 $.ajax({
+    $.ajax({
         type: "POST",
         url: "http://localhost:8080/service/Security.groovy",
         dataType: "xml",
@@ -121,8 +121,8 @@ function changePassword(){
                 widget.css("left", "670px");
                 widget.css("width", "550px");
                 widget.css("height", "100px");
-				$("#changePassForm")[0].reset();
-    			passwordValidator.resetForm();
+                $("#changePassForm")[0].reset();
+                passwordValidator.resetForm();
             }
             else {
                 alert("Error: " + $(xml).find("error").attr('message'));
@@ -149,6 +149,7 @@ function getAccount(parameters){
             $("#modify_datepicker").attr("value", toLocalDate($(response).find('birth_date').text()));
             $("#modify_email").attr("value", $(response).find('email').text());
             var out = "";
+            out += "<p class='spanprofile'><span class='lang_username'></span>: " + session.username + "</p>";
             out += "<p class='spanprofile'><span class='lang_clientname'></span>: " + $(response).find('name').text() + "</p>";
             out += "<p class='spanprofile'><span class='lang_birthday'></span>: " + toLocalDate($(response).find('birth_date').text()) + "</p>";
             out += "<p class='spanprofile'><span class='lang_email'></span>: " + $(response).find('email').text() + "</p>";
@@ -164,14 +165,18 @@ function getAccount(parameters){
 
 
 function loadPreferences(){
-    requestFromServer('GetAccountPreferences', 'username=' + username + '&authentication_token=' + authenticationToken);
+	requestFromServer('GetAccountPreferences', 'username=' + session.username + '&authentication_token=' + session.token);
+    return false;
 }
 
 function savePreferences(){
     if ($("input[value='theme1']").attr("checked") == true) 
-        requestFromServer('SetAccountPreferences', 'username=' + username + '&authentication_token=' + authenticationToken + '&value=1');
+        session.preferences.theme = $ORANGE;
     else 
-        requestFromServer('SetAccountPreferences', 'username=' + username + '&authentication_token=' + authenticationToken + '&value=2');
+        session.preferences.theme = $GOLDEN;
+    alert("Guardado: " + $.toJSON(session.preferences));
+    requestFromServer('SetAccountPreferences', 'username=' + session.username + '&authentication_token=' + session.token + '&value=' + $.toJSON(session.preferences));
+    return false;
 }
 
 function getAccountPreferences(parameters){
@@ -181,13 +186,19 @@ function getAccountPreferences(parameters){
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
-            
                 var response = request.responseXML;
-                
-                alert($(response).find('value'));
-                
-                $("input[value='theme2']").attr("checked", "checked");
-                $("input[value='theme1']").attr("checked", "");
+                if ($(response).find("response").attr('status') == 'ok') {
+					session.preferences = $.secureEvalJSON($(response).find('value').text());
+                    if( session.preferences.theme == $ORANGE ){
+						$("input[value='theme1']").attr("checked", "checked");
+                    	$("input[value='theme2']").attr("checked", "");						
+					} else {
+						$("input[value='theme2']").attr("checked", "checked");
+                    	$("input[value='theme1']").attr("checked", "");
+					}                  	              	
+                } else {
+					alert("Error: "+$(response).find("error").attr('message'))
+				}
             }
             else {
                 alert('Error: ' + request.statusText);
@@ -210,7 +221,7 @@ function setAccountPreferences(parameters){
                     alert("Se ha guardado su configuración");
             }
             else {
-                alert('Error: ' + request.statusText);
+                // alert('Error: ' + request.statusText);
             }
         }
     };
@@ -233,8 +244,8 @@ function signOut(parameters){
                 if ($(response).find("response").attr('status') == 'ok') {
                     delCookie("session", '/', '');
                     changeDivLink();
-					$("#content").html("");
-					slideHeaderDown();
+                    $("#content").html("");
+                    slideHeaderDown();
                 }
             }
             else {
@@ -247,8 +258,7 @@ function signOut(parameters){
 
 
 function showPreferences(){
-    showHideAccount();
-    
+      
     var out = "";
     out += "<div id='preferences'>";
     out += "   <div class='prefTabs'>";
@@ -260,7 +270,7 @@ function showPreferences(){
     out += "              <a class='lang_modifyData' href='#tabsData'></a>";
     out += "          </li>";
     out += "         <li>";
-    out += "             <a class='lang_personalize' href='#tabsPref'></a>";
+    out += "             <a id='toPersonalize' class='lang_personalize' href='#tabsPersonalize'></a>";
     out += "              </li>";
     out += "            </ol>";
     out += "            <div id='tabsProfile'>";
@@ -301,13 +311,13 @@ function showPreferences(){
     out += "                <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "            </div>";
     out += "        </form>";
-	out += "        <div id='changepasswarning' class='hidden lang_changepasswarning'></div>";
+    out += "        <div id='changepasswarning' class='hidden lang_changepasswarning'></div>";
     out += "        <form id='changePassForm' action=''>";
     out += "            <div id = 'changePass'>";
     out += "              <div class='lang_headerchangepass regFormHeader'>";
     out += "              </div>";
     out += "              <div class='regFormContent'>";
-	out += "                 <div class='input'>";
+    out += "                 <div class='input'>";
     out += "                      <label class='lang_currentpassword regFormLabel'>";
     out += "                      </label>";
     out += "                      <br/>";
@@ -336,7 +346,7 @@ function showPreferences(){
     out += "         </div>";
     out += "     </form>";
     out += "  </div>";
-    out += "  <div id='tabsPref'>";
+    out += "  <div id='tabsPersonalize'>";
     out += "      <form id='themeForm' action=''>";
     out += "          <p>";
     out += "              <label class='lang_selectTheme'>";
@@ -352,7 +362,9 @@ function showPreferences(){
     out += " </div>";
     $("#content").html(out);
     
+    document.getElementById("themeForm").onsubmit = savePreferences;
     $(".prefTabs").tabs();
+	showHideAccount();
     slideHeaderUp();
     translateSettings();
 }

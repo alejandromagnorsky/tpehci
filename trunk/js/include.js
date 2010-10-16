@@ -47,6 +47,8 @@ var modifyValidator;
 var passwordValidator;
 var currentTheme;
 var session;
+$ORANGE = 1;
+$GOLDEN = 2;
 /* ***************************************************************** */
 
 /* MISC ************************************************************ */
