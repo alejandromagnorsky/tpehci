@@ -55,6 +55,8 @@ function initializeContent(qty) {
 }
 
 function printProduct(marker, subCategoryID){
+	
+	
 	out = '';
 	var j = 1; // Id counter(i) and tab counter(j).
 	var name = marker.find("name").text();
@@ -63,6 +65,13 @@ function printProduct(marker, subCategoryID){
 	var c_id = marker.find("category_id").text();
 	var sc_id = marker.find("subcategory_id").text();
 	var genre = categories[c_id-1].name + ' | ' + (getSubCategoryName(sc_id-1));
+	
+	alert(sc_id);
+	alert(subCategoryID);
+	
+	if(subCategoryID != undefined)
+		if(sc_id != subCategoryID)
+			return false;
 	
 	var productResponse = getProduct(marker.attr('id'));
 	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + idIndex + c_id + sc_id + '">';
@@ -170,8 +179,10 @@ function getProductList(parameters) {
 
 				idIndex = 1;
 				
+				// To each product, send same subcategory to override filter
 				$(response).find('product').each( function(){
-					printProduct($(this), getSubCategoryName($(this).find("subcategory_id").text()-1));
+					var tmp_scid = $(this).find("subcategory_id").text();
+					printProduct($(this), tmp_scid);
 				});
 				buildDraggables();
 				enableTabs();

@@ -187,15 +187,15 @@ function productDetails($link){
 	
 	var widget = toOpen.dialog("widget");
 	widget.css("margin", "auto");
-	widget.css("margin-top", "0");
+	//widget.css("margin-top", "");
 
 	widget.css("left", "0");
 	widget.css("right", "0");
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	//widget.css("height", "670px");
-	//widget.css("width", "600px");
+	widget.css("height", "300px");
+	widget.css("width", "700px");
 	widget.css("text-align", "left");
 
 	widget.css("position", "absolute");
