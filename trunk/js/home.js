@@ -6,15 +6,22 @@ document.onclick = mouseClicked;
 
 var main;
 
+// I love Stack overflow:
+// http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
+function getURLParameter(name) {
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [
+			, null ])[1]);
+}
+
 function loadMain() {
 
 	main = true;
 	configureValidators();
 	$("#menuCategorias").accordion();
-	
+
 	getCategories($LANG_QTY);
 	getSubCategories($LANG_QTY);
-	
+
 	loadSession();
 	loadFisheye();
 	loadLanguage();
@@ -46,6 +53,20 @@ function loadMain() {
 	resolveAutoComplete();
 
 	buildCart(); // Enables cart drop zone.
+
+	parseArguments();
+}
+
+function parseArguments() {
+
+	var product = getURLParameter("product");
+	
+	if (product != "null") {
+		$("#inputsearch").val(product);
+		slideHeaderUp(function() {
+			search(null);
+		});
+	}
 }
 
 function ignoreFormEnter(event) {
@@ -56,17 +77,16 @@ function ignoreFormEnter(event) {
 }
 
 function search(event) {
-	
 
 	showLoadingDialog();
-	
-	var parameters = 'criteria=' + $("#inputsearch").val();
 
+	var parameters = 'criteria=' + $("#inputsearch").val();
+	
 	var subCategoryIndex = $("#categoryCBox").val();
 
 	var request = new XMLHttpRequest();
 	var url = $CATALOG + 'GetProductListByName' + '&' + parameters;
-
+	
 	request.open('GET', url, true);
 	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
@@ -89,7 +109,6 @@ function search(event) {
 				$('div.product').html(out);
 
 				idIndex = 1;
-				
 
 				$(response)
 						.find('product')
@@ -210,9 +229,9 @@ function showLoadingDialog() {
 		draggable : false,
 		closeOnEscape : false
 	});
-	
+
 	$('.loadingClass div.ui-dialog-titlebar').hide();
-	
+
 	$('.loadingClass div.ui-dialog-titlebar').hide();
 
 	var widget = $("#divLoading").dialog("widget");
@@ -234,7 +253,7 @@ function showLoadingDialog() {
 	widget.css("border", "none");
 }
 
-function hideLoadingDialog(){
+function hideLoadingDialog() {
 	$("#divLoading").dialog("destroy");
 }
 

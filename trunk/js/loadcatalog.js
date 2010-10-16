@@ -124,12 +124,18 @@ function printProduct(marker, subCategoryID){
 		out +=						'<span class="detailTitle">ISBN 13:  </span> ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
 		out +=						'<span class="detailTitle">Language:  </span> ' + ($(productResponse).find("language").text()) + '<br/>';
 	}
+	
+	
+	out += '<a class="fbSharer" href="#">Share on Facebook!</a>';
+	
+	
 	out +=						'</div>';
 	out +=						'<div class="divPrice">';
 	out +=							'<p class="detailsPrice">Precio: $' + price + '</p>';
 	out +=							'<div id="addtocart"> ADD TO CART </div>';
 	out +=						'</div>';
-	out +=						'http://www.facebook.com/sharer.php?u=http://google.com&t=<title of content>';
+
+	
 	out +=					'</div>';
 	out +=			'</div>';
 	out +=	'</div>';
@@ -159,6 +165,24 @@ function printProduct(marker, subCategoryID){
 	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON_CART + '"></a>';
 	out +=	'</' + $CATALOG_ITEM + '>';
 	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
+	
+	
+
+	$(".fbSharer").click(function(){
+		
+		var url = window.location.href;
+		
+		if( url.charAt(url.length-1) == '#' )
+			url = url.substring(0,url.length-1);
+		
+		var longUrl = url + "?product=" + name + "&t=Thor DVD's and Books";
+
+		window.open("http://www.facebook.com/sharer.php?u=" + longUrl,"Share Thor on Facebook!",
+		"menubar=no,width=630,height=300,toolbar=no");
+		
+		return false;
+	});
+			
 
 }
 
@@ -312,24 +336,23 @@ function injectCategories() {
 			out +=	'<a class="subCategoryLink parentCategory' + (i+1) + '" href="#">' + categories[currentLang-1][i].subcategories[j].name + '</a>';
 		out +=	'</div>';
 	}
-	out += '<div class="footerBlock">';
-	out += '<a class="fbSharer" href="#" > Share us on Facebook!</a>';
-	out += '</div>';
+	
+
+	// This random thing is a hack to prevent facebook from loading the description from its cache.
+	var randomArg = Math.floor(Math.random()*100000);
+	var url = window.location.href;
+	
+	if( url.charAt(url.length-1) == '#' )
+		url = url.substring(0,url.length-1);
+	
+	var longUrl = url + "?tmp=" + randomArg + "&t=Thor DVD's and Books";
+	
+	
+	out += '<a name="fb_share" type="button" share_url="'+ longUrl + '"></a>';
+	
 	
 	$("#footerInfo").html(out);
 	
-	$(".fbSharer").click(function(){
-		
-		var randomArg = Math.floor(Math.random()*10000);
-		var url = window.location.href;
-		
-		if( url.charAt(url.length-1) == '#' )
-			url = url.substring(0,url.length-1);
-		
-		
-		window.open("http://www.facebook.com/sharer.php?u=" + url + "?tmp=" + randomArg + "&t=Hola","Share Thor on Facebook!",
-		"menubar=no,width=630,height=300,toolbar=no");
-	});
 	
 	// Event delegation for categories in '.categoryBlock'.
 	$( '.categoryBlock' ).click(function( event ) {
