@@ -4,10 +4,11 @@
 window.onload = loadMain;
 document.onclick = mouseClicked;
 
+
 var main;
 
 function loadMain() {
-
+	
 	main = true;
 	$("#menuCategorias").accordion();
 
