@@ -10,7 +10,10 @@ function loadMain() {
 
 	main = true;
 	$("#menuCategorias").accordion();
-
+	
+	getCategories($LANG_QTY);
+	getSubCategories($LANG_QTY);
+	
 	loadSession();
 	loadFisheye();
 	loadLanguage();
@@ -42,7 +45,6 @@ function loadMain() {
 	resolveAutoComplete();
 
 	buildCart(); // Enables cart drop zone.
-	// loadShoppingCart();
 }
 
 function ignoreFormEnter(event) {
@@ -386,20 +388,6 @@ function loadLanguage() {
 		Language.en();
 	else
 		Language.es();
-}
-
-function loadShoppingCart() {
-	var cookie = getCookie("cart");
-	var shoppingCart;
-	if (cookie) {
-		shoppingCart = $.secureEvalJSON(cookie);
-		alert(shoppingCart);
-		$("#cart").html(shoppingCart);
-	}// else {
-	// shoppingCart = $("#cart");
-	// alert(shoppingCart.html());
-	// // setCookie("cart", $.toJSON(shoppingCart), undefined, '/', '', false);
-	// }
 }
 
 function loadSession() {

@@ -129,10 +129,11 @@ function buildCartItem(item){
 			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		} else if ( $target.is( 'a.' + $ICON_MINUS ) ) {
 			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) - 1;
-			if (qty <= 0)
+			if (qty <= 0) {
 				removeFromCart($(this));
-			else
-				addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
+			} else {
+				addedItem.find('span.' + $CATALOG_ITEM_QUANTITY).text(qty);
+			}
 			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		}
 		return false;
@@ -168,8 +169,8 @@ function addToCart($item){
 			itemToAdd.animate({ width: $CART_ITEM_WIDTH });
 			itemToAdd.children("img").animate({ height: $CART_ITEM_HEIGHT });;
 		});*/
-		setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 	}
+	setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 }
 
 /* Removes an element from the cart. */
