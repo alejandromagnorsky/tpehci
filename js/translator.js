@@ -34,7 +34,7 @@ Language.es = function(){
     Language.emailreqwarning = "Introduzca una dirección de correo electrónico";
     Language.emailwarning = "Su dirección de correo electrónico debe ser de la forma nombre@dominio.com";
     Language.mandatorydata = "*Datos obligatorios";
-	Language.registerOK = "Se ha completado de forma exitosa la registración.";
+	Language.registerOK = "La registración se ha completado de forma exitosa";
     Language.accept = "Aceptar";
     Language.cancel = "Cancelar";
     
@@ -48,8 +48,8 @@ Language.es = function(){
     Language.modifyData = "Modificar información";
 	Language.createddate = "Fecha de creación";
 	Language.lastlogindate = "Última vez que inició sesión";
-	Language.modifyData = "Modificar información";
     Language.headermodify = "Cambiar información personal";
+	Language.modifydatawarning = "Sus datos han sido modificados de forma exitosa";
     Language.headerchangepass = "Cambiar la contraseña";
     Language.newpassword = "Nueva contraseña";
     Language.confirmnewpassword = "Confirmar nueva contraseña";
@@ -200,7 +200,7 @@ Language.en = function(){
     Language.emailreqwarning = "Enter an e-mail";
     Language.emailwarning = "Your email address must be in the format of name@domain.com";
     Language.mandatorydata = "*Must be filled";
-	Language.registerOK = "The registration has completed succesfully."
+	Language.registerOK = "The registration has completed succesfully"
     Language.accept = "Accept";
     Language.cancel = "Cancel";
     
@@ -212,6 +212,7 @@ Language.en = function(){
 	Language.lastlogindate = "Last login date";
     Language.headermodify = "Change personal data";
     Language.headerchangepass = "Change password";
+	Language.modifydatawarning = "Your data has been modified succesfully";
     Language.newpassword = "New password";
     Language.confirmnewpassword = "Confirm new password";
     Language.personalize = "Personalize";
@@ -516,6 +517,7 @@ function translateSettings(){
 	updateText("lastlogindate", Language.lastlogindate);
 	updateButton("accept", Language.accept);
     updateText("headerchangepass", Language.headerchangepass);
+	updateText("modifydatawarning", Language.modifydatawarning);
     updateText("newpassword", Language.newpassword);
     updateText("confirmnewpassword", Language.confirmnewpassword);
     updateText("personalize", Language.personalize);
