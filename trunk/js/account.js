@@ -298,7 +298,7 @@ function showPreferences(){
     out += "          </div>";
     out += "           <div>";
     out += "               <br/>";
-    out += "                <input id='buttonOK' class='lang_accept' type='submit' value='' />";
+    out += "                <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "            </div>";
     out += "        </form>";
 	out += "        <div id='changepasswarning' class='hidden lang_changepasswarning'></div>";
@@ -332,7 +332,7 @@ function showPreferences(){
     out += "        </div>";
     out += "        <div>";
     out += "            <br/>";
-    out += "             <input id='buttonOK' class='lang_accept' type='submit' value='' />";
+    out += "             <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "         </div>";
     out += "     </form>";
     out += "  </div>";
