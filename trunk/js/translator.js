@@ -62,7 +62,7 @@ Language.es = function(){
     
     
     //Footer
-    Language.copyright = "Todos los derechos reservados.";
+    Language.copyright = "Thor - Todos los derechos reservados &copy;";
     /*
      
      //Menu:
@@ -230,7 +230,7 @@ Language.en = function(){
     
     
     //Footer:
-    Language.copyright = "All rights reserved.";
+    Language.copyright = "Thor - All rights reserved &copy;";
     /*
      //Topper:
      Language.go = "Go!";
@@ -411,123 +411,6 @@ function updateText(name, text){
 function updateButton(name, text){
     var currentTag = $(".lang_" + name);
     currentTag.attr("value", text);
-}
-
-function configureRegValidator(){
-    if (currentLang == $EN) 
-        registerValidator.settings.rules = {
-            name: "required",
-            birthday: {
-                required: true,
-                dateUSA: true
-            },
-            country: "required",
-            username: "required",
-            password: {
-                required: true,
-                minlength: 8
-            },
-            password_again: {
-                equalTo: "#passwordInput"
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        };
-    else 
-        if (currentLang == $ES) 
-            registerValidator.settings.rules = {
-                name: "required",
-                birthday: {
-                    required: true,
-                    dateARG: true
-                },
-                country: "required",
-                username: "required",
-                password: {
-                    required: true,
-                    minlength: 8
-                },
-                password_again: {
-                    equalTo: "#passwordInput"
-                },
-                email: {
-                    required: true,
-                    email: true
-                }
-            };
-    
-    registerValidator.settings.messages = {
-        name: Language.clientnamewarning,
-        birthday: Language.birthdaywarning,
-        country: Language.countrywarning,
-        username: Language.usernamewarning,
-        password: Language.passwordwarning,
-        password_again: Language.passwordagainwarning,
-        email: {
-            required: Language.emailreqwarning,
-            email: Language.emailwarning
-        }
-    };
-}
-
-function configureModValidator(){
-    if (currentLang == $EN) 
-        modifyValidator.settings.rules = {
-            name: "required",
-            birthday: {
-                required: true,
-                dateUSA: true
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        };
-    else 
-        if (currentLang == $ES) 
-            modifyValidator.settings.rules = {
-                name: "required",
-                birthday: {
-                    required: true,
-                    dateARG: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                }
-            };
-    
-    modifyValidator.settings.messages = {
-        name: Language.clientnamewarning,
-        birthday: Language.birthdaywarning,
-        email: {
-            required: Language.emailreqwarning,
-            email: Language.emailwarning
-        }
-    };
-}
-
-function configurePassValidator(){
-	passwordValidator.settings.rules = {
-        currentpassword: {
-            checkCurrent: session.password
-        },
-        password: {
-            required: true,
-            minlength: 8
-        },
-        password_again: {
-            equalTo: "#modify_passwordInput"
-        }
-    };   
-    
-    passwordValidator.settings.messages = {
-		currentpassword: Language.currentpasswordwarning,
-        password: Language.passwordwarning,
-        password_again: Language.passwordagainwarning
-    };
 }
 
 function translateSettings(){

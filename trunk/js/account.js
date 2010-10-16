@@ -55,34 +55,6 @@ function showHideAccount(){
     return false;
 }
 
-function initializeModValidator(){
-    modifyValidator = $("#modifyForm").validate({
-    
-        errorElement: "div",
-        
-        submitHandler: updateAccount
-    });
-}
-
-function initializePassValidator(){
-	 jQuery.validator.addMethod("checkCurrent", function(value, element){
-        var check;
-        if (value == session.password) {
-            check = true;
-        }
-        else 
-            check = false;
-        return this.optional(element) || check;
-    }, "");
-	
-	
-    passwordValidator = $("#changePassForm").validate({
-    
-        errorElement: "div",
-        
-        submitHandler: changePassword
-    });
-}
 
 function updateAccount(){
     var msg = XMLGenerator("account", ["name", "email", "birth_date"], [$("#modify_clientname").val(), $("#modify_email").val(), toISODate($("#modify_datepicker").val())]);
