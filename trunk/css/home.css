@@ -8,6 +8,17 @@ body {
     background-repeat: repeat-x;
 }
 
+#divLoading{
+	display: none;
+	color: #eee !important;
+	font-size: 15pt;
+	font-weight: bold;
+	font-family: verdana;
+	background-image: url(./images/inicio/lines.png);
+	background-color: #ff9f16;
+	position: absolute;
+} 
+
 #header {
     position: static;
     text-align: left;

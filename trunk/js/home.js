@@ -4,11 +4,10 @@
 window.onload = loadMain;
 document.onclick = mouseClicked;
 
-
 var main;
 
 function loadMain() {
-	
+
 	main = true;
 	$("#menuCategorias").accordion();
 
@@ -54,6 +53,10 @@ function ignoreFormEnter(event) {
 }
 
 function search(event) {
+	
+
+	showLoadingDialog();
+	
 	var parameters = 'criteria=' + $("#inputsearch").val();
 
 	var subCategoryIndex = $("#categoryCBox").val();
@@ -68,13 +71,9 @@ function search(event) {
 				var response = request.responseXML;
 
 				var i = 1, j = 1; // Id counter(i) and tab counter(j).
-				var qty = 0;
-				$(response).find('product').each(function() {
-					qty++;
-				});
 
 				/* Resize content */
-				initializeContent(qty);
+				initializeContent();
 
 				$('div.product').html("");
 
@@ -87,6 +86,7 @@ function search(event) {
 				$('div.product').html(out);
 
 				idIndex = 1;
+				
 
 				$(response)
 						.find('product')
@@ -103,9 +103,10 @@ function search(event) {
 					$('div.product')
 							.html(
 									"<h3>No se encontró ningun producto. Por favor, vuelva a buscar.</h3>");
-
 				buildDraggables();
 				enableTabs();
+
+				hideLoadingDialog();
 			}
 		}
 	};
@@ -193,6 +194,45 @@ function clearSearchData() {
 function mouseClicked(e) {
 	checkLogin(e);
 	checkMyAccount(e);
+}
+
+function showLoadingDialog() {
+	$("#divLoading").dialog( {
+		close : function() {
+			return false;
+		},
+		"modal" : "true",
+		"resizable" : "false",
+		dialogClass : "loadingClass",
+		draggable : false,
+		closeOnEscape : false
+	});
+	
+	$('.loadingClass div.ui-dialog-titlebar').hide();
+	
+	$('.loadingClass div.ui-dialog-titlebar').hide();
+
+	var widget = $("#divLoading").dialog("widget");
+	widget.css("margin", "auto");
+
+	widget.css("left", "0");
+	widget.css("right", "0");
+
+	widget.css("top", "30px");
+	widget.css("bottom", "0");
+	widget.css("height", "50px");
+	widget.css("width", "200px");
+	widget.css("text-align", "left");
+
+	widget.css("position", "absolute");
+	widget.css("background-color", "transparent");
+	widget.css("background-image", "none");
+	widget.css("color", "#fff");
+	widget.css("border", "none");
+}
+
+function hideLoadingDialog(){
+	$("#divLoading").dialog("destroy");
 }
 
 function showRegisterDialog() {
