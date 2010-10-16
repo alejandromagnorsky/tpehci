@@ -123,6 +123,7 @@ function printProduct(marker, subCategoryID){
 	out +=							'<p class="detailsPrice">Precio: $' + price + '</p>';
 	out +=							'<div id="addtocart"> ADD TO CART </div>';
 	out +=						'</div>';
+	out +=						'http://www.facebook.com/sharer.php?u=http://google.com&t=<title of content>';
 	out +=					'</div>';
 	out +=			'</div>';
 	out +=	'</div>';
@@ -305,7 +306,24 @@ function injectCategories() {
 			out +=	'<a class="subCategoryLink parentCategory' + (i+1) + '" href="#">' + categories[currentLang-1][i].subcategories[j].name + '</a>';
 		out +=	'</div>';
 	}
+	out += '<div class="footerBlock">';
+	out += '<a class="fbSharer" href="#" > Share us on Facebook!</a>';
+	out += '</div>';
+	
 	$("#footerInfo").html(out);
+	
+	$(".fbSharer").click(function(){
+		
+		var randomArg = Math.floor(Math.random()*10000);
+		var url = window.location.href;
+		
+		if( url.charAt(url.length-1) == '#' )
+			url = url.substring(0,url.length-1);
+		
+		
+		window.open("http://www.facebook.com/sharer.php?u=" + url + "?tmp=" + randomArg + "&t=Hola","Share Thor on Facebook!",
+		"menubar=no,width=630,height=300,toolbar=no");
+	});
 	
 	// Event delegation for categories in '.categoryBlock'.
 	$( '.categoryBlock' ).click(function( event ) {
