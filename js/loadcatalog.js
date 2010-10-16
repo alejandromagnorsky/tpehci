@@ -45,6 +45,12 @@ function requestFromServer(method, parameters) {
 	case 'GetAccount':
 		getAccount(parameters);
 		break;
+	case 'SetAccountPreferences':
+		setAccountPreferences(parameters);
+		break;
+	case 'GetAccountPreferences':
+		getAccountPreferences(parameters);
+		break;
 	default:
 		alert("Invalid method");
 	}

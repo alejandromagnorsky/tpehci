@@ -1,4 +1,4 @@
-$(function(){
+function configureValidators(){
     jQuery.validator.addMethod("dateARG", function(value, element){
         var check = false;
         var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
@@ -47,7 +47,7 @@ $(function(){
         return this.optional(element) || check;
     }, "");
 	
-});
+}
 
 
 
