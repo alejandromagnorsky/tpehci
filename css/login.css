@@ -75,7 +75,8 @@
 	background: url(images/toggle_up_dark.png) no-repeat scroll left center;
 }
 
-#linklogin, #linkmyaccount {
+#linklogin {
+	padding: 14px 8px 14px 14px;
 	text-decoration: none;
 }
 
