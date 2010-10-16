@@ -56,7 +56,6 @@ function initializeContent(qty) {
 
 function printProduct(marker, subCategoryID){
 	
-	
 	out = '';
 	var j = 1; // Id counter(i) and tab counter(j).
 	var name = marker.find("name").text();
@@ -66,9 +65,6 @@ function printProduct(marker, subCategoryID){
 	var sc_id = marker.find("subcategory_id").text();
 	var genre = categories[c_id-1].name + ' | ' + (getSubCategoryName(sc_id-1));
 	
-	alert(sc_id);
-	alert(subCategoryID);
-	
 	if(subCategoryID != undefined)
 		if(sc_id != subCategoryID)
 			return false;
@@ -77,60 +73,47 @@ function printProduct(marker, subCategoryID){
 	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + idIndex + c_id + sc_id + '">';
 	out +=  	'<div class="productBg"/>';
 	out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-	out +=		'<div id="description' + idIndex++ + c_id + sc_id + '" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
-	out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="image"></img>';
-	out +=			'<div class="tabs">';
-	out +=				'<ol><li><a href="#tabs-' + j + c_id + sc_id + '">Detalles</a></li>';
-	out +=				'<li><a href="#tabs-' + (j + 1) + c_id + sc_id + '">Sinopsis</a></li></ol>';
-	out +=				'<div id="tabs-' + j++ + c_id + sc_id + '">';
-	out +=					'<div id="details">';
-	out +=						'<div class="divPrice">';
-	out +=							'<p class="spanPrice">Precio por unidad: $' + price + '</p>';
-	out +=							'<input id="addtocart" type="button" value=""/>';
+	out +=		'<div id="description' + idIndex++ + c_id + sc_id + '" style="height: 100%;" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
+	out += 		'<div class="descriptionWrapper">';
+	out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="descImage"></img>';
+	out += 			'<div class="imgWrapperBig"/>';
+	out +=					'<div class="details">';
+	out +=						'<div class="name">' + name + '<br /></div>';
+	out +=					'<span class="detailTitle">Rank:</span> ' + ($(productResponse).find("sales_rank").text()) + '<br />';
+	out +=						'<div class="autor">';
+	out +=							'<span class="detailTitle">Genre:</span> ' + genre + '<br/>';
+	if (c_id == 1)
+		out +=						'<span class="detailTitle">Cast:</span> ' + ($(productResponse).find("actors").text()) + '<br/>';
 	out +=						'</div>';
-	out +=					'<div class="name">' + name + '<br /></div>';
-	if (c_id == 1)
-		out +=				'<div class="salesRank">' + ($(productResponse).find("sales_rank").text()) + '<br /></div>';
-	out +=					'<div class="autor">';
-	out +=						'Genre: ' + genre + '<br/>';
-	out +=						'MPAA Rating: RATING' + '<br/>';
-	out +=						'Director: Dario Argento<br/>';
-	if (c_id == 1)
-		out +=					'Cast: ' + ($(productResponse).find("actors").text()) + '<br/>';
-	out +=					'</div>';
-	out +=					'<div class="category">';
+	out +=						'<div class="detailsDetails">';
 	if (c_id == 1){
-		out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
-		out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
-		out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
-		out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
-		out +=					'Format: ' + ($(productResponse).find("format").text()) + '<br/>';
-		out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
-		out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
-		out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Spoken language: </span> ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Subtitles:  </span> ' + ($(productResponse).find("subtitles").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Total runtime:  </span> ' + ($(productResponse).find("run_time").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Release date: </span>  ' + ($(productResponse).find("release_date").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Format: </span>  ' + ($(productResponse).find("format").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Aspect ratio:  </span> ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Number of discs: </span>  ' + ($(productResponse).find("number_discs").text()) + '<br/>';
+		out +=						'<span class="detailTitle">ASIN: </span>  ' + ($(productResponse).find("ASIN").text()) + '<br/>';
 	} else if( c_id == 2 ){
-		out +=					'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
-		out +=					'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
-		out +=					'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
-		out +=					'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
-		out +=					'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
-		out +=					'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Authors:  </span> ' + ($(productResponse).find("authors").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Publisher: </span>  ' + ($(productResponse).find("publisher").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Published Date:  </span> ' + ($(productResponse).find("published_date").text()) + '<br/>';
+		out +=						'<span class="detailTitle">ISBN 10:  </span> ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
+		out +=						'<span class="detailTitle">ISBN 13:  </span> ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
+		out +=						'<span class="detailTitle">Language:  </span> ' + ($(productResponse).find("language").text()) + '<br/>';
 	}
+	out +=						'</div>';
+	out +=						'<div class="divPrice">';
+	out +=							'<p class="detailsPrice">Precio: $' + price + '</p>';
+	out +=							'<div id="addtocart"> ADD TO CART </div>';
+	out +=						'</div>';
 	out +=					'</div>';
-	out +=				'</div>';
 	out +=			'</div>';
-	out +=			'<div id="tabs-' + j++ + c_id + sc_id + '">';
-	out +=				'<div class="sinopsis">';
-	out +=					'A young American dancer travels to Europe to join a famous ballet school. As she arrives,';
-	out +=					'the camera turns to another young woman, who appears to be fleeing from the school. She returns ';
-	out +=					'to her apartment where she is gruesomely murdered by a hideous creature. Meanwhile, the young ';
-	out +=					'American is trying to settle in at the ballet school, but hears strange noises and is troubled ';
-	out +=					'by bizarre occurrences. She eventually discovers that the school is merely a front for a much more ';
-	out +=					'sinister organization.';
-	out +=				'</div>';
-	out +=			'</div>';
-	out +=		'</div>';
 	out +=	'</div>';
+	
+	
+	
 	out +=  '<div class="imgDragger"/>';
 	out += '<div class="cartFeedback"> Added to cart! </div>';
 	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
@@ -150,7 +133,7 @@ function printProduct(marker, subCategoryID){
 		
 	out += ' </div>';
 	out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-	out +=	'<a href="description.html" title="Full product details" class="' + $ICON_INFO + '"></a>';
+	out +=	'<a href="#" title="Full product details" class="' + $ICON_INFO + '"></a>';
 	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON_CART + '"></a>';
 	out +=	'</' + $CATALOG_ITEM + '>';
 	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);

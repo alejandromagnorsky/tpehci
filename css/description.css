@@ -1,58 +1,116 @@
-.image {
-	float:left;
-	border: solid;
-	border-width: 1px;
+.details {
+    position: absolute;
+    top: 10px;
+    left: 200px;
+    height: 305px;
+    width: 450px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 9pt;
+    font-family: verdana;
+    border: 1px dashed #888;
+    padding-left: 10px;
 }
 
-.tabs{
-	float:right;
-	width: 700px;
-	position: static;
+.detailTitle {
+    font-size: 10pt;
+    color: #e8750c;
+    font-weight: bold;
+}
+
+/* Sometimes JQuery can be a b*tch */
+.description {
+    width: 300px;
+    height: 540px !important;
+    background-image: url(./images/inicio/bg.png) !important;
+    background-repeat: repeat-x;
+    background-color: #000;
+    overflow: hidden !important;
+}
+
+.image {
+    float: left;
+    border: solid;
+    border-width: 1px;
+}
+
+.tabs {
+    float: right;
+    width: 700px;
+    position: static;
 }
 
 .name {
-	font-size: 18px;
-	font-weight: bold;
-	padding-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 8px;
 }
 
 .autor {
-	font-size: 15px;
-	font-style: italic;
-	padding-bottom: 6px;
+    font-size: 15px;
+    font-style: italic;
+    padding-bottom: 6px;
 }
 
-.category {
-	font-size: 14px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+.detailsDetails {
+    font-size: 9pt;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .hide {
-	display: none;
+    display: none;
 }
 
 .divPrice {
-	float:right;
-	text-align:right;
+    position: absolute;
+    top: 50px;
+    left: 475px;
+    height: 100px;
+    width: 250px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #CD0A0A;
 }
 
 .spanPrice {
-	font-weight: bold;
-	font-size: 18px;
-	color: #CD0A0A;
+    font-weight: bold;
+    font-size: 18px;
+    color: #CD0A0A;
+}
+
+.descImage{
+	z-index: 5;
+	position: absolute;
+	left: 11px;
+	top: 10px;
+	
+}
+
+.imgWrapperBig {
+	z-index: 1;
+	height: 376px;
+	width: 195px;
+	position: absolute;
+	left: 0;
+	top: 0;
+    background-image: url(../css/images/inicio/imgWrapperBig.png);
 }
 
 #addtocart {
-	margin-top: 60px;
-	margin-bottom: 10px;
-	width: 268px;
-	height: 46px;
-	background: url(../css/images/cart.png)  no-repeat right center;
+	position: absolute;
+	left: -20px;
+	vertical-align: middle;
+    width: 192px;
+    height: 174px;
+	font-size: 11pt;
+	padding-left: 24px;
+	padding-top: 25px;
+	color: #fff;
+    background: url(../css/images/inicio/addToCart.png) no-repeat;
 }
 
-
 .sinopsis {
-	font-size:15px;
-	font-family:Times;
+    font-size: 15px;
+    font-family: Times;
 }

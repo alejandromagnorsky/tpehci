@@ -1,7 +1,7 @@
 var products;
 
 function enableTabs(){	
-	$('.tabs').tabs();	
+	//$('.tabs').tabs();	
 }
 
 /* Injects cart tag and makes it droppable */
@@ -54,7 +54,7 @@ function buildCart(){
 
 function buildDraggables(){
 	products = $('#' + $CATALOG_CONTAINER_ID);
-		
+	
 	// Instantiates dialog windows for every product 
 	$('.' + $CATALOG_ITEM_DESCRIPTION, $CATALOG_ITEM).dialog({
 			autoOpen: false, 
@@ -62,7 +62,7 @@ function buildDraggables(){
 			resizable: false,
 			modal: true
 	});
-	
+
     // Products are draggable. 
     $( $CATALOG_ITEM, products ).draggable({
         cancel: 'a.' + $ICON,	// Clicking an icon won't start dragging.
@@ -194,14 +194,15 @@ function productDetails($link){
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "300px");
-	widget.css("width", "700px");
+	widget.css("height", "390px");
+	widget.css("width", "850px");
 	widget.css("text-align", "left");
+	widget.css("overflow", "hidden");
 
 	widget.css("position", "absolute");
+	widget.css("padding", "0");
 	widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
 	widget.css("-moz-border-radius", "10px 10px 10px 10px");
-	widget.css("background-color", "transparent");
 	widget.css("background-image", "none");
 	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 	

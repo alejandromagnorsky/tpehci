@@ -15,11 +15,9 @@ function loadMain() {
 	loadFisheye();
 	loadLanguage();
 
-	
-
 	$("#inputsearch").keydown(resolveSearchKeys);
 	$("#searchForm").keydown(ignoreFormEnter);
-	$("#searchButton").click(function(){
+	$("#searchButton").click(function() {
 		slideHeaderUp(function() {
 			search();
 		});
@@ -44,7 +42,7 @@ function loadMain() {
 	resolveAutoComplete();
 
 	buildCart(); // Enables cart drop zone.
-	//loadShoppingCart();
+	// loadShoppingCart();
 }
 
 function ignoreFormEnter(event) {
@@ -89,10 +87,17 @@ function search(event) {
 
 				idIndex = 1;
 
-				$(response).find('product').each(function() {
-					printProduct($(this), subCategoryIndex);
-					noMatch = false;
-				});
+				$(response)
+						.find('product')
+						.each(
+								function() {
+									var override = (subCategoryIndex == Language.allCategories);
+									if (override)
+										printProduct($(this), undefined);
+									else
+										printProduct($(this), subCategoryIndex);
+									noMatch = false;
+								});
 				if (noMatch)
 					$('div.product')
 							.html(
@@ -232,12 +237,11 @@ function showRegisterDialog() {
 
 function slideHeaderUp(callback) {
 
-	if (main != true){
+	if (main != true) {
 		if (callback != undefined)
 			callback();
 		return;
 	}
-	
 
 	$("#fisheye").fadeOut(500);
 	$("#fisheyeBottom").fadeOut(500);
@@ -343,7 +347,7 @@ function loadLanguage() {
 		Language.es();
 }
 
-function loadShoppingCart(){
+function loadShoppingCart() {
 	var cookie = getCookie("cart");
 	var shoppingCart;
 	if (cookie) {
@@ -351,26 +355,26 @@ function loadShoppingCart(){
 		alert(shoppingCart);
 		$("#cart").html(shoppingCart);
 	}// else {
-	//	shoppingCart = $("#cart");
-	//	alert(shoppingCart.html());
-	////	setCookie("cart", $.toJSON(shoppingCart), undefined, '/', '', false);
-	//}
+	// shoppingCart = $("#cart");
+	// alert(shoppingCart.html());
+	// // setCookie("cart", $.toJSON(shoppingCart), undefined, '/', '', false);
+	// }
 }
 
-function loadSession(){
-    var cookie = getCookie("session");
-    if (cookie) {
-        changeDivLink();
-        session = $.secureEvalJSON(getCookie("session"));
-    }
+function loadSession() {
+	var cookie = getCookie("session");
+	if (cookie) {
+		changeDivLink();
+		session = $.secureEvalJSON(getCookie("session"));
+	}
 }
 
-function changeDivLink(){
+function changeDivLink() {
 	if (getCookie("session")) {
 		document.getElementById("divlogin").style.display = 'none';
 		document.getElementById("linklogin").className = 'lang_login text_link';
 		document.getElementById("spanlogin").className = 'unclicked';
-		
+
 		$("#spanmyaccount").css("display", "inline");
 		$("#spanregister").css("display", "none");
 		$("#spanlogin").css("display", "none");
@@ -380,13 +384,13 @@ function changeDivLink(){
 		document.getElementById("divmyaccount").style.display = 'none';
 		document.getElementById("linkmyaccount").className = 'lang_myaccount text_link';
 		document.getElementById("spanmyaccount").className = 'unclicked';
-		
+
 		$("#divmyaccount").hide("slide", {
-            direction: "up"
-        }, 250);
-        
-        myaccountShowing = false;
-		
+			direction : "up"
+		}, 250);
+
+		myaccountShowing = false;
+
 		$("#spanmyaccount").css("display", "none");
 		$("#spanregister").css("display", "inline");
 		$("#spanlogin").css("display", "inline");
