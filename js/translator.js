@@ -386,10 +386,7 @@ function updateLanguage(){
     //Footer
     updateText("copyright", Language.copyright);
     
-    
-    requestFromServer('GetCategories', 'language_id=' + currentLang);
     injectCategories();
-    
     
     $("#menuCategorias").accordion("destroy");
     $("#menuCategorias").accordion();
