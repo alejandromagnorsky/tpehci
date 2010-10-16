@@ -4,7 +4,7 @@ Language.es = function(){
     //User panel
     Language.register = "Registrarse";
     Language.login = "Iniciar sesión";
-	Language.vieworders = "Ver órdenes";
+    Language.vieworders = "Ver órdenes";
     Language.logout = "Cerrar sesión";
     Language.settings = "Perfil y Configuración";
     Language.selectlanguage = "Idioma:";
@@ -27,14 +27,15 @@ Language.es = function(){
     Language.countryselection = "Seleccione país";
     Language.state = "Provincia";
     Language.usernamewarning = "Introduzca un nombre de usuario";
-	Language.usernametaken = "El nombre de usuario elegido no se encuentra disponible. Introduzca otro";
+    Language.usernametaken = "El nombre de usuario elegido no se encuentra disponible. Introduzca otro";
     Language.passwordwarning = "Introduzca una contraseña de al menos 8 caracteres";
     Language.confirmpassword = "Confirmar contraseña";
+    Language.passwordagainwarning = "Introduzca el mismo valor que el del campo superior";
     Language.email = "Correo electrónico";
     Language.emailreqwarning = "Introduzca una dirección de correo electrónico";
     Language.emailwarning = "Su dirección de correo electrónico debe ser de la forma nombre@dominio.com";
     Language.mandatorydata = "*Datos obligatorios";
-	Language.registerOK = "La registración se ha completado de forma exitosa";
+    Language.registerOK = "La registración se ha completado de forma exitosa";
     Language.accept = "Aceptar";
     Language.cancel = "Cancelar";
     
@@ -43,18 +44,22 @@ Language.es = function(){
     Language.search = "Buscar...";
     
     //Account
-	Language.myaccount = "Mi cuenta";
-	Language.profile = "Perfil";
-    Language.modifyData = "Modificar información";
-	Language.createddate = "Fecha de creación";
-	Language.lastlogindate = "Última vez que inició sesión";
+    Language.myaccount = "Mi cuenta";
+    Language.profile = "Perfil";
+    Language.modifyData = "Modificar datos";
+    Language.createddate = "Fecha de creación";
+    Language.lastlogindate = "Última vez que inició sesión";
     Language.headermodify = "Cambiar información personal";
-	Language.modifydatawarning = "Sus datos han sido modificados de forma exitosa";
-    Language.headerchangepass = "Cambiar la contraseña";
+    Language.modifydatawarning = "Sus datos han sido modificados de forma exitosa";
+	Language.changepasswarning = "Su contraseña ha sido modificada de forma exitosa";
+    Language.headerchangepass = "Cambiar contraseña";
     Language.newpassword = "Nueva contraseña";
+    Language.currentpassword = "Contraseña actual";
+    Language.currentpasswordwarning = "Contraseña incorrecta";
     Language.confirmnewpassword = "Confirmar nueva contraseña";
-    Language.personalize = "Personalización";
+    Language.personalize = "Personalizar";
     Language.selectTheme = "Seleccione un tema:";
+    
     
     //Footer
     Language.copyright = "Todos los derechos reservados.";
@@ -166,7 +171,7 @@ Language.en = function(){
     //User panel
     Language.register = "Register";
     Language.login = "Login";
-	Language.vieworders = "View orders";
+    Language.vieworders = "View orders";
     Language.logout = "Logout";
     Language.settings = "Profile & Settings";
     Language.selectlanguage = "Language:";
@@ -175,7 +180,7 @@ Language.en = function(){
     Language.username = "Username";
     Language.password = "Password";
     Language.loginwarning = "Invalid username or password";
-	Language.welcomeuser = "Welcome user";
+    Language.welcomeuser = "Welcome user";
     
     Language.allCategories = "All";
     Language.selectCategory = "Select category";
@@ -193,27 +198,31 @@ Language.en = function(){
     Language.countryselection = "Select country";
     Language.state = "State";
     Language.usernamewarning = "Enter a username";
-	Language.usernametaken = "The username choosed is already taken. Enter another username";
+    Language.usernametaken = "The username choosed is already taken. Enter another username";
     Language.passwordwarning = "Enter a password with at least 8 characters";
+    Language.passwordagainwarning = "Enter the same value of the field above";
     Language.confirmpassword = "Confirm password";
     Language.email = "E-mail";
     Language.emailreqwarning = "Enter an e-mail";
     Language.emailwarning = "Your email address must be in the format of name@domain.com";
     Language.mandatorydata = "*Must be filled";
-	Language.registerOK = "The registration has completed succesfully"
+    Language.registerOK = "The registration has completed succesfully"
     Language.accept = "Accept";
     Language.cancel = "Cancel";
     
     //Account
-	Language.myaccount = "My account";
-	Language.profile = "Profile";
+    Language.myaccount = "My account";
+    Language.profile = "Profile";
     Language.modifyData = "Modify data";
-	Language.createddate = "Created date";
-	Language.lastlogindate = "Last login date";
+    Language.createddate = "Created date";
+    Language.lastlogindate = "Last login date";
     Language.headermodify = "Change personal data";
     Language.headerchangepass = "Change password";
-	Language.modifydatawarning = "Your data has been modified succesfully";
+    Language.modifydatawarning = "Your data has been modified succesfully";
+	Language.changepasswarning = "Your password has been modified succesfully";
     Language.newpassword = "New password";
+    Language.currentpassword = "Current password";
+    Language.currentpasswordwarning = "Incorrect password";
     Language.confirmnewpassword = "Confirm new password";
     Language.personalize = "Personalize";
     Language.selectTheme = "Select theme:";
@@ -338,10 +347,10 @@ function updateLanguage(){
     //User panel
     updateText("register", Language.register);
     updateText("login", Language.login);
-	updateText("myaccount", Language.myaccount);
+    updateText("myaccount", Language.myaccount);
     updateText("logout", Language.logout);
     updateText("settings", Language.settings);
-	updateText("vieworders", Language.vieworders);
+    updateText("vieworders", Language.vieworders);
     updateText("selectlanguage", Language.selectlanguage);
     
     //Login
@@ -349,7 +358,7 @@ function updateLanguage(){
     updateText("password", Language.password);
     updateButton("loginsubmit", Language.login);
     updateText("loginwarning", Language.loginwarning);
-	updateText("welcomeuser", Language.welcomeuser);
+    updateText("welcomeuser", Language.welcomeuser);
     
     
     //Register
@@ -362,8 +371,8 @@ function updateLanguage(){
     updateText("confirmpassword", Language.confirmpassword);
     updateText("email", Language.email);
     updateText("mandatorydata", Language.mandatorydata);
-	updateText("registerOK", Language.registerOK);
-	updateText("usernametaken", Language.usernametaken);
+    updateText("registerOK", Language.registerOK);
+    updateText("usernametaken", Language.usernametaken);
     updateButton("accept", Language.accept);
     updateButton("cancel", Language.cancel);
     
@@ -387,10 +396,10 @@ function updateLanguage(){
     
     
     if (registerValidator == undefined) 
-    	initializeRegValidator();
+        initializeRegValidator();
     
     configureRegValidator();
-
+    
 }
 
 function updateText(name, text){
@@ -455,6 +464,7 @@ function configureRegValidator(){
         country: Language.countrywarning,
         username: Language.usernamewarning,
         password: Language.passwordwarning,
+        password_again: Language.passwordagainwarning,
         email: {
             required: Language.emailreqwarning,
             email: Language.emailwarning
@@ -499,26 +509,56 @@ function configureModValidator(){
     };
 }
 
+function configurePassValidator(){
+	passwordValidator.settings.rules = {
+        currentpassword: {
+            checkCurrent: session.password
+        },
+        password: {
+            required: true,
+            minlength: 8
+        },
+        password_again: {
+            equalTo: "#modify_passwordInput"
+        }
+    };   
+    
+    passwordValidator.settings.messages = {
+		currentpassword: Language.currentpasswordwarning,
+        password: Language.passwordwarning,
+        password_again: Language.passwordagainwarning
+    };
+}
+
 function translateSettings(){
-	if(!document.getElementById("preferences"))
-		return;
-	if (modifyValidator == undefined)
-    	initializeModValidator();
-	configureModValidator();
-	loadAccount();
-	updateText("profile", Language.profile);
-	updateText("modifyData", Language.modifyData);
+    if (!document.getElementById("preferences")) 
+        return;
+		
+    if (modifyValidator == undefined) 
+        initializeModValidator();
+    configureModValidator();
+    if (passwordValidator == undefined) 
+        initializePassValidator();
+    configurePassValidator();
+	$("#modifyForm")[0].reset();
+    modifyValidator.resetForm();
+	
+    loadAccount();
+    updateText("profile", Language.profile);
+    updateText("modifyData", Language.modifyData);
     updateText("headermodify", Language.headermodify);
-	updateText("clientname", Language.clientname);
-	updateText("birthday", Language.birthday);
-	updateText("datereference", Language.datereference);
-	updateText("email", Language.email);
-	updateText("createddate", Language.createddate);
-	updateText("lastlogindate", Language.lastlogindate);
-	updateButton("accept", Language.accept);
+    updateText("clientname", Language.clientname);
+    updateText("birthday", Language.birthday);
+    updateText("datereference", Language.datereference);
+    updateText("email", Language.email);
+    updateText("createddate", Language.createddate);
+    updateText("lastlogindate", Language.lastlogindate);
+    updateButton("accept", Language.accept);
     updateText("headerchangepass", Language.headerchangepass);
-	updateText("modifydatawarning", Language.modifydatawarning);
+    updateText("modifydatawarning", Language.modifydatawarning);
+	updateText("changepasswarning", Language.changepasswarning);
     updateText("newpassword", Language.newpassword);
+    updateText("currentpassword", Language.currentpassword);
     updateText("confirmnewpassword", Language.confirmnewpassword);
     updateText("personalize", Language.personalize);
     updateText("selectTheme", Language.selectTheme);

@@ -64,8 +64,28 @@ function initializeModValidator(){
     });
 }
 
-function updateAccount() {
-	var msg = XMLGenerator("account", ["name", "email", "birth_date"], [$("#modify_clientname").val(), $("#modify_email").val(), toISODate($("#modify_datepicker").val())]);
+function initializePassValidator(){
+	 jQuery.validator.addMethod("checkCurrent", function(value, element){
+        var check;
+        if (value == session.password) {
+            check = true;
+        }
+        else 
+            check = false;
+        return this.optional(element) || check;
+    }, "");
+	
+	
+    passwordValidator = $("#changePassForm").validate({
+    
+        errorElement: "div",
+        
+        submitHandler: changePassword
+    });
+}
+
+function updateAccount(){
+    var msg = XMLGenerator("account", ["name", "email", "birth_date"], [$("#modify_clientname").val(), $("#modify_email").val(), toISODate($("#modify_datepicker").val())]);
     
     $.ajax({
         type: "POST",
@@ -73,34 +93,73 @@ function updateAccount() {
         dataType: "xml",
         data: {
             method: "UpdateAccount",
-			username: session.username,
-			authentication_token: session.token,
+            username: session.username,
+            authentication_token: session.token,
             account: msg
         },
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
                 $("#modifydatawarning").dialog({
                     close: function(){
-                         $("#modifydatawarning").dialog("destroy");
+                        $("#modifydatawarning").dialog("destroy");
                     },
-					"modal": "true",
+                    "modal": "true",
                     "resizable": "false",
-					"title": Language.modifyData,
+                    "title": Language.modifyData,
                     draggable: false
                 });
-				var widget = $("#modifydatawarning").dialog("widget");
-				widget.css("top", "300px");
-				widget.css("left", "670px");
-				widget.css("width", "550px");
-				widget.css("height", "100px");
-				translateSettings();
+                var widget = $("#modifydatawarning").dialog("widget");
+                widget.css("top", "300px");
+                widget.css("left", "670px");
+                widget.css("width", "550px");
+                widget.css("height", "100px");
+                translateSettings();
             }
             else {
-                alert("Error: "+$(xml).find("error").attr('message'));
+                alert("Error: " + $(xml).find("error").attr('message'));
             }
         }
     }).responseXML;
 }
+
+function changePassword(){
+	 $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/service/Security.groovy",
+        dataType: "xml",
+        data: {
+            method: "ChangePassword",
+            username: session.username,
+            password: $("#modify_currentpassword").val(),
+            new_password: $("#modify_passwordInput").val()
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+                $("#changepasswarning").dialog({
+                    close: function(){
+                        $("#changepasswarning").dialog("destroy");
+                    },
+                    "modal": "true",
+                    "resizable": "false",
+                    "title": Language.headerchangepass,
+                    draggable: false
+                });
+                var widget = $("#changepasswarning").dialog("widget");
+                widget.css("top", "300px");
+                widget.css("left", "670px");
+                widget.css("width", "550px");
+                widget.css("height", "100px");
+				$("#changePassForm")[0].reset();
+    			passwordValidator.resetForm();
+            }
+            else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
+}
+
+
 
 function loadAccount(){
     requestFromServer('GetAccount', 'username=' + session.username + '&authentication_token=' + session.token);
@@ -128,7 +187,7 @@ function getAccount(parameters){
     }
     else {
         alert('Error: ' + request.statusText);
-    }    
+    }
 }
 
 
@@ -202,6 +261,8 @@ function signOut(parameters){
                 if ($(response).find("response").attr('status') == 'ok') {
                     delCookie("session", '/', '');
                     changeDivLink();
+					$("#content").html("");
+					slideHeaderDown();
                 }
             }
             else {
@@ -214,8 +275,8 @@ function signOut(parameters){
 
 
 function showPreferences(){
-	showHideAccount();
-		
+    showHideAccount();
+    
     var out = "";
     out += "<div id='preferences'>";
     out += "   <div class='prefTabs'>";
@@ -233,7 +294,7 @@ function showPreferences(){
     out += "            <div id='tabsProfile'>";
     out += "            </div>";
     out += "            <div id='tabsData'>";
-	out += "               <div id='modifydatawarning' class='hidden lang_modifydatawarning'></div>";
+    out += "               <div id='modifydatawarning' class='hidden lang_modifydatawarning'></div>";
     out += "               <form id='modifyForm' action=''>";
     out += "                  <div id = 'clientData'>";
     out += "                      <div class='lang_headermodify regFormHeader'>";
@@ -268,21 +329,29 @@ function showPreferences(){
     out += "                <input id='buttonOK' class='lang_accept' type='submit' value='' />";
     out += "            </div>";
     out += "        </form>";
+	out += "        <div id='changepasswarning' class='hidden lang_changepasswarning'></div>";
     out += "        <form id='changePassForm' action=''>";
     out += "            <div id = 'changePass'>";
-    out += "               <div class='lang_headerchangepass regFormHeader'>";
+    out += "              <div class='lang_headerchangepass regFormHeader'>";
     out += "              </div>";
     out += "              <div class='regFormContent'>";
-    out += "                  <div class='input'>";
+	out += "                 <div class='input'>";
+    out += "                      <label class='lang_currentpassword regFormLabel'>";
+    out += "                      </label>";
+    out += "                      <br/>";
+    out += "                      <input id='modify_currentpassword' name='currentpassword' type='password' size='20' maxlength='15' />";
+    out += "                      <br/>";
+    out += "                 </div>";
+    out += "                 <div class='input'>";
     out += "                      <label class='lang_newpassword regFormLabel'>";
     out += "                      </label>";
     out += "                      <br/>";
     out += "                      <input id='modify_passwordInput' name='password' type='password' size='20' maxlength='15' />";
-    out += "                     <br/>";
+    out += "                      <br/>";
     out += "                 </div>";
-    out += "                   <div class='input'>";
+    out += "                 <div class='input'>";
     out += "                    <label class='lang_confirmnewpassword regFormLabel'>";
-    out += "                     </label>";
+    out += "                    </label>";
     out += "                    <br/>";
     out += "                    <input name='password_again' type='password' size='20' maxlength='15' />";
     out += "                    <br/>";
@@ -299,9 +368,10 @@ function showPreferences(){
     out += "      <form id='themeForm' action=''>";
     out += "          <p>";
     out += "              <label class='lang_selectTheme'>";
-    out += "              </label>";
-    out += "               <input type='radio' name='theme' checked='checked' value='theme1' />Orange<input type='radio' name='theme' value='theme2' />Golden";
-    out += "             <br/>";
+    out += "              </label><br /><br />";
+    out += "               <label class='labeltheme'><input type='radio' name='theme' checked='checked' value='theme1' />Orangejuice</label><br /><br />";
+    out += "               <label class='labeltheme'><input type='radio' name='theme' value='theme2' />Goldenhammer</label>";
+    out += "               <br/>";
     out += "               <input id='account_buttonOK' class='lang_accept' type='submit' value='' />";
     out += "           </p>";
     out += "        </form>";
@@ -310,26 +380,27 @@ function showPreferences(){
     out += " </div>";
     $("#content").html(out);
     
-	$(".prefTabs").tabs();    
+    $(".prefTabs").tabs();
     slideHeaderUp();
-    translateSettings();    
+    translateSettings();
 }
 
 function toLocalDate(date){
-	var re = /^\d{4}-\d{1,2}-\d{1,2}$/;
-	if(!re.test(date))
-		return date;
-	var ans;
-	var adata = date.split('-');
+    var re = /^\d{4}-\d{1,2}-\d{1,2}$/;
+    if (!re.test(date)) 
+        return date;
+    var ans;
+    var adata = date.split('-');
     var dd, mm, aaaa;
-	aaaa = parseInt(adata[0], 10);
-	mm = parseInt(adata[1], 10);
-	dd = parseInt(adata[2], 10);
+    aaaa = parseInt(adata[0], 10);
+    mm = parseInt(adata[1], 10);
+    dd = parseInt(adata[2], 10);
     if (currentLang == $EN) {
-        ans = mm+"/"+dd+"/"+aaaa;
+        ans = mm + "/" + dd + "/" + aaaa;
     }
-    else if (currentLang == $ES) {
-    	ans = dd+"/"+mm+"/"+aaaa;
-    }
+    else 
+        if (currentLang == $ES) {
+            ans = dd + "/" + mm + "/" + aaaa;
+        }
     return ans;
 }

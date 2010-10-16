@@ -79,13 +79,13 @@ function signIn(parameters){
     request.send();
     var response = request.responseXML;
     if ($(response).find("response").attr('status') == 'ok') {
-		session = new Session($("#login_username").attr("value"), $(response).find("token").text());
+		session = new Session($("#login_username").attr("value"), $("#login_password").attr("value"), $(response).find("token").text());
 		setCookie("session", $.toJSON(session), undefined, '/', '', false);
+		
 		changeDivLink();
 		$("#divlogin").hide("slide", {
             direction: "up"
         }, 250);
-        
         loginShowing = false;
     }
     else {
@@ -95,7 +95,8 @@ function signIn(parameters){
     }
 }
 
-function Session(username, token){
+function Session(username, password, token){
 	this.username = username;
+	this.password = password;
 	this.token = token;
 }

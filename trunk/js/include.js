@@ -44,6 +44,7 @@ var registerValidator;
 
 /* ACCOUNT ********************************************************* */
 var modifyValidator;
+var passwordValidator;
 var currentTheme;
 var session;
 /* ***************************************************************** */
