@@ -53,9 +53,17 @@
 	color: #CD0A0A;
 }
 
+#spanlogout {
+	margin-right: 50px;
+}
+
+.spanprofile {
+	text-align: left;
+}
+
 #divmyaccount {
     z-index: 800;
-    width: 150px;
+    width: 220px;
 	height: 130px;
     top: 300px;
     right: 0;

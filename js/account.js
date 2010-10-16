@@ -41,7 +41,7 @@ function showHideAccount(){
         
         myaccountShowing = true;
     }
-    else {    
+    else {
         document.getElementById("divmyaccount").style.display = 'none';
         document.getElementById("linkmyaccount").className = 'lang_myaccount text_link';
         document.getElementById("spanmyaccount").className = 'unclicked';
@@ -67,29 +67,32 @@ function initializeModValidator(){
 
 
 function loadAccount(){
-    requestFromServer('GetAccount', 'username=' + username + '&authentication_token=' + authenticationToken);
+    requestFromServer('GetAccount', 'username=' + session.username + '&authentication_token=' + session.token);
 }
 
 function getAccount(parameters){
-    var url = $COMMON + 'GetAccount' + '&' + parameters;
+    var url = $SECURITY + 'GetAccount' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.onreadystatechange = function(){
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                var response = request.responseXML;
-                if ($(response).find("response").attr('status') == 'ok') {
-                    $("#modify_clientname").attr("value", "$(response).find('name').text()");
-                    $("#modify_datepicker").attr("value", "$(response).find('birth_date').text()");
-                    $("#modify_email").attr("value", "$(response).find('email').text()");
-                }
-            }
-            else {
-                alert('Error: ' + request.statusText);
-            }
-        }
-    };
+    request.open('GET', url, false);
     request.send();
+    if (request.status == 200) {
+        var response = request.responseXML;
+        if ($(response).find("response").attr('status') == 'ok') {
+            $("#modify_clientname").attr("value", $(response).find('name').text());
+            $("#modify_datepicker").attr("value", toLocalDate($(response).find('birth_date').text()));
+            $("#modify_email").attr("value", $(response).find('email').text());
+            var out = "";
+            out += "<p class='spanprofile'><span class='lang_clientname'></span>: " + $(response).find('name').text() + "</p>";
+            out += "<p class='spanprofile'><span class='lang_birthday'></span>: " + toLocalDate($(response).find('birth_date').text()) + "</p>";
+            out += "<p class='spanprofile'><span class='lang_email'></span>: " + $(response).find('email').text() + "</p>";
+            out += "<p class='spanprofile'><span class='lang_createddate'></span>: " + toLocalDate($(response).find('created_date').text()) + "</p>";
+            out += "<p class='spanprofile'><span class='lang_lastlogindate'></span>: " + toLocalDate($(response).find('last_login_date').text()) + "</p>";
+            $("#tabsProfile").html(out);
+        }
+    }
+    else {
+        alert('Error: ' + request.statusText);
+    }    
 }
 
 
@@ -180,12 +183,17 @@ function showPreferences(){
     out += "   <div class='prefTabs'>";
     out += "      <ol>";
     out += "           <li>";
+    out += "              <a class='lang_profile' href='#tabsProfile'></a>";
+    out += "          </li>";
+    out += "           <li>";
     out += "              <a class='lang_modifyData' href='#tabsData'></a>";
     out += "          </li>";
     out += "         <li>";
     out += "             <a class='lang_personalize' href='#tabsPref'></a>";
     out += "              </li>";
     out += "            </ol>";
+    out += "            <div id='tabsProfile'>";
+    out += "            </div>";
     out += "            <div id='tabsData'>";
     out += "               <form id='modifyForm' action=''>";
     out += "                  <div id = 'clientData'>";
@@ -264,7 +272,27 @@ function showPreferences(){
     $("#content").html(out);
     
     $(".prefTabs").tabs();
-	showHideAccount();
-	slideHeaderUp();
+    showHideAccount();
+    slideHeaderUp();
     translateSettings();
+    
+}
+
+function toLocalDate(date){
+	var re = /^\d{4}-\d{1,2}-\d{1,2}$/;
+	if(!re.test(date))
+		return date;
+	var ans;
+	var adata = date.split('-');
+    var dd, mm, aaaa;
+	aaaa = parseInt(adata[0], 10);
+	mm = parseInt(adata[1], 10);
+	dd = parseInt(adata[2], 10);
+    if (currentLang == $EN) {
+        ans = mm+"/"+dd+"/"+aaaa;
+    }
+    else if (currentLang == $ES) {
+    	ans = dd+"/"+mm+"/"+aaaa;
+    }
+    return ans;
 }

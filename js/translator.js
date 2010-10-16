@@ -6,7 +6,7 @@ Language.es = function(){
     Language.login = "Iniciar sesión";
 	Language.vieworders = "Ver órdenes";
     Language.logout = "Cerrar sesión";
-    Language.settings = "Configuración";
+    Language.settings = "Perfil y Configuración";
     Language.selectlanguage = "Idioma:";
     
     //Login
@@ -21,7 +21,7 @@ Language.es = function(){
     Language.clientnamewarning = "Introduzca al menos un nombre o apellido";
     Language.birthday = "Fecha de nacimiento";
     Language.birthdaywarning = "Fecha inválida";
-    Language.datereference = "dd/mm/yyyy";
+    Language.datereference = "dd/mm/aaaa";
     Language.country = "País";
     Language.countrywarning = "Debe seleccionar el país donde reside";
     Language.countryselection = "Seleccione país";
@@ -44,7 +44,11 @@ Language.es = function(){
     
     //Account
 	Language.myaccount = "Mi cuenta";
+	Language.profile = "Perfil";
     Language.modifyData = "Modificar información";
+	Language.createddate = "Fecha de creación";
+	Language.lastlogindate = "Última vez que inició sesión";
+	Language.modifyData = "Modificar información";
     Language.headermodify = "Cambiar información personal";
     Language.headerchangepass = "Cambiar la contraseña";
     Language.newpassword = "Nueva contraseña";
@@ -164,7 +168,7 @@ Language.en = function(){
     Language.login = "Login";
 	Language.vieworders = "View orders";
     Language.logout = "Logout";
-    Language.settings = "Settings";
+    Language.settings = "Profile & Settings";
     Language.selectlanguage = "Language:";
     
     //Login
@@ -202,7 +206,10 @@ Language.en = function(){
     
     //Account
 	Language.myaccount = "My account";
+	Language.profile = "Profile";
     Language.modifyData = "Modify data";
+	Language.createddate = "Created date";
+	Language.lastlogindate = "Last login date";
     Language.headermodify = "Change personal data";
     Language.headerchangepass = "Change password";
     Language.newpassword = "New password";
@@ -379,12 +386,9 @@ function updateLanguage(){
     
     
     if (registerValidator == undefined) 
-        initializeRegValidator();
-    //if (modifyValidator == undefined)
-    //	initializeModValidator();
+    	initializeRegValidator();
+    
     configureRegValidator();
-    //configureModValidator();
-
 
 }
 
@@ -495,12 +499,21 @@ function configureModValidator(){
 }
 
 function translateSettings(){
+	if(!document.getElementById("preferences"))
+		return;
+	if (modifyValidator == undefined)
+    	initializeModValidator();
+	configureModValidator();
+	loadAccount();
+	updateText("profile", Language.profile);
 	updateText("modifyData", Language.modifyData);
     updateText("headermodify", Language.headermodify);
 	updateText("clientname", Language.clientname);
 	updateText("birthday", Language.birthday);
 	updateText("datereference", Language.datereference);
 	updateText("email", Language.email);
+	updateText("createddate", Language.createddate);
+	updateText("lastlogindate", Language.lastlogindate);
 	updateButton("accept", Language.accept);
     updateText("headerchangepass", Language.headerchangepass);
     updateText("newpassword", Language.newpassword);
