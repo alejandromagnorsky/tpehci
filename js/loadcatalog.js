@@ -48,13 +48,26 @@ function requestFromServer(method, parameters) {
 	}
 }
 
-function initializeContent(qty) {
-	var height = 400 + 100 * (qty+1);
-	$("#pageWrapper").css("height", height);
-	$("#footer").css("top", height);
+var contentHeight;
+
+function incrementContentByProduct(){
+	contentHeight+=140;
+	$("#pageWrapper").css("height", contentHeight);
+	$("#footer").css("top", contentHeight);
+}
+
+// Base size
+function initializeContent() {
+	contentHeight = 400;
+	
+	$("#pageWrapper").css("height", contentHeight);
+	$("#footer").css("top", contentHeight);
 }
 
 function printProduct(marker, subCategoryID){
+	
+
+	incrementContentByProduct();
 	
 	out = '';
 	var j = 1; // Id counter(i) and tab counter(j).
@@ -137,12 +150,17 @@ function printProduct(marker, subCategoryID){
 	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON_CART + '"></a>';
 	out +=	'</' + $CATALOG_ITEM + '>';
 	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
+
 }
 
 
 
 /* Get product list by category and initializates car */
 function getProductList(parameters) {
+	
+	showLoadingDialog();
+	
+	
 	var request = new XMLHttpRequest();
 	var url = $CATALOG + 'GetProductListBy' + parameters;
 	request.open('GET', url, true);
@@ -152,9 +170,7 @@ function getProductList(parameters) {
 				var response = request.responseXML;
 
 				/* Resize content */
-				var qty = 0;
-				$(response).find('product').each(function(){ qty++; });
-				initializeContent(qty);
+				initializeContent();
 				
 				$("#content").html('<div class="product"/>');
 				var out = '<' + $ITEM_CONTAINER_TAG + ' id="' + $CATALOG_CONTAINER_ID + '" class="products helper-reset helper-clearfix"/>';
@@ -169,6 +185,7 @@ function getProductList(parameters) {
 				});
 				buildDraggables();
 				enableTabs();
+				hideLoadingDialog();
 			} else {
 				alert('Error: ' + request.statusText);
 			}
