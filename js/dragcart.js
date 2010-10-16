@@ -1,4 +1,3 @@
-/* Two main objects: products and cart. */
 var products;
 
 function enableTabs(){	
@@ -8,7 +7,6 @@ function enableTabs(){
 /* Injects cart tag and makes it droppable */
 function buildCart(){
 	var cartTag = "";
-
 	cartTag += '<div class="sidebarBg"><div id="cartHeader"> Shopping cart</div> <div class ="sidebar"><div id="cartWrapper">';
 	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '">';
 	cartTag +=		'<' + $ITEM_CONTAINER_TAG + ' class="products helper-reset"/>';
@@ -16,7 +14,36 @@ function buildCart(){
 	$('#sidebar-right').html(cartTag);
 	
 	cart = $('#' + $CART);
-	
+	var cookie = getCookie("cart");
+	if (cookie) {
+		var shoppingCart = $.secureEvalJSON(cookie);
+		$("#cart").html(shoppingCart);
+		
+		// Event delegation for cart items.
+		$('#cart').find('li').each(function (){
+			$(this).click( function(event){
+				$target = $(event.target);
+				if ( $target.is( 'a.' + $ICON_INFO ) ) {
+					productDetails($target);
+				} else if ( $target.is( 'a.' + $ICON_REMOVE ) ) {
+					removeFromCart($(this));
+					setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+				} else if ( $target.is( 'a.' + $ICON_PLUS ) ) {
+					var qty = parseInt($(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) + 1;
+					$(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
+					setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+				} else if ( $target.is( 'a.' + $ICON_MINUS ) ) {
+					var qty = parseInt($(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) - 1;
+					if (qty <= 0)
+						removeFromCart($(this));
+					else
+						$(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
+					setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+				}
+				return false;
+			});
+		})
+	}
     // Cart is the dropzone. Products can be dropped into the cart.
     cart.droppable({
         accept: '#' + $CATALOG_CONTAINER_ID + ' > ' + $CATALOG_ITEM,
@@ -95,16 +122,18 @@ function buildCartItem(item){
 			productDetails($target);
 		} else if ( $target.is( 'a.' + $ICON_REMOVE ) ) {
 			removeFromCart($(this));
+			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		} else if ( $target.is( 'a.' + $ICON_PLUS ) ) {
 			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) + 1;
 			addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
+			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		} else if ( $target.is( 'a.' + $ICON_MINUS ) ) {
 			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) - 1;
-			if (qty <= 0){
+			if (qty <= 0)
 				removeFromCart($(this));
-			} else {
+			else
 				addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
-			}
+			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		}
 		return false;
 	});
@@ -139,6 +168,7 @@ function addToCart($item){
 			itemToAdd.animate({ width: $CART_ITEM_WIDTH });
 			itemToAdd.children("img").animate({ height: $CART_ITEM_HEIGHT });;
 		});*/
+		setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 	}
 }
 
@@ -174,9 +204,6 @@ function productDetails($link){
 	widget.css("background-color", "transparent");
 	widget.css("background-image", "none");
 	widget.css("border", "2px solid rgba(255,255,255,0.3)");
-	
-	
-	
 	
 	return false;
 }
