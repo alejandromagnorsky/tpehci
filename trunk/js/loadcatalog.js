@@ -14,11 +14,6 @@ function Category(id, code, name) {
 	this.subcategories = new Array();
 }
 
-$(function() {
-	//buildCart(); // Enables cart drop zone.
-	//requestFromServer('GetProductListByCategory', 'language_id=1&category_id=1&order=ASC&items_per_page=10&page=1');
-});
-
 function requestFromServer(method, parameters) {
 	switch (method) {
 	case 'GetCategoryList':
@@ -105,12 +100,12 @@ function printProduct(marker, subCategoryID){
 		out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
 		out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
 	} else if( c_id == 2 ){
-		out +=  'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
-		out +=  'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
-		out +=  'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
-		out +=  'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
-		out +=  'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
-		out +=  'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=					'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
+		out +=					'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
+		out +=					'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
+		out +=					'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
+		out +=					'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
+		out +=					'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
 	}
 	out +=					'</div>';
 	out +=				'</div>';
@@ -138,18 +133,9 @@ function printProduct(marker, subCategoryID){
 		out +=  'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
 		out +=  'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
 		out +=  'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
-		//out +=  'ISBN 10: ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
-		//out +=  'ISBN 13: ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
-		//out +=  'Language: ' + ($(productResponse).find("language").text()) + '<br/>';
 	} else if( c_id == 1) {
-		//out +=					'Spoken language: ' + ($(productResponse).find("language").text()) + '<br/>';
-		//out +=					'Subtitles: ' + ($(productResponse).find("subtitles").text()) + '<br/>';
 		out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
 		out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
-		//out +=					'Format: ' + ($(productResponse).find("format").text()) + '<br/>';
-		//out +=					'Aspect ratio: ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
-		//out +=					'Number of discs: ' + ($(productResponse).find("number_discs").text()) + '<br/>';
-		//out +=					'ASIN: ' + ($(productResponse).find("ASIN").text()) + '<br/>';
 		out +=					'Region: ' + ($(productResponse).find("region").text()) + '<br/>';
 	}
 		
@@ -299,7 +285,7 @@ function injectCategories() {
 	}
 	$("#categorySelector").html(out);
 	
-	// Inject categories into categories menu (below search bar).
+	// Inject categories in footer.
 	out = "";
 	for (i = 0; i < categories.length; i++) {
 		out +=	'<div class="footerBlock">';
@@ -310,8 +296,7 @@ function injectCategories() {
 	}
 	$("#footerInfo").html(out);
 	
-	
-	// Event delegation for categories in '#categorySelector'.
+	// Event delegation for categories in '.categoryBlock'.
 	$( '.categoryBlock' ).click(function( event ) {
 		var $item = $(this);
 		$target = $( event.target );
@@ -331,12 +316,8 @@ function injectCategories() {
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			
 			slideHeaderUp(function(){
-				requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');	
-				
-			}
-					
-			
-			);
+				requestFromServer('GetProductList', 'Subcategory&language_id=' + currentLang + '&category_id=' + c_id + '&subcategory_id=' + sc_id + '&order=ASC&items_per_page=10&page=1');
+			});
 		}
 		return false;
 	});
@@ -397,10 +378,11 @@ function getCategoryIndex(categoryName){
 function getSubCategoryIndex(categoryId, subcategoryName){
 	var j;
 	var subcategoriesCount = 0;
+	
 	for(j = 0; j < categoryId; j++)
 		subcategoriesCount += categories[j].subcategories.length;
-	for(j = 0; j < categories[categoryId].subcategories.length; j++)
-		if (categories[categoryId].subcategories[j].name == subcategoryName)
+	for (j = 0; j < categories[categoryId].subcategories.length; j++)		
+		if ($('<textarea/>').html(categories[categoryId].subcategories[j].name).val() == subcategoryName) 
 			return subcategoriesCount + j + 1;
 	return -1;
 }

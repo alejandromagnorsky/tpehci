@@ -44,6 +44,7 @@ function loadMain() {
 	resolveAutoComplete();
 
 	buildCart(); // Enables cart drop zone.
+	//loadShoppingCart();
 }
 
 function ignoreFormEnter(event) {
@@ -342,6 +343,19 @@ function loadLanguage() {
 		Language.es();
 }
 
+function loadShoppingCart(){
+	var cookie = getCookie("cart");
+	var shoppingCart;
+	if (cookie) {
+		shoppingCart = $.secureEvalJSON(cookie);
+		alert(shoppingCart);
+		$("#cart").html(shoppingCart);
+	}// else {
+	//	shoppingCart = $("#cart");
+	//	alert(shoppingCart.html());
+	////	setCookie("cart", $.toJSON(shoppingCart), undefined, '/', '', false);
+	//}
+}
 
 function loadSession(){
     var cookie = getCookie("session");
