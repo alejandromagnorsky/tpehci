@@ -10,14 +10,12 @@ var main;
 // http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
 // Just modified it to work with the hash
 function getURLParameter(name) {
-	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.hash) || [
-			, null ])[1]);
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.hash) || [ null , null ])[1]);
 }
 
 // This one works with real argumetns "?"
 function getURLParameter2(name) {
-	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [
-			, null ])[1]);
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [ null , null ])[1]);
 }
 
 function loadMain() {
@@ -508,6 +506,7 @@ function loadSession() {
 	if (cookie) {
 		changeDivLink();
 		session = $.secureEvalJSON(getCookie("session"));
+		applyPreferences();
 	}
 }
 

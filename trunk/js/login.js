@@ -80,6 +80,8 @@ function signIn(parameters){
     var response = request.responseXML;
     if ($(response).find("response").attr('status') == 'ok') {
 		session = new Session($("#login_username").attr("value"), $("#login_password").attr("value"), $ORANGE, $(response).find("token").text());
+		loadPreferences();
+		applyPreferences();
 		setCookie("session", $.toJSON(session), undefined, '/', '', false);
 		
 		changeDivLink();
