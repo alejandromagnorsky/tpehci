@@ -165,7 +165,7 @@ function getAccount(parameters){
 
 
 function loadPreferences(){
-	requestFromServer('GetAccountPreferences', 'username=' + session.username + '&authentication_token=' + session.token);
+    requestFromServer('GetAccountPreferences', 'username=' + session.username + '&authentication_token=' + session.token);
     return false;
 }
 
@@ -174,7 +174,6 @@ function savePreferences(){
         session.preferences.theme = $ORANGE;
     else 
         session.preferences.theme = $GOLDEN;
-    alert("Guardado: " + $.toJSON(session.preferences));
     requestFromServer('SetAccountPreferences', 'username=' + session.username + '&authentication_token=' + session.token + '&value=' + $.toJSON(session.preferences));
     return false;
 }
@@ -188,17 +187,12 @@ function getAccountPreferences(parameters){
             if (request.status == 200) {
                 var response = request.responseXML;
                 if ($(response).find("response").attr('status') == 'ok') {
-					session.preferences = $.secureEvalJSON($(response).find('value').text());
-                    if( session.preferences.theme == $ORANGE ){
-						$("input[value='theme1']").attr("checked", "checked");
-                    	$("input[value='theme2']").attr("checked", "");						
-					} else {
-						$("input[value='theme2']").attr("checked", "checked");
-                    	$("input[value='theme1']").attr("checked", "");
-					}                  	              	
-                } else {
-					alert("Error: "+$(response).find("error").attr('message'))
-				}
+                    session.preferences = $.secureEvalJSON($(response).find('value').text());
+                    applyPreferences();
+                }
+                else {
+                    alert("Error: " + $(response).find("error").attr('message'))
+                }
             }
             else {
                 alert('Error: ' + request.statusText);
@@ -218,10 +212,10 @@ function setAccountPreferences(parameters){
             if (request.status == 200) {
                 var response = request.responseXML;
                 if ($(response).find("response").attr('status') == 'ok') 
-                    alert("Se ha guardado su configuración");
+                    applyPreferences();
             }
             else {
-                // alert('Error: ' + request.statusText);
+                alert('Error: ' + request.statusText);
             }
         }
     };
@@ -258,7 +252,7 @@ function signOut(parameters){
 
 
 function showPreferences(){
-      
+
     var out = "";
     out += "<div id='preferences'>";
     out += "   <div class='prefTabs'>";
@@ -364,7 +358,7 @@ function showPreferences(){
     
     document.getElementById("themeForm").onsubmit = savePreferences;
     $(".prefTabs").tabs();
-	showHideAccount();
+    showHideAccount();
     slideHeaderUp();
     translateSettings();
 }
@@ -387,4 +381,18 @@ function toLocalDate(date){
             ans = dd + "/" + mm + "/" + aaaa;
         }
     return ans;
+}
+
+
+function applyPreferences(){
+    if (session.preferences.theme == $ORANGE) {
+        $("input[value='theme1']").attr("checked", "checked");
+        $("input[value='theme2']").attr("checked", "");
+        $("#linkmyaccount").css("color", "#000000");
+    }
+    else {
+        $("input[value='theme2']").attr("checked", "checked");
+        $("input[value='theme1']").attr("checked", "");
+        $("#linkmyaccount").css("color", "#0066BB");
+    }
 }
