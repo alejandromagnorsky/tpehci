@@ -382,7 +382,6 @@ function applyPreferences() {
 
 		$("input[value='theme1']").attr("checked", "checked");
 		$("input[value='theme2']").attr("checked", "");
-		$("#linkmyaccount").css("color", "#000000");
 		
 		$("#header").css("background-color", "#ee7b0d");
 		$("#headerContent").css("background-image",

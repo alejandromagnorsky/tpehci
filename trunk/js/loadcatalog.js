@@ -72,6 +72,32 @@ function initializeContent() {
 	$("#footer").css("top", contentHeight);
 }
 
+function updateProductLanguage(){
+	
+	$(".LangSub").text(Language.subcategory);
+	
+	$(".LangActors").text(Language.actors);
+	
+	$(".LangLanguage").text(Language.language);
+	$(".LangSubtitles").text(Language.subtitles);
+	$(".LangRuntime").text(Language.runtime);
+	$(".LangRelease").text(Language.releasedate);
+	$(".LangFormat").text(Language.format);
+	
+	$(".LangAspect").text(Language.aspectratio);
+	$(".LangDiscs").text(Language.numberdiscs);
+	$(".LangASIN").text(Language.ASIN);
+	$(".LangRegion").text(Language.region);
+	
+	$(".LangAuthors").text(Language.authors);
+	$(".LangPublisher").text(Language.publisher);
+	$(".LangPubDate").text(Language.publisheddate);
+	$(".LangLanguage").text(Language.language);
+	
+	$(".LangRank").text(Language.salesrank);
+	
+}
+
 
 var sentBitly;
 
@@ -103,29 +129,30 @@ function printProduct(marker, subCategoryID){
 	out += 			'<div class="imgWrapperBig"/>';
 	out +=					'<div class="details">';
 	out +=						'<div class="name">' + name + '<br /></div>';
-	out +=					'<span class="detailTitle">Rank:</span> ' + ($(productResponse).find("sales_rank").text()) + '<br />';
+	out +=					'<span class="detailTitle LangRank">' + Language.salesrank + ':</span> ' + ($(productResponse).find("sales_rank").text()) + '<br />';
 	out +=						'<div class="autor">';
-	out +=							'<span class="detailTitle">Genre:</span> ' + genre + '<br/>';
+	out +=							'<span class="detailTitle LangSub">' + Language.subcategory + ':</span> ' + genre + '<br/>';
 	if (c_id == 1)
-		out +=						'<span class="detailTitle">Cast:</span> ' + ($(productResponse).find("actors").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangActors">' + Language.actors + ':</span> ' + ($(productResponse).find("actors").text()) + '<br/>';
 	out +=						'</div>';
 	out +=						'<div class="detailsDetails">';
 	if (c_id == 1){
-		out +=						'<span class="detailTitle">Spoken language: </span> ' + ($(productResponse).find("language").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Subtitles:  </span> ' + ($(productResponse).find("subtitles").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Total runtime:  </span> ' + ($(productResponse).find("run_time").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Release date: </span>  ' + ($(productResponse).find("release_date").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Format: </span>  ' + ($(productResponse).find("format").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Aspect ratio:  </span> ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Number of discs: </span>  ' + ($(productResponse).find("number_discs").text()) + '<br/>';
-		out +=						'<span class="detailTitle">ASIN: </span>  ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangLanguage">' + Language.language +':</span> ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangSubtitles">' + Language.subtitles +':  </span> ' + ($(productResponse).find("subtitles").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangRuntime">' + Language.runtime + ':  </span> ' + ($(productResponse).find("run_time").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangRelease">' + Language.releasedate + ': </span>  ' + ($(productResponse).find("release_date").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangFormat">' + Language.format + ': </span>  ' + ($(productResponse).find("format").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangAspect">' + Language.aspectratio + ':  </span> ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangDiscs">' + Language.numberdiscs + ': </span>  ' + ($(productResponse).find("number_discs").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangASIN">' + Language.ASIN + ': </span>  ' + ($(productResponse).find("ASIN").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangRegion">' + Language.region + ': </span>  ' + ($(productResponse).find("ASIN").text()) + '<br/>';
 	} else if( c_id == 2 ){
-		out +=						'<span class="detailTitle">Authors:  </span> ' + ($(productResponse).find("authors").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Publisher: </span>  ' + ($(productResponse).find("publisher").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Published Date:  </span> ' + ($(productResponse).find("published_date").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangAuthors">' + Language.authors  + ':  </span> ' + ($(productResponse).find("authors").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangPublisher">' + Language.publisher + ': </span>  ' + ($(productResponse).find("publisher").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangPubDate">' + Language.publisheddate + ':  </span> ' + ($(productResponse).find("published_date").text()) + '<br/>';
 		out +=						'<span class="detailTitle">ISBN 10:  </span> ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
 		out +=						'<span class="detailTitle">ISBN 13:  </span> ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
-		out +=						'<span class="detailTitle">Language:  </span> ' + ($(productResponse).find("language").text()) + '<br/>';
+		out +=						'<span class="detailTitle LangLanguage">' + Language.language + ':  </span> ' + ($(productResponse).find("language").text()) + '<br/>';
 	}
 	
 	
@@ -135,7 +162,7 @@ function printProduct(marker, subCategoryID){
 	
 	out +=						'</div>';
 	out +=						'<div class="divPrice">';
-	out +=							'<p class="detailsPrice">Precio: $' + price + '</p>';
+	out +=							'<p class="detailsPrice">' + Language.price + ':' + Language.moneySign + price + '</p>';
 	out +=							'<div class="addtocart"> ADD TO CART </div>';
 	out +=						'</div>';
 
@@ -149,18 +176,18 @@ function printProduct(marker, subCategoryID){
 	out +=  '<div class="imgDragger"/>';
 	out += '<div class="cartFeedback"> Added to cart! </div>';
 	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
-	out +=	'<p class="spanPrice">$' + price + '</p>';
+	out +=	'<p class="spanPrice">' + Language.moneySign + price + '</p>';
 	out +=  '<div class="productDetails">';
-	out +=  'Rank: ' + ($(productResponse).find("sales_rank").text()) + '<br/>'; 
+	out +=  '<span class="LangRank">' + Language.salesrank + '</span>:' + ($(productResponse).find("sales_rank").text()) + '<br/>'; 
 	
 	if( c_id == 2 ){
-		out +=  'Authors: ' + ($(productResponse).find("authors").text()) + '<br/>';
-		out +=  'Publisher: ' + ($(productResponse).find("publisher").text()) + '<br/>';
-		out +=  'Published Date: ' + ($(productResponse).find("published_date").text()) + '<br/>';
+		out +=  '<span class="LangAuthors"> ' + Language.authors + '</span>: ' + ($(productResponse).find("authors").text()) + '<br/>';
+		out +=  '<span class="LangPublisher">' + Language.publisher +'</span>: ' + ($(productResponse).find("publisher").text()) + '<br/>';
+		out +=  '<span class="LangPubDate">' + Language.publisheddate +'</span>:' + ($(productResponse).find("published_date").text()) + '<br/>';
 	} else if( c_id == 1) {
-		out +=					'Total runtime: ' + ($(productResponse).find("run_time").text()) + '<br/>';
-		out +=					'Release date: ' + ($(productResponse).find("release_date").text()) + '<br/>';
-		out +=					'Region: ' + ($(productResponse).find("region").text()) + '<br/>';
+		out +=	'<span class="LangRuntime">' +	Language.runtime +'</span>:' + ($(productResponse).find("run_time").text()) + '<br/>';
+		out +=	'<span class="LangRelease">' +	Language.releasedate +'</span>:' + ($(productResponse).find("release_date").text()) + '<br/>';
+		out +=	'<span class="LangRegion">' +	Language.region +'</span>:' + ($(productResponse).find("region").text()) + '<br/>';
 	}
 		
 	out += ' </div>';

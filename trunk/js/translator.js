@@ -1,6 +1,8 @@
 var Language = new Object();
 
 Language.es = function(){
+	Language.loading = "Cargando...";
+	
     //User panel
     Language.register = "Registrarse";
     Language.login = "Iniciar sesión";
@@ -63,7 +65,7 @@ Language.es = function(){
     
     //Footer
     Language.copyright = "Thor - Todos los derechos reservados &copy;";
-    /*
+    
      
      //Menu:
      Language.home = "Inicio";
@@ -102,7 +104,7 @@ Language.es = function(){
      Language.runtime = "Duración";
      Language.ASIN = "ASIN";
      
-     Language.authros = "Autores";
+     Language.authors = "Autores";
      Language.publisher = "Editor";
      Language.publisheddate = "Publicación";
      
@@ -142,11 +144,11 @@ Language.es = function(){
      
      Language.questionAddToCart = "¿Seguro desea añadir este producto a su carrito?";
      Language.ctyOfProduct = "Introduzca la cantidad que desea llevar";
-     Language.addToCartErrorCty = "Solo se permiten cantidades entre 0 y 100";*/
-    //Footer:
+     Language.addToCartErrorCty = "Solo se permiten cantidades entre 0 y 100";
+    //Footer
     
     
-    /*
+    
      //Cart:
      Language.cart = "Carrito";
      Language.quantity = "Cant.";
@@ -163,11 +165,14 @@ Language.es = function(){
      Language.transported = "Transportada";
      Language.delivered = "Entregada";
      
-     Language.selectAddress = "Seleccione la dirección de destino";*/
+     Language.selectAddress = "Seleccione la dirección de destino";
     updateLanguage();
 }
 
 Language.en = function(){
+	
+	Language.loading = "Loading...";
+	
     //User panel
     Language.register = "Register";
     Language.login = "Login";
@@ -231,7 +236,7 @@ Language.en = function(){
     
     //Footer:
     Language.copyright = "Thor - All rights reserved &copy;";
-    /*
+    
      //Topper:
      Language.go = "Go!";
      Language.login = "Login";
@@ -274,7 +279,7 @@ Language.en = function(){
      Language.runtime = "Movie length";
      Language.ASIN = "ASIN";
      
-     Language.authros = "Authors";
+     Language.authors = "Authors";
      Language.publisher = "Publisher";
      Language.publisheddate = "Publishead date";
      
@@ -320,8 +325,8 @@ Language.en = function(){
      
      Language.questionAddToCart = "Are you sure you want to add this product to your cart?";
      Language.ctyOfProduct = "Enter the amount you want to take";
-     Language.addToCartErrorCty = "Quantities are allowed only between 0 and 100";*/
-    /* 
+     Language.addToCartErrorCty = "Quantities are allowed only between 0 and 100";
+    
      //Cart:
      Language.cart = "Cart";
      Language.quantity = "Qty.";
@@ -339,7 +344,7 @@ Language.en = function(){
      Language.confirmed = "Confirmed";
      Language.transported = "Transportated";
      Language.delivered = "Delivered";
-     Language.selectAddress = "Select address destination";*/
+     Language.selectAddress = "Select address destination";
     updateLanguage();
 }
 
@@ -396,6 +401,11 @@ function updateLanguage(){
         initializeRegValidator();
     
     configureRegValidator();
+    
+    
+    updateProductLanguage();
+    
+    
     
 }
 
