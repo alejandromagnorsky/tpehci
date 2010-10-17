@@ -169,19 +169,8 @@ body {
 	border: none;
 }
 
-.fbSharer {
-	position: relative;
-	top: 15px;
-	left: 0px;
-	width: 150px;
-	height: 17px;
-	display: block !important;
-	visibility: visible !important;
-	background-color: #3b5998;
-	font-weight: bold;
-	font-family: verdana;
-	border: 1px solid #000;
-	
+.FBConnectButton {
+	margin: 5px;
 }
 
 #headerTitle {

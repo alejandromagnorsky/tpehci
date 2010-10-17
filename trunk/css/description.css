@@ -2,7 +2,7 @@
     position: absolute;
     top: 10px;
     left: 200px;
-    height: 305px;
+    height: 705px;
     width: 450px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -10,6 +10,36 @@
     font-family: verdana;
     border: 1px dashed #888;
     padding-left: 10px;
+}
+
+
+.twSharer {
+	position: relative;
+	top: 35px;
+	left: 0px;
+	width: 150px;
+	height: 17px;
+	display: block !important;
+	visibility: visible !important;
+	background-color: #3b5998;
+	font-weight: bold;
+	font-family: verdana;
+	border: 1px solid #000;
+	
+}
+
+
+.fbSharer {
+	position: relative;
+	top: 15px;
+	left: 0px;
+	display: block !important;
+	visibility: visible !important;
+	background-color: #3b5998;
+	font-weight: bold;
+	font-family: verdana;
+	border: 1px solid #000;
+	
 }
 
 .detailTitle {
@@ -21,7 +51,7 @@
 /* Sometimes JQuery can be a b*tch */
 .description {
     width: 300px;
-    height: 540px !important;
+    height: 740px !important;
     background-image: url(./images/inicio/bg.png) !important;
     background-repeat: repeat-x;
     background-color: #000;

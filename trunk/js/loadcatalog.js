@@ -72,6 +72,9 @@ function initializeContent() {
 	$("#footer").css("top", contentHeight);
 }
 
+
+var sentBitly;
+
 function printProduct(marker, subCategoryID){
 	
 
@@ -126,7 +129,8 @@ function printProduct(marker, subCategoryID){
 	}
 	
 	
-	out += '<a class="fbSharer" href="#">Share on Facebook!</a>';
+	out += '<a class="fbSharer" href="#">Share this product on Facebook!</a>';
+	out += '<a class="twSharer" href="#">Tweet this product!</a>';
 	
 	
 	out +=						'</div>';
@@ -165,9 +169,47 @@ function printProduct(marker, subCategoryID){
 	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON_CART + '"></a>';
 	out +=	'</' + $CATALOG_ITEM + '>';
 	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
-	
-	
+			
+	$(".twSharer").click(function(){
+		
 
+		var url = window.location.href;
+		
+		if( url.charAt(url.length-1) == '#' )
+			url = url.substring(0,url.length-1);
+		
+		var parsedUrl = url + "?product=" + name;
+		
+		sentBitly = false;
+		
+		
+		var username="thorstore"; // bit.ly username
+		var key="R_4d83d805f815155b6bcbc183d90f5682";
+		$.ajax({
+			url:"http://api.bit.ly/v3/shorten",
+			data:{longUrl:parsedUrl,apiKey:key,login:username},
+			dataType:"jsonp",
+			success:function(v)
+			{
+				
+				if(sentBitly)
+					return;
+				else sentBitly = true;
+					
+				var bit_url=v.data.url;
+				
+				var twArgs = "url=" + bit_url + "&via=ThorStore&text=Check out '" + name + "' on ThorStore!"; 
+	
+				window.open("http://twitter.com/share?" + twArgs,"Share Thor on Twitter!",
+				"menubar=no,width=630,height=300,toolbar=no");
+			}
+		});
+		
+		
+		
+	});
+	
+	
 	$(".fbSharer").click(function(){
 		
 		var url = window.location.href;
@@ -182,8 +224,30 @@ function printProduct(marker, subCategoryID){
 		
 		return false;
 	});
-			
+	
 
+}
+
+
+
+//bit_url function
+function bit_url(url)
+{
+	var url=url;
+	var username="thorstore"; // bit.ly username
+	var key="R_4d83d805f815155b6bcbc183d90f5682";
+	$.ajax({
+		url:"http://api.bit.ly/v3/shorten",
+		data:{longUrl:url,apiKey:key,login:username},
+		dataType:"jsonp",
+		success:function(v)
+		{
+		var bit_url=v.data.url;
+		//$("#result").html('<a href="'+bit_url+'" target="_blank">'+bit_url+'</a>');
+		
+		return bit_url;
+		}
+	});
 }
 
 
@@ -347,9 +411,14 @@ function injectCategories() {
 	
 	var longUrl = url + "?tmp=" + randomArg + "&t=Thor DVD's and Books";
 	
-	
+	out += '<div class="footerBlock">';
 	out += '<a name="fb_share" type="button" share_url="'+ longUrl + '"></a>';
-	
+	out += '<span id="follow-ThorStore"></span>';
+	  twttr.anywhere(function (T) {
+	    T('#follow-ThorStore').followButton("ThorStore");
+	  });
+	out += '</div>';
+			
 	
 	$("#footerInfo").html(out);
 	
