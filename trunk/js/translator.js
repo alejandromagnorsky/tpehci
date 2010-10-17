@@ -1,8 +1,8 @@
 var Language = new Object();
 
 Language.es = function(){
-	Language.loading = "Cargando...";
-	
+    Language.loading = "Cargando...";
+    
     //User panel
     Language.register = "Registrarse";
     Language.login = "Iniciar sesión";
@@ -53,7 +53,7 @@ Language.es = function(){
     Language.lastlogindate = "Última vez que inició sesión";
     Language.headermodify = "Cambiar información personal";
     Language.modifydatawarning = "Sus datos han sido modificados de forma exitosa";
-	Language.changepasswarning = "Su contraseña ha sido modificada de forma exitosa";
+    Language.changepasswarning = "Su contraseña ha sido modificada de forma exitosa";
     Language.headerchangepass = "Cambiar contraseña";
     Language.newpassword = "Nueva contraseña";
     Language.currentpassword = "Contraseña actual";
@@ -66,113 +66,89 @@ Language.es = function(){
     //Footer
     Language.copyright = "Thor - Todos los derechos reservados &copy;";
     
-     
-     //Menu:
-     Language.home = "Inicio";
-     Language.catalog = "Catálogo";
-     Language.sitemap = "Mapa del Sitio";
-     Language.contact = "Contáctenos";
-     Language.welcome = "Bienvenido";
-     Language.loggedout = "Todavía no has ingresado a tu cuenta.";
-     
-     //Content:
-     Language.promo = "Las mejores ofertas!";
-     Language.promoImg = "imgs/publi2.png";
-     Language.highlights = "Destacados";
-     Language.categories = "Categorías de los productos";
-     Language.price = "Precio";
-     Language.conversionMoney = 3.85;
-     Language.moneySign = "$";
-     Language.language = "Lenguaje";
-     Language.subtitles = "Subtítulos";
-     Language.categories2 = "Categorías";
-     Language.tx_catalog_recommendation = "Elija una categoría del menú.";
-     Language.salesrank = "Ranking de Ventas";
-     Language.seeMore = " + Ver más";
-     Language.addToCart = "Adherir al Carrito";
-     Language.category = "Categoría";
-     Language.subcategory = "Subcategoría";
-     
-     Language.actors = "Actores";
-     Language.format = "Formato";
-     Language.language = "Lenguaje";
-     Language.subititles = "Subtítulos";
-     Language.region = "Región";
-     Language.aspectratio = "Relación de aspecto";
-     Language.numberdiscs = "Número de discos";
-     Language.releasedate = "Fecha de lanzamiento";
-     Language.runtime = "Duración";
-     Language.ASIN = "ASIN";
-     
-     Language.authors = "Autores";
-     Language.publisher = "Editor";
-     Language.publisheddate = "Publicación";
-     
-     Language.search = "Busqueda";
-     Language.error_search = "No se han encontrado coincidencias";
-     //LogForm:
-     Language.close = "Cerrar";
-     
-     //Forms:
-     Language.createaddress = "Agregar una nueva dirección";
-     Language.createaddressintro = "Agregue una nueva dirección para luego usarla a la hora de hacer un pedido.";
-     Language.createaccount = "Crear una cuenta nueva";
-     Language.changepassword = "Cambiar la contraseña actual";
-     Language.updateaccount = "Actualizar la información personal";
-     Language.mandatoryfields = "Por favor no olvide completar todos los campos con un asterisco rojo.";
-     Language.terms = "He leído y acepto los Términos de Uso."
-     Language.name = "Nombre";
-     Language.fullname = "Nombre completo";
-     Language.username = "Nombre de usuario";
-     Language.password = "Contraseña";
-     Language.confirmpassword = "Confirme contraseña";
-     Language.currentpassword = "Contraseña actual";
-     Language.newpassword = "Nueva contraseña";
-     Language.email = "Email";
-     Language.birthdate = "Fecha de nacimiento (AAAA-MM-DD)";
-     Language.address1 = "Dirección (línea 1)";
-     Language.address2 = "Dirección (línea 2)";
-     Language.country = "País";
-     Language.state = "Estado";
-     Language.city = "Ciudad";
-     Language.zipcode = "Código postal";
-     Language.phonenumber = "Número telefónico";
-     Language.submit = "Enviar";
-     Language.reset = "Borrar";
-     Language.update_address = "Cambiar dirección";
-     Language.noaddress = "Todavía no has creado direcciones";
-     
-     Language.questionAddToCart = "¿Seguro desea añadir este producto a su carrito?";
-     Language.ctyOfProduct = "Introduzca la cantidad que desea llevar";
-     Language.addToCartErrorCty = "Solo se permiten cantidades entre 0 y 100";
-    //Footer
+    
+    //Menu:
+    Language.home = "Inicio";
+    Language.catalog = "Catálogo";
+    Language.sitemap = "Mapa del Sitio";
+    Language.contact = "Contáctenos";
+    Language.loggedout = "Todavía no has ingresado a tu cuenta.";
+    
+    //Content:
+    Language.promo = "Las mejores ofertas!";
+    Language.promoImg = "imgs/publi2.png";
+    Language.highlights = "Destacados";
+    Language.categories = "Categorías de los productos";
+    Language.price = "Precio";
+    Language.conversionMoney = 3.85;
+    Language.moneySign = "$";
+    Language.subtitles = "Subtítulos";
+    Language.categories2 = "Categorías";
+    Language.tx_catalog_recommendation = "Elija una categoría del menú.";
+    Language.salesrank = "Ranking de Ventas";
+    Language.seeMore = " + Ver más";
+    Language.addToCart = "Adherir al Carrito";
+    Language.category = "Categoría";
+    Language.subcategory = "Subcategoría";
+    
+    Language.actors = "Actores";
+    Language.format = "Formato";
+    Language.language = "Lenguaje";
+    Language.subititles = "Subtítulos";
+    Language.region = "Región";
+    Language.aspectratio = "Relación de aspecto";
+    Language.numberdiscs = "Número de discos";
+    Language.releasedate = "Fecha de lanzamiento";
+    Language.runtime = "Duración";
+    Language.ASIN = "ASIN";
+    
+    Language.authors = "Autores";
+    Language.publisher = "Editor";
+    Language.publisheddate = "Publicación";
+    
+    Language.search = "Busqueda";
+    Language.error_search = "No se han encontrado coincidencias";
+    
+    //Forms:
+    Language.createaddress = "Agregar una nueva dirección";
+    Language.createaddressintro = "Agregue una nueva dirección para luego usarla a la hora de hacer un pedido.";
+    Language.fullname = "Nombre completo";
+    Language.address1 = "Dirección (línea 1)";
+    Language.address2 = "Dirección (línea 2)";
+    Language.city = "Ciudad";
+    Language.zipcode = "Código postal";
+    Language.phonenumber = "Número telefónico";
+    Language.update_address = "Cambiar dirección";
+    Language.noaddress = "Todavía no has creado direcciones";
+    
+    Language.questionAddToCart = "¿Seguro desea añadir este producto a su carrito?";
+    Language.ctyOfProduct = "Introduzca la cantidad que desea llevar";
+    Language.addToCartErrorCty = "Solo se permiten cantidades entre 0 y 100";
     
     
+    //Cart:
+    Language.cart = "Carrito";
+    Language.quantity = "Cant.";
+    Language.description = "Descripción";
+    Language.error_no_login = "Debe estar logueado para acceder a su carrito.";
+    Language.order = "Orden";
+    Language.status = "Estado";
+    Language.created = "Creado";
+    Language.no_products_cart = "No se han adherido productos al carrito.";
     
-     //Cart:
-     Language.cart = "Carrito";
-     Language.quantity = "Cant.";
-     Language.description = "Descripción";
-     Language.error_no_login = "Debe estar logueado para acceder a su carrito.";
-     Language.order = "Orden";
-     Language.status = "Estado";
-     Language.adress = "Dirección";
-     Language.created = "Creado";
-     Language.no_products_cart = "No se han adherido productos al carrito.";
-     
-     Language.created = "Creada";
-     Language.confirmed = "Confirmada";
-     Language.transported = "Transportada";
-     Language.delivered = "Entregada";
-     
-     Language.selectAddress = "Seleccione la dirección de destino";
+    Language.created = "Creada";
+    Language.confirmed = "Confirmada";
+    Language.transported = "Transportada";
+    Language.delivered = "Entregada";
+    
+    Language.selectAddress = "Seleccione la dirección de destino";
     updateLanguage();
 }
 
 Language.en = function(){
-	
-	Language.loading = "Loading...";
-	
+
+    Language.loading = "Loading...";
+    
     //User panel
     Language.register = "Register";
     Language.login = "Login";
@@ -224,7 +200,7 @@ Language.en = function(){
     Language.headermodify = "Change personal data";
     Language.headerchangepass = "Change password";
     Language.modifydatawarning = "Your data has been modified succesfully";
-	Language.changepasswarning = "Your password has been modified succesfully";
+    Language.changepasswarning = "Your password has been modified succesfully";
     Language.newpassword = "New password";
     Language.currentpassword = "Current password";
     Language.currentpasswordwarning = "Incorrect password";
@@ -237,114 +213,90 @@ Language.en = function(){
     //Footer:
     Language.copyright = "Thor - All rights reserved &copy;";
     
-     //Topper:
-     Language.go = "Go!";
-     Language.login = "Login";
-     Language.logout = "Logout";
-     Language.register = "Register";
-     Language.settings = "Settings";
-     
-     //Menu:
-     Language.home = "Home";
-     Language.catalog = "Catalog";
-     Language.sitemap = "SiteMap";
-     Language.contact = "Contact Us";
-     Language.welcome = "Welcome";
-     Language.loggedout = "You haven't logged in yet.";
-     
-     //Content:
-     Language.promo = "The best deals!";
-     Language.promoImg = "imgs/publi1.png";
-     Language.highlights = "Highlights";
-     Language.categories = "Product categories";
-     Language.price = "Price";
-     Language.conversionMoney = 1;
-     Language.moneySign = "U$S";
-     Language.categories2 = "Categories";
-     Language.tx_catalog_recommendation = "Choose a category from the menu.";
-     Language.salesrank = "Sales Rank";
-     Language.seeMore = " + See More";
-     Language.addToCart = "Add to Cart";
-     Language.category = "Category";
-     Language.subcategory = "Subcategory";
-     
-     Language.actors = "Actors";
-     Language.format = "Format";
-     Language.language = "Language";
-     Language.subititles = "Subtitles";
-     Language.region = "Region";
-     Language.aspectratio = "Aspect ratio";
-     Language.numberdiscs = "Number of discs";
-     Language.releasedate = "Release date";
-     Language.runtime = "Movie length";
-     Language.ASIN = "ASIN";
-     
-     Language.authors = "Authors";
-     Language.publisher = "Publisher";
-     Language.publisheddate = "Publishead date";
-     
-     Language.quantity = "Quantity";
-     
-     Language.cart = "Cart";
-     
-     Language.search = "Search";
-     Language.error_search = "No matches found";
-     
-     //LogForm:
-     Language.close = "Close";
-     
-     //Forms:
-     Language.createaddress = "Add a new address";
-     Language.createaddressintro = "Adding a new address allows you to use it later on when making an order.";
-     Language.createaccount = "Create a new account";
-     Language.changepassword = "Change your current password";
-     Language.updateaccount = "Update your personal information";
-     Language.mandatoryfields = "Please note all fields with a red asterisk must be completed.";
-     Language.terms = "I have read and accept the Terms of Use."
-     Language.name = "Name";
-     Language.fullname = "Full name";
-     Language.username = "User name";
-     Language.password = "Password";
-     Language.confirmpassword = "Confirm password";
-     Language.currentpassword = "Current password";
-     Language.newpassword = "New password";
-     Language.email = "Email";
-     Language.birthdate = "Birth date (YYYY-MM-DD)";
-     Language.address1 = "Address (line 1)";
-     Language.address2 = "Address (line 2)";
-     Language.country = "Country";
-     Language.state = "State";
-     Language.city = "City";
-     Language.zipcode = "Zip Code";
-     Language.phonenumber = "Phone Number";
-     Language.submit = "Submit";
-     Language.reset = "Reset";
-     Language.update_address = "Update address";
-     
-     Language.noaddress = "You haven't created any adresses";
-     
-     Language.questionAddToCart = "Are you sure you want to add this product to your cart?";
-     Language.ctyOfProduct = "Enter the amount you want to take";
-     Language.addToCartErrorCty = "Quantities are allowed only between 0 and 100";
     
-     //Cart:
-     Language.cart = "Cart";
-     Language.quantity = "Qty.";
-     Language.description = "Description";
-     Language.error_no_login = "You must be logged to access to your cart.";
-     Language.no_products_cart = "No products have been added to your cart.";
-     
-     Language.order ="Order";
-     Language.status = "Status";
-     Language.adress = "Adress";
-     Language.created = "Created at";
-     
-     
-     Language.created = "Created";
-     Language.confirmed = "Confirmed";
-     Language.transported = "Transportated";
-     Language.delivered = "Delivered";
-     Language.selectAddress = "Select address destination";
+    //Menu:
+    Language.home = "Home";
+    Language.catalog = "Catalog";
+    Language.sitemap = "SiteMap";
+    Language.contact = "Contact Us";
+    Language.loggedout = "You haven't logged in yet.";
+    
+    //Content:
+    Language.promo = "The best deals!";
+    Language.promoImg = "imgs/publi1.png";
+    Language.highlights = "Highlights";
+    Language.categories = "Product categories";
+    Language.price = "Price";
+    Language.conversionMoney = 1;
+    Language.moneySign = "U$S";
+    Language.categories2 = "Categories";
+    Language.tx_catalog_recommendation = "Choose a category from the menu.";
+    Language.salesrank = "Sales Rank";
+    Language.seeMore = " + See More";
+    Language.addToCart = "Add to Cart";
+    Language.category = "Category";
+    Language.subcategory = "Subcategory";
+    
+    Language.actors = "Actors";
+    Language.format = "Format";
+    Language.language = "Language";
+    Language.subititles = "Subtitles";
+    Language.region = "Region";
+    Language.aspectratio = "Aspect ratio";
+    Language.numberdiscs = "Number of discs";
+    Language.releasedate = "Release date";
+    Language.runtime = "Movie length";
+    Language.ASIN = "ASIN";
+    
+    Language.authors = "Authors";
+    Language.publisher = "Publisher";
+    Language.publisheddate = "Publishead date";
+    
+    Language.quantity = "Quantity";
+    
+    Language.cart = "Cart";
+    
+    Language.search = "Search";
+    Language.error_search = "No matches found";
+    
+    
+    //Forms:
+    Language.createaddress = "Add a new address";
+    Language.createaddressintro = "Adding a new address allows you to use it later on when making an order.";
+    Language.fullname = "Full name";
+    Language.address1 = "Address (line 1)";
+    Language.address2 = "Address (line 2)";
+    Language.city = "City";
+    Language.zipcode = "Zip Code";
+    Language.phonenumber = "Phone Number";
+    Language.submit = "Submit";
+    Language.reset = "Reset";
+    Language.update_address = "Update address";
+    
+    Language.noaddress = "You haven't created any adresses";
+    
+    Language.questionAddToCart = "Are you sure you want to add this product to your cart?";
+    Language.ctyOfProduct = "Enter the amount you want to take";
+    Language.addToCartErrorCty = "Quantities are allowed only between 0 and 100";
+    
+    //Cart:
+    Language.cart = "Cart";
+    Language.quantity = "Qty.";
+    Language.description = "Description";
+    Language.error_no_login = "You must be logged to access to your cart.";
+    Language.no_products_cart = "No products have been added to your cart.";
+    
+    Language.order = "Order";
+    Language.status = "Status";
+    Language.adress = "Adress";
+    Language.created = "Created at";
+    
+    
+    Language.created = "Created";
+    Language.confirmed = "Confirmed";
+    Language.transported = "Transportated";
+    Language.delivered = "Delivered";
+    Language.selectAddress = "Select address destination";
     updateLanguage();
 }
 
@@ -423,20 +375,20 @@ function updateButton(name, text){
 function translateSettings(){
     if (!document.getElementById("preferences")) 
         return;
-		
+    
     initializeModValidator();
     configureModValidator();
     initializePassValidator();
-    configurePassValidator();	
-	$("#modifyForm")[0].reset();	
-	
+    configurePassValidator();
+    $("#modifyForm")[0].reset();
+    
     loadAccount();
-	applyPreferences();
-	
+    applyPreferences();
+    
     updateText("profile", Language.profile);
     updateText("modifyData", Language.modifyData);
     updateText("headermodify", Language.headermodify);
-	updateText("username", Language.username);
+    updateText("username", Language.username);
     updateText("clientname", Language.clientname);
     updateText("birthday", Language.birthday);
     updateText("datereference", Language.datereference);
@@ -446,7 +398,7 @@ function translateSettings(){
     updateButton("accept", Language.accept);
     updateText("headerchangepass", Language.headerchangepass);
     updateText("modifydatawarning", Language.modifydatawarning);
-	updateText("changepasswarning", Language.changepasswarning);
+    updateText("changepasswarning", Language.changepasswarning);
     updateText("newpassword", Language.newpassword);
     updateText("currentpassword", Language.currentpassword);
     updateText("confirmnewpassword", Language.confirmnewpassword);
