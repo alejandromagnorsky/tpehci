@@ -434,7 +434,7 @@ function injectCategories() {
 		url = url.substring(0,url.length-1);
 	
 	var longUrl = url + "?tmp=" + randomArg + "&t=Thor DVD's and Books";
-	
+	out += '<div class="footerBlock"><a href="#" class="mapLoader">Load map</a></div>';
 	out += '<div class="footerBlock">';
 	out += '<a name="fb_share" type="button" share_url="'+ longUrl + '"></a>';
 	out += '<span id="follow-ThorStore"></span>';
@@ -445,6 +445,11 @@ function injectCategories() {
 			
 	
 	$("#footerInfo").html(out);
+	
+	$(".mapLoader").click(function(){
+		initializeMap();
+	});
+	
 	
 	
 	// Event delegation for categories in '.categoryBlock'.

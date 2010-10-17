@@ -60,6 +60,7 @@ function loadMain() {
 	buildCart(); // Enables cart drop zone.
 
 	parseArguments();
+
 }
 
 
