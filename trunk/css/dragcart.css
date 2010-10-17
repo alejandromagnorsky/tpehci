@@ -15,7 +15,7 @@
 #products 						{ float: left; min-height: 12em; }
 #content .products li			{ margin: 8px;}
 .products.custom-state-active	{ background: #eee; }
-.products li					{  position: relative; float: left; height: 100px; width: 570px; padding: 0.5em; padding-bottom: 25px; text-align: left; }
+.products li					{ position: relative; float: left; height: 100px; width: 570px; padding: 0.5em; padding-bottom: 25px; text-align: left; }
 .products li h5					{ margin: 0 0 0.4em; font-size:110%; height: 45px;}
 .products li a					{ float: right; }
 #cart .products li 				{ position: relative; height: 180px; left: 20px; width: 170px; margin: 0 0 10 30px;}
