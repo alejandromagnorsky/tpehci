@@ -106,11 +106,37 @@ function getFisheyeData() {
 							var image_url = marker.find("image_url").text();
 
 							var out = "";
-							out += '<a href="#"><img class="fisheyeElement" src="'
+							out += '<a href="#"><img name="'+name+'" class="fisheyeElement" src="'
 									+ image_url
 									+ '"/></a><img class="fisheyeShadow" src="' + image_url + '"/>';
 							$('#fisheyeContainer').append(out);
 						});
+				
+				$(".fisheyeElement").click(function(){
+					
+					var product = $(this).attr("name");
+					
+					$("#inputsearch").val(product);
+
+					slideHeaderUp(function() {
+						search(null, function() {
+
+							$(".product-header").each(function() {
+
+								var title = $(this).text();
+
+								if (title == product) {
+									var productContent = $(this).parent();
+
+									var detailsButton = productContent.find(".icon-zoom");
+
+									detailsButton.trigger('click');
+								}
+							});
+
+						});
+					});
+				});
 			}
 		}
 
