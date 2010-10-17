@@ -195,7 +195,7 @@ function productDetails($link){
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "390px");
+	widget.css("height", "690px");
 	widget.css("width", "850px");
 	widget.css("text-align", "left");
 	widget.css("overflow", "hidden");
