@@ -13,6 +13,11 @@ function buildCart(){
 	cartTag +=	'</div></div></div><div id="cartFooter">Checkout!</div></div>';
 	$('#sidebar-right').html(cartTag);
 	
+	
+	$("#cartHeader").css("background-image", "url(../css/images/inicio/" + StyleAddr + "cart_header.png)");
+	$("#cartHeader").css("color", StyleTextColor);
+	$("#cartFooter").css("background-image", "url(../css/images/inicio/" + StyleAddr + "cart_footer.png)");
+	
 	cart = $('#' + $CART);
 	var cookie = getCookie("cart");
 	if (cookie) {
@@ -94,6 +99,7 @@ function buildDraggables(){
 		}
 		return false;
 	});
+	
 }
 
 /* Builds cart item */
@@ -167,6 +173,9 @@ function addToCart($item){
 		itemToAdd.css("width", $CART_ITEM_WIDTH);
 		itemToAdd.children("img").css("height", $CART_ITEM_HEIGHT );
 		itemToAdd.appendTo($($ITEM_CONTAINER_TAG, cart));
+		
+		
+		$(".imgWrapper").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgWrapper.png)");
 		
 		/*itemToAdd.appendTo($($ITEM_CONTAINER_TAG, cart)).fadeIn(function(){
 			itemToAdd.animate({ width: $CART_ITEM_WIDTH });

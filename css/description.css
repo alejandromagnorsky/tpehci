@@ -127,7 +127,7 @@
     background-image: url(../css/images/inicio/imgWrapperBig.png);
 }
 
-#addtocart {
+.addtocart {
 	position: absolute;
 	left: -20px;
 	vertical-align: middle;
