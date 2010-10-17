@@ -10,9 +10,15 @@ function buildCart(){
 	cartTag += '<div class="sidebarBg"><div id="cartHeader"> Shopping cart</div> <div class ="sidebar"><div id="cartWrapper">';
 	cartTag +=	'<div id="' + $CART + '" class="product-content ' + $CART_DEFAULT + '">';
 	cartTag +=		'<' + $ITEM_CONTAINER_TAG + ' class="products helper-reset"/>';
-	cartTag +=	'</div></div></div><div id="cartFooter">Checkout!</div></div>';
+	cartTag +=	'</div></div></div><div id="cartFooter">'
+	cartTag +=		'<a class="checkoutButton" href="' + $JS_OFF + '" alt="Checkout!">Checkout!</a>';
+	cartTag +=	'</div></div>';
 	$('#sidebar-right').html(cartTag);
 	
+	$('.checkoutButton').click(function(event){
+		proceedToCheckout();
+		return false;
+	});
 	
 	$("#cartHeader").css("background-image", "url(../css/images/inicio/" + StyleAddr + "cart_header.png)");
 	$("#cartHeader").css("color", StyleTextColor);
@@ -32,18 +38,18 @@ function buildCart(){
 					productDetails($target);
 				} else if ( $target.is( 'a.' + $ICON_REMOVE ) ) {
 					removeFromCart($(this));
-					setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+					//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 				} else if ( $target.is( 'a.' + $ICON_PLUS ) ) {
 					var qty = parseInt($(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) + 1;
 					$(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
-					setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+					//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 				} else if ( $target.is( 'a.' + $ICON_MINUS ) ) {
 					var qty = parseInt($(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) - 1;
 					if (qty <= 0)
 						removeFromCart($(this));
 					else
 						$(this).find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
-					setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+					//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 				}
 				return false;
 			});
@@ -131,11 +137,11 @@ function buildCartItem(item){
 			productDetails($target);
 		} else if ( $target.is( 'a.' + $ICON_REMOVE ) ) {
 			removeFromCart($(this));
-			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+			//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		} else if ( $target.is( 'a.' + $ICON_PLUS ) ) {
 			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) + 1;
 			addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text(qty);
-			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+			//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		} else if ( $target.is( 'a.' + $ICON_MINUS ) ) {
 			var qty = parseInt(addedItem.find( 'span.' + $CATALOG_ITEM_QUANTITY ).text()) - 1;
 			if (qty <= 0) {
@@ -143,7 +149,7 @@ function buildCartItem(item){
 			} else {
 				addedItem.find('span.' + $CATALOG_ITEM_QUANTITY).text(qty);
 			}
-			setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+			//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 		}
 		return false;
 	});
@@ -182,7 +188,7 @@ function addToCart($item){
 			itemToAdd.children("img").animate({ height: $CART_ITEM_HEIGHT });;
 		});*/
 	}
-	setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
+	//setCookie("cart", $.toJSON($('#cart').html()), undefined, '/', '', false);
 }
 
 /* Removes an element from the cart. */
@@ -223,5 +229,117 @@ function productDetails($link){
 	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 	
 	return false;
+}
+
+function proceedToCheckout(){
+	var out = '';
+	var fromCart = $('#cart');
+	out +=	'<h3 class="checkout-header">Checkout</h5>';
+	out +=	'<div class="checkoutTable">';
+	out +=		'<ul class="idCol"><li class="checkoutTitle">ID</li></ul>';
+	out +=		'<ul class="nameCol"><li class="checkoutTitle">Título</li></ul>';
+	out +=		'<ul class="qtyCol"><li class="checkoutTitle">Cantidad</li></ul>';
+	out +=		'<ul class="priceCol"><li class="checkoutTitle">Precio</li></ul>';
+	out +=		'<ul class="subtotalCol"><li class="checkoutTitle">Subtotal</li></ul>';
+	out +=	'</div>';
+	$('.product').html(out);
+	
+	var total = 0;
+	fromCart.find('li').each( function(){
+		var marker = $(this);
+		var price = 666;//marker.find('p.detailsPrice').html();
+		var qty = marker.find('span.quantity').html();
+		total += price * qty;
+		$('.checkoutTable').find('.idCol').append('<li class="checkoutItem">' + marker.attr('id') + '</li>');
+		$('.checkoutTable').find('.nameCol').append('<li class="checkoutItem">' + marker.find('h5.product-header').html() + '</li>');
+		$('.checkoutTable').find('.qtyCol').append('<li class="checkoutItem">' + qty + '</li>');
+		$('.checkoutTable').find('.priceCol').append('<li class="checkoutItem">' + price + '</li>');
+		$('.checkoutTable').find('.subtotalCol').append('<li class="checkoutItem">' + (price * qty) + '</li>');
+	});
+	
+	out = '<div class="totalCheckout"><br><br><br><br><br><br>Total: ' + total + '</div>';
+	if (session == undefined){
+		out += '<span>Usted debe estar logueado para hacer un pedido. Loguearse. Registrarse.</br></span>';
+		$('.product').append(out);
+	} else {
+		out +=	'<h3 class="address-header">Choose your shipping address</h5>';
+		out +=	'<form id="addressForm">';
+		out +=		'<div class="addressTable">';
+		out +=			'<ul class="inputCol"><li class="addressTitle">#</li></ul>';
+		out +=			'<ul class="fullNameCol"><li class="addressTitle">Name</li></ul>';
+		out +=			'<ul class="addrCol"><li class="addressTitle">Address</li></ul>';
+		out +=			'<ul class="cityCol"><li class="addressTitle">City</li></ul>';
+		out +=			'<ul class="zipCodeCol"><li class="addressTitle">Zip Code</li></ul>';
+		out +=			'<ul class="updateAddr"><li class="addressTitle">BLABLA</li></ul>';
+		//out +=			'<ul class="phoneCol"><li class="addressTitle">Phone</li></ul>';
+		out +=		'</div>';
+		out +=	'</form>';
+		$('.product').append(out);
+		getAddressList('username=' + session.username + '&authentication_token=' + session.token);
+	}
+	$('#addressButton').click(function(){
+		createAddress('ITBA', 'Madero', 'Seattle', '1', '1', 'City of Satan', '1102', '666-6666');
+		return false;
+	});
+}
+
+function createAddress(full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/service/Order.groovy",
+        dataType: "xml",
+        data: {
+            method: "CreateAddress",
+            username: session.username,
+            authentication_token: session.token,
+            address: 	"<address>" + 
+							"<full_name>" + full_name + "</full_name>" +
+							"<address_line_1>" + address_line_1 + "</address_line_1>" +
+							"<address_line_2>" + address_line_2 + "</address_line_2>" +
+							"<country_id>" + country_id + "</country_id>" +
+							"<state_id>" + state_id + "</state_id>" +
+							"<city>" + city + "</city>" +
+							"<zip_code>" + zip_code + "</zip_code>" +
+							"<phone_number>" + phone_number + "</phone_number>" +
+						"</address>"
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+                alert("New address added");
+			} else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
+}
+
+function updateAddress(full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/service/Order.groovy",
+        dataType: "xml",
+        data: {
+            method: "UpdateAddress",
+            username: session.username,
+            authentication_token: session.token,
+            address: 	"<address>" + 
+							"<full_name>" + full_name + "</full_name>" +
+							"<address_line_1>" + address_line_1 + "</address_line_1>" +
+							"<address_line_2>" + address_line_2 + "</address_line_2>" +
+							"<country_id>" + country_id + "</country_id>" +
+							"<state_id>" + state_id + "</state_id>" +
+							"<city>" + city + "</city>" +
+							"<zip_code>" + zip_code + "</zip_code>" +
+							"<phone_number>" + phone_number + "</phone_number>" +
+						"</address>"
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+                alert("Address updated");
+			} else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
 }
 

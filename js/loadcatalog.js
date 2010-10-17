@@ -531,3 +531,46 @@ function getSubCategoryName(sc_id){
 	}
 	return null;
 }
+
+function getOrderList(parameters){	
+	var request = new XMLHttpRequest();
+	var url = $ORDER + 'GetOrderList' + '&' + parameters;
+	request.open('GET', url, true);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+			if (request.status == 200)
+				return request.responseXML;
+			else
+				alert('Error: ' + request.statusText);
+		}
+	};
+	request.send();
+}
+
+function getAddressList(parameters){	
+	var request = new XMLHttpRequest();
+	var url = $ORDER + 'GetAddressList' + '&' + parameters;
+	request.open('GET', url, true);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+				var response = request.responseXML;
+				$(response).find('address').each(function(){
+					marker = $(this);
+					$('.addressTable').find('.inputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" value="' + marker.attr('id') + '"/></li>');
+					$('.addressTable').find('.fullNameCol').append('<li class="addressItem">' + marker.find('full_name').text() + '</li>');
+					$('.addressTable').find('.addrCol').append('<li class="addressItem">' + marker.find('address_line_1').text() + '</li>');
+					$('.addressTable').find('.cityCol').append('<li class="addressItem">' + marker.find('city').text() + '</li>');
+					$('.addressTable').find('.zipCodeCol').append('<li class="addressItem">' + marker.find('zip_code').text() + '</li>');
+					$('.addressTable').find('.phoneCol').append('<li class="addressItem">' + marker.find('phone_number').text() + '</li>');
+					$('.addressTable').find('.updateAddrCol').append('<li class="addressItem"><a href="#" class="updateAddr' + marker.attr('id') + '">X</a></li>');
+					$('.updateAddr' + marker.attr('id')).click(function(){
+						updateAddress();
+					});
+				});
+			} else 
+				alert('Error: ' + request.statusText);
+		}
+	};
+	request.send();
+}

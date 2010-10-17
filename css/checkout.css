@@ -1,0 +1,71 @@
+/* Address form */
+.addressTable {
+	position: relative;
+	padding: 0.5em; padding-bottom: 25px; 
+	/*background: #333;*/
+}
+
+.addressTable ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #C9C9C9;
+}
+
+.addressTable ul li {
+	list-style: none;
+	padding: 5px 10px;
+}
+
+.addressTable ul li.addressTitle {
+	height: 18px;
+	font-weight: bold;
+	background: #333;
+	color: #fff;
+}
+
+.addressTable ul li.addressItem {
+	background: #fff;
+}
+
+/* *********************** */
+
+.checkoutTable {
+	position: relative;
+	padding: 0.5em; padding-bottom: 25px; 
+	/*background: #333;*/
+}
+
+.checkout-header {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.totalCheckout {
+	font-weight: bold;
+	font-size: 17px;
+	color: #CD0A0A;
+}
+
+.checkoutTable ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #C9C9C9;
+}
+
+.checkoutTable ul li {
+	list-style: none;
+	padding: 5px 10px;
+}
+
+.checkoutTable ul li.checkoutTitle {
+	
+	font-weight: bold;
+	background: #333;
+	color: #fff;
+}
+
+.checkoutTable ul li.checkoutItem {
+	background: #fff;
+}
