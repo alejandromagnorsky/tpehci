@@ -8,8 +8,15 @@ var main;
 
 // I love Stack overflow:
 // http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
+// Just modified it to work with the hash
 function getURLParameter(name) {
-	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.hash) || [
+			, null ])[1]);
+}
+
+// This one works with real argumetns "?"
+function getURLParameter2(name) {
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [
 			, null ])[1]);
 }
 
@@ -57,36 +64,20 @@ function loadMain() {
 	parseArguments();
 }
 
-function parseArguments() {
 
-	var product = getURLParameter("product");
-	
-	if (product != "null") {
-		$("#inputsearch").val(product);
-		slideHeaderUp(function() {
-			search(null);
-		});
-	}
-}
-
-function ignoreFormEnter(event) {
-	if (event.which == 13)
-		return false;
-	else
-		return true;
-}
-
-function search(event) {
+function search(event, callback) {
 
 	showLoadingDialog();
 
 	var parameters = 'criteria=' + $("#inputsearch").val();
-	
+
+	parent.location.hash = "content=true&search=" + $("#inputsearch").val();
+
 	var subCategoryIndex = $("#categoryCBox").val();
 
 	var request = new XMLHttpRequest();
 	var url = $CATALOG + 'GetProductListByName' + '&' + parameters;
-	
+
 	request.open('GET', url, true);
 	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
@@ -129,10 +120,112 @@ function search(event) {
 				enableTabs();
 
 				hideLoadingDialog();
+				if (callback != null)
+					callback();
 			}
 		}
 	};
 	request.send();
+}
+
+
+// To prevent animation on linking product
+function loadContentStructure() {
+
+	$("#fisheye").css("display", "none");
+	$("#fisheyeBottom").css("display", "none");
+
+	$("#divcategory").css("display", "none");
+
+	$("#headerBorder").css( {
+		"top" : "112px"
+	});
+
+	$("#semiHeader").css( {
+		"top" : "160px",
+		"height" : "65px"
+	});
+
+	$("#header").css( {
+		"height" : "150px"
+	});
+	$("#headerContent").css( {
+		"top" : "-150px"
+	});
+	$("#headerTitle").css( {
+		"top" : "125px",
+		"left" : "-215px"
+	});
+
+	$("#titleImg").css( {
+		"height" : "150px"
+	});
+
+	$("#pageWrapper").css("visibility", "visible");
+
+	main = false;
+
+}
+
+// To make bookmarking and linking easier
+function parseArguments() {
+
+	var content = getURLParameter("content");
+	var product = getURLParameter("product");
+	var searchTag = getURLParameter("search");
+	
+	var fb = getURLParameter2("fb");
+
+	// Clear url hash
+	parent.location.hash = "";
+	
+	// If Facebook, override product tag
+	if( fb != "null"){
+		product = fb;
+	} 
+	
+	
+	if (searchTag != "null") {
+		$("#inputsearch").val(searchTag);
+
+		if (content == "true")
+			loadContentStructure();
+
+		slideHeaderUp(function() {
+			search(null, null);
+		});
+	} else 	if (product != "null") {
+		$("#inputsearch").val(product);
+
+		if (content == "true")
+			loadContentStructure();
+
+		slideHeaderUp(function() {
+			search(null, function() {
+
+				$(".product-header").each(function() {
+
+					var title = $(this).text();
+
+					if (title == product) {
+						var productContent = $(this).parent();
+
+						var detailsButton = productContent.find(".icon-zoom");
+
+						detailsButton.trigger('click');
+					}
+				});
+
+			});
+		});
+	}
+}
+
+function ignoreFormEnter(event) {
+	if (event.which == 13)
+		return false;
+	else
+		return true;
 }
 
 function resolveAutoComplete() {
@@ -201,7 +294,7 @@ function resolveSearchKeys(event) {
 
 	if (event.which == 13) {
 		slideHeaderUp(function() {
-			search(event);
+			search(event, null);
 		});
 
 		return false;

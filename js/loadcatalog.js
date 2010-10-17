@@ -164,24 +164,15 @@ function printProduct(marker, subCategoryID){
 	}
 		
 	out += ' </div>';
-	out += '<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
 	out +=	'<a href="#" title="Full product details" class="' + $ICON_INFO + '"></a>';
 	out +=	'<a href="' + $JS_OFF + '" title="Add to cart" class="' + $ICON_CART + '"></a>';
 	out +=	'</' + $CATALOG_ITEM + '>';
 	$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).append(out);
 			
 	$(".twSharer").click(function(){
-		
-
 		var url = window.location.href;
-		
-		if( url.charAt(url.length-1) == '#' )
-			url = url.substring(0,url.length-1);
-		
-		var parsedUrl = url + "?product=" + name;
-		
+		var parsedUrl = url;
 		sentBitly = false;
-		
 		
 		var username="thorstore"; // bit.ly username
 		var key="R_4d83d805f815155b6bcbc183d90f5682";
@@ -195,31 +186,26 @@ function printProduct(marker, subCategoryID){
 				if(sentBitly)
 					return;
 				else sentBitly = true;
-					
-				var bit_url=v.data.url;
 				
+				var bit_url=v.data.url;
 				var twArgs = "url=" + bit_url + "&via=ThorStore&text=Check out '" + name + "' on ThorStore!"; 
-	
 				window.open("http://twitter.com/share?" + twArgs,"Share Thor on Twitter!",
 				"menubar=no,width=630,height=300,toolbar=no");
 			}
 		});
 		
-		
-		
 	});
 	
 	
 	$(".fbSharer").click(function(){
+		// This random thing is a hack to prevent facebook from loading the description from its cache.
+		var randomArg = Math.floor(Math.random()*100000);
 		
 		var url = window.location.href;
+		var path = url.substring(0, url.indexOf("#", 0));
+		var longUrl = path + "?fb=" + name ;
 		
-		if( url.charAt(url.length-1) == '#' )
-			url = url.substring(0,url.length-1);
-		
-		var longUrl = url + "?product=" + name + "&t=Thor DVD's and Books";
-
-		window.open("http://www.facebook.com/sharer.php?u=" + longUrl,"Share Thor on Facebook!",
+		window.open("http://www.facebook.com/sharer.php?u=" + longUrl + "&t=Thor DVD's and Books","Share Thor on Facebook!",
 		"menubar=no,width=630,height=300,toolbar=no");
 		
 		return false;
@@ -283,6 +269,9 @@ function getProductList(parameters) {
 				buildDraggables();
 				enableTabs();
 				hideLoadingDialog();
+
+				parent.location.hash = "content=true&search=" + $("#inputsearch").val();
+				
 			} else {
 				alert('Error: ' + request.statusText);
 			}
@@ -404,7 +393,7 @@ function injectCategories() {
 
 	// This random thing is a hack to prevent facebook from loading the description from its cache.
 	var randomArg = Math.floor(Math.random()*100000);
-	var url = window.location.href;
+	var url = window.location.pathname;
 	
 	if( url.charAt(url.length-1) == '#' )
 		url = url.substring(0,url.length-1);
@@ -429,11 +418,16 @@ function injectCategories() {
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
+
+			$("#inputsearch").val($target.text());
 			
 			slideHeaderUp( function(){
 					requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
 			});
 		} else if ($target.is( 'a.subCategoryLink' )){
+
+			$("#inputsearch").val($target.text());
+			
 			var c_id, sc_id;
 			for(c_id=0; c_id < categories[currentLang-1].length; c_id++)
 				if($target.is( 'a.parentCategory' + (c_id+1) ))
@@ -455,8 +449,10 @@ function injectCategories() {
 		var $item = $(this);
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
+			$("#inputsearch").val($target.text());
 			requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');
 		} else if ($target.is( 'a.subCategoryLink' )){
+			$("#inputsearch").val($target.text());
 			var c_id, sc_id;
 			for(c_id=0; c_id < categories[currentLang-1].length; c_id++)
 				if($target.is( 'a.parentCategory' + (c_id+1) ))
@@ -473,11 +469,15 @@ function injectCategories() {
 		var $item = $(this);
 		$target = $( event.target );
 		if ($target.is( 'a.categoryLink' )){
+
+			$("#inputsearch").val($target.text());
 			$($ITEM_CONTAINER_TAG + '#' + $CATALOG_CONTAINER_ID).remove(); // Cleans old search.
 			slideHeaderUp(function(){
 				requestFromServer('GetProductList', 'Category&language_id=' + currentLang + '&category_id=' + (getCategoryIndex($target.html()) + 1) + '&order=ASC&items_per_page=10&page=1');	
 			});
 		} else if ($target.is( 'a.subCategoryLink' )){
+
+			$("#inputsearch").val($target.text());
 			var c_id, sc_id;
 			for(c_id=0; c_id < categories[currentLang-1].length; c_id++)
 				if($target.is( 'a.parentCategory' + (c_id+1) ))
