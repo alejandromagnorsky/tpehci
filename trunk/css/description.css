@@ -2,7 +2,7 @@
     position: absolute;
     top: 10px;
     left: 200px;
-    height: 705px;
+    height: 505px;
     width: 450px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -51,7 +51,7 @@
 /* Sometimes JQuery can be a b*tch */
 .description {
     width: 300px;
-    height: 740px !important;
+    height: 540px !important;
     background-image: url(./images/inicio/bg.png) !important;
     background-repeat: repeat-x;
     background-color: #000;

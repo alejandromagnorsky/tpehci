@@ -60,6 +60,9 @@ function buildDraggables(){
 			autoOpen: false, 
 			width: 1024,
 			resizable: false,
+			close : function(){
+				parent.location.hash = "search=" + $("#inputsearch").val();
+			},
 			modal: true
 	});
 
@@ -183,6 +186,9 @@ function productDetails($link){
 	var toOpen =  $('#' + $CATALOG_ITEM_DESCRIPTION + $link.parent().attr("id"));
 	toOpen.dialog("option", "title", $link.siblings("img").attr("alt"));
 	
+	// Modify hash tag
+	parent.location.hash = "content=true&product=" + $link.parent().find(".product-header").text();
+	
 	toOpen.dialog("option", "draggable", false);
 	toOpen.dialog("open");		
 	
@@ -195,7 +201,7 @@ function productDetails($link){
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "690px");
+	widget.css("height", "390px");
 	widget.css("width", "850px");
 	widget.css("text-align", "left");
 	widget.css("overflow", "hidden");
