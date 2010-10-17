@@ -65,17 +65,6 @@ function buildCart(){
 
 function buildDraggables(){
 	products = $('#' + $CATALOG_CONTAINER_ID);
-	
-	// Instantiates dialog windows for every product 
-	$('.' + $CATALOG_ITEM_DESCRIPTION, $CATALOG_ITEM).dialog({
-			autoOpen: false, 
-			width: 1024,
-			resizable: false,
-			close : function(){
-				parent.location.hash = "search=" + $("#inputsearch").val();
-			},
-			modal: true
-	});
 
     // Products are draggable. 
     $( $CATALOG_ITEM, products ).draggable({
@@ -198,7 +187,23 @@ function removeFromCart($item){
    
 /* View full product details */
 function productDetails($link){
+	
 	var toOpen =  $('#' + $CATALOG_ITEM_DESCRIPTION + $link.parent().attr("id"));
+
+	// Instantiates dialog windows for every product 
+	toOpen.dialog({
+			autoOpen: false, 
+			width: 1024,
+			resizable: false,
+			close : function(){
+				parent.location.hash = "search=" + $("#inputsearch").val();
+				$(this).dialog("destroy");
+			},
+			modal: true
+	});
+	
+	
+	
 	toOpen.dialog("option", "title", $link.siblings("img").attr("alt"));
 	
 	// Modify hash tag
