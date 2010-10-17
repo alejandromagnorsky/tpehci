@@ -421,7 +421,7 @@ function translateSettings(){
 	$("#modifyForm")[0].reset();	
 	
     loadAccount();
-	loadPreferences();
+	applyPreferences();
 	
     updateText("profile", Language.profile);
     updateText("modifyData", Language.modifyData);
