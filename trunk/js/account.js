@@ -359,6 +359,14 @@ function showPreferences(){
     document.getElementById("themeForm").onsubmit = savePreferences;
     $(".prefTabs").tabs();
     showHideAccount();
+    
+    
+
+	$("#pageWrapper").css("height", 900);
+	$("#footer").css("top", 900);
+    
+    
+    
     slideHeaderUp();
     translateSettings();
 }
