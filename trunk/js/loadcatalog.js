@@ -136,7 +136,7 @@ function printProduct(marker, subCategoryID){
 	out +=						'</div>';
 	out +=						'<div class="divPrice">';
 	out +=							'<p class="detailsPrice">Precio: $' + price + '</p>';
-	out +=							'<div id="addtocart"> ADD TO CART </div>';
+	out +=							'<div class="addtocart"> ADD TO CART </div>';
 	out +=						'</div>';
 
 	
@@ -269,6 +269,14 @@ function getProductList(parameters) {
 				buildDraggables();
 				enableTabs();
 				hideLoadingDialog();
+				
+				// Manage product styles
+				$(".imgDragger").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgDragger.png)");
+				$(".icon-cart").css("background-image", "url(../css/images/inicio/" + StyleAddr + "cartButton.png)");
+				$(".icon-zoom").css("background-image", "url(../css/images/inicio/" + StyleAddr + "detailsButton.png)");
+				$(".addtocart").css("background-image", "url(../css/images/inicio/" + StyleAddr + "addToCart.png)");
+				$(".addtocart").css("color", StyleTextColor);
+				$(".imgWrapperBig").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgWrapperBig.png)");
 
 				parent.location.hash = "content=true&search=" + $("#inputsearch").val();
 				

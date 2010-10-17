@@ -116,6 +116,18 @@ function search(event, callback) {
 									"<h3>No se encontró ningun producto. Por favor, vuelva a buscar.</h3>");
 				buildDraggables();
 				enableTabs();
+				
+				// Style!
+				
+
+				// Manage product styles
+				$(".imgDragger").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgDragger.png)");
+				$(".icon-cart").css("background-image", "url(../css/images/inicio/" + StyleAddr + "cartButton.png)");
+				$(".icon-zoom").css("background-image", "url(../css/images/inicio/" + StyleAddr + "detailsButton.png)");
+				$(".addtocart").css("background-image", "url(../css/images/inicio/" + StyleAddr + "addToCart.png)");
+				$(".addtocart").css("color", StyleTextColor);
+				$(".imgWrapperBig").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgWrapperBig.png)");
+
 
 				hideLoadingDialog();
 				if (callback != null)
