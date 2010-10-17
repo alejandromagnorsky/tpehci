@@ -11,8 +11,8 @@ $ITEM_CONTAINER_TAG = 'ul';
 
 
 
-var StyleAddr;
-var StyleTextColor;
+var StyleAddr = "";
+var StyleTextColor = "#fff";
 
 
 

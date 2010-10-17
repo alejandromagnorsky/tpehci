@@ -19,6 +19,11 @@ function getURLParameter2(name) {
 }
 
 function loadMain() {
+	
+	// Load generic theme
+	$("#header").css("background-color", "#ee7b0d");
+	$("#headerContent").css("background-image",
+			"url(../css/images/inicio/header_test.png)");
 
 	main = true;
 	configureValidators();
