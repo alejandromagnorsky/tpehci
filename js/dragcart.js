@@ -487,12 +487,15 @@ function addOrderItem(o_id, product_id, count){
     }).responseXML;
 }
 
+
 function createAddress(){
 	var full_name = $("#address_fullname").val();
 	var ad_1 = $("#address_primaryaddress").val();
 	var ad_2 = $("#address_secondaryaddress").val();
-	var c_id = $("#address_countryCombo").val();
-	var s_id = $("#address_stateCombo").val();
+	var indexSelected = document.getElementById("address_countryCombo").selectedIndex; 
+	var c_id = getCountryId(document.getElementById("address_countryCombo").options[indexSelected].text );
+	indexSelected = document.getElementById("address_stateCombo").selectedIndex; 
+	var s_id = getStateId(document.getElementById("address_stateCombo").options[indexSelected].text );
 	var city = $('#address_city').val();
 	var z_c = $('#address_zipcode').val();
 	var p_n = $('#address_phonenumber').val();

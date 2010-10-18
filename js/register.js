@@ -109,6 +109,24 @@ function loadStates(){
 }
 
 
+function getCountryId(name){
+	var i;
+	for(i = 0; i < countries[currentLang-1].length; i++){
+		if(countries[currentLang-1][i].name == name)
+			return countries[currentLang-1][i].id;
+	}
+}
+
+function getStateId(name){
+	var i;
+	for(i = 0; i < states[currentLang-1].length; i++){
+		if(states[currentLang-1][i].name == name)
+			return states[currentLang-1][i].id;
+	}
+}
+
+
+
 function Country(id, code, name){
     this.id = id;
     this.code = code;
