@@ -566,12 +566,12 @@ function getSubCategoryName(sc_id){
 }
 
 function printAddress(id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
-	$('.addressTable').find('.inputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" value="' + id + '"/></li>');
+	$('.addressTable').find('.addressInputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" checked="checked" value="' + id + '"/></li>');
 	$('.addressTable').find('.fullNameCol').append('<li class="addressItem">' + full_name + '</li>');
 	$('.addressTable').find('.addrCol').append('<li class="addressItem">' + address_line_1 + '</li>');
 	$('.addressTable').find('.cityCol').append('<li class="addressItem">' + city + '</li>');
 	$('.addressTable').find('.zipCodeCol').append('<li class="addressItem">' + zip_code + '</li>');
-	//$('.addressTable').find('.phoneCol').append('<li class="addressItem">' + phone_number + '</li>');
+	$('.addressTable').find('.phoneCol').append('<li class="addressItem">' + phone_number + '</li>');
 	$('.addressTable').find('.updateAddrCol').append('<li class="addressItem"><a href="#" class="updateAddr' + id + '">Update</a></li>');
 	$('.updateAddr' + id).click(function(){
 		//funcion que abre el aidalog para actualizar;
@@ -592,13 +592,46 @@ function printOrder(id, address_id, status, created_date, confirmed_date, shippe
 	$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
 	$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
 	$('.confirmOrder' + id).click(function(){
-		confirmOrder(id, address_id);
+		openAddressSelector(id);
 		return false;
 	});
 	$('.dropOrder' + id).click(function(){
 		deleteOrder(id);
 		return false;
 	});
+}
+
+function openAddressSelector(o_id){
+	$('.orderIdDialog').html(o_id);
+	$("#addressSelector").dialog({
+		close: function(){
+			$(this).dialog("destroy");
+		},
+		"width" : 650,
+		"modal" : "true",
+		"resizable" : "false",
+		"title" : 'Confirm Order #' + o_id,
+		draggable : false
+	});
+	
+	var widget = $("#addressSelector").dialog("widget");
+	widget.css("margin", "auto");
+	widget.css("margin-top", "0");
+
+	widget.css("left", "0");
+	widget.css("right", "0");
+
+	widget.css("top", "30px");
+	widget.css("bottom", "0");
+	widget.css("height", "450px");
+	widget.css("width", "850px");
+	widget.css("text-align", "left");
+
+	widget.css("position", "absolute");
+	widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
+	widget.css("-moz-border-radius", "10px 10px 10px 10px");
+	widget.css("background-color", "transparent");
+	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 }
 
 function getAddressList(parameters){	
@@ -612,6 +645,8 @@ function getAddressList(parameters){
 				$(response).find('address').each(function(){
 					marker = $(this);
 					printAddress(marker.attr('id'), marker.find('full_name').text(), marker.find('address_line_1').text(), marker.find('address_line_2').text(), marker.find('country_id').text(), marker.find('state_id').text(), marker.find('city').text(), marker.find('zip_code').text(), marker.find('phone_number').text());
+					$('ul.addressInputCol li.addressItem:eq(0)').find('.addressInput').attr("checked", "checked");
+
 				});
 			} else 
 				alert('Error: ' + request.statusText);
@@ -649,6 +684,7 @@ function getOrderList(parameters, action){
 						marker = $(this);
 						if (marker.find('status').text() != 2)
 							printOrder(marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
+							$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
 					});
 				} else if (action == 'printAll'){
 					$(response).find('order').each(function(){

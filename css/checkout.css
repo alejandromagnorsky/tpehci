@@ -32,6 +32,17 @@
 /* *********************** */
 
 /* Address form */
+#addressSelector{
+	font-size: 12px;
+    display: none;
+    background-color: #e2e2e2;
+	background-repeat: repeat-x;
+}
+
+.orderIdDialog {
+	display: none;
+}
+
 .addressTable {
 	margin: 15px;
 	position: relative;
@@ -59,6 +70,7 @@
 }
 
 .addressTable ul li.addressItem {
+	height: 30px;
 	background: #fff;
 }
 

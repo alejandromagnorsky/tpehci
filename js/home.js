@@ -70,7 +70,21 @@ function loadMain() {
 	buildCart(); // Enables cart drop zone.
 
 	parseArguments();
-
+	
+	getAddressList('username=' + session.username + '&authentication_token=' + session.token);
+	
+	$('.addAddress').click(function(){
+		createAddress('Hellatina666', 'Av. Helladera666 666', 'Helldorado', '1', '1', 'City of Satan', '7666', '666-6666');
+		return false;
+	});
+	$('.confirmOrder').click(function(){
+		var addr_id = jQuery('#addressForm input:radio:checked').val();
+		var o_id = $('.orderIdDialog').html();
+		alert(o_id + ' y ' + addr_id);
+		confirmOrder(o_id, addr_id);
+		return false;
+	});
+	
 }
 
 
