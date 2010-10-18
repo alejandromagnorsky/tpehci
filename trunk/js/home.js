@@ -58,10 +58,10 @@ function showVideo(){
 
 function loadMain() {
 	
-	
+	/*
 	if(session == undefined){
 		showVideo();
-	}
+	}*/
 
 	// Load generic theme
 	$("#header").css("background-color", "#ee7b0d");

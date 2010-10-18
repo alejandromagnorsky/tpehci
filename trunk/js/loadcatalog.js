@@ -757,7 +757,7 @@ function openAddressCreator(){
 	
 	$("#addressCreator").dialog({
 		close: function(){
-			$(this).dialog("destroy");
+			$("#addressCreator").dialog("destroy");
 		},
 		"width" : 650,
 		"modal" : "true",
@@ -765,6 +765,14 @@ function openAddressCreator(){
 		"title" : 'Create new address',
 		draggable : false
 	});
+	
+	inyectCountries("#address_countryCombo");
+    
+    document.getElementById("address_countryCombo").onchange = function(e){
+        var index = document.getElementById("address_countryCombo").selectedIndex;
+        inyectStates(index, "#address_stateCombo");
+    };
+    $("#address_stateCombo").html("");
 	
 	var widget = $("#addressCreator").dialog("widget");
 	widget.css("margin", "auto");
