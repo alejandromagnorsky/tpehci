@@ -36,8 +36,8 @@ function configureValidators(){
             check = false;
         return this.optional(element) || check;
     }, "");
-	
-	jQuery.validator.addMethod("checkCurrent", function(value, element){
+    
+    jQuery.validator.addMethod("checkCurrent", function(value, element){
         var check;
         if (value == session.password) {
             check = true;
@@ -46,7 +46,7 @@ function configureValidators(){
             check = false;
         return this.optional(element) || check;
     }, "");
-	
+    
 }
 
 
@@ -169,6 +169,27 @@ function configurePassValidator(){
 }
 
 
+function configureAddressValidator(){
+    addressValidator.settings.rules = {
+        fullname: "required",
+        primaryaddress: "required",
+        country: "required",
+        city: "required",
+        zipcode: "required",
+        phonenumber: "required"
+    };
+    
+    addressValidator.settings.messages = {
+        fullname: Language.fullnamewarning,
+		primaryaddress: Language.primaryaddresswarning,
+        country: Language.countrywarning,
+        city: Language.citywarning,
+        zipcode: Language.zipcodewarning,
+        phonenumber: Language.phonenumberwarning
+    };
+}
+
+
 
 function initializeRegValidator(){
     registerValidator = $("#registerForm").validate({
@@ -191,11 +212,21 @@ function initializeModValidator(){
 
 
 function initializePassValidator(){
-	passwordValidator = $("#changePassForm").validate({
+    passwordValidator = $("#changePassForm").validate({
     
         errorElement: "div",
         
         submitHandler: changePassword
+    });
+}
+
+
+function initializeAddressValidator(){
+    addressValidator = $("#addressForm").validate({
+    
+        errorElement: "div",
+        
+        submitHandler: createAddress
     });
 }
 
