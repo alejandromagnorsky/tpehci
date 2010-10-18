@@ -37,6 +37,8 @@ function loadMain() {
 	configureValidators(); 
 	$("#menuCategorias").accordion();
 
+	loadCountries();
+	loadStates();
 	getCategories($LANG_QTY);
 	getSubCategories($LANG_QTY);
 
