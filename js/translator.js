@@ -75,8 +75,6 @@ Language.es = function(){
     Language.loggedout = "Todavía no has ingresado a tu cuenta.";
     
     //Content:
-    Language.promo = "Las mejores ofertas!";
-    Language.promoImg = "imgs/publi2.png";
     Language.highlights = "Destacados";
     Language.categories = "Categorías de los productos";
     Language.price = "Precio";
@@ -106,15 +104,13 @@ Language.es = function(){
     Language.publisher = "Editor";
     Language.publisheddate = "Publicación";
     
-    Language.search = "Busqueda";
-    Language.error_search = "No se han encontrado coincidencias";
-    
-    //Forms:
+   
+    //Address
     Language.createaddress = "Agregar una nueva dirección";
     Language.createaddressintro = "Agregue una nueva dirección para luego usarla a la hora de hacer un pedido.";
     Language.fullname = "Nombre completo";
-    Language.address1 = "Dirección (línea 1)";
-    Language.address2 = "Dirección (línea 2)";
+    Language.primaryaddress = "Dirección principal";
+    Language.secondaryaddress = "Dirección secundaria";
     Language.city = "Ciudad";
     Language.zipcode = "Código postal";
     Language.phonenumber = "Número telefónico";
@@ -256,23 +252,17 @@ Language.en = function(){
     
     Language.cart = "Cart";
     
-    Language.search = "Search";
-    Language.error_search = "No matches found";
-    
-    
-    //Forms:
+      
+    //Address
     Language.createaddress = "Add a new address";
     Language.createaddressintro = "Adding a new address allows you to use it later on when making an order.";
     Language.fullname = "Full name";
-    Language.address1 = "Address (line 1)";
-    Language.address2 = "Address (line 2)";
+    Language.primaryaddress = "Main address";
+    Language.secondaryaddress = "Secondary address";
     Language.city = "City";
     Language.zipcode = "Zip Code";
     Language.phonenumber = "Phone Number";
-    Language.submit = "Submit";
-    Language.reset = "Reset";
-    Language.update_address = "Update address";
-    
+    Language.update_address = "Update address";    
     Language.noaddress = "You haven't created any adresses";
     
     Language.questionAddToCart = "Are you sure you want to add this product to your cart?";
@@ -343,6 +333,16 @@ function updateLanguage(){
     //Footer
     updateText("copyright", Language.copyright);
     
+	//Address
+	updateText("createaddress", Language.createaddress);
+	updateText("fullname", Language.fullname);
+	updateText("createaddress", Language.createaddress);
+	updateText("primaryaddress", Language.primaryaddress);
+	updateText("secondaryaddress", Language.secondaryaddress);
+	updateText("city", Language.city);
+	updateText("zipcode", Language.zipcode);
+	updateText("phonenumber", Language.phonenumber);
+	
     injectCategories();
     
     $("#menuCategorias").accordion("destroy");
@@ -356,8 +356,6 @@ function updateLanguage(){
     
     
     updateProductLanguage();
-    
-    
     
 }
 
@@ -402,6 +400,7 @@ function translateSettings(){
     updateText("newpassword", Language.newpassword);
     updateText("currentpassword", Language.currentpassword);
     updateText("confirmnewpassword", Language.confirmnewpassword);
+	updateText("mandatorydata", Language.mandatorydata);
     updateText("personalize", Language.personalize);
     updateText("selectTheme", Language.selectTheme);
 }
