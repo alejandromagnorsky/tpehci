@@ -603,7 +603,7 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	incrementContentByProduct();
 	
 	// If some parameter is null, it means programmer don't want to print that parameter.
-	if (input == 'input' ) $('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" name="order" value="' + id + '"/></li>');
+	if (input == 'input' ) $('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" checked="checked" name="order" value="' + id + '"/></li>');
 	/*if (id != null )*/ $('.orderTable').find('.orderIdCol').append('<li class="orderItem">' + id + '</li>');
 	/*if (address_id != null )*/ $('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem"><a href="#" class="viewAddress' + id + '">View</a></li>');
 	/*if (status != null )*/ $('.orderTable').find('.statusCol').append('<li class="orderItem">' + statusLabel + '</li>');

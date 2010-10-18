@@ -104,14 +104,14 @@
 }
 
 .addressTableInfo ul li.addressTitle {
-	height: 18px;
+	height: 20px;
 	font-weight: bold;
 	background: #333;
 	color: #fff;
 }
 
 .addressTableInfo ul li.addressItem {
-	height: 30px;
+	height: 40px;
 	background: #fff;
 }
 
