@@ -305,6 +305,15 @@ function proceedToCheckout(){
 		out +=	'<span><a href="#" class="placeNewOrder"><p/><p/>Place new order</a></span>';
 		$('.product').append(out);
 		getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printNotConfirmed');
+		
+
+
+		initializeContent();
+		incrementContentByProduct();
+		incrementContentByProduct();
+		incrementContentByProduct();
+		incrementContentByProduct();
+		
 
 		$('.addToSelectedOrder').click(function(){
 			if ($('ul.orderIdCol > li.orderItem').length == 0){
@@ -321,6 +330,7 @@ function proceedToCheckout(){
 					i++;
 				});
 				$('li.checkoutItem').remove();
+				incrementContentByProduct();
 			}
 			
 			return false;
@@ -329,6 +339,8 @@ function proceedToCheckout(){
 		$('.placeNewOrder').click(function(){
 			if ($('ul.idCol > li.checkoutItem').length != 0){
 				createOrder();
+				incrementContentByProduct();
+				
 			} else {
 				alert("Can't place new order without any item in cart ");
 			}

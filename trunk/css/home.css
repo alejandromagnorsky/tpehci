@@ -8,6 +8,12 @@ body {
     background-repeat: repeat-x;
 }
 
+#divVideo {
+	display: none;
+	width: 660px;
+	height: 405px;
+}
+
 #divLoading{
 	display: none;
 	color: #eee !important;

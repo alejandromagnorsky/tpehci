@@ -26,7 +26,43 @@ function getHref() {
 	return link.substr(0, i);
 }
 
+function showVideo(){
+	
+	$("#divVideo").dialog( {
+		close : function() {
+			return false;
+		},
+		"modal" : "true",
+		"resizable" : "false",
+		dialogClass : 'alert',
+		draggable : false,
+		closeOnEscape : false
+	});
+
+	var widget = $("#divVideo").dialog("widget");
+	widget.css("margin", "auto");
+
+	widget.css("left", "0");
+	widget.css("right", "0");
+	widget.css("top", "30px");
+	widget.css("bottom", "0");
+	widget.css("height", "445px");
+	widget.css("width", "680px");
+	widget.css("text-align", "left");
+
+	widget.css("position", "absolute");
+	widget.css("background-color", "transparent");
+	widget.css("background-image", "none");
+	widget.css("color", "#fff");
+	widget.css("border", "none");
+}
+
 function loadMain() {
+	
+	
+	if(session == undefined){
+		showVideo();
+	}
 
 	// Load generic theme
 	$("#header").css("background-color", "#ee7b0d");
