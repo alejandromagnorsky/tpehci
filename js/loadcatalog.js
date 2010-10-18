@@ -583,16 +583,24 @@ function printAddress(id, full_name, address_line_1, address_line_2, country_id,
 	});
 }
 
-function printOrder(id, address_id, status, created_date, confirmed_date, shipped_date, delivered_date, latitude, longitude){
+function printOrder(input, id, address_id, status, created_date, confirmed_date, shipped_date, delivered_date, latitude, longitude){
 	var statusLabel;
 	if (status == 1) statusLabel = 'Created';
 	else if (status == 2) statusLabel = 'Confirmed';
 	else if (status == 3) statusLabel = 'Shipped';
 	else statusLabel = 'Delivered';
-	$('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" name="order" value="' + id + '"/></li>');
-	$('.orderTable').find('.orderIdCol').append('<li class="orderItem">' + id + '</li>');
-	$('.orderTable').find('.statusCol').append('<li class="orderItem">' + statusLabel + '</li>');
-	$('.orderTable').find('.createdCol').append('<li class="orderItem">' + created_date + '</li>');
+	
+	// If some parameter is null, it means programmer don't want to print that parameter.
+	if (input == 'input' ) $('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" name="order" value="' + id + '"/></li>');
+	/*if (id != null )*/ $('.orderTable').find('.orderIdCol').append('<li class="orderItem">' + id + '</li>');
+	/*if (address_id != null )*/ $('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem">' + address_id + '</li>');
+	/*if (status != null )*/ $('.orderTable').find('.statusCol').append('<li class="orderItem">' + statusLabel + '</li>');
+	/*if (created_date != null )*/ $('.orderTable').find('.createdCol').append('<li class="orderItem">' + created_date + '</li>');
+	/*if (confirmed_date != null )*/ $('.orderTable').find('.confirmedCol').append('<li class="orderItem">' + ((status != 2) ? 'Not confirmed yet' : confirmed_date) + '</li>');
+	/*if (shipped_date != null )*/ $('.orderTable').find('.shippedCol').append('<li class="orderItem">' + ((status != 3) ? 'Not shipped yet' : shipped_date) + '</li>');
+	/*if (delivered_date != null )*/ $('.orderTable').find('.deliveredCol').append('<li class="orderItem">' + ((status != 4) ? 'Not delivered yet' : delivered_date) + '</li>');
+	/*if (latitude != null )*/ $('.orderTable').find('.latCol').append('<li class="orderItem">' + latitude + '</li>');
+	/*if (longitude != null )*/ $('.orderTable').find('.lonCol').append('<li class="orderItem">' + longitude + '</li>');
 	$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
 	$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
 	$('.confirmOrder' + id).click(function(){
@@ -667,7 +675,7 @@ function getOrder(parameters, action){
 		if (request.readyState == 4) {
 			if (request.status == 200) {
 				var response = request.responseXML;
-				printOrder($(response).find('order').attr('id'), $(response).find('address_id').text(), $(response).find('status').text(), $(response).find('created_date').text(), $(response).find('confirmed_date').text(), $(response).find('shipped_date').text(), $(response).find('delivered_date').text(), $(response).find('latitude').text(), $(response).find('longitude').text());
+				printOrder('input', $(response).find('order').attr('id'), $(response).find('address_id').text(), $(response).find('status').text(), $(response).find('created_date').text(), $(response).find('confirmed_date').text(), $(response).find('shipped_date').text(), $(response).find('delivered_date').text(), $(response).find('latitude').text(), $(response).find('longitude').text());
 			} else 
 				alert('Error: ' + request.statusText);
 		}
@@ -687,13 +695,13 @@ function getOrderList(parameters, action){
 					$(response).find('order').each(function(){
 						marker = $(this);
 						if (marker.find('status').text() != 2)
-							printOrder(marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
+							printOrder('input', marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
 							$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
 					});
 				} else if (action == 'printAll'){
 					$(response).find('order').each(function(){
 						marker = $(this);
-						printOrder(marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
+						printOrder('notinput', marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
 					});
 				}
 			} else 

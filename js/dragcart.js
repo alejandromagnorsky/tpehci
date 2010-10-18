@@ -238,31 +238,39 @@ function productDetails($link){
 
 function proceedToCheckout(){
 	var out = '';
-	var fromCart = $('#cart');
-	out +=	'<h3 class="checkout-header">Checkout</h5>';
-	out +=	'<div class="checkoutTable">';
-	out +=		'<ul class="idCol"><li class="checkoutTitle">ID</li></ul>';
-	out +=		'<ul class="nameCol"><li class="checkoutTitle">Título</li></ul>';
-	out +=		'<ul class="qtyCol"><li class="checkoutTitle">Cantidad</li></ul>';
-	out +=		'<ul class="priceCol"><li class="checkoutTitle">Precio</li></ul>';
-	out +=		'<ul class="subtotalCol"><li class="checkoutTitle">Subtotal</li></ul>';
-	out +=	'</div>';
 	$('.product').html(out);
-	
-	var total = 0;
-	fromCart.find('li').each( function(){
-		var marker = $(this);
-		var price = 666;//marker.find('p.detailsPrice').html();
-		var qty = marker.find('span.quantity').html();
-		total += price * qty;
-		$('.checkoutTable').find('.idCol').append('<li class="checkoutItem">' + marker.attr('id') + '</li>');
-		$('.checkoutTable').find('.nameCol').append('<li class="checkoutItem">' + marker.find('h5.product-header').html() + '</li>');
-		$('.checkoutTable').find('.qtyCol').append('<li class="checkoutItem">' + qty + '</li>');
-		$('.checkoutTable').find('.priceCol').append('<li class="checkoutItem">' + price + '</li>');
-		$('.checkoutTable').find('.subtotalCol').append('<li class="checkoutItem">' + (price * qty) + '</li>');
-	});
-	
-	out = '<div class="totalCheckout"><br><br><br><br><br><br>Total: ' + total + '</div>';
+	out +=	'<h3 class="checkout-header">Checkout</h5>';
+	if ($('#cart').find('li').length != 0){
+		var fromCart = $('#cart');
+		out +=	'<div class="checkoutTable">';
+		out +=		'<ul class="idCol"><li class="checkoutTitle">ID</li></ul>';
+		out +=		'<ul class="nameCol"><li class="checkoutTitle">Título</li></ul>';
+		out +=		'<ul class="qtyCol"><li class="checkoutTitle">Cantidad</li></ul>';
+		out +=		'<ul class="priceCol"><li class="checkoutTitle">Precio</li></ul>';
+		out +=		'<ul class="subtotalCol"><li class="checkoutTitle">Subtotal</li></ul>';
+		out +=	'</div>';
+		$('.product').append(out);
+		
+		var total = 0;
+		fromCart.find('li').each( function(){
+			var marker = $(this);
+			var price = 666;//marker.find('p.detailsPrice').html();
+			var qty = marker.find('span.quantity').html();
+			total += price * qty;
+			$('.checkoutTable').find('.idCol').append('<li class="checkoutItem">' + marker.attr('id') + '</li>');
+			$('.checkoutTable').find('.nameCol').append('<li class="checkoutItem">' + marker.find('h5.product-header').html() + '</li>');
+			$('.checkoutTable').find('.qtyCol').append('<li class="checkoutItem">' + qty + '</li>');
+			$('.checkoutTable').find('.priceCol').append('<li class="checkoutItem">' + price + '</li>');
+			$('.checkoutTable').find('.subtotalCol').append('<li class="checkoutItem">' + (price * qty) + '</li>');
+		});
+		
+		out = '<div class="totalCheckout"><br><br><br><br><br><br>Total: ' + total + '</div>';
+		$('.product').append(out);
+	} else {
+		out += '<span>No hay ítems en el carrito</br></span>';
+		$('.product').append(out);
+	}
+	out = '';
 	if (session == undefined){
 		out += '<span>Usted debe estar logueado para hacer un pedido. Loguearse. Registrarse.</br></span>';
 		$('.product').append(out);
@@ -284,15 +292,6 @@ function proceedToCheckout(){
 		$('.product').append(out);
 		getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printNotConfirmed');
 
-		$('.placeNewOrder').click(function(){
-			if ($('ul.idCol > li.checkoutItem').length != 0){
-				createOrder();
-			} else {
-				alert("Can't place new order without any item in cart ");
-			}
-			
-			return false;
-		});
 		$('.addToSelectedOrder').click(function(){
 			if ($('ul.orderIdCol > li.orderItem').length == 0){
 				alert("No orders to add to. Must place a new order.");
@@ -313,6 +312,15 @@ function proceedToCheckout(){
 			return false;
 		});
 		
+		$('.placeNewOrder').click(function(){
+			if ($('ul.idCol > li.checkoutItem').length != 0){
+				createOrder();
+			} else {
+				alert("Can't place new order without any item in cart ");
+			}
+			
+			return false;
+		});
 	}
 }
 

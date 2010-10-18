@@ -50,6 +50,7 @@ function loadMain() {
 	});
 	document.getElementById("linklogin").onclick = showHideLogin;
 	document.getElementById("spanlogout").onclick = logout;
+	document.getElementById("spanorders").onclick = showOrders;
 	document.getElementById("spanpreferences").onclick = showPreferences;
 	document.getElementById("spanregister").onclick = showRegisterDialog;
 	document.getElementById("linkmyaccount").onclick = showHideAccount;
@@ -80,7 +81,6 @@ function loadMain() {
 	$('.confirmOrder').click(function(){
 		var addr_id = jQuery('#addressForm input:radio:checked').val();
 		var o_id = $('.orderIdDialog').html();
-		alert(o_id + ' y ' + addr_id);
 		confirmOrder(o_id, addr_id);
 		return false;
 	});
