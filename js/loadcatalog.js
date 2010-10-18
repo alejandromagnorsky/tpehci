@@ -182,7 +182,7 @@ function printProduct(marker, subCategoryID){
 	out +=						'</div>';
 	out +=						'<div class="divPrice">';
 	out +=							'<p class="detailsPrice"><span class="LangPrice">' + Language.price + '</span>:<span class="LangMoneySign">' + Language.moneySign + '</span><span class="basePrice" value="'+price+'">' + (Language.conversionMoney*price).toFixed(2) + '</span></p>';
-	out +=							'<div class="addtocart"> ADD TO CART </div>';
+	out +=							'<a href="#"><div class="addtocart" value="' + p_id + '"> ADD TO CART </div></a>';
 	out +=						'</div>';
 
 	
