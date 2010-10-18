@@ -585,17 +585,12 @@ function getSubCategoryName(sc_id){
 }
 
 function printAddress(id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
-	$('.addressTable').find('.addressInputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" checked="checked" value="' + id + '"/></li>');
+	$('.addressTable').find('.addressInputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" value="' + id + '"/></li>');
 	$('.addressTable').find('.fullNameCol').append('<li class="addressItem">' + full_name + '</li>');
 	$('.addressTable').find('.addrCol').append('<li class="addressItem">' + address_line_1 + '</li>');
 	$('.addressTable').find('.cityCol').append('<li class="addressItem">' + city + '</li>');
 	$('.addressTable').find('.zipCodeCol').append('<li class="addressItem">' + zip_code + '</li>');
 	$('.addressTable').find('.phoneCol').append('<li class="addressItem">' + phone_number + '</li>');
-	$('.addressTable').find('.updateAddrCol').append('<li class="addressItem"><a href="#" class="updateAddr' + id + '">Update</a></li>');
-	$('.updateAddr' + id).click(function(){
-		//funcion que abre el aidalog para actualizar;
-		return false;
-	});
 }
 
 function printOrder(input, id, address_id, status, created_date, confirmed_date, shipped_date, delivered_date, latitude, longitude){
@@ -665,7 +660,6 @@ function openAddressSelector(o_id){
 	
 	// Add map!
 	$("#mapContainer").html("<div id='map_canvas'/>");	
-
 	initializeMap();
 	
 }
@@ -715,6 +709,8 @@ function getAddressList(parameters){
 		if (request.readyState == 4) {
 			if (request.status == 200) {
 				var response = request.responseXML;
+				
+				$('.addressItem').remove();
 				$(response).find('address').each(function(){
 					marker = $(this);
 					printAddress(marker.attr('id'), marker.find('full_name').text(), marker.find('address_line_1').text(), marker.find('address_line_2').text(), marker.find('country_id').text(), marker.find('state_id').text(), marker.find('city').text(), marker.find('zip_code').text(), marker.find('phone_number').text());

@@ -83,7 +83,7 @@ function loadMain() {
 		return false;
 	});
 	$('.confirmOrder').click(function(){
-		var addr_id = jQuery('#addressForm input:radio:checked').val();
+		var addr_id = jQuery('#addressList input:radio:checked').val();
 		var o_id = $('.orderIdDialog').html();
 		confirmOrder(o_id, addr_id);
 		return false;
