@@ -1,5 +1,39 @@
+/* Order form */
+.orderTable {
+	margin: 15px;
+	position: relative;
+	padding: 0.5em; padding-bottom: 25px; 
+	/*background: #333;*/
+}
+
+.orderTable ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #C9C9C9;
+}
+
+.orderTable ul li {
+	list-style: none;
+	padding: 5px 10px;
+}
+
+.orderTable ul li.orderTitle {
+	font-weight: bold;
+	background: #333;
+	color: #fff;
+}
+
+.orderTable ul li.orderItem {
+	height: 30px;
+	background: #fff;
+}
+
+/* *********************** */
+
 /* Address form */
 .addressTable {
+	margin: 15px;
 	position: relative;
 	padding: 0.5em; padding-bottom: 25px; 
 	/*background: #333;*/
@@ -31,6 +65,7 @@
 /* *********************** */
 
 .checkoutTable {
+	margin: 15px;
 	position: relative;
 	padding: 0.5em; padding-bottom: 25px; 
 	/*background: #333;*/

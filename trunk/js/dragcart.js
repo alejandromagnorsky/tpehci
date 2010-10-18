@@ -267,31 +267,173 @@ function proceedToCheckout(){
 		out += '<span>Usted debe estar logueado para hacer un pedido. Loguearse. Registrarse.</br></span>';
 		$('.product').append(out);
 	} else {
-		out +=	'<h3 class="address-header">Choose your shipping address</h5>';
-		out +=	'<form id="addressForm">';
+		/*out +=	'<h3 class="address-header">Choose your shipping address</h3>';
+		out +=	'<form id="addressForm" action="#">';
 		out +=		'<div class="addressTable">';
 		out +=			'<ul class="inputCol"><li class="addressTitle">#</li></ul>';
 		out +=			'<ul class="fullNameCol"><li class="addressTitle">Name</li></ul>';
 		out +=			'<ul class="addrCol"><li class="addressTitle">Address</li></ul>';
 		out +=			'<ul class="cityCol"><li class="addressTitle">City</li></ul>';
 		out +=			'<ul class="zipCodeCol"><li class="addressTitle">Zip Code</li></ul>';
-		out +=			'<ul class="updateAddr"><li class="addressTitle">BLABLA</li></ul>';
+		out +=			'<ul class="updateAddrCol"><li class="addressTitle">BLABLA</li></ul>';
 		//out +=			'<ul class="phoneCol"><li class="addressTitle">Phone</li></ul>';
 		out +=		'</div>';
 		out +=	'</form>';
 		$('.product').append(out);
 		getAddressList('username=' + session.username + '&authentication_token=' + session.token);
+		out = ''
+		out +=	'<span><a href="#" class="addAddress">Add new address</span>';
+		
+		
+		// Event handlers
+		$('.addAddress').click(function(){
+			createAddress('Hellatina', 'Av. Helladera 666', 'Helldorado', '1', '1', 'City of Satan', '666', '666-6666');
+			return false;
+		});*/
+		
+		out +=	'<h3 class="order-header">SELECT NON-CONFIRMED ORDER...</h3>';
+		out +=	'<form id="orderForm" action="#">';
+		out +=		'<div class="orderTable">';
+		out +=			'<ul class="orderInputCol"><li class="orderTitle">#</li></ul>';
+		out +=			'<ul class="orderIdCol"><li class="orderTitle">Order ID</li></ul>';
+		out +=			'<ul class="statusCol"><li class="orderTitle">Status</li></ul>';
+		out +=			'<ul class="createdCol"><li class="orderTitle">Placed on</li></ul>';
+		out +=			'<ul class="confirmCol"><li class="orderTitle">Confirm</li></ul>';
+		out +=			'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
+		out +=		'</div>';
+		out +=	'</form>';
+		out +=	'<h3 class="order-header"><br/>...OR PLACE A NEW ONE</h3>';
+		out +=	'<span><a href="#" class="placeNewOrder">Place new order</span>';
+		$('.product').append(out);
+		getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printNotConfirmed');
+
+		$('.placeNewOrder').click(function(){
+			if ($('ul.idCol > li.checkoutItem').length != 0){
+				createOrder();
+			} else {
+				alert("Can't place new order without any item in cart ");
+			}
+			
+			return false;
+		});
+		
 	}
-	$('#addressButton').click(function(){
-		createAddress('ITBA', 'Madero', 'Seattle', '1', '1', 'City of Satan', '1102', '666-6666');
-		return false;
-	});
+}
+
+function createOrder(){
+    $.ajax({
+        type: "POST",
+        url: getHref()+"/service/Order.groovy",
+        dataType: "xml",
+        data: {
+            method: "CreateOrder",
+            username: session.username,
+            authentication_token: session.token
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+                var order_id = $(xml).find("order").attr('id');
+				var i = 0;
+				
+				$('ul.idCol > li.checkoutItem').each(function(){
+					var marker = $(this);
+					addOrderItem(order_id, marker.html(), $('ul.qtyCol > li.checkoutItem:eq(' + i + ')').html());
+					i++;
+				});
+				$('li.checkoutItem').remove();
+				getOrder('username=' + session.username + '&authentication_token=' + session.token + '&order_id=' + order_id);
+			} else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
+}
+
+function confirmOrder(o_id, addr_id){
+	$.ajax({
+        type: "POST",
+        url: getHref()+"/service/Order.groovy",
+        dataType: "xml",
+        data: {
+            method: "ConfirmOrder",
+            username: session.username,
+            authentication_token: session.token,
+			order_id: o_id,
+			address_id: addr_id
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+				alert("Order succesfully confirmed");				
+			} else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
+}
+
+function deleteOrder(o_id){
+    $.ajax({
+        type: "POST",
+        url: getHref()+"/service/Order.groovy",
+        dataType: "xml",
+        data: {
+            method: "DeleteOrder",
+            username: session.username,
+            authentication_token: session.token,
+			order_id: o_id
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+				var i = 0, stop = false;
+				$('ul.orderIdCol li.orderItem').each(function(){
+					if (!stop){
+						marker = $(this);
+						if (marker.html().toString() == o_id.toString())
+							stop = true;
+						else i++;
+					}
+				});
+				$('ul.orderInputCol li.orderItem:eq(' + i + ')').remove();
+				$('ul.orderIdCol li.orderItem:eq(' + i + ')').remove();
+				$('ul.statusCol li.orderItem:eq(' + i + ')').remove();
+				$('ul.createdCol li.orderItem:eq(' + i + ')').remove();
+				$('ul.confirmCol li.orderItem:eq(' + i + ')').remove();
+				$('ul.dropCol li.orderItem:eq(' + i + ')').remove();
+				
+			} else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
+}
+
+function addOrderItem(o_id, product_id, count){
+	$.ajax({
+        type: "POST",
+        url: getHref()+"/service/Order.groovy",
+        dataType: "xml",
+        data: {
+            method: "AddOrderItem",
+            username: session.username,
+            authentication_token: session.token,
+			order_id: o_id,
+			order_item: '<order_item><product_id>' + product_id + '</product_id><count>' + count + '</count></order_item>'
+        },
+        success: function(xml){
+            if ($(xml).find("response").attr('status') == 'ok') {
+				$('#cart li#' + product_id).remove();
+                alert('Item ' + product_id + ' added succesfully!');
+			} else {
+                alert("Error: " + $(xml).find("error").attr('message'));
+            }
+        }
+    }).responseXML;
 }
 
 function createAddress(full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/service/Order.groovy",
+        url: getHref()+"/service/Order.groovy",
         dataType: "xml",
         data: {
             method: "CreateAddress",
@@ -311,6 +453,8 @@ function createAddress(full_name, address_line_1, address_line_2, country_id, st
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
                 alert("New address added");
+				var new_id = $(xml).find("address").attr('id');
+				printAddress(new_id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number);
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
@@ -318,25 +462,25 @@ function createAddress(full_name, address_line_1, address_line_2, country_id, st
     }).responseXML;
 }
 
-function updateAddress(full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
+function updateAddress(addr_id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/service/Order.groovy",
+        url: getHref()+"/service/Order.groovy",
         dataType: "xml",
         data: {
             method: "UpdateAddress",
             username: session.username,
             authentication_token: session.token,
-            address: 	"<address>" + 
-							"<full_name>" + full_name + "</full_name>" +
-							"<address_line_1>" + address_line_1 + "</address_line_1>" +
-							"<address_line_2>" + address_line_2 + "</address_line_2>" +
-							"<country_id>" + country_id + "</country_id>" +
-							"<state_id>" + state_id + "</state_id>" +
-							"<city>" + city + "</city>" +
-							"<zip_code>" + zip_code + "</zip_code>" +
-							"<phone_number>" + phone_number + "</phone_number>" +
-						"</address>"
+            address: 	'<address id="' + addr_id + '">' + 
+							'<full_name>' + full_name + '</full_name>' +
+							'<address_line_1>' + address_line_1 + '</address_line_1>' +
+							'<address_line_2>' + address_line_2 + '</address_line_2>' +
+							'<country_id>' + country_id + '</country_id>' +
+							'<state_id>' + state_id + '</state_id>' +
+							'<city>' + city + '</city>' +
+							'<zip_code>' + zip_code + '</zip_code>' +
+							'<phone_number>' + phone_number + '</phone_number>' +
+						'</address>'
         },
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {

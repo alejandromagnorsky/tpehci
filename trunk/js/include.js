@@ -8,13 +8,8 @@ $ORDER = '/service/Order.groovy?method=';
 /* CATALOG & SHOPPING CART ***************************************** */
 $ITEM_CONTAINER_TAG = 'ul';
 
-
-
-
 var StyleAddr = "";
 var StyleTextColor = "#fff";
-
-
 
 // Cart
 var cart;

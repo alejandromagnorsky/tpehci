@@ -120,10 +120,11 @@ function printProduct(marker, subCategoryID){
 			return false;
 	
 	var productResponse = getProduct(marker.attr('id'));
-	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + idIndex + c_id + sc_id + '">';
+	var p_id = marker.attr('id');
+	out +=	'<' + $CATALOG_ITEM + ' class="product-content corner-tr" id="' + p_id + '">';
 	out +=  	'<div class="productBg"/>';
 	out +=		'<h5 class="' + $CATALOG_ITEM_HEADER + '">' + name + '</h5>';
-	out +=		'<div id="description' + idIndex++ + c_id + sc_id + '" style="height: 100%;" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
+	out +=		'<div id="description' + p_id + '" style="height: 100%;" class="' + $CATALOG_ITEM_DESCRIPTION + ' hide">';
 	out += 		'<div class="descriptionWrapper">';
 	out +=			'<img src="' + image_url + '" alt="' + name + '" width="' + $IMG_WIDTH + '" height="' + $IMG_HEIGHT + '" class="descImage"></img>';
 	out += 			'<div class="imgWrapperBig"/>';
@@ -564,19 +565,40 @@ function getSubCategoryName(sc_id){
 	return null;
 }
 
-function getOrderList(parameters){	
-	var request = new XMLHttpRequest();
-	var url = $ORDER + 'GetOrderList' + '&' + parameters;
-	request.open('GET', url, true);
-	request.onreadystatechange = function() {
-		if (request.readyState == 4) {
-			if (request.status == 200)
-				return request.responseXML;
-			else
-				alert('Error: ' + request.statusText);
-		}
-	};
-	request.send();
+function printAddress(id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
+	$('.addressTable').find('.inputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" value="' + id + '"/></li>');
+	$('.addressTable').find('.fullNameCol').append('<li class="addressItem">' + full_name + '</li>');
+	$('.addressTable').find('.addrCol').append('<li class="addressItem">' + address_line_1 + '</li>');
+	$('.addressTable').find('.cityCol').append('<li class="addressItem">' + city + '</li>');
+	$('.addressTable').find('.zipCodeCol').append('<li class="addressItem">' + zip_code + '</li>');
+	//$('.addressTable').find('.phoneCol').append('<li class="addressItem">' + phone_number + '</li>');
+	$('.addressTable').find('.updateAddrCol').append('<li class="addressItem"><a href="#" class="updateAddr' + id + '">Update</a></li>');
+	$('.updateAddr' + id).click(function(){
+		//funcion que abre el aidalog para actualizar;
+		return false;
+	});
+}
+
+function printOrder(id, address_id, status, created_date, confirmed_date, shipped_date, delivered_date, latitude, longitude){
+	var statusLabel;
+	if (status == 1) statusLabel = 'Created';
+	else if (status == 2) statusLabel = 'Confirmed';
+	else if (status == 3) statusLabel = 'Shipped';
+	else statusLabel = 'Delivered';
+	$('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" name="order" value="' + id + '"/></li>');
+	$('.orderTable').find('.orderIdCol').append('<li class="orderItem">' + id + '</li>');
+	$('.orderTable').find('.statusCol').append('<li class="orderItem">' + statusLabel + '</li>');
+	$('.orderTable').find('.createdCol').append('<li class="orderItem">' + created_date + '</li>');
+	$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
+	$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
+	$('.confirmOrder' + id).click(function(){
+		confirmOrder(id, address_id);
+		return false;
+	});
+	$('.dropOrder' + id).click(function(){
+		deleteOrder(id);
+		return false;
+	});
 }
 
 function getAddressList(parameters){	
@@ -589,17 +611,51 @@ function getAddressList(parameters){
 				var response = request.responseXML;
 				$(response).find('address').each(function(){
 					marker = $(this);
-					$('.addressTable').find('.inputCol').append('<li class="addressItem"><input class="addressInput" type="radio" name="address" value="' + marker.attr('id') + '"/></li>');
-					$('.addressTable').find('.fullNameCol').append('<li class="addressItem">' + marker.find('full_name').text() + '</li>');
-					$('.addressTable').find('.addrCol').append('<li class="addressItem">' + marker.find('address_line_1').text() + '</li>');
-					$('.addressTable').find('.cityCol').append('<li class="addressItem">' + marker.find('city').text() + '</li>');
-					$('.addressTable').find('.zipCodeCol').append('<li class="addressItem">' + marker.find('zip_code').text() + '</li>');
-					$('.addressTable').find('.phoneCol').append('<li class="addressItem">' + marker.find('phone_number').text() + '</li>');
-					$('.addressTable').find('.updateAddrCol').append('<li class="addressItem"><a href="#" class="updateAddr' + marker.attr('id') + '">X</a></li>');
-					$('.updateAddr' + marker.attr('id')).click(function(){
-						updateAddress();
-					});
+					printAddress(marker.attr('id'), marker.find('full_name').text(), marker.find('address_line_1').text(), marker.find('address_line_2').text(), marker.find('country_id').text(), marker.find('state_id').text(), marker.find('city').text(), marker.find('zip_code').text(), marker.find('phone_number').text());
 				});
+			} else 
+				alert('Error: ' + request.statusText);
+		}
+	};
+	request.send();
+}
+
+function getOrder(parameters, action){	
+	var request = new XMLHttpRequest();
+	var url = $ORDER + 'GetOrder' + '&' + parameters;
+	request.open('GET', url, true);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+				var response = request.responseXML;
+				printOrder($(response).find('order').attr('id'), $(response).find('address_id').text(), $(response).find('status').text(), $(response).find('created_date').text(), $(response).find('confirmed_date').text(), $(response).find('shipped_date').text(), $(response).find('delivered_date').text(), $(response).find('latitude').text(), $(response).find('longitude').text());
+			} else 
+				alert('Error: ' + request.statusText);
+		}
+	};
+	request.send();
+}
+
+function getOrderList(parameters, action){	
+	var request = new XMLHttpRequest();
+	var url = $ORDER + 'GetOrderList' + '&' + parameters;
+	request.open('GET', url, true);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+				var response = request.responseXML;
+				if (action == 'printNotConfirmed') {
+					$(response).find('order').each(function(){
+						marker = $(this);
+						if (marker.find('status').text() != 2)
+							printOrder(marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
+					});
+				} else if (action == 'printAll'){
+					$(response).find('order').each(function(){
+						marker = $(this);
+						printOrder(marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
+					});
+				}
 			} else 
 				alert('Error: ' + request.statusText);
 		}
