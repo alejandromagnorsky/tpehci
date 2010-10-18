@@ -84,6 +84,13 @@
 	/*background: #333;*/
 }
 
+.addressTableInfo {
+	margin: 15px;
+	position: relative;
+	padding: 0.5em; padding-bottom: 25px; 
+	/*background: #333;*/
+}
+
 .addressTable ul {
 	float: left;
 	margin: 0;
@@ -96,14 +103,38 @@
 	padding: 5px 10px;
 }
 
-.addressTable ul li.addressTitle {
+.addressTableInfo ul li.addressTitle {
 	height: 18px;
 	font-weight: bold;
 	background: #333;
 	color: #fff;
 }
 
-.addressTable ul li.addressItem {
+.addressTableInfo ul li.addressItem {
+	height: 30px;
+	background: #fff;
+}
+
+.addressTableInfo ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #C9C9C9;
+}
+
+.addressTableInfo ul li {
+	list-style: none;
+	padding: 5px 10px;
+}
+
+.addressTableInfo ul li.addressTitle {
+	height: 18px;
+	font-weight: bold;
+	background: #333;
+	color: #fff;
+}
+
+.addressTableInfo ul li.addressItem {
 	height: 30px;
 	background: #fff;
 }

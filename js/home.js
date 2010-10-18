@@ -35,7 +35,7 @@ function showVideo(){
 		"modal" : "true",
 		"resizable" : "false",
 		dialogClass : 'alert',
-		draggable : false,
+		draggable : false
 	});
 
 	var widget = $("#divVideo").dialog("widget");
@@ -543,7 +543,7 @@ function slideHeaderUp(callback) {
 		}, 1000);
 
 		$("#titleImg").animate( {
-			"height" : "100px",
+			"height" : "100px"
 		}, 1000, function() {
 
 			$("#pageWrapper").css("visibility", "visible");
