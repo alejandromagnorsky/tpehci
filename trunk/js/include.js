@@ -61,6 +61,6 @@ $EN = 1;
 $ES = 2;
 $LANG_QTY = 2;
 var currentLang = $EN;
-var addressValidator
+var addressValidator;
 $JS_OFF = 'JAVASCRIPT_IS_OFF';
 /* ***************************************************************** */

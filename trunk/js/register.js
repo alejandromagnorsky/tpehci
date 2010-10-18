@@ -37,84 +37,140 @@ function loadRegisterForm(){
      maxDate: '+0d'
      });
      */
-    requestFromServer('GetCountryList', 'language_id=' + currentLang);
+    inyectCountries();
     
     document.getElementById("countryCombo").onchange = function(e){
         var index = document.getElementById("countryCombo").selectedIndex;
-        requestFromServer('GetStateList', 'language_id=' + currentLang + '&country_id=' + index);
+        inyectStates(index);
     };
     $("#stateCombo").html("");
-	
+    
     document.getElementById("buttonCancel").onclick = resetRegisterForm;
+}
+
+function inyectCountries(){
+    var i;
+    var out = "";
+    out += '<option value="" disabled="true" selected ="selected">';
+    out += Language.countryselection;
+    out += '</option>';
+    for (i = 0; i < countries[currentLang - 1].length; i++) {
+        out += '<option value="' + i + 1 + '">';
+        out += countries[currentLang - 1][i].name;
+        out += '</option>';
+    }
+    $('#countryCombo').html(out);
+}
+
+function inyectStates(country_id){
+    var i = 1, j = 1;
+    var out = "";
+    
+    for (i = 0; i < states[currentLang - 1].length; i++) {
+        if (states[currentLang - 1][i].country_id == country_id) {
+            out += '<option value="' + j++ + '">';
+            out += states[currentLang - 1][i].name;
+            out += '</option>';
+        }
+    }
+    $('#stateCombo').html(out);
+}
+
+
+function loadCountries(){
+    countries = new Array();
+    var i;
+    for (i = 0; i < 2; i++) {
+        countries[i] = new Array();
+        
+        var response = getCountryList('language_id=' + (i + 1));
+        $(response).find('country').each(function(){
+            var marker = $(this);
+            countries[i].push(new Country(marker.attr('id'), marker.find("code").text(), marker.find("name").text()));
+        })
+    }
+}
+
+
+function loadStates(){
+    states = new Array();
+    var i, j;
+    for (i = 0; i < 2; i++) {
+        states[i] = new Array();
+        for (j = 0; j < countries[i].length; j++) {
+            var response = getStateList('language_id=' + (i + 1) + '&country_id=' + (countries[i][j].id));
+            $(response).find('state').each(function(){
+                var marker = $(this);
+                states[i].push(new State(marker.attr('id'), marker.find("code").text(), marker.find("name").text(), marker.find('country_id').text()));
+            })
+        }
+    }
+    
+}
+
+
+function Country(id, code, name){
+    this.id = id;
+    this.code = code;
+    this.name = name;
+}
+
+function State(id, code, name, country_id){
+    this.id = id;
+    this.code = code;
+    this.name = name;
+    this.country_id = country_id;
 }
 
 
 function getCountryList(parameters){
     var url = $COMMON + 'GetCountryList' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.onreadystatechange = function(){
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-            
-                var response = request.responseXML;
-                
-                var i = 1;
-                var out = "";
-                out += '<option value="" disabled="true" selected ="selected">';
-                out += Language.countryselection;
-                out += '</option>';
-                $(response).find('country').each(function(){
-                    var marker = $(this);
-                    var name = marker.find("name").text();
-                    out += '<option value="' + i++ + '">';
-                    out += name;
-                    out += '</option>';
-                });
-                $('#countryCombo').html(out);
-            }
-            else {
-                alert('Error: ' + request.statusText);
-            }
-        }
-    };
+    request.open('GET', url, false);
     request.send();
+    if (request.status == 200) {
+    
+        var response = request.responseXML;
+        return response;
+    }
+    else {
+        alert('Error: ' + request.statusText);
+    }
 }
 
 
 function getStateList(parameters){
     var url = $COMMON + 'GetStateList' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.onreadystatechange = function(){
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                var response = request.responseXML;
-                
-                var i = 1;
-                var out = "";
-                
-                $(response).find('state').each(function(){
-                    var marker = $(this);
-                    var name = marker.find("name").text();
-                    out += '<option value="' + i++ + '">';
-                    out += name;
-                    out += '</option>';
-                });
-                $('#stateCombo').html(out);
-            }
-            else {
-                alert('Error: ' + request.statusText);
-            }
-        }
-    };
+    request.open('GET', url, false);
     request.send();
+    if (request.status == 200) {
+        var response = request.responseXML;
+        return response;
+        /*
+         var i = 1;
+         var out = "";
+         
+         $(response).find('state').each(function(){
+         var marker = $(this);
+         var name = marker.find("name").text();
+         out += '<option value="' + i++ + '">';
+         out += name;
+         out += '</option>';
+         });
+         $('#stateCombo').html(out);*/
+    }
+    else {
+        alert('Error: ' + request.statusText);
+    }
+    
+    
 }
 
 
 function register(){
     var msg = XMLGenerator("account", ["username", "name", "password", "email", "birth_date"], [$("#register_username").val(), $("#register_clientname").val(), $("#passwordInput").val(), $("#register_email").val(), toISODate($("#datepicker").val())]);
-    var link = getHref()+"/service/Security.groovy";
+    var link = getHref() + "/service/Security.groovy";
     $.ajax({
         type: "POST",
         url: link,
@@ -128,34 +184,34 @@ function register(){
                 resetRegisterForm();
                 $("#divRegisterOK").dialog({
                     close: function(){
-                         $("#divRegisterOK").dialog("destroy");
+                        $("#divRegisterOK").dialog("destroy");
                     },
-					"modal": "true",
+                    "modal": "true",
                     "resizable": "false",
-					"title": Language.register,
+                    "title": Language.register,
                     draggable: false
                 });
-				var widget = $("#divRegisterOK").dialog("widget");
-				widget.css("top", "300px");
-				widget.css("left", "670px");
-				widget.css("width", "550px");
-				widget.css("height", "100px");
+                var widget = $("#divRegisterOK").dialog("widget");
+                widget.css("top", "300px");
+                widget.css("left", "670px");
+                widget.css("width", "550px");
+                widget.css("height", "100px");
             }
             else {
                 $("#usernametaken").dialog({
                     close: function(){
-                         $("#usernametaken").dialog("destroy");
+                        $("#usernametaken").dialog("destroy");
                     },
-					"modal": "true",
+                    "modal": "true",
                     "resizable": "false",
-					"title": Language.register,
+                    "title": Language.register,
                     draggable: false
                 });
-				var widget = $("#usernametaken").dialog("widget");
-				widget.css("top", "300px");
-				widget.css("left", "670px");
-				widget.css("width", "550px");
-				widget.css("height", "100px");
+                var widget = $("#usernametaken").dialog("widget");
+                widget.css("top", "300px");
+                widget.css("left", "670px");
+                widget.css("width", "550px");
+                widget.css("height", "100px");
             }
         }
     }).responseXML;
