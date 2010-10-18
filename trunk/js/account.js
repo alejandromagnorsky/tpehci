@@ -1,20 +1,20 @@
 /*$(function(){
  $(".tabs").tabs();
  Language.es();
- //document.getElementById("tabPref").onclick = loadPreferences;
- //document.getElementById("themeForm").onsubmit = savePreferences;
+ //document.ElementById("tabPref").onclick = loadPreferences;
+ //document.ElementById("themeForm").onsubmit = savePreferences;
  });*/
 var myaccountShowing = false;
 
 function checkMyAccount(e){
     if (!myaccountShowing) 
         return;
-    var target = (e && e.target) || (event && event.srcElement);
-    var objDiv = document.getElementById("divmyaccount");
-    var objLink = document.getElementById("linkmyaccount");
-    var objSpan = document.getElementById("spanmyaccount");
-    var parent = checkParent(target, "divmyaccount");
-    if (!parent && target != objLink) {
+    var tar = (e && e.tar) || (event && event.srcElement);
+    var objDiv = document.ElementById("divmyaccount");
+    var objLink = document.ElementById("linkmyaccount");
+    var objSpan = document.ElementById("spanmyaccount");
+    var parent = checkParent(tar, "divmyaccount");
+    if (!parent && tar != objLink) {
         objDiv.style.display = 'none';
         objLink.className = 'lang_myaccount text_link';
         objSpan.className = 'unclicked';
@@ -28,12 +28,12 @@ function checkMyAccount(e){
 }
 
 function showHideAccount(){
-    var display = document.getElementById("divmyaccount").style.display;
+    var display = document.ElementById("divmyaccount").style.display;
     
     if (display == 'none' || display == '') {
     
-        document.getElementById("linkmyaccount").className = 'lang_myaccount text_link_clicked';
-        document.getElementById("spanmyaccount").className = 'clicked';
+        document.ElementById("linkmyaccount").className = 'lang_myaccount text_link_clicked';
+        document.ElementById("spanmyaccount").className = 'clicked';
         
         $("#divmyaccount").show("slide", {
             direction: "up"
@@ -42,9 +42,9 @@ function showHideAccount(){
         myaccountShowing = true;
     }
     else {
-        document.getElementById("divmyaccount").style.display = 'none';
-        document.getElementById("linkmyaccount").className = 'lang_myaccount text_link';
-        document.getElementById("spanmyaccount").className = 'unclicked';
+        document.ElementById("divmyaccount").style.display = 'none';
+        document.ElementById("linkmyaccount").className = 'lang_myaccount text_link';
+        document.ElementById("spanmyaccount").className = 'unclicked';
         
         $("#divmyaccount").hide("slide", {
             direction: "up"
@@ -58,7 +58,7 @@ function showHideAccount(){
 function updateAccount(){
     var msg = XMLGenerator("account", ["name", "email", "birth_date"], [$("#modify_clientname").val(), $("#modify_email").val(), toISODate($("#modify_datepicker").val())]);
     
-    var link = getHref() + "/service/Security.groovy";
+    var link = Href() + "/service/Security.groovy";
     $.ajax({
         type: "POST",
         url: link,
@@ -80,11 +80,11 @@ function updateAccount(){
                     "title": Language.modifyData,
                     draggable: false
                 });
-                var widget = $("#modifydatawarning").dialog("widget");
-                widget.css("top", "300px");
-                widget.css("left", "670px");
-                widget.css("width", "550px");
-                widget.css("height", "100px");
+                var wid = $("#modifydatawarning").dialog("wid");
+                wid.css("top", "300px");
+                wid.css("left", "670px");
+                wid.css("width", "550px");
+                wid.css("height", "100px");
                 translateSettings();
             }
             else {
@@ -95,7 +95,7 @@ function updateAccount(){
 }
 
 function changePassword(){
-    var link = getHref() + "/service/Security.groovy";
+    var link = Href() + "/service/Security.groovy";
     
     $.ajax({
         type: "POST",
@@ -118,11 +118,11 @@ function changePassword(){
                     "title": Language.headerchangepass,
                     draggable: false
                 });
-                var widget = $("#changepasswarning").dialog("widget");
-                widget.css("top", "300px");
-                widget.css("left", "670px");
-                widget.css("width", "550px");
-                widget.css("height", "100px");
+                var wid = $("#changepasswarning").dialog("wid");
+                wid.css("top", "300px");
+                wid.css("left", "670px");
+                wid.css("width", "550px");
+                wid.css("height", "100px");
                 $("#changePassForm")[0].reset();
                 passwordValidator.resetForm();
             }
@@ -134,15 +134,15 @@ function changePassword(){
 }
 
 function loadAccount(){
-    requestFromServer('GetAccount', 'username=' + session.username +
+    requestFromServer('Account', 'username=' + session.username +
     '&authentication_token=' +
     session.token);
 }
 
-function getAccount(parameters){
-    var url = $SECURITY + 'GetAccount' + '&' + parameters;
+function Account(parameters){
+    var url = $SECURITY + 'Account' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, false);
+    request.open('', url, false);
     request.send();
     if (request.status == 200) {
         var response = request.responseXML;
@@ -178,7 +178,7 @@ function getAccount(parameters){
 }
 
 function loadPreferences(){
-    requestFromServer('GetAccountPreferences', 'username=' + session.username +
+    requestFromServer('AccountPreferences', 'username=' + session.username +
     '&authentication_token=' +
     session.token);
     return false;
@@ -197,10 +197,10 @@ function savePreferences(){
     return false;
 }
 
-function getAccountPreferences(parameters){
-    var url = $COMMON + 'GetAccountPreferences' + '&' + parameters;
+function AccountPreferences(parameters){
+    var url = $COMMON + 'AccountPreferences' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, false);
+    request.open('', url, false);
 	request.send();
     if (request.status == 200) {
 		var response = request.responseXML;
@@ -218,7 +218,7 @@ function getAccountPreferences(parameters){
 function setAccountPreferences(parameters){
     var url = $COMMON + 'SetAccountPreferences' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, true);
+    request.open('', url, true);
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
@@ -245,7 +245,7 @@ function logout(){
 function signOut(parameters){
     var url = $SECURITY + 'SignOut' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('GET', url, true);
+    request.open('', url, true);
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
@@ -378,7 +378,7 @@ function showPreferences(){
     out += " </div>";
     $("#content").html(out);
     
-    document.getElementById("themeForm").onsubmit = savePreferences;
+    document.ElementById("themeForm").onsubmit = savePreferences;
     $(".prefTabs").tabs();
     showHideAccount();
     slideHeaderUp();
@@ -442,7 +442,7 @@ function showOrders(){
 	out +=		'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
 	out +=	'</div>';
 	$("#content").html('<div class="product">' + out + '</div>');
-	getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printAll');
+	OrderList('username=' + session.username + '&authentication_token=' + session.token, 'printAll');
 	
 	slideHeaderUp(null);
 }

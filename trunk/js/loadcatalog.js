@@ -599,6 +599,8 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	else if (status == 2) statusLabel = 'Confirmed';
 	else if (status == 3) statusLabel = 'Shipped';
 	else statusLabel = 'Delivered';
+
+	incrementContentByProduct();
 	
 	// If some parameter is null, it means programmer don't want to print that parameter.
 	if (input == 'input' ) $('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" name="order" value="' + id + '"/></li>');
@@ -725,11 +727,6 @@ function openAddressSelector(o_id){
 	widget.css("background-image", "none");
 	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 	
-	
-	// Add map!
-	$("#mapContainer").html("<div id='map_canvas'/>");	
-	initializeMap();
-	
 }
 
 function openAddressCreator(){
@@ -818,6 +815,16 @@ function getOrderList(parameters, action){
 	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
 			if (request.status == 200) {
+				
+				initializeContent();
+				incrementContentByProduct();
+				
+				$(".product").append("<div id='mapContainer'></div>");
+
+				// Add map!
+				$("#mapContainer").html("<div id='map_canvas'/>");	
+				initializeMap();
+				
 				var response = request.responseXML;
 				if (action == 'printNotConfirmed') {
 					$(response).find('order').each(function(){
