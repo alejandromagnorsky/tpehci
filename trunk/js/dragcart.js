@@ -233,6 +233,21 @@ function productDetails($link){
 	widget.css("background-image", "none");
 	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 	
+	
+	$(".addtocart").click(function(){
+
+		var id = $(this).attr("value");
+		var products = $("#products").find(".product-content");
+		
+		products.each( function(){
+			
+			if($(this).attr("id") == id){
+				var cartButton = $(this).find(".icon-cart");
+				cartButton.click();
+			}
+		});
+	});
+	
 	return false;
 }
 

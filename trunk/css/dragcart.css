@@ -185,7 +185,8 @@
 	width: 42px;
 	}
 
-#cart .icon-zoom		{ width: 16px; height: 16px; background-repeat: no-repeat; background-image: url(images/ui-icons_222222_256x240.png); position: absolute; left: 20px; top: 130px; background-position: -128px -112px; }
+#cart .icon-zoom                { width: 16px; height: 16px; background-repeat: no-repeat; background-image: url(images/ui-icons_222222_256x240.png) !important; position: absolute; left: 20px; top: 130px; background-position: -128px -112px; }
+
 #cart .icon-plus		{ position: absolute; top: 130px; left: 40px; background-position: -32px -128px; }
 #cart .icon-minus		{ position: absolute; top: 130px; left: 60px; background-position: -64px -128px; }
 #cart .icon-remove		{ position: absolute; top: 130px; left: 110px; background-position: -96px -128px; }

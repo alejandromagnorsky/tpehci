@@ -443,4 +443,6 @@ function showOrders(){
 	out +=	'</div>';
 	$('.product').html(out);
 	getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printAll');
+	
+	slideHeaderUp(null);
 }
