@@ -119,6 +119,7 @@ function loadMain() {
 		return false;
 	});
 	$('.confirmOrder').click(function(){
+		showLoadingDialog();
 		var addr_id = jQuery('#addressList input:radio:checked').val();
 		var o_id = $('.orderIdDialog').html();
 		confirmOrder(o_id, addr_id);

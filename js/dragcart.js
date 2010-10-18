@@ -322,6 +322,7 @@ function proceedToCheckout(){
 				alert("No items to add.");
 			} else {
 				// Finds out which radio button is checked
+				showLoadingDialog();
 				var order_id = jQuery('#orderForm input:radio:checked').val();
 				var i = 0;
 				$('ul.idCol > li.checkoutItem').each(function(){
@@ -338,6 +339,7 @@ function proceedToCheckout(){
 		
 		$('.placeNewOrder').click(function(){
 			if ($('ul.idCol > li.checkoutItem').length != 0){
+				showLoadingDialog();
 				createOrder();
 				incrementContentByProduct();
 				
@@ -404,7 +406,7 @@ function confirmOrder(o_id, addr_id){
 				var order_checked = jQuery('#orderForm input:radio:checked').val();
 				$('ul.statusCol li.orderItem:eq(' + i + ')').html('Confirmed');
 				$('ul.statusCol li.orderItem:eq(' + i + ')').css('color', '#CD0A0A');
-				$('ul.confirmCol li.orderItem:eq(' + i + ')').html('Already confirmed');
+				$('ul.confirmCol li.orderItem:eq(' + i + ')').html('Confirmed');
 				$('ul.dropCol li.orderItem:eq(' + i + ')').html('Cannot drop');
 				$('ul.dropCol li.orderItem:eq(' + i + ')').css('color', '#CD0A0A');
 				$('ul.confirmCol li.orderItem:eq(' + i + ')').css('color', '#CD0A0A');
@@ -412,7 +414,8 @@ function confirmOrder(o_id, addr_id){
 				if (o_id == order_checked)
 					$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
 					
-				alert("Order succesfully confirmed");			
+				hideLoadingDialog();
+				alert("Order succesfully confirmed");		
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
@@ -474,7 +477,9 @@ function addOrderItem(o_id, product_id, count){
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
 				$('#cart li#' + product_id).remove();
-                alert('Item ' + product_id + ' added succesfully!');
+				$('.checkoutTable').html('<span>No hay ítems en el carrito</br></span>');
+				$('.totalCheckout').remove();
+				hideLoadingDialog();
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
