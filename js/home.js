@@ -18,8 +18,13 @@ function getURLParameter2(name) {
 	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [ null , null ])[1]);
 }
 
+function getHref(){
+	var link = parent.location.href;
+	var i = link.indexOf("/", 9);
+	return link.substr(0, i);	
+}
+
 function loadMain() {
-	
 	// Load generic theme
 	$("#header").css("background-color", "#ee7b0d");
 	$("#headerContent").css("background-image",

@@ -384,7 +384,7 @@ function translateSettings(){
     
     loadAccount();
     applyPreferences();
-    
+    alert(session.preferences.theme);
     updateText("profile", Language.profile);
     updateText("modifyData", Language.modifyData);
     updateText("headermodify", Language.headermodify);

@@ -114,10 +114,10 @@ function getStateList(parameters){
 
 function register(){
     var msg = XMLGenerator("account", ["username", "name", "password", "email", "birth_date"], [$("#register_username").val(), $("#register_clientname").val(), $("#passwordInput").val(), $("#register_email").val(), toISODate($("#datepicker").val())]);
-    
+    var link = getHref()+"/service/Security.groovy";
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/service/Security.groovy",
+        url: link,
         dataType: "xml",
         data: {
             method: "CreateAccount",
