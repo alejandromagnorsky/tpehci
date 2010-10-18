@@ -82,6 +82,7 @@ function signIn(parameters){
 		session = new Session($("#login_username").attr("value"), $("#login_password").attr("value"), $ORANGE, $(response).find("token").text());
 		loadPreferences();
 		applyPreferences();
+		
 		setCookie("session", $.toJSON(session), undefined, '/', '', false);
 		
 		changeDivLink();

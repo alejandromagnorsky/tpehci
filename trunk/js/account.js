@@ -59,9 +59,10 @@ function updateAccount() {
 			$("#modify_clientname").val(), $("#modify_email").val(),
 			toISODate($("#modify_datepicker").val()) ]);
 
-	$.ajax( {
+	var link = getHref()+"/service/Security.groovy";
+    $.ajax( {
 		type : "POST",
-		url : "http://localhost:8080/service/Security.groovy",
+		url : link,
 		dataType : "xml",
 		data : {
 			method : "UpdateAccount",
@@ -94,9 +95,11 @@ function updateAccount() {
 }
 
 function changePassword() {
+	var link = getHref()+"/service/Security.groovy";
+    
 	$.ajax( {
 		type : "POST",
-		url : "http://localhost:8080/service/Security.groovy",
+		url : link,
 		dataType : "xml",
 		data : {
 			method : "ChangePassword",
@@ -199,6 +202,7 @@ function getAccountPreferences(parameters) {
 					var value = $(response).find('value');
 					if (value.length != 0)
 						session.preferences = $.secureEvalJSON(value.text());
+					alert("Loading: "+session.preferences.theme);
 				} else {
 					alert("Error: " + $(response).find("error").attr('message'))
 				}
