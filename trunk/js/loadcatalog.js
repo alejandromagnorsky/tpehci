@@ -100,6 +100,20 @@ function updateProductLanguage(){
 	
 	$(".LangRank").text(Language.salesrank);
 	
+	$(".basePrice").each(function(){
+		var price = $(this).attr("value");
+		
+		$(this).text((price*Language.conversionMoney).toFixed(2));
+		
+	});
+	
+	$(".baseDate").each(function(){
+		var date = $(this).attr("value");
+		
+		
+		$(this).text( toLocalDate2(date));
+	});
+	
 }
 
 
@@ -145,7 +159,7 @@ function printProduct(marker, subCategoryID){
 		out +=						'<span class="detailTitle LangLanguage">' + Language.language +':</span> ' + ($(productResponse).find("language").text()) + '<br/>';
 		out +=						'<span class="detailTitle LangSubtitles">' + Language.subtitles +':  </span> ' + ($(productResponse).find("subtitles").text()) + '<br/>';
 		out +=						'<span class="detailTitle LangRuntime">' + Language.runtime + ':  </span> ' + ($(productResponse).find("run_time").text()) + '<br/>';
-		out +=						'<span class="detailTitle LangRelease">' + Language.releasedate + ': </span>  ' + toLocalDate(($(productResponse).find("release_date").text())) + '<br/>';
+		out +=						'<span class="detailTitle LangRelease">' + Language.releasedate + ': </span> <span class="baseDate" value="'+$(productResponse).find("release_date").text()+'">  ' + toLocalDate2($(productResponse).find("release_date").text()) + '</span><br/>';
 		out +=						'<span class="detailTitle LangFormat">' + Language.format + ': </span>  ' + ($(productResponse).find("format").text()) + '<br/>';
 		out +=						'<span class="detailTitle LangAspect">' + Language.aspectratio + ':  </span> ' + ($(productResponse).find("aspect_ratio").text()) + '<br/>';
 		out +=						'<span class="detailTitle LangDiscs">' + Language.numberdiscs + ': </span>  ' + ($(productResponse).find("number_discs").text()) + '<br/>';
@@ -154,7 +168,7 @@ function printProduct(marker, subCategoryID){
 	} else if( c_id == 2 ){
 		out +=						'<span class="detailTitle LangAuthors">' + Language.authors  + ':  </span> ' + ($(productResponse).find("authors").text()) + '<br/>';
 		out +=						'<span class="detailTitle LangPublisher">' + Language.publisher + ': </span>  ' + ($(productResponse).find("publisher").text()) + '<br/>';
-		out +=						'<span class="detailTitle LangPubDate">' + Language.publisheddate + ':  </span> ' + toLocalDate(($(productResponse).find("published_date").text())) + '<br/>';
+		out +=						'<span class="detailTitle LangPubDate">' + Language.publisheddate + ':  </span><span class="baseDate" value="'+$(productResponse).find("published_date").text()+'"> ' + toLocalDate2($(productResponse).find("published_date").text()) + '</span><br/>';
 		out +=						'<span class="detailTitle">ISBN 10:  </span> ' + ($(productResponse).find("ISBN_10").text()) + '<br/>';
 		out +=						'<span class="detailTitle">ISBN 13:  </span> ' + ($(productResponse).find("ISBN_13").text()) + '<br/>';
 		out +=						'<span class="detailTitle LangLanguage">' + Language.language + ':  </span> ' + ($(productResponse).find("language").text()) + '<br/>';
@@ -167,7 +181,7 @@ function printProduct(marker, subCategoryID){
 	
 	out +=						'</div>';
 	out +=						'<div class="divPrice">';
-	out +=							'<p class="detailsPrice"><span class="LangPrice">' + Language.price + '</span>:<span class="LangMoneySign">' + Language.moneySign + '</span>'+ price + '</p>';
+	out +=							'<p class="detailsPrice"><span class="LangPrice">' + Language.price + '</span>:<span class="LangMoneySign">' + Language.moneySign + '</span><span class="basePrice" value="'+price+'">' + (Language.conversionMoney*price).toFixed(2) + '</span></p>';
 	out +=							'<div class="addtocart"> ADD TO CART </div>';
 	out +=						'</div>';
 
@@ -181,17 +195,17 @@ function printProduct(marker, subCategoryID){
 	out +=  '<div class="imgDragger"/>';
 	out += '<div class="cartFeedback"> Added to cart! </div>';
 	out +=	'<img src="' + image_url + '" alt="' + name + '" width="' + $THUMB_WIDTH + '" height="' + $THUMB_HEIGHT + '"/>';
-	out +=	'<p class="spanPrice"> <span class="LangMoneySign">'+ Language.moneySign +'</span>' + price + '</p>';
+	out +=	'<p class="spanPrice"> <span class="LangMoneySign">'+ Language.moneySign +'</span><span class="basePrice" value="'+price+'">' + (Language.conversionMoney *price).toFixed(2) + '</span></p>';
 	out +=  '<div class="productDetails">';
 	out +=  '<span class="LangRank">' + Language.salesrank + '</span>:' + ($(productResponse).find("sales_rank").text()) + '<br/>'; 
 	
 	if( c_id == 2 ){
 		out +=  '<span class="LangAuthors"> ' + Language.authors + '</span>: ' + ($(productResponse).find("authors").text()) + '<br/>';
 		out +=  '<span class="LangPublisher">' + Language.publisher +'</span>: ' + ($(productResponse).find("publisher").text()) + '<br/>';
-		out +=  '<span class="LangPubDate">' + Language.publisheddate +'</span>:' + toLocalDate(($(productResponse).find("published_date").text()))+ '<br/>';
+		out +=  '<span class="LangPubDate">' + Language.publisheddate +'</span>:<span class="baseDate" value="'+$(productResponse).find("published_date").text()+'"> ' + toLocalDate2($(productResponse).find("published_date").text())+ '</span><br/>';
 	} else if( c_id == 1) {
 		out +=	'<span class="LangRuntime">' +	Language.runtime +'</span>:' + ($(productResponse).find("run_time").text()) + '<br/>';
-		out +=	'<span class="LangRelease">' +	Language.releasedate +'</span>:' + toLocalDate(($(productResponse).find("release_date").text())) + '<br/>';
+		out +=	'<span class="LangRelease">' +	Language.releasedate +'</span>:<span class="baseDate" value="'+$(productResponse).find("release_date").text()+'"> ' + toLocalDate2($(productResponse).find("release_date").text()) + '</span><br/>';
 		out +=	'<span class="LangRegion">' +	Language.region +'</span>:' + ($(productResponse).find("region").text()) + '<br/>';
 	}
 		

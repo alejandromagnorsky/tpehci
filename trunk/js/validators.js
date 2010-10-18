@@ -251,6 +251,27 @@ function toLocalDate(date){
     return ans;
 }
 
+function toLocalDate2(date){
+    var re = /^\d{1,2}-\d{1,2}-\d{4}$/;
+    if (!re.test(date)) 
+        return date;
+    var ans;
+    var adata = date.split('-');
+    var dd, mm, aaaa;
+    aaaa = parseInt(adata[2], 10);
+    mm = parseInt(adata[1], 10);
+    dd = parseInt(adata[0], 10);
+    if (currentLang == $EN) {
+        ans = mm + "/" + dd + "/" + aaaa;
+    }
+    else 
+        if (currentLang == $ES) {
+            ans = dd + "/" + mm + "/" + aaaa;
+        }
+    return ans;
+}
+
+
 
 
 function toISODate(date){
@@ -268,3 +289,6 @@ function toISODate(date){
     var aaaa = parseInt(adata[2], 10);
     return aaaa + "-" + mm + "-" + dd;
 }
+
+
+
