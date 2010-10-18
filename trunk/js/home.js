@@ -75,8 +75,6 @@ function loadMain() {
 
 	parseArguments();
 	
-	getAddressList('username=' + session.username + '&authentication_token=' + session.token);
-	
 	$('.addAddress').click(function(){
 		openAddressCreator();
 		//createAddress('Hellatina666', 'Av. Helladera666 666', 'Helldorado', '1', '1', 'City of Satan', '7666', '666-6666');
@@ -589,6 +587,7 @@ function loadSession() {
 		changeDivLink();
 		session = $.secureEvalJSON(getCookie("session"));
 		applyPreferences();
+		getAddressList('username=' + session.username + '&authentication_token=' + session.token);
 	}
 }
 
