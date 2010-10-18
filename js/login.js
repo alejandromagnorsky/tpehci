@@ -89,7 +89,8 @@ function signIn(parameters){
 		$("#divlogin").hide("slide", {
             direction: "up"
         }, 250);
-        loginShowing = false;
+        loginShowing = false;	
+		getAddressList('username=' + session.username + '&authentication_token=' + session.token);
     }
     else {
         var errorCode = $(response).find("error").attr("code");
