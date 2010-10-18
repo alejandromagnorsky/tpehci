@@ -452,6 +452,7 @@ function deleteOrder(o_id){
 				$('ul.createdCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.confirmCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.dropCol li.orderItem:eq(' + i + ')').remove();
+				$('ul.orderAddrIdCol li.orderItem:eq(' + i + ')').remove();
 				if (o_id == order_checked)
 					$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
 
