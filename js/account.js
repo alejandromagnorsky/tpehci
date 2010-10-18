@@ -441,7 +441,7 @@ function showOrders(){
 	out +=		'<ul class="confirmCol"><li class="orderTitle">Confirm</li></ul>';
 	out +=		'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
 	out +=	'</div>';
-	$('.product').html(out);
+	$("#content").html('<div class="product">' + out + '</div>');
 	getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printAll');
 	
 	slideHeaderUp(null);
