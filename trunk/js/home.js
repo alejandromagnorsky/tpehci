@@ -25,6 +25,7 @@ function getHref(){
 }
 
 function loadMain() {
+	
 	// Load generic theme
 	$("#header").css("background-color", "#ee7b0d");
 	$("#headerContent").css("background-image",
