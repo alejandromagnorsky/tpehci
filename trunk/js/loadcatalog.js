@@ -618,6 +618,7 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	/*if (longitude != null )*/ $('.orderTable').find('.lonCol').append('<li class="orderItem">' + longitude + '</li>');
 	$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
 	$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
+	
 	$('.confirmOrder' + id).click(function(){
 		openAddressSelector(id);
 		return false;
@@ -650,7 +651,7 @@ function openAddressSelector(o_id){
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "565px");
+	widget.css("height", "450px");
 	widget.css("width", "850px");
 	widget.css("text-align", "left");
 
@@ -667,6 +668,43 @@ function openAddressSelector(o_id){
 
 	initializeMap();
 	
+}
+
+function openAddressCreator(){
+	if (addressValidator == undefined)
+		initializeAddressValidator();
+	configureAddressValidator(); 
+	
+	$("#addressCreator").dialog({
+		close: function(){
+			$(this).dialog("destroy");
+		},
+		"width" : 650,
+		"modal" : "true",
+		"resizable" : "false",
+		"title" : 'Create new address',
+		draggable : false
+	});
+	
+	var widget = $("#addressCreator").dialog("widget");
+	widget.css("margin", "auto");
+	widget.css("margin-top", "0");
+
+	widget.css("left", "0");
+	widget.css("right", "0");
+
+	widget.css("top", "30px");
+	widget.css("bottom", "0");
+	widget.css("height", "600px");
+	widget.css("width", "500px");
+	widget.css("text-align", "left");
+
+	widget.css("position", "absolute");
+	widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
+	widget.css("-moz-border-radius", "10px 10px 10px 10px");
+	widget.css("background-color", "transparent");
+	widget.css("background-image", "none");
+	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 }
 
 function getAddressList(parameters){	
@@ -699,6 +737,8 @@ function getOrder(parameters, action){
 			if (request.status == 200) {
 				var response = request.responseXML;
 				printOrder('input', $(response).find('order').attr('id'), $(response).find('address_id').text(), $(response).find('status').text(), $(response).find('created_date').text(), $(response).find('confirmed_date').text(), $(response).find('shipped_date').text(), $(response).find('delivered_date').text(), $(response).find('latitude').text(), $(response).find('longitude').text());
+				$('.checkoutTable').html('<span>No hay ítems en el carrito</br></span>');
+				$('.totalCheckout').remove();
 			} else 
 				alert('Error: ' + request.statusText);
 		}

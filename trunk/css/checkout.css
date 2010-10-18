@@ -32,6 +32,13 @@
 /* *********************** */
 
 /* Address form */
+#addressCreator {
+	font-size: 12px;
+    display: none;
+    background-color: #e2e2e2;
+	background-repeat: repeat-x;
+}
+
 #addressSelector{
 	font-size: 12px;
     display: none;
