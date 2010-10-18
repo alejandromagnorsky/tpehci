@@ -439,7 +439,6 @@ function injectCategories() {
 		url = url.substring(0,url.length-1);
 	
 	var longUrl = url + "?tmp=" + randomArg + "&t=Thor DVD's and Books";
-	out += '<div class="footerBlock"><a href="#" class="mapLoader">Load map</a></div>';
 	out += '<div class="footerBlock">';
 	out += '<a name="fb_share" type="button" share_url="'+ longUrl + '"></a>';
 	out += '<span id="follow-ThorStore"></span>';
@@ -450,12 +449,6 @@ function injectCategories() {
 			
 	
 	$("#footerInfo").html(out);
-	
-	$(".mapLoader").click(function(){
-		initializeMap();
-	});
-	
-	
 	
 	// Event delegation for categories in '.categoryBlock'.
 	$( '.categoryBlock' ).click(function( event ) {
@@ -635,7 +628,7 @@ function openAddressSelector(o_id){
 
 	widget.css("top", "30px");
 	widget.css("bottom", "0");
-	widget.css("height", "450px");
+	widget.css("height", "565px");
 	widget.css("width", "850px");
 	widget.css("text-align", "left");
 
@@ -643,7 +636,15 @@ function openAddressSelector(o_id){
 	widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
 	widget.css("-moz-border-radius", "10px 10px 10px 10px");
 	widget.css("background-color", "transparent");
+	widget.css("background-image", "none");
 	widget.css("border", "2px solid rgba(255,255,255,0.3)");
+	
+	
+	// Add map!
+	$("#mapContainer").html("<div id='map_canvas'/>");	
+
+	initializeMap();
+	
 }
 
 function getAddressList(parameters){	

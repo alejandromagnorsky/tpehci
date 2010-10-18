@@ -1,6 +1,5 @@
 function initializeMap() {
 
-	$("#content").html("<div id='map_canvas'/>");
 
 	var latlng = new google.maps.LatLng(-34.397, 150.644);
 	var myOptions = {
@@ -10,6 +9,8 @@ function initializeMap() {
 	};
 	var map = new google.maps.Map(document.getElementById("map_canvas"),
 			myOptions);
+
+	google.maps.event.trigger(map, 'resize');
 
 	addGeocodedMarker("Puerto Madero, Argentina", map, true);
 }
@@ -37,8 +38,8 @@ function addGeocodedMarker(address, map, center) {
 }
 
 function addMapMarker(latLng, map, center) {
-	
-	if(center == true)
+
+	if (center == true)
 		map.setCenter(latLng);
 	var marker = new google.maps.Marker( {
 		position : latLng,

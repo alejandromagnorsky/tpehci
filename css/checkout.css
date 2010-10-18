@@ -37,6 +37,14 @@
     display: none;
     background-color: #e2e2e2;
 	background-repeat: repeat-x;
+	background-image: url(./images/inicio/bg.png);
+	height: 550px !important;
+	color: #000 !important;
+	font-family: verdana;
+}
+
+#addressSelector a{
+	color: #000 !important;
 }
 
 .orderIdDialog {
