@@ -252,7 +252,7 @@ function productDetails($link){
 
 function proceedToCheckout(){
 	var out = '';
-	$('.product').html(out);
+	$("#content").html('<div class="product">' + out + '</div>');
 	out +=	'<h3 class="checkout-header">Checkout</h3>';
 	if ($('#cart').find('li').length != 0){
 		var fromCart = $('#cart');

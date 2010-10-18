@@ -611,7 +611,11 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	/*if (delivered_date != null )*/ $('.orderTable').find('.deliveredCol').append('<li class="orderItem">' + ((status != 4) ? 'Not delivered yet' : delivered_date) + '</li>');
 	/*if (latitude != null )*/ $('.orderTable').find('.latCol').append('<li class="orderItem">' + latitude + '</li>');
 	/*if (longitude != null )*/ $('.orderTable').find('.lonCol').append('<li class="orderItem">' + longitude + '</li>');
-	$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
+	if (status != 1){
+		$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
+	} else {
+		$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
+	}
 	$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
 	
 	$('.confirmOrder' + id).click(function(){
