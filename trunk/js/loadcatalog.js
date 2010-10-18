@@ -637,6 +637,7 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	});
 	$('.viewAddress' + id).click(function(){
 		openAddressInfo(id);
+		getAddress("username=" + session.username + "&authentication_token=" + session.token + "&address_id=" + id);
 		return false;
 	});
 }
@@ -649,11 +650,31 @@ function getAddress(parameters){
 		if (request.readyState == 4) {
 			if (request.status == 200) {
 				var response = request.responseXML;
-				$(response).find('address')
-					printAddress(marker.attr('id'), marker.find('full_name').text(), marker.find('address_line_1').text(), marker.find('address_line_2').text(), marker.find('country_id').text(), marker.find('state_id').text(), marker.find('city').text(), marker.find('zip_code').text(), marker.find('phone_number').text());
-					$('ul.addressInputCol li.addressItem:eq(0)').find('.addressInput').attr("checked", "checked");
-
-
+				$('#addressInfo .addressItem').remove();
+				alert($(response).find('address_id').length);
+				$(response).find('address_id').each(function(){
+					var marker = $(this);
+					var a_id = marker.attr('id');
+					var fn = marker.find('full_name').text();
+					var ad1 = marker.find('address_line_1').text();
+					var ad2 = marker.find('address_line_2').text();
+					var cid = marker.find('country_id').text();
+					var sid = marker.find('state_id').text();
+					var c = marker.find('city').text();
+					var zc = marker.find('zip_code').text();
+					var pn = marker.find('phone_number').text();
+					$('.addrIdColInfo').append('<li class="addressItem">' + a_id + '</li>');
+					$('.fullNameColInfo').append('<li class="addressItem">' + fn + '</li>');
+					$('.addrColInfo1').append('<li class="addressItem">' + ad1 + '</li>');
+					$('.addrColInfo2').append('<li class="addressItem">' + ad2 + '</li>');
+					$('.countryColInfo').append('<li class="addressItem">' + cid + '</li>');
+					$('.stateColInfo').append('<li class="addressItem">' + sid + '</li>');
+					$('.cityColInfo').append('<li class="addressItem">' + c + '</li>');
+					$('.zipCodeColInfo').append('<li class="addressItem">' + zc + '</li>');
+					$('.phoneColInfo').append('<li class="addressItem">' + pn + '</li>');
+				});
+				
+				
 			} else 
 				alert('Error: ' + request.statusText);
 		}
