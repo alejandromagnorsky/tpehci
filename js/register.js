@@ -37,18 +37,18 @@ function loadRegisterForm(){
      maxDate: '+0d'
      });
      */
-    inyectCountries();
+    inyectCountries("#countryCombo");
     
     document.getElementById("countryCombo").onchange = function(e){
         var index = document.getElementById("countryCombo").selectedIndex;
-        inyectStates(index);
+        inyectStates(index, "#stateCombo");
     };
     $("#stateCombo").html("");
     
     document.getElementById("buttonCancel").onclick = resetRegisterForm;
 }
 
-function inyectCountries(){
+function inyectCountries(into){
     var i;
     var out = "";
     out += '<option value="" disabled="true" selected ="selected">';
@@ -59,10 +59,10 @@ function inyectCountries(){
         out += countries[currentLang - 1][i].name;
         out += '</option>';
     }
-    $('#countryCombo').html(out);
+    $(into).html(out);
 }
 
-function inyectStates(country_id){
+function inyectStates(country_id, into){
     var i = 1, j = 1;
     var out = "";
     
@@ -73,7 +73,7 @@ function inyectStates(country_id){
             out += '</option>';
         }
     }
-    $('#stateCombo').html(out);
+    $(into).html(out);
 }
 
 

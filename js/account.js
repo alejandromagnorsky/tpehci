@@ -1,20 +1,20 @@
 /*$(function(){
  $(".tabs").tabs();
  Language.es();
- //document.ElementById("tabPref").onclick = loadPreferences;
- //document.ElementById("themeForm").onsubmit = savePreferences;
+ //document.getElementById("tabPref").onclick = loadPreferences;
+ //document.getElementById("themeForm").onsubmit = savePreferences;
  });*/
 var myaccountShowing = false;
 
 function checkMyAccount(e){
     if (!myaccountShowing) 
         return;
-    var tar = (e && e.tar) || (event && event.srcElement);
-    var objDiv = document.ElementById("divmyaccount");
-    var objLink = document.ElementById("linkmyaccount");
-    var objSpan = document.ElementById("spanmyaccount");
-    var parent = checkParent(tar, "divmyaccount");
-    if (!parent && tar != objLink) {
+    var target = (e && e.target) || (event && event.srcElement);
+    var objDiv = document.getElementById("divmyaccount");
+    var objLink = document.getElementById("linkmyaccount");
+    var objSpan = document.getElementById("spanmyaccount");
+    var parent = checkParent(target, "divmyaccount");
+    if (!parent && target != objLink) {
         objDiv.style.display = 'none';
         objLink.className = 'lang_myaccount text_link';
         objSpan.className = 'unclicked';
@@ -28,12 +28,12 @@ function checkMyAccount(e){
 }
 
 function showHideAccount(){
-    var display = document.ElementById("divmyaccount").style.display;
+    var display = document.getElementById("divmyaccount").style.display;
     
     if (display == 'none' || display == '') {
     
-        document.ElementById("linkmyaccount").className = 'lang_myaccount text_link_clicked';
-        document.ElementById("spanmyaccount").className = 'clicked';
+        document.getElementById("linkmyaccount").className = 'lang_myaccount text_link_clicked';
+        document.getElementById("spanmyaccount").className = 'clicked';
         
         $("#divmyaccount").show("slide", {
             direction: "up"
@@ -42,9 +42,9 @@ function showHideAccount(){
         myaccountShowing = true;
     }
     else {
-        document.ElementById("divmyaccount").style.display = 'none';
-        document.ElementById("linkmyaccount").className = 'lang_myaccount text_link';
-        document.ElementById("spanmyaccount").className = 'unclicked';
+        document.getElementById("divmyaccount").style.display = 'none';
+        document.getElementById("linkmyaccount").className = 'lang_myaccount text_link';
+        document.getElementById("spanmyaccount").className = 'unclicked';
         
         $("#divmyaccount").hide("slide", {
             direction: "up"
@@ -58,7 +58,7 @@ function showHideAccount(){
 function updateAccount(){
     var msg = XMLGenerator("account", ["name", "email", "birth_date"], [$("#modify_clientname").val(), $("#modify_email").val(), toISODate($("#modify_datepicker").val())]);
     
-    var link = Href() + "/service/Security.groovy";
+    var link = getHref() + "/service/Security.groovy";
     $.ajax({
         type: "POST",
         url: link,
@@ -80,11 +80,11 @@ function updateAccount(){
                     "title": Language.modifyData,
                     draggable: false
                 });
-                var wid = $("#modifydatawarning").dialog("wid");
-                wid.css("top", "300px");
-                wid.css("left", "670px");
-                wid.css("width", "550px");
-                wid.css("height", "100px");
+                var widget = $("#modifydatawarning").dialog("widget");
+                widget.css("top", "300px");
+                widget.css("left", "670px");
+                widget.css("width", "550px");
+                widget.css("height", "100px");
                 translateSettings();
             }
             else {
@@ -95,7 +95,7 @@ function updateAccount(){
 }
 
 function changePassword(){
-    var link = Href() + "/service/Security.groovy";
+    var link = getHref() + "/service/Security.groovy";
     
     $.ajax({
         type: "POST",
@@ -118,11 +118,11 @@ function changePassword(){
                     "title": Language.headerchangepass,
                     draggable: false
                 });
-                var wid = $("#changepasswarning").dialog("wid");
-                wid.css("top", "300px");
-                wid.css("left", "670px");
-                wid.css("width", "550px");
-                wid.css("height", "100px");
+                var widget = $("#changepasswarning").dialog("widget");
+                widget.css("top", "300px");
+                widget.css("left", "670px");
+                widget.css("width", "550px");
+                widget.css("height", "100px");
                 $("#changePassForm")[0].reset();
                 passwordValidator.resetForm();
             }
@@ -134,15 +134,15 @@ function changePassword(){
 }
 
 function loadAccount(){
-    requestFromServer('Account', 'username=' + session.username +
+    requestFromServer('GetAccount', 'username=' + session.username +
     '&authentication_token=' +
     session.token);
 }
 
-function Account(parameters){
-    var url = $SECURITY + 'Account' + '&' + parameters;
+function getAccount(parameters){
+    var url = $SECURITY + 'GetAccount' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('', url, false);
+    request.open('GET', url, false);
     request.send();
     if (request.status == 200) {
         var response = request.responseXML;
@@ -178,7 +178,7 @@ function Account(parameters){
 }
 
 function loadPreferences(){
-    requestFromServer('AccountPreferences', 'username=' + session.username +
+    requestFromServer('GetAccountPreferences', 'username=' + session.username +
     '&authentication_token=' +
     session.token);
     return false;
@@ -197,28 +197,28 @@ function savePreferences(){
     return false;
 }
 
-function AccountPreferences(parameters){
-    var url = $COMMON + 'AccountPreferences' + '&' + parameters;
+function getAccountPreferences(parameters){
+    var url = $COMMON + 'GetAccountPreferences' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('', url, false);
-	request.send();
+    request.open('GET', url, false);
+        request.send();
     if (request.status == 200) {
-		var response = request.responseXML;
-		if ($(response).find("response").attr('status') == 'ok') {
-			var value = $(response).find('value').text();
-			if (value != "interface java.sql.Clob") 
-				session.preferences = $.secureEvalJSON(value);
-		}
-	}
-	else {
-		alert("Error: " + $(response).find("error").attr('message'))
-	}    
+                var response = request.responseXML;
+                if ($(response).find("response").attr('status') == 'ok') {
+                        var value = $(response).find('value').text();
+                        if (value != "interface java.sql.Clob") 
+                                session.preferences = $.secureEvalJSON(value);
+                }
+        }
+        else {
+                alert("Error: " + $(response).find("error").attr('message'))
+        }    
 }
 
 function setAccountPreferences(parameters){
     var url = $COMMON + 'SetAccountPreferences' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('', url, true);
+    request.open('GET', url, true);
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
@@ -245,7 +245,7 @@ function logout(){
 function signOut(parameters){
     var url = $SECURITY + 'SignOut' + '&' + parameters;
     var request = new XMLHttpRequest();
-    request.open('', url, true);
+    request.open('GET', url, true);
     request.onreadystatechange = function(){
         if (request.readyState == 4) {
             if (request.status == 200) {
@@ -293,7 +293,7 @@ function showPreferences(){
     out += "                         <div class='input'>";
     out += "                            <label class='lang_clientname regFormLabel'>";
     out += "                            </label>";
-	out += "                         <label class='regFormLabel'> *:</label>";
+        out += "                         <label class='regFormLabel'> *:</label>";
     out += "                            <br/>";
     out += "                          <input id='modify_clientname' name='name' type='text' size='40' maxlength='40' />";
     out += "                          <br/>";
@@ -301,7 +301,7 @@ function showPreferences(){
     out += "                     <div class='input'>";
     out += "                         <label class='lang_birthday regFormLabel'>";
     out += "                         </label>";
-	out += "                         <label class='regFormLabel'> *:</label>";                        
+        out += "                         <label class='regFormLabel'> *:</label>";                        
     out += "                         <br/>";
     out += "                     <input id='modify_datepicker' name='birthday' type='text' size='8' maxlength='10' />";
     out += "                      <label class='lang_datereference regFormLabel'>";
@@ -310,7 +310,7 @@ function showPreferences(){
     out += "                   <div class='input'>";
     out += "                       <label class='lang_email regFormLabel'>";
     out += "                    </label>";
-	out += "                     <label class='regFormLabel'> *:</label>";
+        out += "                     <label class='regFormLabel'> *:</label>";
     out += "                     <br/>";
     out += "                     <input id='modify_email' name='email' type='text' size='30' maxlength='128' />";
     out += "                    <br/>";
@@ -318,7 +318,7 @@ function showPreferences(){
     out += "            </div>";
     out += "          </div>";
     out += "           <div>";
-	out += "        <label class='lang_mandatorydata regReference'></label>";
+        out += "        <label class='lang_mandatorydata regReference'></label>";
     out += "               <br/>";
     out += "                <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "            </div>";
@@ -332,7 +332,7 @@ function showPreferences(){
     out += "                 <div class='input'>";
     out += "                      <label class='lang_currentpassword regFormLabel'>";
     out += "                      </label>";
-	out += "                      <label class='regFormLabel'> *:</label>";
+        out += "                      <label class='regFormLabel'> *:</label>";
     out += "                      <br/>";
     out += "                      <input id='modify_currentpassword' name='currentpassword' type='password' size='20' maxlength='15' />";
     out += "                      <br/>";
@@ -340,7 +340,7 @@ function showPreferences(){
     out += "                 <div class='input'>";
     out += "                      <label class='lang_newpassword regFormLabel'>";
     out += "                      </label>";
-	out += "                         <label class='regFormLabel'> *:</label>";
+        out += "                         <label class='regFormLabel'> *:</label>";
     out += "                      <br/>";
     out += "                      <input id='modify_passwordInput' name='password' type='password' size='20' maxlength='15' />";
     out += "                      <br/>";
@@ -348,7 +348,7 @@ function showPreferences(){
     out += "                 <div class='input'>";
     out += "                    <label class='lang_confirmnewpassword regFormLabel'>";
     out += "                    </label>";
-	out += "                         <label class='regFormLabel'> *:</label>";
+        out += "                         <label class='regFormLabel'> *:</label>";
     out += "                    <br/>";
     out += "                    <input name='password_again' type='password' size='20' maxlength='15' />";
     out += "                    <br/>";
@@ -356,7 +356,7 @@ function showPreferences(){
     out += "             </div>";
     out += "        </div>";
     out += "        <div>";
-	out += "        <label class='lang_mandatorydata regReference'></label>";
+        out += "        <label class='lang_mandatorydata regReference'></label>";
     out += "            <br/>";
     out += "             <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "         </div>";
@@ -378,7 +378,7 @@ function showPreferences(){
     out += " </div>";
     $("#content").html(out);
     
-    document.ElementById("themeForm").onsubmit = savePreferences;
+    document.getElementById("themeForm").onsubmit = savePreferences;
     $(".prefTabs").tabs();
     showHideAccount();
     slideHeaderUp();
@@ -426,23 +426,23 @@ function applyPreferences(){
 }
 
 function showOrders(){
-	var out = '';
-	out +=	'<h3 class="order-header">Orders</h3>';
-	out +=	'<div class="orderTable">';
-	out +=		'<ul class="orderIdCol"><li class="orderTitle">Order ID</li></ul>';
-	out +=		'<ul class="orderAddrIdCol"><li class="orderTitle">Address</li></ul>';
-	out +=		'<ul class="statusCol"><li class="orderTitle">Status</li></ul>';
-	out +=		'<ul class="createdCol"><li class="orderTitle">Created on</li></ul>';
-	//out +=		'<ul class="confirmedCol"><li class="orderTitle">Confirmed on</li></ul>';
-	//out +=		'<ul class="shippedCol"><li class="orderTitle">Shipped on</li></ul>';
-	//out +=		'<ul class="deliveredCol"><li class="orderTitle">Delivered on</li></ul>';
-	//out +=		'<ul class="latCol"><li class="orderTitle">Latitude</li></ul>';
-	//out +=		'<ul class="lonCol"><li class="orderTitle">Longitude</li></ul>';
-	out +=		'<ul class="confirmCol"><li class="orderTitle">Confirm</li></ul>';
-	out +=		'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
-	out +=	'</div>';
-	$("#content").html('<div class="product">' + out + '</div>');
-	OrderList('username=' + session.username + '&authentication_token=' + session.token, 'printAll');
-	
-	slideHeaderUp(null);
+        var out = '';
+        out +=  '<h3 class="order-header">Orders</h3>';
+        out +=  '<div class="orderTable">';
+        out +=          '<ul class="orderIdCol"><li class="orderTitle">Order ID</li></ul>';
+        out +=          '<ul class="orderAddrIdCol"><li class="orderTitle">Address</li></ul>';
+        out +=          '<ul class="statusCol"><li class="orderTitle">Status</li></ul>';
+        out +=          '<ul class="createdCol"><li class="orderTitle">Created on</li></ul>';
+        //out +=                '<ul class="confirmedCol"><li class="orderTitle">Confirmed on</li></ul>';
+        //out +=                '<ul class="shippedCol"><li class="orderTitle">Shipped on</li></ul>';
+        //out +=                '<ul class="deliveredCol"><li class="orderTitle">Delivered on</li></ul>';
+        //out +=                '<ul class="latCol"><li class="orderTitle">Latitude</li></ul>';
+        //out +=                '<ul class="lonCol"><li class="orderTitle">Longitude</li></ul>';
+        out +=          '<ul class="confirmCol"><li class="orderTitle">Confirm</li></ul>';
+        out +=          '<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
+        out +=  '</div>';
+        $("#content").html('<div class="product">' + out + '</div>');
+        getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printAll');
+        
+        slideHeaderUp(null);
 }
