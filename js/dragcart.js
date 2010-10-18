@@ -159,7 +159,7 @@ function addToCart($item){
 	var i = inCart($item);
 	if (i >= 0){
 		var cartItems = $($ITEM_CONTAINER_TAG, cart).children();
-		var item = $("span", cartItems[i]);
+		var item = $(cartItems.get(i)).find(".quantity");
 		var qty = parseInt(item.text()) + 1;
 		item.text(qty);
 	} else {
