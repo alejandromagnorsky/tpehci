@@ -10,22 +10,24 @@ var main;
 // http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
 // Just modified it to work with the hash
 function getURLParameter(name) {
-	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.hash) || [ null , null ])[1]);
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.hash) || [
+			null, null ])[1]);
 }
 
 // This one works with real argumetns "?"
 function getURLParameter2(name) {
-	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [ null , null ])[1]);
+	return unescape((RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [
+			null, null ])[1]);
 }
 
-function getHref(){
+function getHref() {
 	var link = parent.location.href;
 	var i = link.indexOf("/", 9);
-	return link.substr(0, i);	
+	return link.substr(0, i);
 }
 
 function loadMain() {
-	
+
 	// Load generic theme
 	$("#header").css("background-color", "#ee7b0d");
 	$("#headerContent").css("background-image",
@@ -72,22 +74,25 @@ function loadMain() {
 	buildCart(); // Enables cart drop zone.
 
 	parseArguments();
-	
-	getAddressList('username=' + session.username + '&authentication_token=' + session.token);
-	
-	$('.addAddress').click(function(){
-		createAddress('Hellatina666', 'Av. Helladera666 666', 'Helldorado', '1', '1', 'City of Satan', '7666', '666-6666');
-		return false;
-	});
-	$('.confirmOrder').click(function(){
+
+	getAddressList('username=' + session.username + '&authentication_token='
+			+ session.token);
+
+	$('.addAddress').click(
+			function() {
+				createAddress('Hellatina666', 'Av. Helladera666 666',
+						'Helldorado', '1', '1', 'City of Satan', '7666',
+						'666-6666');
+				return false;
+			});
+	$('.confirmOrder').click(function() {
 		var addr_id = jQuery('#addressForm input:radio:checked').val();
 		var o_id = $('.orderIdDialog').html();
 		confirmOrder(o_id, addr_id);
 		return false;
 	});
-	
-}
 
+}
 
 function search(event, callback) {
 
@@ -142,18 +147,31 @@ function search(event, callback) {
 									"<h3>No se encontró ningun producto. Por favor, vuelva a buscar.</h3>");
 				buildDraggables();
 				enableTabs();
-				
+
 				// Style!
-				
 
 				// Manage product styles
-				$(".imgDragger").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgDragger.png)");
-				$(".icon-cart").css("background-image", "url(../css/images/inicio/" + StyleAddr + "cartButton.png)");
-				$(".icon-zoom").css("background-image", "url(../css/images/inicio/" + StyleAddr + "detailsButton.png)");
-				$(".addtocart").css("background-image", "url(../css/images/inicio/" + StyleAddr + "addToCart.png)");
+				$(".imgDragger").css(
+						"background-image",
+						"url(../css/images/inicio/" + StyleAddr
+								+ "imgDragger.png)");
+				$(".icon-cart").css(
+						"background-image",
+						"url(../css/images/inicio/" + StyleAddr
+								+ "cartButton.png)");
+				$(".icon-zoom").css(
+						"background-image",
+						"url(../css/images/inicio/" + StyleAddr
+								+ "detailsButton.png)");
+				$(".addtocart").css(
+						"background-image",
+						"url(../css/images/inicio/" + StyleAddr
+								+ "addToCart.png)");
 				$(".addtocart").css("color", StyleTextColor);
-				$(".imgWrapperBig").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgWrapperBig.png)");
-
+				$(".imgWrapperBig").css(
+						"background-image",
+						"url(../css/images/inicio/" + StyleAddr
+								+ "imgWrapperBig.png)");
 
 				hideLoadingDialog();
 				if (callback != null)
@@ -163,7 +181,6 @@ function search(event, callback) {
 	};
 	request.send();
 }
-
 
 // To prevent animation on linking product
 function loadContentStructure() {
@@ -209,19 +226,49 @@ function parseArguments() {
 	var content = getURLParameter("content");
 	var product = getURLParameter("product");
 	var searchTag = getURLParameter("search");
-	
+	var categoryTag = getURLParameter("c");
+
+	var subTag = getURLParameter("sc");
+
 	var fb = getURLParameter2("fb");
 
 	// Clear url hash
 	parent.location.hash = "";
-	
+
 	// If Facebook, override product tag
-	if( fb != "null"){
+	if (fb != "null") {
 		product = fb;
-	} 
-	
-	
+	}
+
 	if (searchTag != "null") {
+		if (categoryTag != "null") {
+			var catID = parseInt(categoryTag);
+			if (catID != -1) {
+				if (subTag != "null") {
+					var subID = parseInt(subTag);
+					// If it is a subcategory
+					slideHeaderUp(function() {
+						requestFromServer('GetProductList',
+								'Subcategory&language_id=' + currentLang
+										+ '&category_id=' + catID
+										+ '&subcategory_id=' + subID
+										+ '&order=ASC&items_per_page=10&page=1');
+					});
+				} else {
+					// If it is just the category
+					slideHeaderUp(function() {
+						requestFromServer('GetProductList',
+								'Category&language_id=' + currentLang
+										+ '&category_id=' + catID
+										+ '&order=ASC&items_per_page=10&page=1');
+					});
+				}
+				return;
+			}
+
+			// If category tag is invalid, then just search normally
+		}
+
 		$("#inputsearch").val(searchTag);
 
 		if (content == "true")
@@ -230,7 +277,7 @@ function parseArguments() {
 		slideHeaderUp(function() {
 			search(null, null);
 		});
-	} else 	if (product != "null") {
+	} else if (product != "null") {
 		$("#inputsearch").val(product);
 
 		if (content == "true")
