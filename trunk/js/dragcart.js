@@ -267,30 +267,6 @@ function proceedToCheckout(){
 		out += '<span>Usted debe estar logueado para hacer un pedido. Loguearse. Registrarse.</br></span>';
 		$('.product').append(out);
 	} else {
-		/*out +=	'<h3 class="address-header">Choose your shipping address</h3>';
-		out +=	'<form id="addressForm" action="#">';
-		out +=		'<div class="addressTable">';
-		out +=			'<ul class="inputCol"><li class="addressTitle">#</li></ul>';
-		out +=			'<ul class="fullNameCol"><li class="addressTitle">Name</li></ul>';
-		out +=			'<ul class="addrCol"><li class="addressTitle">Address</li></ul>';
-		out +=			'<ul class="cityCol"><li class="addressTitle">City</li></ul>';
-		out +=			'<ul class="zipCodeCol"><li class="addressTitle">Zip Code</li></ul>';
-		out +=			'<ul class="updateAddrCol"><li class="addressTitle">BLABLA</li></ul>';
-		//out +=			'<ul class="phoneCol"><li class="addressTitle">Phone</li></ul>';
-		out +=		'</div>';
-		out +=	'</form>';
-		$('.product').append(out);
-		getAddressList('username=' + session.username + '&authentication_token=' + session.token);
-		out = ''
-		out +=	'<span><a href="#" class="addAddress">Add new address</span>';
-		
-		
-		// Event handlers
-		$('.addAddress').click(function(){
-			createAddress('Hellatina', 'Av. Helladera 666', 'Helldorado', '1', '1', 'City of Satan', '666', '666-6666');
-			return false;
-		});*/
-		
 		out +=	'<h3 class="order-header">SELECT NON-CONFIRMED ORDER...</h3>';
 		out +=	'<form id="orderForm" action="#">';
 		out +=		'<div class="orderTable">';
@@ -302,8 +278,9 @@ function proceedToCheckout(){
 		out +=			'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
 		out +=		'</div>';
 		out +=	'</form>';
-		out +=	'<h3 class="order-header"><br/>...OR PLACE A NEW ONE</h3>';
-		out +=	'<span><a href="#" class="placeNewOrder">Place new order</span>';
+		out +=	'<h3 class="order-header"><p/><p/><br/><br/><br/><br/><br/><br/>...OR PLACE A NEW ONE</h3>';
+		out +=	'<span><a href="#" class="placeNewOrder"><p/><p/>Place new order</span>';
+		out +=	'<span><a href="#" class="addToSelectedOrder"><p/><p/>Add to selected order</span>';
 		$('.product').append(out);
 		getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printNotConfirmed');
 
@@ -312,6 +289,25 @@ function proceedToCheckout(){
 				createOrder();
 			} else {
 				alert("Can't place new order without any item in cart ");
+			}
+			
+			return false;
+		});
+		$('.addToSelectedOrder').click(function(){
+			if ($('ul.orderIdCol > li.orderItem').length == 0){
+				alert("No orders to add to. Must place a new order.");
+			} else if ($('ul.idCol > li.checkoutItem').length == 0){
+				alert("No items to add.");
+			} else {
+				// Finds out which radio button is checked
+				var order_id = jQuery('#orderForm input:radio:checked').val();
+				var i = 0;
+				$('ul.idCol > li.checkoutItem').each(function(){
+					var marker = $(this);
+					addOrderItem(order_id, marker.html(), $('ul.qtyCol > li.checkoutItem:eq(' + i + ')').html());
+					i++;
+				});
+				$('li.checkoutItem').remove();
 			}
 			
 			return false;
@@ -334,7 +330,6 @@ function createOrder(){
             if ($(xml).find("response").attr('status') == 'ok') {
                 var order_id = $(xml).find("order").attr('id');
 				var i = 0;
-				
 				$('ul.idCol > li.checkoutItem').each(function(){
 					var marker = $(this);
 					addOrderItem(order_id, marker.html(), $('ul.qtyCol > li.checkoutItem:eq(' + i + ')').html());
@@ -393,13 +388,16 @@ function deleteOrder(o_id){
 						else i++;
 					}
 				});
+				var order_checked = jQuery('#orderForm input:radio:checked').val();
 				$('ul.orderInputCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.orderIdCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.statusCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.createdCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.confirmCol li.orderItem:eq(' + i + ')').remove();
 				$('ul.dropCol li.orderItem:eq(' + i + ')').remove();
-				
+				if (o_id == order_checked)
+					$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
+
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
@@ -455,6 +453,7 @@ function createAddress(full_name, address_line_1, address_line_2, country_id, st
                 alert("New address added");
 				var new_id = $(xml).find("address").attr('id');
 				printAddress(new_id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number);
+
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
