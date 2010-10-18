@@ -290,16 +290,18 @@ function showPreferences(){
     out += "                      <div class='lang_headermodify regFormHeader'>";
     out += "                     </div>";
     out += "                     <div class='regFormContent'>";
-    out += "                         <div class='regInput'>";
+    out += "                         <div class='input'>";
     out += "                            <label class='lang_clientname regFormLabel'>";
     out += "                            </label>";
+	out += "                         <label class='regFormLabel'> *:</label>";
     out += "                            <br/>";
     out += "                          <input id='modify_clientname' name='name' type='text' size='40' maxlength='40' />";
     out += "                          <br/>";
     out += "                      </div>";
     out += "                     <div class='input'>";
     out += "                         <label class='lang_birthday regFormLabel'>";
-    out += "                  </label>";
+    out += "                         </label>";
+	out += "                         <label class='regFormLabel'> *:</label>";                        
     out += "                         <br/>";
     out += "                     <input id='modify_datepicker' name='birthday' type='text' size='8' maxlength='10' />";
     out += "                      <label class='lang_datereference regFormLabel'>";
@@ -308,6 +310,7 @@ function showPreferences(){
     out += "                   <div class='input'>";
     out += "                       <label class='lang_email regFormLabel'>";
     out += "                    </label>";
+	out += "                     <label class='regFormLabel'> *:</label>";
     out += "                     <br/>";
     out += "                     <input id='modify_email' name='email' type='text' size='30' maxlength='128' />";
     out += "                    <br/>";
@@ -315,6 +318,7 @@ function showPreferences(){
     out += "            </div>";
     out += "          </div>";
     out += "           <div>";
+	out += "        <label class='lang_mandatorydata regReference'></label>";
     out += "               <br/>";
     out += "                <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "            </div>";
@@ -328,6 +332,7 @@ function showPreferences(){
     out += "                 <div class='input'>";
     out += "                      <label class='lang_currentpassword regFormLabel'>";
     out += "                      </label>";
+	out += "                      <label class='regFormLabel'> *:</label>";
     out += "                      <br/>";
     out += "                      <input id='modify_currentpassword' name='currentpassword' type='password' size='20' maxlength='15' />";
     out += "                      <br/>";
@@ -335,6 +340,7 @@ function showPreferences(){
     out += "                 <div class='input'>";
     out += "                      <label class='lang_newpassword regFormLabel'>";
     out += "                      </label>";
+	out += "                         <label class='regFormLabel'> *:</label>";
     out += "                      <br/>";
     out += "                      <input id='modify_passwordInput' name='password' type='password' size='20' maxlength='15' />";
     out += "                      <br/>";
@@ -342,6 +348,7 @@ function showPreferences(){
     out += "                 <div class='input'>";
     out += "                    <label class='lang_confirmnewpassword regFormLabel'>";
     out += "                    </label>";
+	out += "                         <label class='regFormLabel'> *:</label>";
     out += "                    <br/>";
     out += "                    <input name='password_again' type='password' size='20' maxlength='15' />";
     out += "                    <br/>";
@@ -349,6 +356,7 @@ function showPreferences(){
     out += "             </div>";
     out += "        </div>";
     out += "        <div>";
+	out += "        <label class='lang_mandatorydata regReference'></label>";
     out += "            <br/>";
     out += "             <input class='lang_accept modify_buttonOK' type='submit' value='' />";
     out += "         </div>";
