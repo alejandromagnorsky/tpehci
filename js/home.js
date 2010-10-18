@@ -203,7 +203,7 @@ function loadContentStructure() {
 		"top" : "-150px"
 	});
 	$("#headerTitle").css( {
-		"top" : "125px",
+		"top" : "155px",
 		"left" : "-215px"
 	});
 
@@ -502,12 +502,12 @@ function slideHeaderUp(callback) {
 			"top" : "-150px"
 		}, 1000);
 		$("#headerTitle").animate( {
-			"top" : "125px",
+			"top" : "155px",
 			"left" : "-215px"
 		}, 1000);
 
 		$("#titleImg").animate( {
-			"height" : "150px"
+			"height" : "100px",
 		}, 1000, function() {
 
 			$("#pageWrapper").css("visibility", "visible");
