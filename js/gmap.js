@@ -1,21 +1,25 @@
+var map = null;
+
 function initializeMap() {
 
+	if (map != null) {
 
-	var latlng = new google.maps.LatLng(-34.397, 150.644);
-	var myOptions = {
-		zoom : 8,
-		center : latlng,
-		mapTypeId : google.maps.MapTypeId.ROADMAP
-	};
-	var map = new google.maps.Map(document.getElementById("map_canvas"),
-			myOptions);
+		var latlng = new google.maps.LatLng(-34.397, 150.644);
+		var myOptions = {
+			zoom : 8,
+			center : latlng,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map_canvas"),
+				myOptions);
 
-	google.maps.event.trigger(map, 'resize');
+		google.maps.event.trigger(map, 'resize');
 
-	addGeocodedMarker("Puerto Madero, Argentina", map, true);
+		//addGeocodedMarker("Puerto Madero, Argentina", true);
+	}
 }
 
-function addGeocodedMarker(address, map, center) {
+function addGeocodedMarker(address, center) {
 
 	geocoder = new google.maps.Geocoder();
 
@@ -37,7 +41,7 @@ function addGeocodedMarker(address, map, center) {
 	});
 }
 
-function addMapMarker(latLng, map, center) {
+function addMapMarker(latLng, center) {
 
 	if (center == true)
 		map.setCenter(latLng);

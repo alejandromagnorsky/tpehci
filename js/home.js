@@ -36,7 +36,6 @@ function showVideo(){
 		"resizable" : "false",
 		dialogClass : 'alert',
 		draggable : false,
-		closeOnEscape : false
 	});
 
 	var widget = $("#divVideo").dialog("widget");
