@@ -293,11 +293,19 @@ function getProductList(parameters) {
 
 				idIndex = 1;
 				
+				var cID = -1;
+				var sID = -1;
+				
 				// To each product, send same subcategory to override filter
 				$(response).find('product').each( function(){
 					var tmp_scid = $(this).find("subcategory_id").text();
 					printProduct($(this), tmp_scid);
+					
+					
+					cID = $(this).find("category_id").text();
+					sID = tmp_scid;
 				});
+				
 				buildDraggables();
 				enableTabs();
 				hideLoadingDialog();
@@ -310,7 +318,7 @@ function getProductList(parameters) {
 				$(".addtocart").css("color", StyleTextColor);
 				$(".imgWrapperBig").css("background-image", "url(../css/images/inicio/" + StyleAddr + "imgWrapperBig.png)");
 
-				parent.location.hash = "content=true&search=" + $("#inputsearch").val();
+				parent.location.hash = "content=true&search=" + $("#inputsearch").val() + "&c=" + cID + "&sc=" + sID ;
 				
 			} else {
 				alert('Error: ' + request.statusText);
