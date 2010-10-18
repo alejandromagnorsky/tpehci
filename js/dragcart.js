@@ -72,8 +72,7 @@ function buildDraggables(){
         revert: 'invalid',	// When dragged but not dropped, item reverts to initial position
         helper: 'clone',
         cursor: 'move',
-        cursorAt: { left: 10 } ,
-        helper: function(event){
+		helper: function(event){
     	
     		var helper = "<img width='66' height='90' src='" + $(this).find("img").attr("src") + "'/> ";
     		
@@ -287,7 +286,7 @@ function proceedToCheckout(){
 	}
 	out = '';
 	if (session == undefined){
-		out += '<span>Usted debe estar logueado para hacer un pedido. Loguearse. Registrarse.</br></span>';
+		out += '<span><p/><p/>Usted debe estar logueado para hacer un pedido.</br></span>';
 		$('.product').append(out);
 	} else {
 		out +=	'<h3 class="order-header">SELECT NON-CONFIRMED ORDER...</h3>';
@@ -301,9 +300,9 @@ function proceedToCheckout(){
 		out +=			'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
 		out +=		'</div>';
 		out +=	'</form>';
-		out +=	'<h3 class="order-header"><p/><p/><br/><br/><br/><br/><br/><br/>...OR PLACE A NEW ONE</h3>';
-		out +=	'<span><a href="#" class="placeNewOrder"><p/><p/>Place new order</span>';
-		out +=	'<span><a href="#" class="addToSelectedOrder"><p/><p/>Add to selected order</span>';
+		out +=	'<span><a href="#" class="addToSelectedOrder"><p/><p/>Add to selected order</a></span>';
+		out +=	'<h3 class="order-header"><br/><p/><p/><p/><p/>...OR PLACE A NEW ONE</h3>';
+		out +=	'<span><a href="#" class="placeNewOrder"><p/><p/>Place new order</a></span>';
 		$('.product').append(out);
 		getOrderList('username=' + session.username + '&authentication_token=' + session.token, 'printNotConfirmed');
 
