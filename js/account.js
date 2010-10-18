@@ -437,7 +437,7 @@ function showOrders(){
 	out +=		'<ul class="shippedCol"><li class="orderTitle">Shipped on</li></ul>';
 	out +=		'<ul class="deliveredCol"><li class="orderTitle">Delivered on</li></ul>';
 	out +=		'<ul class="latCol"><li class="orderTitle">Latitude</li></ul>';
-	out +=		'<ul class="longCol"><li class="orderTitle">Longitude</li></ul>';
+	out +=		'<ul class="lonCol"><li class="orderTitle">Longitude</li></ul>';
 	out +=		'<ul class="confirmCol"><li class="orderTitle">Confirm</li></ul>';
 	out +=		'<ul class="dropCol"><li class="orderTitle">Drop</li></ul>';
 	out +=	'</div>';

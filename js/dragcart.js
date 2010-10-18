@@ -239,7 +239,7 @@ function productDetails($link){
 function proceedToCheckout(){
 	var out = '';
 	$('.product').html(out);
-	out +=	'<h3 class="checkout-header">Checkout</h5>';
+	out +=	'<h3 class="checkout-header">Checkout</h3>';
 	if ($('#cart').find('li').length != 0){
 		var fromCart = $('#cart');
 		out +=	'<div class="checkoutTable">';
@@ -254,7 +254,7 @@ function proceedToCheckout(){
 		var total = 0;
 		fromCart.find('li').each( function(){
 			var marker = $(this);
-			var price = 666;//marker.find('p.detailsPrice').html();
+			var price = marker.find('.basePrice').html();
 			var qty = marker.find('span.quantity').html();
 			total += price * qty;
 			$('.checkoutTable').find('.idCol').append('<li class="checkoutItem">' + marker.attr('id') + '</li>');
@@ -366,7 +366,27 @@ function confirmOrder(o_id, addr_id){
         },
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
-				alert("Order succesfully confirmed");				
+				var i = 0, stop = false;
+				$('ul.orderIdCol li.orderItem').each(function(){
+					if (!stop){
+						marker = $(this);
+						if (marker.html().toString() == o_id.toString())
+							stop = true;
+						else i++;
+					}
+				});
+				var order_checked = jQuery('#orderForm input:radio:checked').val();
+				$('ul.statusCol li.orderItem:eq(' + i + ')').html('Confirmed');
+				$('ul.statusCol li.orderItem:eq(' + i + ')').css('color', '#CD0A0A');
+				$('ul.confirmCol li.orderItem:eq(' + i + ')').html('Already confirmed');
+				$('ul.dropCol li.orderItem:eq(' + i + ')').html('Cannot drop');
+				$('ul.dropCol li.orderItem:eq(' + i + ')').css('color', '#CD0A0A');
+				$('ul.confirmCol li.orderItem:eq(' + i + ')').css('color', '#CD0A0A');
+				$('ul.orderInputCol li.orderItem:eq(' + i + ')').html('');
+				if (o_id == order_checked)
+					$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
+					
+				alert("Order succesfully confirmed");			
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
@@ -436,7 +456,16 @@ function addOrderItem(o_id, product_id, count){
     }).responseXML;
 }
 
-function createAddress(full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
+function createAddress(){
+	var full_name = $("#address_fullname").val();
+	var ad_1 = $("#address_primaryaddress").val();
+	var ad_2 = $("#address_secondaryaddress").val();
+	var c_id = $("#address_countryCombo").val();
+	var s_id = $("#address_stateCombo").val();
+	var city = $('#address_city').val();
+	var z_c = $('#address_zipcode').val();
+	var p_n = $('#address_phonenumber').val();
+	var msg = XMLGenerator("address", ["full_name", "address_line_1", "address_line_2", "country_id", "state_id", "city", "zip_code", "phone_number"], [full_name, ad_1, ad_2, c_id, s_id, city, z_c, p_n]);
     $.ajax({
         type: "POST",
         url: getHref()+"/service/Order.groovy",
@@ -445,22 +474,13 @@ function createAddress(full_name, address_line_1, address_line_2, country_id, st
             method: "CreateAddress",
             username: session.username,
             authentication_token: session.token,
-            address: 	"<address>" + 
-							"<full_name>" + full_name + "</full_name>" +
-							"<address_line_1>" + address_line_1 + "</address_line_1>" +
-							"<address_line_2>" + address_line_2 + "</address_line_2>" +
-							"<country_id>" + country_id + "</country_id>" +
-							"<state_id>" + state_id + "</state_id>" +
-							"<city>" + city + "</city>" +
-							"<zip_code>" + zip_code + "</zip_code>" +
-							"<phone_number>" + phone_number + "</phone_number>" +
-						"</address>"
+            address: msg
         },
         success: function(xml){
             if ($(xml).find("response").attr('status') == 'ok') {
                 alert("New address added");
 				var new_id = $(xml).find("address").attr('id');
-				printAddress(new_id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number);
+				printAddress(new_id, full_name, ad_1, ad_2, c_id, s_id, city, z_c, p_n);
 
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));

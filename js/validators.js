@@ -49,8 +49,6 @@ function configureValidators(){
     
 }
 
-
-
 function configureRegValidator(){
     if (currentLang == $EN) 
         registerValidator.settings.rules = {
