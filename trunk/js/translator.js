@@ -111,6 +111,13 @@ Language.es = function() {
 	Language.city = "Ciudad";
 	Language.zipcode = "Código postal";
 	Language.phonenumber = "Número telefónico";
+	Language.fullnamewarning = "Introduzca un nombre completo";
+	Language.primaryaddresswarning = "Introduzca un dirección principal";
+	Language.secondaryaddresswarning = "Introduzca un dirección secundaria";
+	Language.citywarning = "Introduzca un ciudad";
+	Language.zipcodewarning = "Introduzca un código postal";
+	Language.phonenumberwarning = "Introduzca un número telefónico";
+	
 	Language.update_address = "Cambiar dirección";
 	Language.noaddress = "Todavía no has creado direcciones";
 
@@ -254,6 +261,13 @@ Language.en = function() {
 	Language.city = "City";
 	Language.zipcode = "Zip Code";
 	Language.phonenumber = "Phone Number";
+	Language.fullnamewarning = "Enter a full name";
+	Language.primaryaddresswarning = "Enter a main address";
+	Language.secondaryaddresswarning = "Enter a secondary address";
+	Language.citywarning = "Enter a city";
+	Language.zipcodewarning = "Enter a zip code";
+	Language.phonenumberwarning = "Enter a phone number";
+	
 	Language.update_address = "Update address";
 	Language.noaddress = "You haven't created any adresses";
 
@@ -326,10 +340,11 @@ function updateLanguage() {
 	updateText("createaddress", Language.createaddress);
 	updateText("fullname", Language.fullname);
 	updateText("createaddress", Language.createaddress);
+	updateText("addressheader", Language.createaddress);
 	updateText("primaryaddress", Language.primaryaddress);
 	updateText("secondaryaddress", Language.secondaryaddress);
 	updateText("city", Language.city);
-	updateText("zipcode", Language.zipcode);
+	updateText("zipcode", Language.zipcode);	
 	updateText("phonenumber", Language.phonenumber);
 
 	$("#divLoading").text(Language.loading);

@@ -521,6 +521,7 @@ function createAddress(){
             }
         }
     }).responseXML;
+	$("#addressCreator").dialog("destroy");
 }
 
 function updateAddress(addr_id, full_name, address_line_1, address_line_2, country_id, state_id, city, zip_code, phone_number){
