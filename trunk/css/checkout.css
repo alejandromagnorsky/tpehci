@@ -6,6 +6,18 @@
 	/*background: #333;*/
 }
 
+.confirmedOrder {
+	color: #CD0A0A;
+}
+
+.shippedOrder {
+	color: #5E740B;
+}
+
+.deliveredOrder {
+	color: #F37E0D;
+}
+
 .orderTable ul {
 	float: left;
 	margin: 0;
@@ -32,6 +44,13 @@
 /* *********************** */
 
 /* Address form */
+#addressInfo {
+	font-size: 12px;
+    display: none;
+    background-color: #e2e2e2;
+	background-repeat: repeat-x;
+}
+
 #addressCreator {
 	font-size: 12px;
     display: none;

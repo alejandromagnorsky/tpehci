@@ -603,7 +603,7 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	// If some parameter is null, it means programmer don't want to print that parameter.
 	if (input == 'input' ) $('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" name="order" value="' + id + '"/></li>');
 	/*if (id != null )*/ $('.orderTable').find('.orderIdCol').append('<li class="orderItem">' + id + '</li>');
-	/*if (address_id != null )*/ $('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem">' + address_id + '</li>');
+	/*if (address_id != null )*/ $('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem"><a href="#" class="viewAddress' + id + '">View</a></li>');
 	/*if (status != null )*/ $('.orderTable').find('.statusCol').append('<li class="orderItem">' + statusLabel + '</li>');
 	/*if (created_date != null )*/ $('.orderTable').find('.createdCol').append('<li class="orderItem">' + created_date + '</li>');
 	/*if (confirmed_date != null )*/ $('.orderTable').find('.confirmedCol').append('<li class="orderItem">' + ((status != 2) ? 'Not confirmed yet' : confirmed_date) + '</li>');
@@ -611,12 +611,19 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	/*if (delivered_date != null )*/ $('.orderTable').find('.deliveredCol').append('<li class="orderItem">' + ((status != 4) ? 'Not delivered yet' : delivered_date) + '</li>');
 	/*if (latitude != null )*/ $('.orderTable').find('.latCol').append('<li class="orderItem">' + latitude + '</li>');
 	/*if (longitude != null )*/ $('.orderTable').find('.lonCol').append('<li class="orderItem">' + longitude + '</li>');
-	if (status != 1){
-		$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
+	if (status == 2){
+		$('.orderTable').find('.confirmCol').append('<li class="orderItem confirmedOrder">Confirmed</li>');
+		$('.orderTable').find('.dropCol').append('<li class="orderItem confirmedOrder">Cannot Drop</li>');
+	} else if ( status == 3 ) {
+		$('.orderTable').find('.confirmCol').append('<li class="orderItem shippedOrder">Shipped</li>');
+		$('.orderTable').find('.dropCol').append('<li class="orderItem confirmedOrder">Cannot Drop</li>');
+	} else if ( status == 4 ){
+		$('.orderTable').find('.confirmCol').append('<li class="orderItem deliveredOrder">Delivered</li>');
+		$('.orderTable').find('.dropCol').append('<li class="orderItem confirmedOrder">Cannot Drop</li>');
 	} else {
-		$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>');
+		$('.orderTable').find('.confirmCol').append('<li class="orderItem"><a href="#" class="confirmOrder' + id + '">Confirm</a></li>')
+		$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
 	}
-	$('.orderTable').find('.dropCol').append('<li class="orderItem"><a href="#" class="dropOrder' + id + '">Drop</a></li>');
 	
 	$('.confirmOrder' + id).click(function(){
 		openAddressSelector(id);
@@ -626,6 +633,63 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 		deleteOrder(id);
 		return false;
 	});
+	$('.viewAddress' + id).click(function(){
+		openAddressInfo(id);
+		return false;
+	});
+}
+
+function getAddress(parameters){	
+	var request = new XMLHttpRequest();
+	var url = $ORDER + 'GetAddress' + '&' + parameters;
+	request.open('GET', url, true);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+				var response = request.responseXML;
+				$(response).find('address')
+					printAddress(marker.attr('id'), marker.find('full_name').text(), marker.find('address_line_1').text(), marker.find('address_line_2').text(), marker.find('country_id').text(), marker.find('state_id').text(), marker.find('city').text(), marker.find('zip_code').text(), marker.find('phone_number').text());
+					$('ul.addressInputCol li.addressItem:eq(0)').find('.addressInput').attr("checked", "checked");
+
+
+			} else 
+				alert('Error: ' + request.statusText);
+		}
+	};
+	request.send();
+}
+
+function openAddressInfo(o_id){
+	$("#addressInfo").dialog({
+		close: function(){
+			$(this).dialog("destroy");
+		},
+		"width" : 650,
+		"modal" : "true",
+		"resizable" : "false",
+		"title" : 'Address for Order #' + o_id,
+		draggable : false
+	});
+	
+	var widget = $("#addressInfo").dialog("widget");
+	widget.css("margin", "auto");
+	widget.css("margin-top", "0");
+
+	widget.css("left", "0");
+	widget.css("right", "0");
+
+	widget.css("top", "30px");
+	widget.css("bottom", "0");
+	widget.css("height", "450px");
+	widget.css("width", "850px");
+	widget.css("text-align", "left");
+
+	widget.css("position", "absolute");
+	widget.css("-moz-box-shadow", " 0 0px 20px rgba(0, 0, 0, 1)");
+	widget.css("-moz-border-radius", "10px 10px 10px 10px");
+	widget.css("background-color", "transparent");
+	widget.css("background-image", "none");
+	widget.css("border", "2px solid rgba(255,255,255,0.3)");
 }
 
 function openAddressSelector(o_id){
@@ -739,6 +803,7 @@ function getOrder(parameters, action){
 				printOrder('input', $(response).find('order').attr('id'), $(response).find('address_id').text(), $(response).find('status').text(), $(response).find('created_date').text(), $(response).find('confirmed_date').text(), $(response).find('shipped_date').text(), $(response).find('delivered_date').text(), $(response).find('latitude').text(), $(response).find('longitude').text());
 				$('.checkoutTable').html('<span>No hay ítems en el carrito</br></span>');
 				$('.totalCheckout').remove();
+				hideLoadingDialog();
 			} else 
 				alert('Error: ' + request.statusText);
 		}
