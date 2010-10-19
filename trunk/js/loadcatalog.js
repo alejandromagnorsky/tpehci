@@ -467,10 +467,14 @@ function injectCategories() {
 	  twttr.anywhere(function (T) {
 	    T('#follow-ThorStore').followButton("ThorStore");
 	  });
+	out += '<br /><a id="watchmotto" class="lang_watchmotto"></a>';
 	out += '</div>';
 			
 	
 	$("#footerInfo").html(out);
+	
+	document.getElementById("watchmotto").onclick = showVideo;
+	updateText("watchmotto", Language.watchmotto);
 	
 	// Event delegation for categories in '.categoryBlock'.
 	$( '.categoryBlock' ).click(function( event ) {
