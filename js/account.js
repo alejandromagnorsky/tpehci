@@ -430,7 +430,7 @@ function showOrders(){
         out +=  '<h3 class="order-header">Orders</h3>';
         out +=  '<div class="orderTable">';
         out +=          '<ul class="orderIdCol"><li class="orderTitle">Order ID</li></ul>';
-        out +=          '<ul class="orderAddrIdCol"><li class="orderTitle">Address</li></ul>';
+        //out +=          '<ul class="orderAddrIdCol"><li class="orderTitle">Address</li></ul>';
         out +=          '<ul class="statusCol"><li class="orderTitle">Status</li></ul>';
         out +=          '<ul class="createdCol"><li class="orderTitle">Created on</li></ul>';
         //out +=                '<ul class="confirmedCol"><li class="orderTitle">Confirmed on</li></ul>';

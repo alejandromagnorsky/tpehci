@@ -99,12 +99,12 @@
 }
 
 .addressTable ul li {
+	height: 25px;
 	list-style: none;
 	padding: 5px 10px;
 }
 
 .addressTableInfo ul li.addressTitle {
-	height: 20px;
 	font-weight: bold;
 	background: #333;
 	color: #fff;
