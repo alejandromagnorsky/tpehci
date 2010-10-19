@@ -281,13 +281,15 @@ function proceedToCheckout(){
 		out = '<div class="totalCheckout"><br><br><br><br><br><br>Total: ' + total + '</div>';
 		$('.product').append(out);
 	} else {
-		out += '<span>No hay ítems en el carrito</br></span>';
+		out += '<span class="lang_no_products_cart"></br></span>';
 		$('.product').append(out);
+		updateText("no_products_cart", Language.no_products_cart);
 	}
 	out = '';
 	if (session == undefined){
-		out += '<span><p/><p/>Usted debe estar logueado para hacer un pedido.</br></span>';
+		out += '<span><p/><p class ="lang_mustbelogged" >Usted debe estar logueado para hacer un pedido.</p></br></span>';
 		$('.product').append(out);
+		updateText("mustbelogged", Language.mustbelogged);
 	} else {
 		out +=	'<h3 class="order-header">SELECT NON-CONFIRMED ORDER...</h3>';
 		out +=	'<form id="orderForm" action="#">';
