@@ -64,7 +64,8 @@ Language.es = function() {
 
 	// Footer
 	Language.copyright = "Thor - Todos los derechos reservados &copy;";
-
+	Language.watchmotto = "Ver lema";
+	
 	// Menu:
 	Language.home = "Inicio";
 	Language.catalog = "Catálogo";
@@ -209,6 +210,7 @@ Language.en = function() {
 
 	// Footer:
 	Language.copyright = "Thor - All rights reserved &copy;";
+	Language.watchmotto = "Watch motto";
 
 	// Menu:
 	Language.home = "Home";
@@ -335,6 +337,7 @@ function updateLanguage() {
 
 	// Footer
 	updateText("copyright", Language.copyright);
+	updateText("watchmotto", Language.watchmotto);
 
 	// Address
 	updateText("createaddress", Language.createaddress);
