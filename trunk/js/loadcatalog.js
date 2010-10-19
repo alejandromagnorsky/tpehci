@@ -609,7 +609,11 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 	// If some parameter is null, it means programmer don't want to print that parameter.
 	if (input == 'input' ) $('.orderTable').find('.orderInputCol').append('<li class="orderItem"><input class="orderInput" type="radio" checked="checked" name="order" value="' + id + '"/></li>');
 	/*if (id != null )*/ $('.orderTable').find('.orderIdCol').append('<li class="orderItem">' + id + '</li>');
-	/*if (address_id != null )*/ $('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem"><a href="#" class="viewAddress' + id + '">View</a></li>');
+	/*if (address_id != null )*/
+	if (status != 1)
+		$('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem"><a href="#" class="viewAddress' + address_id + '">View</a></li>');
+	else
+		$('.orderTable').find('.orderAddrIdCol').append('<li class="orderItem"> - </li>');
 	/*if (status != null )*/ $('.orderTable').find('.statusCol').append('<li class="orderItem">' + statusLabel + '</li>');
 	/*if (created_date != null )*/ $('.orderTable').find('.createdCol').append('<li class="orderItem">' + created_date + '</li>');
 	/*if (confirmed_date != null )*/ $('.orderTable').find('.confirmedCol').append('<li class="orderItem">' + ((status != 2) ? 'Not confirmed yet' : confirmed_date) + '</li>');
@@ -639,9 +643,10 @@ function printOrder(input, id, address_id, status, created_date, confirmed_date,
 		deleteOrder(id);
 		return false;
 	});
-	$('.viewAddress' + id).click(function(){
-		openAddressInfo(id);
-		getAddress("username=" + session.username + "&authentication_token=" + session.token + "&address_id=" + id);
+	$('.viewAddress' + address_id).click(function(){
+		openAddressInfo(address_id);
+		alert(session.token + ' y ' + address_id);
+		getAddress("username=" + session.username + "&authentication_token=" + session.token + "&address_id=" + address_id);
 		return false;
 	});
 }
@@ -655,8 +660,9 @@ function getAddress(parameters){
 			if (request.status == 200) {
 				var response = request.responseXML;
 				$('#addressInfo .addressItem').remove();
-				alert($(response).find('address_id').length);
-				$(response).find('address_id').each(function(){
+				alert(parameters);
+				alert($(response).find('address').length);
+				$(response).find('address').each(function(){
 					var marker = $(this);
 					var a_id = marker.attr('id');
 					var fn = marker.find('full_name').text();
@@ -864,7 +870,7 @@ function getOrderList(parameters, action){
 						marker = $(this);
 						if (marker.find('status').text() != 2)
 							printOrder('input', marker.attr('id'), marker.find('address_id').text(), marker.find('status').text(), marker.find('created_date').text(), marker.find('confirmed_date').text(), marker.find('shipped_date').text(), marker.find('delivered_date').text(), marker.find('latitude').text(), marker.find('longitude').text());
-							$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
+						$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
 					});
 				} else if (action == 'printAll'){
 					$(response).find('order').each(function(){
