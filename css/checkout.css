@@ -45,6 +45,7 @@
 
 /* Address form */
 #addressInfo {
+	height: 600px !important;
 	font-size: 12px;
     display: none;
     background-color: #e2e2e2;
