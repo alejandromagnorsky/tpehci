@@ -417,7 +417,8 @@ function confirmOrder(o_id, addr_id){
 					$('ul.orderInputCol li.orderItem:eq(0)').find('.orderInput').attr("checked", "checked");
 					
 				hideLoadingDialog();
-				alert("Order succesfully confirmed");		
+				alert("Order succesfully confirmed");
+				$("#addressSelector").dialog("destroy");
 			} else {
                 alert("Error: " + $(xml).find("error").attr('message'));
             }
