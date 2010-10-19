@@ -130,7 +130,7 @@ Language.es = function() {
 	Language.cart = "Carrito";
 	Language.quantity = "Cant.";
 	Language.description = "Descripción";
-	Language.error_no_login = "Debe estar logueado para acceder a su carrito.";
+	Language.mustbelogged = "Debe estar logueado para acceder a su carrito.";
 	Language.order = "Orden";
 	Language.status = "Estado";
 	Language.created = "Creado";
@@ -281,7 +281,7 @@ Language.en = function() {
 	Language.cart = "Cart";
 	Language.quantity = "Qty.";
 	Language.description = "Description";
-	Language.error_no_login = "You must be logged to access to your cart.";
+	Language.mustbelogged = "You must be logged to access to your cart.";
 	Language.no_products_cart = "No products have been added to your cart.";
 
 	Language.order = "Order";
@@ -349,7 +349,8 @@ function updateLanguage() {
 	updateText("city", Language.city);
 	updateText("zipcode", Language.zipcode);	
 	updateText("phonenumber", Language.phonenumber);
-
+	updateText("no_products_cart", Language.no_products_cart);
+	updateText("mustbelogged", Language.mustbelogged);
 	$("#divLoading").text(Language.loading);
 
 	injectCategories();
